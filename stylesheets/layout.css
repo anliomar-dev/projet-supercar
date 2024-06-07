@@ -1,3 +1,159 @@
+body, * {
+  padding: 0;
+  margin: 0;
+  font-family: "Inter", sans-serif;
+}
 
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+/*header*/
+.header {
+  background-color: transparent;
+  padding: 30px;
+  z-index: 1000;
+  width: 100%;
+  background-color: transparent;
+  backdrop-filter: blur(50px);
+  -webkit-backdrop-filter: blur(50px);
+}
+.header_menu li {
+  margin: 0 25px;
+}
+.header_menu ul {
+  display: flex;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+}
+.header_container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.header_container .logo {
+  height: 75px;
+}
+.header a:not(.btn-primary):hover {
+  color: #4caf4f;
+}
+.header a:not(.btn-primary) {
+  color: white;
+  transition: ease-in-out all 0.3s;
+}
+.header_buttons a:first-of-type {
+  margin-right: 10px;
+}
+.header_buttons button {
+  background-color: transparent;
+  border: none;
+}
+.header_buttons button svg {
+  width: 30px;
+  height: 30px;
+  fill: #4caf4f;
+}
+.header_link-hover {
+  position: relative;
+}
+.header_link-hover::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  right: 0;
+  width: 0;
+  height: 2px;
+  background-color: #1B5E1F;
+  transition: width 0.4s;
+}
+.header_link-hover:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+/* end style header */
+/* style for footer */
+.footer {
+  background-color: #263238;
+  color: white;
+  padding: 40px 0;
+}
+.footer .container {
+  display: flex;
+  justify-content: space-around;
+}
+.footer .columns {
+  width: 700px;
+  display: flex;
+  justify-content: space-around;
+}
+.footer .columns ul {
+  padding-left: 0;
+  line-height: 30px;
+  margin-top: 25px;
+}
+.footer_button {
+  background-color: transparent;
+  border: none;
+  position: absolute;
+  transform: translate(-130%, 42%);
+}
+.footer_title strong {
+  font-weight: 400;
+  color: white;
+}
+.footer_logo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.footer_logo .reseaux svg {
+  width: 25px;
+  height: 25px;
+  fill: white;
+}
+.footer_logo .reseaux a {
+  margin-right: 20px;
+  padding: 0;
+}
+.footer_logo .reseaux a :hover {
+  fill: #1B5E1F;
+  transform: translateY(-5deg);
+}
+.footer_logo .logo img {
+  height: 75px;
+  transform: translateX(-25px);
+}
+.footer a, .footer p {
+  color: white;
+  font-weight: 200;
+}
+
+form {
+  position: relative;
+}
+form #email {
+  padding: 10px 10px;
+  border-radius: 8px;
+  width: 230px;
+  border: none;
+  background-color: rgba(217, 219, 225, 0.2117647059);
+  color: white;
+}
+form #email :focus {
+  outline: none;
+}
+form #email ::placeholder {
+  color: rgb(204, 203, 203);
+  font-size: 15px;
+  font-weight: 100;
+}
+
+/* end style for footer */
 
 /*# sourceMappingURL=layout.css.map */
