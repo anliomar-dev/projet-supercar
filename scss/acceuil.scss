@@ -422,3 +422,28 @@ form{
         }
     }
 }
+
+// section about
+.about{
+    .about_body{
+        h5{
+            color: $primary;
+        }
+        
+    }
+    .about_image{
+        background-color: #000000;
+        border-radius: 15px;
+        height: 350px;
+        img{
+            transition: transform 0.5s, opacity 0.5s;
+            opacity: 0.8;
+            object-fit: cover;
+            &:hover{
+            transform: scale(1.1);
+            opacity: 1;
+            }
+        }
+    }
+}
+// end section about
