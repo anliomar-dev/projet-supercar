@@ -5,7 +5,17 @@ $title-color: #4d4d4d;
 $text-color: #717171;
 $footer-bg: #263238;
 $link-color-header: #18191f;
-
+body, *{
+    padding: 0;
+    margin: 0;
+    font-family: "Inter", sans-serif;
+}
+a{
+    text-decoration: none;
+}
+li{
+    list-style: none;
+}
 
 @mixin flexCenter($justify-content){
     display: flex;
