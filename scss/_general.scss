@@ -1,0 +1,13 @@
+$primary: #4caf4f;
+$primary-hover: #1B5E1F;
+$gray: #f5f7fa;
+$title-color: #4d4d4d;
+$text-color: #717171;
+$footer-bg: #263238;
+$link-color-header: #18191f;
+
+
+@mixin flexCenter($justify-content){
+    display: flex;
+    justify-content: $justify-content;
+}

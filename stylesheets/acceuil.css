@@ -1,0 +1,473 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+body, * {
+  padding: 0;
+  margin: 0;
+  font-family: "Inter", sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+h1 {
+  font-size: 5rem;
+  color: rgb(27, 255, 92);
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+h2, h3 {
+  color: #4d4d4d;
+}
+
+h2 {
+  font-size: 2.3rem;
+}
+
+h3 {
+  font-size: 1.7rem;
+}
+
+p {
+  color: #717171;
+}
+
+/*header*/
+.header {
+  background-color: transparent;
+  padding: 30px;
+  z-index: 1000;
+  width: 100%;
+  background-color: transparent;
+  backdrop-filter: blur(50px);
+  -webkit-backdrop-filter: blur(50px);
+}
+.header_menu li {
+  margin: 0 25px;
+}
+.header_menu ul {
+  display: flex;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+}
+.header_container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.header_container .logo {
+  height: 75px;
+}
+.header a:not(.btn-primary):hover {
+  color: #4caf4f;
+}
+.header a:not(.btn-primary) {
+  color: white;
+  transition: ease-in-out all 0.3s;
+}
+.header_buttons a:first-of-type {
+  margin-right: 10px;
+}
+.header_buttons button {
+  background-color: transparent;
+  border: none;
+}
+.header_buttons button svg {
+  width: 30px;
+  height: 30px;
+  fill: #4caf4f;
+}
+.header_link-hover {
+  position: relative;
+}
+.header_link-hover::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  right: 0;
+  width: 0;
+  height: 2px;
+  background-color: #1B5E1F;
+  transition: width 0.4s;
+}
+.header_link-hover:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+/* end style header */
+.btn {
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  text-align: center;
+}
+
+.btn.btn-primary {
+  background-color: #4caf4f;
+  color: #fff;
+  transition: 0.3s all ease-in-out;
+}
+
+.btn.btn-primary:hover {
+  background-color: #1B5E1F;
+}
+
+.btn.btn-secondary {
+  background-color: transparent;
+  color: #4caf4f;
+}
+
+.btn-filter {
+  background-color: transparent;
+  backdrop-filter: blur(60px);
+}
+
+.container-fluid.container_header {
+  background-image: url("https://images.netdirector.co.uk/gforces-auto/image/upload/q_auto,c_fill,f_auto,fl_lossy,w_1920,h_873/auto-client/19c13296fabb2d925127c61fb30945b6/jeep_renegade_facebook_1920x1080_final.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  filter: brightness(90%);
+  height: 100vh;
+}
+.container-fluid.container_header .svgs {
+  transform: translateX(75%);
+  opacity: 0;
+  animation: svgs 1s ease forwards;
+}
+
+.right {
+  height: 70vh;
+  width: 200px;
+  background-color: transparent;
+  backdrop-filter: blur(50px); /* Applique un flou à l'arrière-plan */
+  -webkit-backdrop-filter: blur(50px); /* Prise en charge des anciens navigateurs WebKit */
+  margin-right: 0;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  padding-left: 30px;
+  border: solid 0.5px rgba(255, 255, 255, 0.048);
+  border-radius: 10px;
+}
+
+@keyframes icons {
+  to {
+    transform: initial;
+    opacity: 1;
+  }
+}
+.icon-1 svg {
+  transform: translateY(45px);
+  opacity: 0;
+  animation: icons 0.5s ease forwards;
+  animation-delay: 0.3s;
+}
+
+.icon-2 svg {
+  transform: translateY(45px);
+  opacity: 0;
+  animation: icons 0.5s ease forwards;
+  animation-delay: 0.6s;
+}
+
+.icon-3 svg {
+  transform: translateY(45px);
+  opacity: 0;
+  animation: icons 0.5s ease forwards;
+  animation-delay: 0.9s;
+}
+
+.icon-4 svg {
+  transform: translateY(45px);
+  opacity: 0;
+  animation: icons 0.5s ease forwards;
+  animation-delay: 1.2s;
+}
+
+.icon-5 svg {
+  transform: translateY(45px);
+  opacity: 0;
+  animation: icons 0.5s ease forwards;
+  animation-delay: 1.5s;
+}
+
+.icon-6 svg {
+  transform: translateY(45px);
+  opacity: 0;
+  animation: icons 0.5s ease forwards;
+  animation-delay: 1.8s;
+}
+
+.icon-7 svg {
+  transform: translateY(45px);
+  opacity: 0;
+  animation: icons 0.5s ease forwards;
+  animation-delay: 2.1s;
+}
+
+.icon-8 svg {
+  transform: translateY(45px);
+  opacity: 0;
+  animation: icons 0.5s ease forwards;
+  animation-delay: 2.4s;
+}
+
+@keyframes svgs {
+  to {
+    transform: initial;
+    opacity: 1;
+  }
+}
+.slogan {
+  box-sizing: border-box;
+  padding: 0 100px;
+}
+
+.type-moteur {
+  background-color: #f5f7fa;
+}
+.type-moteur .svgs {
+  padding: 70px 0;
+}
+.type-moteur_types {
+  display: flex;
+  justify-content: space-between;
+  width: 1000px;
+}
+
+/* marques disponibles*/
+.marques_images {
+  display: flex;
+  justify-content: space-around;
+}
+.marques_images .ferrari {
+  width: 180px;
+  height: 110px;
+  transition: transform 0.5s;
+  margin: 0 20px;
+}
+.marques_images .ferrari:hover {
+  transform: translateY(-10px);
+  box-shadow: 2px 2px 10px #4caf4f;
+  border-radius: 10px;
+}
+.marques_images .ferrari img {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  box-shadow: 0 6px 18px rgba(171, 190, 209, 0.8274509804);
+  border-radius: 10px;
+}
+
+/* looking-for */
+.looking-for .container .row {
+  display: flex;
+  justify-content: center;
+  padding-block: 50px;
+}
+.looking-for .cards {
+  display: flex;
+  justify-content: center;
+}
+.looking-for_row {
+  border: solid 1px rgba(0, 0, 0, 0.073);
+  border-radius: 10px;
+  padding: 35px;
+  max-width: 550px;
+  margin: 0 60px;
+}
+.looking-for .row-login {
+  background-color: #E9F2FF;
+}
+.looking-for .row-essai {
+  background-color: #FFE9F3;
+}
+.looking-for .card_buttons {
+  display: flex;
+  justify-content: space-between;
+}
+.looking-for .card_buttons svg {
+  width: 40px;
+  height: 40px;
+}
+
+/* most requested*/
+.most-requested {
+  padding: 55px 0;
+}
+.most-requested .container {
+  margin-bottom: 75px;
+  padding-bottom: 50px;
+}
+.most-requested h2 {
+  margin-bottom: 30px;
+}
+.most-requested .row {
+  display: flex;
+  justify-content: center;
+}
+.most-requested .card-1 {
+  background-image: url("../medias/images/panamera.webp");
+}
+.most-requested .card-2 {
+  background-image: url("../medias/images/ferrari_812.webp");
+}
+.most-requested .card-3 {
+  background-image: url("../medias/images/avengerlongitude.webp");
+}
+.most-requested .card {
+  width: 310px;
+  height: 210px;
+  position: relative;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  border-radius: 12px;
+  margin: 0 25px;
+}
+.most-requested .card_body {
+  background-color: white;
+  width: 85%;
+  height: auto;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  padding: 15px 25px;
+  box-sizing: border-box;
+  position: absolute;
+  bottom: -85px;
+  left: 24px;
+  box-shadow: 0 6px 18px rgba(171, 190, 209, 0.8274509804);
+}
+.most-requested .card_body .body_buttons {
+  display: flex;
+  justify-content: space-between;
+}
+.most-requested .card_body .body_buttons .essai {
+  color: #4caf4f;
+  transition: color 0.5s;
+}
+.most-requested .card_body .body_buttons .essai:hover {
+  color: #1B5E1F;
+}
+.most-requested .card_body .body_buttons :first-child {
+  color: #4d4d4d;
+}
+.most-requested .card_body .body_buttons svg {
+  width: 20px;
+  height: 15px;
+  transform: rotateZ(-17deg);
+  fill: #4caf4f;
+}
+.most-requested .card_body .body-text {
+  display: flex;
+  justify-content: space-between;
+}
+.most-requested .card_body .svgs {
+  display: flex;
+  justify-content: space-between;
+}
+.most-requested .card_body .svgs i, .most-requested .card_body .svgs svg {
+  width: 20px;
+  height: 20px;
+  color: #4caf4f;
+  fill: #000000;
+}
+.most-requested .card_body .hr-1, .most-requested .card_body .hr-2 {
+  width: 95%;
+  height: 0.5px;
+  background-color: rgba(24, 25, 31, 0.1333333333);
+  margin-bottom: 10px;
+}
+/*localisation */
+iframe {
+  border-radius: 25px;
+  margin-bottom: 50px;
+}
+
+.footer {
+  background-color: #263238;
+  color: white;
+  padding: 40px 0;
+}
+.footer .container {
+  display: flex;
+  justify-content: space-around;
+}
+.footer .columns {
+  width: 700px;
+  display: flex;
+  justify-content: space-around;
+}
+.footer .columns ul {
+  padding-left: 0;
+  line-height: 30px;
+  margin-top: 25px;
+}
+.footer_button {
+  background-color: transparent;
+  border: none;
+  position: absolute;
+  transform: translate(-130%, 42%);
+}
+.footer_title strong {
+  font-weight: 400;
+  color: white;
+}
+.footer_logo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.footer_logo .reseaux svg {
+  width: 25px;
+  height: 25px;
+  fill: white;
+}
+.footer_logo .reseaux a {
+  margin-right: 20px;
+  padding: 0;
+}
+.footer_logo .reseaux a :hover {
+  fill: #1B5E1F;
+  transform: translateY(-5deg);
+}
+.footer_logo .logo img {
+  height: 75px;
+  transform: translateX(-25px);
+}
+.footer a, .footer p {
+  color: white;
+  font-weight: 200;
+}
+
+form {
+  position: relative;
+}
+form #email {
+  padding: 10px 10px;
+  border-radius: 8px;
+  width: 230px;
+  border: none;
+  background-color: rgba(217, 219, 225, 0.2117647059);
+  color: white;
+}
+form #email :focus {
+  outline: none;
+}
+form #email ::placeholder {
+  color: rgb(204, 203, 203);
+  font-size: 15px;
+  font-weight: 100;
+}
+
+/*# sourceMappingURL=acceuil.css.map */
