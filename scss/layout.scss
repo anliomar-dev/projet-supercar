@@ -82,25 +82,33 @@
         padding: 10px 20px;
         &_links-buttons{
             flex-direction: column;
-            align-items: start;
+            justify-content: start;
             position: fixed;
             top: 0;
             right: 0;
-            width: 200px;
+            width: 220px;
             height: 100vh;
-            background-color: red;
+            background-color: #FFE9F3;
         }
         &_menu{
             ul{
                 flex-direction: column;
                 align-items: start;
+                margin-left: 10px;
+                margin-top: 50px;
                 li{
-                    margin: 0;
+                    margin: 10px 0;
+
                 }
             }
         }
         &_buttons{
             flex-direction: column;
+            margin-left: 0;
+            margin-top: 20px;
+            a{
+                margin: 5px 0;
+            }
         }
         &_container{
             .logo{
