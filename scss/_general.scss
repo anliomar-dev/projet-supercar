@@ -5,10 +5,16 @@ $title-color: #4d4d4d;
 $text-color: #717171;
 $footer-bg: #263238;
 $link-color-header: #18191f;
-body, *{
+body{
     padding: 0;
     margin: 0;
     font-family: "Inter", sans-serif;
+    background-image: url("https://images.netdirector.co.uk/gforces-auto/image/upload/q_auto,c_fill,f_auto,fl_lossy,w_1920,h_873/auto-client/19c13296fabb2d925127c61fb30945b6/jeep_renegade_facebook_1920x1080_final.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: center;
+    background-attachment: fixed;
+    
 }
 a{
     text-decoration: none;

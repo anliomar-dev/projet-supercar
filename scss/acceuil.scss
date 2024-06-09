@@ -1,7 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
 @import 'general';
 
-
 h1{
     font-size: 5rem;
     color: rgb(27, 255, 92);
@@ -49,11 +48,6 @@ p{
 }
 
 .container-fluid.container_header{
-    background-image: url("https://images.netdirector.co.uk/gforces-auto/image/upload/q_auto,c_fill,f_auto,fl_lossy,w_1920,h_873/auto-client/19c13296fabb2d925127c61fb30945b6/jeep_renegade_facebook_1920x1080_final.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    filter: brightness(90%);
     height: 100vh;
     .svgs{
         transform: translateX(75%);
@@ -106,7 +100,7 @@ p{
 
 
 .type-moteur{
-    background-color: $gray;
+    background-color: #E9F2FF;
     .svgs{
         padding: 70px 0;
     }
@@ -115,7 +109,9 @@ p{
         width: 1000px;
     }
 }
-
+main{
+    background-color: $gray;
+}
 
 /* looking-for */
 .looking-for{
@@ -152,6 +148,7 @@ p{
 /* most requested*/
 .most-requested{
     padding: 55px 0;
+    background-color: #FFE9F3;
     .container{
         margin-bottom: 75px;
         padding-bottom: 50px;
@@ -248,6 +245,13 @@ iframe{
 // section about
 .about{
     .about_body{
+        
+        .row{
+            border-radius: 10px;
+            background-color: #E9F2FF;
+            padding-left: 20px;
+            margin-left: 10px;
+        }
         h5{
             color: $primary;
         }

@@ -1,13 +1,20 @@
 @import 'general';
 /*header*/
 .header{
-    background-color: transparent;
+    position: sticky;
+    top: 0;
     padding: 30px;
     z-index: 1000;
     width: 100%;
+    border: none;
     background-color: transparent;
     backdrop-filter: blur(50px);
     -webkit-backdrop-filter: blur(50px);
+    &_links-buttons{
+        @include flexCenter(space-between);
+        align-items: center;
+        width: calc(1248px - 240px);
+    }
     &_menu {
         li {
             margin: 0 25px;
@@ -20,7 +27,7 @@
         }
     }
     &_container{
-        @include flexCenter(space-around);
+        @include flexCenter(space-between);
         align-items: center;
         .logo{
             height: 75px;
@@ -34,6 +41,7 @@
         transition:ease-in-out all 0.3s;
     }
     &_buttons {
+        display: flex;
         a:first-of-type{
         margin-right: 10px;
         }
@@ -65,8 +73,45 @@
         width: 100%;
         left: 0;
     }
+
+}
+
+/* responsive */
+@media screen and (max-width: 1045px){
+    .header{
+        padding: 10px 20px;
+        &_links-buttons{
+            flex-direction: column;
+            align-items: start;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: 100vh;
+            background-color: red;
+        }
+        &_menu{
+            ul{
+                flex-direction: column;
+                align-items: start;
+                li{
+                    margin: 0;
+                }
+            }
+        }
+        &_buttons{
+            flex-direction: column;
+        }
+        &_container{
+            .logo{
+                height: 60px;
+            }
+        }
+    }
+    
 }
 /* end style header */
+
 
 /* style for footer */
 .footer{
