@@ -45,6 +45,8 @@ p{
 .btn-filter{
     background-color: transparent;
     backdrop-filter: blur(60px);
+    -webkit-backdrop-filter: blur(60px);
+    
 }
 
 .container-fluid.container_header{
@@ -53,6 +55,7 @@ p{
         transform: translateX(75%);
         opacity: 0;
         animation: svgs 1s ease forwards;
+        
     }
 }
 
@@ -60,14 +63,15 @@ p{
     height: 70vh;
     width: 200px;
     background-color: transparent;
-    backdrop-filter: blur(50px); /* Applique un flou à l'arrière-plan */
     -webkit-backdrop-filter: blur(50px); /* Prise en charge des anciens navigateurs WebKit */
+    backdrop-filter: blur(50px); /* Applique un flou à l'arrière-plan */
     margin-right: 0;
     @include flexCenter(space-around);
     flex-direction: column;
     padding-left: 30px;
     border: solid 0.5px rgba(255, 255, 255, 0.048);
     border-radius: 10px;
+    box-shadow: 2px 2px 10px white;
 }
 
 @keyframes icons{
@@ -80,6 +84,8 @@ p{
 @for $n from 1 through 8 {
     .icon-#{$n} svg{
         transform: translateY(45px);
+        width: 35px;
+        height: 35px;
         opacity: 0;
         animation: icons 0.5s ease forwards;
         animation-delay: ($n * 0.3s);
@@ -89,7 +95,6 @@ p{
     to{
         transform: initial;
         opacity: 1;
-
     }
 }
 
@@ -273,3 +278,14 @@ iframe{
     }
 }
 // end section about
+
+@media screen and (max-width: 992px){
+    .right{
+        flex-direction: row;
+        height: auto;
+        width: auto;
+        padding: 20px 10px;
+        margin-top: 20px;
+        box-shadow: 2px 2px 10px white;
+    }
+}

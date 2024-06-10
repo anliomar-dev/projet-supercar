@@ -13,7 +13,7 @@
     &_links-buttons{
         @include flexCenter(space-between);
         align-items: center;
-        width: calc(1248px - 240px);
+        width: calc(1248px);
     }
     &_menu {
         li {
@@ -73,7 +73,17 @@
         width: 100%;
         left: 0;
     }
-
+    .toggle-button{
+        display: none;
+        padding: 0;
+        margin: 0;
+        svg{
+            width: 30px;
+            height: 30px;
+            fill: $primary;
+            
+        }
+    }
 }
 
 /* responsive */
@@ -89,6 +99,21 @@
             width: 220px;
             height: 100vh;
             background-color: #FFE9F3;
+            display: none;
+            &-open{
+                display: flex;
+                animation: TransformMenu 300ms ease-in-out forwards;
+            }
+            .menu-close-button{
+                svg{
+                    fill: $primary;
+                    width: 40px;
+                    height: 40px;
+                    position: absolute;
+                    right: 0;
+                    padding-top: 10px;
+                }
+            }
         }
         &_menu{
             ul{
@@ -115,8 +140,25 @@
                 height: 60px;
             }
         }
+        .toggle-button{
+            display: block;
+            padding: 0;
+            margin: 0;
+            svg{
+                width: 30px;
+                height: 30px;
+                fill: $primary;
+            }
+        }
     }
-    
+    @keyframes TransformMenu {
+        0% {
+            transform: translateX(100%);
+        }
+        100% {
+            transform: translateX(initial)
+        }
+    }
 }
 /* end style header */
 

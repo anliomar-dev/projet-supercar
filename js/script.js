@@ -1,8 +1,12 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', () =>{
     const header = document.querySelector('header');
     const logoSupercar = document.getElementById('logo');
     const headerLinks = document.querySelectorAll('.header_link');
-    const headerBtnSecondary = document.querySelector('.header_secondary');    
+    const headerBtnSecondary = document.querySelector('.header_secondary');
+    const menuBurger = document.querySelector('.toggle-button').querySelector('svg');
+    const headerBlock = document.querySelector('.header_links-buttons');
+    const closeMenuButton = document.querySelector('.menu-close-button');
+    
     document.addEventListener('scroll', function() {
         if (window.scrollY > 0) { 
             header.style.backgroundColor = '#fff'; // background color on scroll
@@ -47,4 +51,10 @@ document.addEventListener('DOMContentLoaded', function () {
             link.classList.add('header_link-hover');
         }
     })
-})
+    menuBurger.addEventListener('click', ()=>{
+        headerBlock.classList.add('header_links-buttons-open');
+    })
+    closeMenuButton.addEventListener('click', ()=>{
+        headerBlock.classList.remove('header_links-buttons-open');
+    })
+});
