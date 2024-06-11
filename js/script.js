@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () =>{
     const menuBurger = document.querySelector('.toggle-button').querySelector('svg');
     const headerBlock = document.querySelector('.header_links-buttons');
     const closeMenuButton = document.querySelector('.menu-close-button');
+    const slogan = document.querySelector('.slogan');
     sideBarLinks(headerLinks, '#18191f', 'white');
     document.addEventListener('scroll', function() {
         if (window.scrollY > 0) { 
@@ -30,11 +31,11 @@ document.addEventListener('DOMContentLoaded', () =>{
             headerLinks.forEach(function(link){
                 link.style.color = '#18191f';
             })
-            
-            
+            slogan.classList.add('sloganOnScroll');
         } else {
             // initiales: not scroll
             header.classList.remove('header-onScroll');
+            slogan.classList.remove('sloganOnScroll');
             headerBtnSecondary.classList.remove('secondary-onScroll');
             logoSupercar.src = '../medias/images/supercar_logo_blanc.webp';
             logoSupercar.style.height = '75px';

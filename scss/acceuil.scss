@@ -7,11 +7,12 @@ h1{
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-h2, h3{
+h3{
     color: $title-color;
 }
 h2{
     font-size: 2.3rem;
+    color: $primary;
 }
 h3{
     font-size: 1.7rem;
@@ -55,7 +56,6 @@ p{
         transform: translateX(75%);
         opacity: 0;
         animation: svgs 1s ease forwards;
-        
     }
 }
 
@@ -103,6 +103,9 @@ p{
     padding: 0 100px;
 }
 
+.sloganOnScroll{
+    margin-top: 70px;
+}
 
 .type-moteur{
     background-color: #E9F2FF;
@@ -241,7 +244,10 @@ main{
     }
 }
 
-/*localisation */
+/*location */
+.location{
+    background-image: url("https://usine-a-sites.s3-eu-west-1.amazonaws.com/apfr/Images/LP/bas+gauche+1.jpg");
+}
 iframe{
     border-radius: 25px;
     margin-bottom: 50px;
@@ -253,8 +259,6 @@ iframe{
     .about_body{
         
         .row{
-            border-radius: 10px;
-            background-color: #E9F2FF;
             padding-left: 20px;
             margin-left: 10px;
         }
@@ -264,16 +268,14 @@ iframe{
         
     }
     .about_image{
-        background-color: #000000;
+        background-color: $gray;
         border-radius: 15px;
-        height: 350px;
+        height: auto;
         img{
             transition: transform 0.5s, opacity 0.5s;
-            opacity: 0.8;
             object-fit: cover;
             &:hover{
             transform: scale(1.1);
-            opacity: 1;
             }
         }
     }
