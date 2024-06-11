@@ -112,6 +112,7 @@ p{
     &_types{
         @include flexCenter(space-between);
         width: 1000px;
+        overflow-x: hidden;
     }
 }
 main{

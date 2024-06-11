@@ -195,6 +195,7 @@ p {
   display: flex;
   justify-content: space-between;
   width: 1000px;
+  overflow-x: hidden;
 }
 
 main {

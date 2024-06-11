@@ -1,51 +1,48 @@
+function sideBarLinks(element, colorSmallWidth, colorLargeWidth){
+    if(window.innerWidth <= 1044){
+        element.forEach(function(link){
+            link.style.color = colorSmallWidth;
+        })
+    }else{
+        element.forEach(function(link){
+            link.style.color = colorLargeWidth;
+        })
+    }
+};
+
+
 document.addEventListener('DOMContentLoaded', () =>{
-    const header = document.querySelector('header');
+    const header = document.querySelector('.header');
     const logoSupercar = document.getElementById('logo');
     const headerLinks = document.querySelectorAll('.header_link');
     const headerBtnSecondary = document.querySelector('.header_secondary');
     const menuBurger = document.querySelector('.toggle-button').querySelector('svg');
     const headerBlock = document.querySelector('.header_links-buttons');
     const closeMenuButton = document.querySelector('.menu-close-button');
-    
+    sideBarLinks(headerLinks, '#18191f', 'white');
     document.addEventListener('scroll', function() {
         if (window.scrollY > 0) { 
-            header.style.backgroundColor = '#fff'; // background color on scroll
-            logoSupercar.src = '../medias/images/supercar_logo_noir.webp' // logo on scroll
-            header.style.padding = '10px'; //padding of the header on scroll
+            header.classList.add('header-onScroll');
+            logoSupercar.src = '../medias/images/supercar_logo_noir.webp'; // logo on scroll
             logoSupercar.style.height = '55px'; // size of the logo on scroll
-            headerBtnSecondary.style.color = '#18191f'; // color of header secondary button on scroll
-            
-            //header secondary button on scroll(hover)
-            headerBtnSecondary.onmouseover = function () {
-                headerBtnSecondary.style.color = 'green';
-            }
-
-            headerBtnSecondary.onmouseout = function () {
-                headerBtnSecondary.style.color = 'black';
-            }
+            headerBtnSecondary.classList.add('secondary-onScroll');
             // headr links color on scroll
             headerLinks.forEach(function(link){
                 link.style.color = '#18191f';
             })
             
+            
         } else {
             // initiales: not scroll
-            header.style.backgroundColor = 'transparent';
+            header.classList.remove('header-onScroll');
+            headerBtnSecondary.classList.remove('secondary-onScroll');
             logoSupercar.src = '../medias/images/supercar_logo_blanc.webp';
             logoSupercar.style.height = '75px';
-            header.style.padding = '30px';
-            headerBtnSecondary.style.color = 'white';
-            headerBtnSecondary.onmouseover = function () {
-                headerBtnSecondary.style.color = 'green';
-            }
-            headerBtnSecondary.onmouseout = function () {
-                headerBtnSecondary.style.color = 'white';
-            }
-            headerLinks.forEach(function(link){
-                link.style.color = 'white';
-            })
+            sideBarLinks(headerLinks, '#18191f', 'white');
+            
         }
     });
+    
     headerLinks.forEach(function(link){
         link.onmouseover = () =>{
             link.classList.add('header_link-hover');
