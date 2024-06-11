@@ -107,12 +107,12 @@ p{
     margin-top: 70px;
 }
 
-.type-moteur{
+.marques-section{
     background-color: #E9F2FF;
     .svgs{
         padding: 70px 0;
     }
-    &_types{
+    &_marques{
         @include flexCenter(space-between);
         width: 1000px;
         overflow-x: hidden;

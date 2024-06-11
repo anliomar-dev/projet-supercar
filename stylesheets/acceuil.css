@@ -190,13 +190,13 @@ p {
   margin-top: 70px;
 }
 
-.type-moteur {
+.marques-section {
   background-color: #E9F2FF;
 }
-.type-moteur .svgs {
+.marques-section .svgs {
   padding: 70px 0;
 }
-.type-moteur_types {
+.marques-section_marques {
   display: flex;
   justify-content: space-between;
   width: 1000px;

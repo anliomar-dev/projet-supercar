@@ -40,7 +40,6 @@ document.addEventListener('DOMContentLoaded', () =>{
             logoSupercar.src = '../medias/images/supercar_logo_blanc.webp';
             logoSupercar.style.height = '75px';
             sideBarLinks(headerLinks, '#18191f', 'white');
-            
         }
     });
     
