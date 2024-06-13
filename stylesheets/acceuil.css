@@ -193,14 +193,26 @@ p {
 .marques-section {
   background-color: #E9F2FF;
 }
-.marques-section .svgs {
+.marques-section .marques {
   padding: 70px 0;
 }
 .marques-section_marques {
-  display: flex;
-  justify-content: space-between;
+  height: auto;
   width: 1000px;
   overflow-x: hidden;
+}
+.marques-section_marques .logos {
+  display: flex;
+  justify-content: space-between;
+}
+.marques-section_marques .logos .marque {
+  width: 200px;
+  height: 150px;
+  flex-shrink: 0;
+}
+.marques-section_marques .logos .marque img {
+  width: 100%;
+  height: 100px;
 }
 
 main {

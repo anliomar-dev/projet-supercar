@@ -109,13 +109,25 @@ p{
 
 .marques-section{
     background-color: #E9F2FF;
-    .svgs{
+    .marques{
         padding: 70px 0;
     }
     &_marques{
-        @include flexCenter(space-between);
+        height: auto;
         width: 1000px;
         overflow-x: hidden;
+        .logos{
+            @include flexCenter(space-between);
+            .marque{
+                width: 200px;
+                height: 150px;
+                flex-shrink: 0;
+                img{
+                    width: 100%;
+                    height: 100px;
+                }
+            }
+        }
     }
 }
 main{
