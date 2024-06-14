@@ -10,6 +10,23 @@ function sideBarLinks(element, colorSmallWidth, colorLargeWidth){
     }
 };
 
+function addAnimation(scrollers){
+    scrollers.forEach(scroller => {
+        scroller.setAttribute("data-animated", true);
+
+        const scrollerInner = document.querySelectorAll('.scroller_inner');
+        scrollerInner.forEach(inner => {
+            const scrollerContent = Array.from(inner.children);
+            scrollerContent.forEach(item =>{
+                const duplicateItem = item.cloneNode(true);
+                duplicateItem.setAttribute("aria-hidden", true)
+                inner.appendChild(duplicateItem);
+            })
+        });
+        
+        
+    })
+}
 
 document.addEventListener('DOMContentLoaded', () =>{
     const header = document.querySelector('.header');
@@ -20,6 +37,8 @@ document.addEventListener('DOMContentLoaded', () =>{
     const headerBlock = document.querySelector('.header_links-buttons');
     const closeMenuButton = document.querySelector('.menu-close-button');
     const slogan = document.querySelector('.slogan');
+    const scrollers = document.querySelectorAll('.scroller');
+
     sideBarLinks(headerLinks, '#18191f', 'white');
     document.addEventListener('scroll', function() {
         if (window.scrollY > 0) { 
@@ -54,4 +73,8 @@ document.addEventListener('DOMContentLoaded', () =>{
     closeMenuButton.addEventListener('click', ()=>{
         headerBlock.classList.remove('header_links-buttons-open');
     })
+
+    if (!window.matchMedia("(prefers-reduce-motion: reduce").matches){
+        addAnimation(scrollers)
+    }
 });
