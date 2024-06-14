@@ -9,6 +9,7 @@ body {
   background-size: cover;
   position: center;
   background-attachment: fixed;
+  position: relative;
 }
 
 a {
@@ -76,6 +77,15 @@ main {
   -webkit-backdrop-filter: blur(60px);
 }
 
+.overlay-open {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5725490196);
+  z-index: 1000;
+}
+
+/* section container_header*/
 .container-fluid.container_header {
   height: 100vh;
 }
@@ -194,6 +204,8 @@ main {
   margin-top: 70px;
 }
 
+/*end style container_header*/
+/*section marques*/
 .marques-section {
   background-color: #E9F2FF;
 }
@@ -257,6 +269,7 @@ main {
   }
 }
 /* end style infinite scroll animation*/
+/* end style section marques*/
 /* looking-for */
 .looking-for .container .row {
   display: flex;

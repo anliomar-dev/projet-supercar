@@ -49,9 +49,16 @@ main{
     background-color: transparent;
     backdrop-filter: blur(60px);
     -webkit-backdrop-filter: blur(60px);
-    
 }
 
+.overlay-open{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: #00000092;
+    z-index: 1000;
+}
+/* section container_header*/
 .container-fluid.container_header{
     height: 100vh;
     .svgs{
@@ -108,7 +115,9 @@ main{
 .sloganOnScroll{
     margin-top: 70px;
 }
+/*end style container_header*/
 
+/*section marques*/
 .marques-section{
     background-color: #E9F2FF;
     .marques{
@@ -171,6 +180,7 @@ main{
     }
 }
 /* end style infinite scroll animation*/
+/* end style section marques*/
 
 
 /* looking-for */
