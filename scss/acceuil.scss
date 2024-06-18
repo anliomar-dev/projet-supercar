@@ -97,40 +97,44 @@ p{
 /* end style entete */
 
 /* types */
+
 .types{
-    .type{
-        background-color: #4caf4f;
-        height: 60px;
-        position: relative;
-        .browse{
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            height: 60px;
-            width: 70%;
-            background-color:#4caf4f;
-            clip-path: polygon(0 0, 100% 0, 91% 100%, 8% 100%);
+    .browse{
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100px;
+        padding: 40px 0;
+        background-color:#4caf4f;
+        border-radius: 0 0 50% 50%;
+        .browse-type{
+            width: 70px;
+            height: 50px;
         }
     }
 }
+
 
 /* end style type */
 
 
 /*section marques*/
 .marques-section{
-    background-color: #E9F2FF;
+    /*position: absolute;
+    top: -15%;
+    left: 50%;
+    transform: translateX(-50%);*/
     .marques{
-        padding: 70px 0;
-    }     
+        padding: 0 0;
+    } 
 }
-.marque{
-    width: 150px;
-    height: 130px;
+.marque, .browse-type{
+    background-color: #E9F2FF;
     border: solid 0.5px rgba(0, 0, 0, 0.149);
-    box-shadow: 1px 1px 15px #4caf4faa;
-    border-radius: 50%;
+    box-shadow: 1px 1px 15px #ccccccaa;
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -140,12 +144,29 @@ p{
         width: 100%;
         height: 100px;
     }
+    p{
+        font-size: 10px;
+    }
+}
+.marque{
+    width: 130px;
+    height: 100px;
+    border-radius: 50%;
 }
 
+.nos-evennements{
+    width: 400px;
+    height: 300px;
+    flex-shrink: 0;
+    img{
+        width: 100%;
+        height: 100%;
+        border-radius: 30px 0 30px 0;
+    }
+}
 /* start style infinite scroll animation*/
 .scroller {
-    max-width: 850px;
-    padding-block: 20px;
+    max-width: 700px;
 }
 .scroller[data-animated="true"]{
     overflow: hidden;
@@ -341,14 +362,3 @@ iframe{
     }
 }
 // end section about
-
-@media screen and (max-width: 992px){
-    .right{
-        flex-direction: row;
-        height: auto;
-        width: auto;
-        padding: 20px 10px;
-        margin-top: 20px;
-        box-shadow: 2px 2px 10px white;
-    }
-}

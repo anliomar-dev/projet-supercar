@@ -50,7 +50,6 @@ document.addEventListener('DOMContentLoaded', () =>{
             headerLinks.forEach(function(link){
                 link.style.color = '#18191f';
             })
-            slogan.classList.add('sloganOnScroll');
         } else {
             // initiales: not scroll
             header.classList.remove('header-onScroll');
