@@ -46,7 +46,6 @@ p{
     background-color: transparent;
     backdrop-filter: blur(60px);
     -webkit-backdrop-filter: blur(60px);
-    
 }
 
 /* style entete */
@@ -87,6 +86,14 @@ p{
         }
     }
 }
+.overlay-open{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: #00000092;
+    z-index: 1000;
+}
+
 /* end style entete */
 
 /* types */
@@ -107,8 +114,11 @@ p{
         }
     }
 }
+
 /* end style type */
 
+
+/*section marques*/
 .marques-section{
     background-color: #E9F2FF;
     .marques{
@@ -171,6 +181,7 @@ p{
     }
 }
 /* end style infinite scroll animation*/
+/* end style section marques*/
 
 
 /* looking-for */

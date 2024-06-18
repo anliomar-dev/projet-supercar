@@ -13,7 +13,6 @@ function sideBarLinks(element, colorSmallWidth, colorLargeWidth){
 function addAnimation(scrollers){
     scrollers.forEach(scroller => {
         scroller.setAttribute("data-animated", true);
-
         const scrollerInner = document.querySelectorAll('.scroller_inner');
         scrollerInner.forEach(inner => {
             const scrollerContent = Array.from(inner.children);
@@ -38,6 +37,8 @@ document.addEventListener('DOMContentLoaded', () =>{
     const closeMenuButton = document.querySelector('.menu-close-button');
     const slogan = document.querySelector('.slogan');
     const scrollers = document.querySelectorAll('.scroller');
+    const overlay = document.querySelector('.overlay');
+
 
     sideBarLinks(headerLinks, '#18191f', 'white');
     document.addEventListener('scroll', function() {
@@ -59,18 +60,28 @@ document.addEventListener('DOMContentLoaded', () =>{
         }
     });
     
+    function closeMEnu(){
+        headerBlock.classList.remove('header_links-buttons-open');
+        overlay.classList.remove('overlay-open')
+    }
+
     headerLinks.forEach(function(link){
         link.onmouseover = () =>{
             link.classList.add('header_link-hover');
         }
     })
+    
     menuBurger.addEventListener('click', ()=>{
         headerBlock.classList.add('header_links-buttons-open');
+        overlay.classList.add('overlay-open');
     })
     closeMenuButton.addEventListener('click', ()=>{
-        headerBlock.classList.remove('header_links-buttons-open');
+        closeMEnu()
     })
 
+    overlay.addEventListener('click', () => {
+        closeMEnu()
+    })
     if (!window.matchMedia("(prefers-reduce-motion: reduce").matches){
         addAnimation(scrollers)
     }
