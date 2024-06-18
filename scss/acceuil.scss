@@ -21,9 +21,6 @@ p{
     color: $text-color;
 }
 
-main{
-    background-color: $gray;
-}
 .btn {
     padding: 10px 20px;
     border-radius: 6px;
@@ -52,62 +49,65 @@ main{
     
 }
 
-.container-fluid.container_header{
-    height: 100vh;
-    .svgs{
-        transform: translateX(75%);
-        opacity: 0;
-        animation: svgs 1s ease forwards;
+/* style entete */
+.entete{
+    background-image: url('https://img.freepik.com/free-photo/public-square-with-empty-road-floor-downtown_1127-3324.jpg?size=626&ext=jpg&ga=GA1.1.1141335507.1717977600&semt=ais_user');
+    height: 85vh;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    .container{
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .image{
+        margin-top: 10px;
+        z-index: 10;
+        img{
+            width: 750px;
+        }
+    }
+    .filter{
+        background-color: rgba(0, 0, 0, 0.504);
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        z-index: 1;
+    }
+    .text{
+        z-index: 10;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: start;
+        h1, h2, p, div{
+            margin: 10px 0;
+        }
     }
 }
+/* end style entete */
 
-.right{
-    height: 70vh;
-    width: 200px;
-    background-color: transparent;
-    -webkit-backdrop-filter: blur(50px); /* Prise en charge des anciens navigateurs WebKit */
-    backdrop-filter: blur(50px); /* Applique un flou à l'arrière-plan */
-    margin-right: 0;
-    @include flexCenter(space-around);
-    flex-direction: column;
-    padding-left: 30px;
-    border: solid 0.5px rgba(255, 255, 255, 0.048);
-    border-radius: 10px;
-    box-shadow: 2px 2px 10px white;
-}
-
-@keyframes icons{
-    to{
-        transform: initial;
-        opacity: 1;
+/* types */
+.types{
+    .type{
+        background-color: #4caf4f;
+        height: 60px;
+        position: relative;
+        .browse{
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            height: 60px;
+            width: 70%;
+            background-color:#4caf4f;
+            clip-path: polygon(0 0, 100% 0, 91% 100%, 8% 100%);
+        }
     }
 }
-
-@for $n from 1 through 8 {
-    .icon-#{$n} svg{
-        transform: translateY(45px);
-        width: 35px;
-        height: 35px;
-        opacity: 0;
-        animation: icons 0.5s ease forwards;
-        animation-delay: ($n * 0.3s);
-    }
-}
-@keyframes svgs{
-    to{
-        transform: initial;
-        opacity: 1;
-    }
-}
-
-.slogan{
-    box-sizing: border-box;
-    padding: 0 100px;
-}
-
-.sloganOnScroll{
-    margin-top: 70px;
-}
+/* end style type */
 
 .marques-section{
     background-color: #E9F2FF;

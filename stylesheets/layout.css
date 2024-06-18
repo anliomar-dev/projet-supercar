@@ -2,11 +2,6 @@ body {
   padding: 0;
   margin: 0;
   font-family: "Inter", sans-serif;
-  background-image: url("https://usine-a-sites.s3-eu-west-1.amazonaws.com/apfr/Images/LP/bas+gauche+1.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: center;
-  background-attachment: fixed;
 }
 
 a {
@@ -22,12 +17,9 @@ li {
   position: sticky;
   top: 0;
   z-index: 1000;
-  padding: 30px;
-  background-color: transparent;
-  backdrop-filter: blur(50px);
-  -webkit-backdrop-filter: blur(50px);
+  padding: 20px;
+  background-color: rgb(3, 3, 68);
   width: 100%;
-  border: none;
 }
 .header_links-buttons {
   display: flex;

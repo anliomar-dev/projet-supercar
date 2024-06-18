@@ -4,12 +4,9 @@
     position: sticky;
     top: 0;
     z-index: 1000;
-    padding: 30px;
-    background-color: transparent;
-    backdrop-filter: blur(50px);
-    -webkit-backdrop-filter: blur(50px);
+    padding: 20px;
+    background-color: rgb(3, 3, 68);
     width: 100%;
-    border: none;
     &_links-buttons{
         @include flexCenter(space-between);
         align-items: center;
