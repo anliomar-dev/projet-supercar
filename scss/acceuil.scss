@@ -264,6 +264,10 @@ p{
         background-position: center;
         border-radius: 12px;
         margin: 0 25px;
+        transition: transform 0.5s;
+        &:hover{
+            transform: scale(1.1);
+        }
         &_body{
             background-color: white;
             width: 85%;
@@ -399,7 +403,8 @@ iframe{
     .statistiques{
         background-color: #E9F2FF;
         @include flexCenter(center);
-        column-gap: 25px;
+        flex-wrap: wrap;
+        gap: 25px;
         padding: 90px 0;
         border-radius: 0 0 80% 80%;
     }
@@ -445,8 +450,6 @@ iframe{
             position: relative;
             margin-bottom: 0;
             display: block;
-            border: solid 2px;
-
         }
     }
 }

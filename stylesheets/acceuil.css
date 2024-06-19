@@ -279,6 +279,10 @@ p {
   background-position: center;
   border-radius: 12px;
   margin: 0 25px;
+  transition: transform 0.5s;
+}
+.most-requested .card:hover {
+  transform: scale(1.1);
 }
 .most-requested .card_body {
   background-color: white;
@@ -461,7 +465,8 @@ iframe {
   background-color: #E9F2FF;
   display: flex;
   justify-content: center;
-  column-gap: 25px;
+  flex-wrap: wrap;
+  gap: 25px;
   padding: 90px 0;
   border-radius: 0 0 80% 80%;
 }
@@ -502,7 +507,6 @@ iframe {
     position: relative;
     margin-bottom: 0;
     display: block;
-    border: solid 2px;
   }
 }
 
