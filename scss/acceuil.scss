@@ -58,7 +58,26 @@ p{
     background-size: cover;
     position: relative;
     .container{
-        @include flexCenter(space-between)
+        @include flexCenter(space-between);
+        @media screen and (max-width: 992px){
+            height: 80vh;
+            .buttons, h2{
+                display: flex;
+                justify-content: center;
+            }
+            .image{
+                transform: translateY(-125px);
+                z-index: 1;
+                opacity: 0.5;
+            }
+            .text{
+                transform: translateY(125px);
+            }
+        }
+        .buttons{
+            display: flex;
+            gap: 20px;
+        }
     }
     
     .image{
@@ -66,6 +85,9 @@ p{
         z-index: 10;
         img{
             width: 750px;
+            transform: translateX(50%) scale(0.5) rotateZ(-5deg);
+            opacity: 0;
+            animation: image-entete 1s ease-out 0.5s forwards;
         }
     }
     .filter{
@@ -84,6 +106,31 @@ p{
         h1, h2, p, div{
             margin: 10px 0;
         }
+
+        @for $i from 1 through 5{
+            .animation#{$i}{
+                transform: translateY(80px) scale(0.6);
+                opacity: 0;
+                animation: entete-text 0.8s ease-in-out 1s forwards;
+            }
+        }
+    }
+
+}
+
+// animation for the image in entete section
+@keyframes image-entete {
+    to{
+        transform: translatex(0) scale(1) rotateZ(0deg);
+        opacity: 1;
+    }
+}
+
+// animation for the elements in div text in entete section
+@keyframes entete-text {
+    to{
+        transform: initial;
+        opacity: 1;
     }
 }
 .overlay-open{
@@ -93,11 +140,9 @@ p{
     background-color: #00000092;
     z-index: 1000;
 }
-
 /* end style entete */
 
 /* types */
-
 .types{
     .browse{
         overflow: hidden;
@@ -158,6 +203,9 @@ p{
         border-radius: 30px 0 30px 0;
     }
 }
+// end style section marque
+
+
 /* start style infinite scroll animation*/
 .scroller {
     max-width: 700px;
@@ -323,13 +371,7 @@ p{
         }
     }
 }
-
-/*location */
-
-iframe{
-    border-radius: 25px;
-    margin-bottom: 50px;
-}
+/* end style for most-requested section */
 
 
 // section about
@@ -365,6 +407,7 @@ iframe{
     }
 }
 // end section about
+
 
 // section gallery
 .gallery{
@@ -460,11 +503,9 @@ iframe{
         }
     }
 }
-
 // end reponsive section(entete)
 
 //responsive for gallery section
-
 @media screen and (max-width: 1200px){
     .gallery{
         .container{
@@ -473,7 +514,7 @@ iframe{
                 grid-template-columns: 1fr 1fr 1fr 1fr;
                 grid-template-rows: 1fr 1fr 1fr 1fr;
                 gap: 10px;
-                width: 80%;
+                width: 100%;
             }
         }
         @for $n from 1 through 9{
@@ -485,7 +526,10 @@ iframe{
         }
     }
 }
+// end responsive for gallery section
 
+
+// responsive for gallery section and looking-for section
 @media screen and (max-width: 769px){
     .gallery{
         .container{
@@ -494,7 +538,7 @@ iframe{
                 grid-template-columns: 1fr 1fr 1fr;
                 grid-template-rows: 1fr 1fr 1fr;
                 gap: 10px;
-                width: 80%;
+                width: 90%;
             }
         }
         @for $n from 1 through 9{
@@ -515,3 +559,4 @@ iframe{
         }
     }
 }
+// end responsive for gallery section and looking-for section

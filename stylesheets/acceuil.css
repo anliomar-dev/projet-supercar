@@ -82,12 +82,36 @@ p {
   display: flex;
   justify-content: space-between;
 }
+@media screen and (max-width: 992px) {
+  .entete .container {
+    height: 80vh;
+  }
+  .entete .container .buttons, .entete .container h2 {
+    display: flex;
+    justify-content: center;
+  }
+  .entete .container .image {
+    transform: translateY(-125px);
+    z-index: 1;
+    opacity: 0.5;
+  }
+  .entete .container .text {
+    transform: translateY(125px);
+  }
+}
+.entete .container .buttons {
+  display: flex;
+  gap: 20px;
+}
 .entete .image {
   margin-top: 10px;
   z-index: 10;
 }
 .entete .image img {
   width: 750px;
+  transform: translateX(50%) scale(0.5) rotateZ(-5deg);
+  opacity: 0;
+  animation: image-entete 1s ease-out 0.5s forwards;
 }
 .entete .filter {
   background-color: rgba(0, 0, 0, 0.504);
@@ -106,7 +130,44 @@ p {
 .entete .text h1, .entete .text h2, .entete .text p, .entete .text div {
   margin: 10px 0;
 }
+.entete .text .animation1 {
+  transform: translateY(80px) scale(0.6);
+  opacity: 0;
+  animation: entete-text 0.8s ease-in-out 1s forwards;
+}
+.entete .text .animation2 {
+  transform: translateY(80px) scale(0.6);
+  opacity: 0;
+  animation: entete-text 0.8s ease-in-out 1s forwards;
+}
+.entete .text .animation3 {
+  transform: translateY(80px) scale(0.6);
+  opacity: 0;
+  animation: entete-text 0.8s ease-in-out 1s forwards;
+}
+.entete .text .animation4 {
+  transform: translateY(80px) scale(0.6);
+  opacity: 0;
+  animation: entete-text 0.8s ease-in-out 1s forwards;
+}
+.entete .text .animation5 {
+  transform: translateY(80px) scale(0.6);
+  opacity: 0;
+  animation: entete-text 0.8s ease-in-out 1s forwards;
+}
 
+@keyframes image-entete {
+  to {
+    transform: translatex(0) scale(1) rotateZ(0deg);
+    opacity: 1;
+  }
+}
+@keyframes entete-text {
+  to {
+    transform: initial;
+    opacity: 1;
+  }
+}
 .overlay-open {
   position: fixed;
   width: 100vw;
@@ -336,12 +397,7 @@ p {
   background-color: rgba(24, 25, 31, 0.1333333333);
   margin-bottom: 10px;
 }
-/*location */
-iframe {
-  border-radius: 25px;
-  margin-bottom: 50px;
-}
-
+/* end style for most-requested section */
 .about .about_content {
   gap: 35px;
 }
@@ -533,7 +589,7 @@ iframe {
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr;
     gap: 10px;
-    width: 80%;
+    width: 100%;
   }
   .gallery .image1 {
     grid-column: span 2;
@@ -578,7 +634,7 @@ iframe {
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
     gap: 10px;
-    width: 80%;
+    width: 90%;
   }
   .gallery .image1 {
     grid-column: span 3;
