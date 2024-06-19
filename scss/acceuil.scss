@@ -433,7 +433,7 @@ iframe{
 }
 // end style section experience
 
-// reponsive section entete
+// reponsive section(entete)
 @media screen and (max-width: 992px){
     .entete{
         .container{
@@ -452,4 +452,12 @@ iframe{
             display: block;
         }
     }
+}
+
+// end reponsive section(entete)
+
+//responsive for gallery section
+
+@media screen and (max-width: 1200px){
+    
 }
