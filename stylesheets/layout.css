@@ -3,6 +3,7 @@ body {
   margin: 0;
   font-family: "Inter", sans-serif;
   font-family: "Inter", sans-serif;
+  background-color: #1d2031;
 }
 
 a {
@@ -19,7 +20,7 @@ li {
   top: 0;
   z-index: 1000;
   padding: 20px;
-  background-color: rgb(3, 3, 68);
+  background-color: #18191f;
   width: 100%;
 }
 .header_links-buttons {

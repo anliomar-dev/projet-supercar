@@ -5,7 +5,7 @@
     top: 0;
     z-index: 1000;
     padding: 20px;
-    background-color: rgb(3, 3, 68);
+    background-color: #18191f;
     width: 100%;
     &_links-buttons{
         @include flexCenter(space-between);

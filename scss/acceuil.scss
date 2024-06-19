@@ -201,26 +201,25 @@ p{
 
 /* looking-for */
 .looking-for{
-    .container .row{
+    .container .cards_content{
         @include flexCenter(center);
         padding-block: 50px;
+        padding-inline: 20px;
+        gap: 30px;
     }
-    .cards{
-        @include flexCenter(center);
-    }
+
 
     &_row{
         border: solid 1px rgba(0, 0, 0, 0.073);
         border-radius: 10px;
         padding: 35px;
         max-width: 550px;
-        margin: 0 60px;
     }
     .row-login{
-        background-color: #E9F2FF;
+        background-color: $pink;
     }
     .row-essai{
-        background-color: #FFE9F3;
+        background-color: $pink;
     }
     .card_buttons{
         @include flexCenter(space-between);
@@ -266,7 +265,7 @@ p{
         margin: 0 25px;
         transition: transform 0.5s;
         &:hover{
-            transform: scale(1.1);
+            transform: scale(1.05);
         }
         &_body{
             background-color: white;
@@ -335,16 +334,22 @@ iframe{
 
 // section about
 .about{
+    .about_content{
+        gap: 35px;
+    }
     .about_body{
-        
-        .row{
-            padding-left: 20px;
-            margin-left: 10px;
-        }
         h5{
             color: $primary;
         }
-        
+        background-color: $pink;
+        border-radius: 10px;
+        padding: 30px 50px;
+        a{
+            color: $primary;
+            &:hover{
+                color: $primary-hover;
+            }
+        }
     }
     .about_image{
         background-color: $gray;
@@ -368,7 +373,7 @@ iframe{
             display: grid;
             grid-template-columns: 1fr 1fr 1fr 1fr;
             gap: 10px;
-            width: 70%;
+            width: 80%;
         }
     }
     @for $n from 1 through 9{
@@ -378,9 +383,10 @@ iframe{
                 width: 100%;
                 height: 100%;
                 border-radius: 10px;
-                transition: transform 0.5s;
+                transition: transform 0.5s, box-shadow 0.3s;
                 &:hover{
                     transform: scale(0.96);
+                    box-shadow: 2px 2px 15px $primary;
                 }
             }
         }
@@ -401,14 +407,15 @@ iframe{
 //section expérience
 .experiences{
     .statistiques{
-        background-color: #E9F2FF;
+        background-color: $pink;
         @include flexCenter(center);
         flex-wrap: wrap;
         gap: 25px;
         padding: 90px 0;
-        border-radius: 0 0 80% 80%;
+        border-radius: 0 0 30% 30%;
     }
     .experience{
+        background-color: transparent;
         max-width: 200px;
         height: auto;
         padding: 30px 20px;
@@ -417,7 +424,7 @@ iframe{
         align-items: center;
         border: dashed 0.3px rgba(0, 0, 0, 0.158);
         border-radius: 20px;
-        box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.158);
+        box-shadow: 5px 5px 15px rgba(255, 255, 255, 0.158);
         .icon{
             width: 110px;
             height: 100px;
@@ -459,5 +466,52 @@ iframe{
 //responsive for gallery section
 
 @media screen and (max-width: 1200px){
-    
+    .gallery{
+        .container{
+            .grid-gallery{
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+                grid-template-rows: 1fr 1fr 1fr 1fr;
+                gap: 10px;
+                width: 80%;
+            }
+        }
+        @for $n from 1 through 9{
+            .image#{$n}{
+                
+                grid-column: span 2;
+                grid-row: span 2;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 769px){
+    .gallery{
+        .container{
+            .grid-gallery{
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                grid-template-rows: 1fr 1fr 1fr;
+                gap: 10px;
+                width: 80%;
+            }
+        }
+        @for $n from 1 through 9{
+            .image#{$n}{
+                
+                grid-column: span 3;
+                grid-row: span 3;
+            }
+        }
+    }
+    .looking-for{
+        .container .cards_content{
+            display: flex;
+            flex-direction: column;
+            padding-block: 50px;
+            padding-inline: 20px;
+            gap: 30px;
+        }
+    }
 }
