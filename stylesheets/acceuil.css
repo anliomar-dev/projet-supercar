@@ -4,7 +4,7 @@ body {
   margin: 0;
   font-family: "Inter", sans-serif;
   font-family: "Inter", sans-serif;
-  background-color: #1d2031;
+  background-color: #dfdfdf;
 }
 
 a {
@@ -431,8 +431,8 @@ p {
 .gallery .container .grid-gallery {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  gap: 10px;
-  width: 80%;
+  gap: 20px;
+  width: 90%;
 }
 .gallery .image1 img {
   width: 100%;
@@ -535,7 +535,8 @@ p {
 }
 
 .experiences .statistiques {
-  background-color: #FFE9F3;
+  background-color: #dfdfdf;
+
   display: flex;
   justify-content: center;
   flex-wrap: wrap;

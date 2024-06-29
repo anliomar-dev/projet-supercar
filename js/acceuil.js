@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () =>{
 
     sideBarLinks(headerLinks, '#18191f', 'white');
     document.addEventListener('scroll', function() {
-        if (window.scrollY > 0) { 
+        if (window.scrollY > 150) { 
             header.classList.add('header-onScroll');
             logoSupercar.src = '../medias/images/logos&icones/supercar_logo_noir.webp'; // logo on scroll
             logoSupercar.style.height = '55px'; // size of the logo on scroll
