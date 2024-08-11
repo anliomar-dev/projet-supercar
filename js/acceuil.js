@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () =>{
     document.addEventListener('scroll', function() {
         if (window.scrollY > 150) { 
             header.classList.add('header-onScroll');
-            logoSupercar.src = '../medias/images/logos&icones/supercar_logo_noir.webp'; // logo on scroll
+            logoSupercar.src = 'medias/images/logos&icones/supercar_logo_noir.webp'; // logo on scroll
             logoSupercar.style.height = '55px'; // size of the logo on scroll
             // headr links color on scroll
             headerLinks.forEach(function(link){
@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () =>{
         } else {
             // initiales: not scroll
             header.classList.remove('header-onScroll');
-            logoSupercar.src = '../medias/images/logos&icones/supercar_logo_blanc.webp';
+            logoSupercar.src = 'medias/images/logos&icones/supercar_logo_blanc.webp';
             logoSupercar.style.height = '75px';
             sideBarLinks(headerLinks, '#18191f', 'white');
         }
