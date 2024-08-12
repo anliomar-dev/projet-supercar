@@ -24,6 +24,6 @@ mysqli_close($DB);
 // Définissez l'en-tête HTTP pour JSON
 header('Content-Type: application/json');
 
-// Convertissez les données en JSON et renvoyez-les
+// Convertissez les données en JSON et les renvoyer
 echo json_encode($donnees);
 ?>
