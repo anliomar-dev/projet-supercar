@@ -1,6 +1,6 @@
 <?php
 // Inclure le fichier de connexion à la base de données
-include('../server/connexionDB.php');
+include('../database/connexionDB.php');
 
 // Requête SQL pour sélectionner toutes les colonnes
 $query = "SELECT * FROM marque";
