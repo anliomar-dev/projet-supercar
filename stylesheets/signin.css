@@ -8,3 +8,13 @@ a{
   right: 10px;
   cursor: pointer;
 }
+
+.signin-btn{
+  background-color: #28a745;
+  color: white;
+  font-weight: bold;
+}
+.signin-btn:hover{
+  background-color: #218739;
+  color: white;
+}

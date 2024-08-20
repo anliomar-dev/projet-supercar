@@ -2,8 +2,16 @@
 // Inclure le fichier de connexion à la base de données
 include('../database/connexionDB.php');
 
-// Requête SQL pour sélectionner toutes les colonnes
-$query = "SELECT * FROM marque";
+// Requête SQL pour sélectionner toutes les marques avec le nombre de modèles associés
+$query = "
+    SELECT 
+        marque.IdMarque, 
+        marque.NomMarque, 
+        COUNT(modele.IdModele) AS NombreModeles
+    FROM marque
+    LEFT JOIN modele ON marque.IdMarque = modele.IdMarque
+    GROUP BY marque.IdMarque, marque.NomMarque
+";
 
 // Exécuter la requête
 $curseur = mysqli_query($DB, $query);
@@ -27,3 +35,4 @@ header('Content-Type: application/json');
 // Convertissez les données en JSON et les renvoyer
 echo json_encode($donnees);
 ?>
+

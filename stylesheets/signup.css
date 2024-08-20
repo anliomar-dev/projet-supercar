@@ -14,10 +14,14 @@ body {
   margin-bottom: 15px;
 }
 
-.btn-signup {
+.signup-btn {
   background-color: #28a745;
   color: white;
   font-weight: bold;
+}
+.signup-btn:hover{
+  background-color: #218739;
+  color: white;
 }
 
 .btn-reset {
@@ -25,11 +29,13 @@ body {
   color: gray;
   border: none;
 }
-
+.btn-reset:hover{
+  background-color: #e5e5ea;
+}
 .password-container span{
   position: absolute;
-  top: 50%;
-  right: 10px;
+  top: 40%;
+  right: 20px;
   cursor: pointer;
 }
 
