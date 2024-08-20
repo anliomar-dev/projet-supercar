@@ -1,20 +1,20 @@
 <?php
-    // Inclure le fichier de connexion à la base de données
+    // database connexion
     include('../database/connexionDB.php');
     header('Content-Type: application/json; charset=utf-8');
 
-    // Vérifiez si le paramètre brand_id est présent
+    //check if there parameter brand_id
     if (isset($_GET['brand_id'])) {
-        // Assurez-vous que brand_id est un entier
+        // meke sure brand_id si a integer
         $brand_id = intval($_GET['brand_id']);
 
         if ($brand_id <= 0) {
-            http_response_code(400); // Mauvaise requête
+            http_response_code(400); // bade request
             echo json_encode(['error' => 'Invalid brand_id parameter.']);
             exit;
         }
 
-        // Vérifiez si la marque existe
+        // check id brand exist
         $check_brand_query = "SELECT COUNT(*) as count FROM marque WHERE IdMarque = ?";
         $check_stmt = mysqli_prepare($DB, $check_brand_query);
         mysqli_stmt_bind_param($check_stmt, "i", $brand_id);
@@ -23,13 +23,13 @@
         $brand_exists = mysqli_fetch_assoc($result)['count'] > 0;
 
         if (!$brand_exists) {
-            http_response_code(404); // Marque non trouvée
+            http_response_code(404); // no brand found
             echo json_encode(['error' => 'La marque n\'éxiste pas.']);
             mysqli_close($DB);
             exit;
         }
 
-        // Requête SQL pour sélectionner tous les modèles associés à la marque
+        // select all medels
         $query = "SELECT modele.IdModele, modele.NomModele, modele.IdMarque, images.IdImage, images.Nom
                 FROM modele
                 LEFT JOIN images ON modele.IdModele = images.IdModele
@@ -42,7 +42,7 @@
             $models = [];
             while ($row = mysqli_fetch_assoc($result)) {
                 $model_id = $row['IdModele'];
-                // Si le modèle n'existe pas encore dans le tableau, l'ajouter
+                // add the model to to array models
                 if (!isset($models[$model_id])) {
                     $models[$model_id] = [
                         'IdModele' => $row['IdModele'],
@@ -51,7 +51,7 @@
                         'Images' => []
                     ];
                 }
-                // Ajouter l'image sous forme d'objet à la liste des images pour ce modèle
+                // add image in the array for images related to the model
                 if ($row['IdImage'] && $row['Nom']) {
                     $models[$model_id]['Images'][] = [
                         'id' => $row['IdImage'],
@@ -60,24 +60,24 @@
                 }
             }
 
-            // Convertir les données en tableau et les envoyer en JSON
+            // convert data to json
             $data = array_values($models);
             if (empty($data)) {
-                http_response_code(404); // Ressource non trouvée
+                http_response_code(404);
                 echo json_encode(['error' => 'Aucun modèle associé à cette marque.']);
             } else {
                 header('Content-Type: application/json');
                 echo json_encode($data);
             }
         } else {
-            http_response_code(500); // Erreur interne du serveur
+            http_response_code(500); // server side error
             echo json_encode(['error' => 'Erreur lors de la récupération des données.']);
         }
 
-        // Fermez la connexion à la base de données
+        // close connexion with database
         mysqli_close($DB);
     } else {
-        http_response_code(400); // Mauvaise requête
+        http_response_code(400); // bade request
         echo json_encode(['error' => 'Veuillez spécifier un identifiant.']);
     }
 ?>
