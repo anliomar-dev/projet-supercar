@@ -19,49 +19,57 @@
     <?php
         include_once("../components/navbar.php")
     ?>
+    
     <!-- signup form -->
     <div class="form_container d-flex justify-content-center pt-3">
         <div class="signup-form">
             <h2 class="text-center font-weight-bold">INSCRIPTION</h2>
+            <p class="text-center text-danger">*tous les champs sont obligatoire</p>
             <form style="width: 100%;">
                 <div class="row mt-3 pt-2">
                     <div class="form-group col-md-6">
                         <label for="firstName">Prenom</label>
-                        <input type="text" class="form-control" id="firstName" placeholder="Prenom">
+                        <input type="text" class="form-control" data-minLength="0" id="firstName" placeholder="Prenom" autocomplete="given-name">
+                        <p class="text-danger" style="display: none;">veuillez remplir ce champ</p>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="lastName">Nom</label>
-                        <input type="text" class="form-control" id="lastName" placeholder="Nom">
+                        <input type="text" class="form-control" data-minLength="0" id="lastName" placeholder="Nom" autocomplete="cc-family-name">
+                        <p class="text-danger" style="display: none;">veuillez remplir ce champ</p>
                     </div>
                 </div>
                 <div class="form-group mt-3">
                     <label for="address">Adress</label>
-                    <input type="text" class="form-control" id="address" placeholder="Adress">
+                    <input type="text" class="form-control" data-minLength="5" id="address" placeholder="Adress" autocomplete="address-level1">
+                    <p class="text-danger" style="display: none;">veuillez remplir ce champ (minimum 5 caractères)</p>
                 </div>
                 <div class="row mt-3">
                     <div class="form-group col-md-6 mt-2">
                         <label for="phone">Téléphone</label><br>
-                        <input type="text" class="form-control" id="phone" placeholder="Téléphone" value="+1">
+                        <input type="text" class="form-control" id="phone" placeholder="Téléphone" value="+1" autocomplete="tel-national">
+                        <p class="text-danger">eg: +230 5429 7857</p>
                     </div>
                     <div class="form-group col-md-6 mt-2">
                         <label for="email">Email</label>
-                        <input type="email" class="form-control" id="email" placeholder="Email">
+                        <input type="email" class="form-control" id="email" placeholder="ex: exemple@gamil.com" autocomplete="email">
+                        <p class="text-danger">veuillez remplir ce champ</p>
                     </div>
                 </div>
                 <div class="row mt-3">
                     <div class="form-group col-md-6 position-relative password-container">
                         <label for="password">Mot de passe</label>
-                        <input type="password" class="form-control passwordField" name="password" id="password" placeholder="Mot de passe">
                         <span class="eye-icon">👁️</span>
                         <span style="display: none;" class="hide-password">🙈</span>
+                        <input type="password" class="form-control passwordField" name="password" id="password" placeholder="Mot de passe" autocomplete="current-password">
                     </div>
                     <div class="form-group col-md-6 position-relative password-container confirm-pass-container">
+                    <span class="eye-icon">👁️</span>
+                    <span style="display: none;" class="hide-password">🙈</span>
                         <label for="confirmPassword">Mot de passe</label>
-                        <input type="password" class="form-control passwordField" name="confirmPassword" id="confirmPassword" placeholder="confirmation">
-                        <span class="eye-icon">👁️</span>
-                        <span style="display: none;" class="hide-password">🙈</span>
+                        <input type="password" class="form-control passwordField" name="confirmPassword" id="confirmPassword" placeholder="confirmation" autocomplete="current-password">
                     </div>
                 </div>
+                <p class="text-danger">les deux mot de passes ne sont pas identiques</p>
                 <button type="button" id="submitSignup" class="btn col-12 signup-btn mt-2" data-bs-toggle="modal" data-bs-target="#reviewModal">SIGNUP</button>
                 <button type="reset" class="btn col-12 btn-reset mt-2">reset</button>
             </form>

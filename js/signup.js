@@ -1,5 +1,12 @@
 import { showPassword, hidePassword } from "./utils";
 
+const blackList = ["\\*", "\\#", "\\;", "\\\"", "\\'", "\\<", "\\>", "\\\\", " ", "\\="];
+const regexMidiumPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@$%^&()_+]).{8,}$/;
+const regexStrongPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@$%^&()_+]).{12,}$/;
+const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+const regexPhoneNumber = /^(?:\+|00|0)[1-9]\d{0,2}\s?(\d{1,4}\s?[\d\s\-]{5,14}|\(\d{1,4}\)\s?[\d\s\-]{5,14})$/;
+
+
 document.addEventListener("DOMContentLoaded", () => {
   const firstNameInput = document.getElementById('firstName');
   const lastNameInput = document.getElementById('lastName');
@@ -7,13 +14,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const emailInput = document.getElementById('email');
   const phoneInput = document.getElementById('phone');
   const passwordInput = document.getElementById("password");
+  const passwordConfirmInput = document.getElementById("confirmPassword");
   const readOnlyFirstName = document.getElementById('readonly-firstName')
   const readOnlyLastName = document.getElementById('readonly-lastName')
   const readOnlyAddress = document.getElementById('readonly-address')
   const readOnlyPhone = document.getElementById('readonly-phone')
   const readOnlyEmail = document.getElementById('readonly-email')
-  const passwordConfirmInput = document.getElementById("confirmPassword");
-  const submitSignupButton = document.getElementById("submitSignup");
+  const submitSignupFormButton = document.getElementById("submitSignup");
 
 
   //script for intelinput
@@ -32,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
   ); //hide password
 
   
-  submitSignupButton.addEventListener("click", function () {
+  submitSignupFormButton.addEventListener("click", function () {
     readOnlyFirstName.setAttribute('value', firstNameInput.value)
     readOnlyLastName.setAttribute('value', lastNameInput.value)
     readOnlyAddress.setAttribute('value', addressInput.value)
@@ -40,6 +47,13 @@ document.addEventListener("DOMContentLoaded", () => {
     readOnlyPhone.setAttribute('value', phoneInput.value)
   });
 
+  const fullNameAndAdress = document.querySelectorAll('#firstName, #lastName, #address')
+  fullNameAndAdress.forEach((input )=> {
+    input.addEventListener('change', function() {
+      const minLength = parseInt(input.getAttribute('data-minLength'), 10)
+      console.log(typeof(minLength), minLength)
+    })
+  })
   
 
   // Handle review confirmation

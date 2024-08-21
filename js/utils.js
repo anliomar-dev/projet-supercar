@@ -32,3 +32,13 @@ export function hidePassword(icon) {
     passwordField.type = "password";
   });
 }
+
+/**
+ * Checks if the length of a string is greater than a specified minimum length.
+ * @param {string} string - The string to check the length of.
+ * @param {number} minLength - The minimum length the string should have.
+ * @returns {boolean} - Returns true if the trimmed string's length is greater than the specified number, false otherwise.
+ */
+export function isStringLengthGreaterThan(string, minLength) {
+  return string.trim().length > minLength;
+}
