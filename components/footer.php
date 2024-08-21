@@ -1,12 +1,3 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SuperCar Footer</title>
-</head>
-<body>
-<!-- Footer -->
 <footer class="text-light pt-4">
     <div class="container">
         <div class="row">
@@ -51,9 +42,3 @@
         </div>
     </div>
 </footer>
-
-<!-- FontAwesome for social icons -->
-<script src="https://kit.fontawesome.com/a076d05399.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>

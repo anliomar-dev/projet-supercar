@@ -40,5 +40,23 @@ export function hidePassword(icon) {
  * @returns {boolean} - Returns true if the trimmed string's length is greater than the specified number, false otherwise.
  */
 export function isStringLengthGreaterThan(string, minLength) {
-  return string.trim().length > minLength;
+  return string.trim().length >= minLength;
+}
+
+/**
+ * Tests a string against a regular expression.
+ * 
+ * @param {RegExp} regEx - The regular expression to test against.
+ * @param {string} str - The string to be tested.
+ * @returns {boolean} - Returns `true` if the string matches the regular expression, otherwise `false`.
+ * @throws {TypeError} - Throws a TypeError if the first argument is not a RegExp or the second argument is not a string.
+ */
+export function isStringMatchRegEx(regEx, str) {
+  if (!(regEx instanceof RegExp)) {
+    throw new TypeError('The first argument must be a regular expression.');
+  }
+  if (typeof str !== 'string') {
+    throw new TypeError('The second argument must be a string.');
+  }
+  return regEx.test(str);
 }

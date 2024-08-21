@@ -23,7 +23,7 @@
             <h4 class="text-center mt-3">CONNEXION</h4>
             <div class="form-group py-3">
               <label for="email">Adresse e-mail</label>
-              <input type="email" class="form-control py-2" id="email" name="email" placeholder="email" autocomplete="email">
+              <input type="email" class="form-control py-2" id="email" name="email" placeholder="email" autocomplete="email" autofocus>
             </div>
             <div class="form-group py-3 position-relative password-container">
               <label for="password">Mot de passe</label>

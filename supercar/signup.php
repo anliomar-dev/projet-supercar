@@ -12,14 +12,13 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@19.2.14/build/css/intlTelInput.css">
     <!--script plugin indicateurs telephonique-->
     <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@19.2.14/build/js/intlTelInput.min.js"></script>
-
+    <link href="../stylesheets/navbar.css" rel="stylesheet">
     <link href="../stylesheets/signup.css" rel="stylesheet">
 </head>
 <body>
     <?php
         include_once("../components/navbar.php")
     ?>
-    
     <!-- signup form -->
     <div class="form_container d-flex justify-content-center pt-3">
         <div class="signup-form">
@@ -29,30 +28,30 @@
                 <div class="row mt-3 pt-2">
                     <div class="form-group col-md-6">
                         <label for="firstName">Prenom</label>
-                        <input type="text" class="form-control" data-minLength="0" id="firstName" placeholder="Prenom" autocomplete="given-name">
-                        <p class="text-danger" style="display: none;">veuillez remplir ce champ</p>
+                        <input type="text" class="form-control" data-minLength="2" id="firstName" placeholder="Prenom" autocomplete="given-name" autofocus>
+                        <p class="text-danger" style="display: none;">Minimum 2 caractères</p>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="lastName">Nom</label>
-                        <input type="text" class="form-control" data-minLength="0" id="lastName" placeholder="Nom" autocomplete="cc-family-name">
-                        <p class="text-danger" style="display: none;">veuillez remplir ce champ</p>
+                        <input type="text" class="form-control" data-minLength="2" id="lastName" placeholder="Nom" autocomplete="cc-family-name">
+                        <p class="text-danger" style="display: none;">Minimum 2 caractères</p>
                     </div>
                 </div>
                 <div class="form-group mt-3">
                     <label for="address">Adress</label>
                     <input type="text" class="form-control" data-minLength="5" id="address" placeholder="Adress" autocomplete="address-level1">
-                    <p class="text-danger" style="display: none;">veuillez remplir ce champ (minimum 5 caractères)</p>
+                    <p class="text-danger" style="display: none;">Veuillez remplir ce champ (minimum 5 caractères)</p>
                 </div>
                 <div class="row mt-3">
                     <div class="form-group col-md-6 mt-2">
                         <label for="phone">Téléphone</label><br>
                         <input type="text" class="form-control" id="phone" placeholder="Téléphone" value="+1" autocomplete="tel-national">
-                        <p class="text-danger">eg: +230 5429 7857</p>
+                        <p class="text-danger error" style="display: none">ex: +230 5429 7857</p>
                     </div>
                     <div class="form-group col-md-6 mt-2">
                         <label for="email">Email</label>
                         <input type="email" class="form-control" id="email" placeholder="ex: exemple@gamil.com" autocomplete="email">
-                        <p class="text-danger">veuillez remplir ce champ</p>
+                        <p class="text-danger" style="display: none">email non valid</p>
                     </div>
                 </div>
                 <div class="row mt-3">
@@ -69,7 +68,7 @@
                         <input type="password" class="form-control passwordField" name="confirmPassword" id="confirmPassword" placeholder="confirmation" autocomplete="current-password">
                     </div>
                 </div>
-                <p class="text-danger">les deux mot de passes ne sont pas identiques</p>
+                <p class="text-danger">Les deux mot de passes ne sont pas identiques</p>
                 <button type="button" id="submitSignup" class="btn col-12 signup-btn mt-2" data-bs-toggle="modal" data-bs-target="#reviewModal">SIGNUP</button>
                 <button type="reset" class="btn col-12 btn-reset mt-2">reset</button>
             </form>
@@ -148,8 +147,9 @@
             </div>
         </div>
     </div>
-
     <!--- scripts -->
+    <!-- FontAwesome for social icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>

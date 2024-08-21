@@ -1,4 +1,9 @@
-import { showPassword, hidePassword } from "./utils";
+import { 
+  showPassword, 
+  hidePassword, 
+  isStringLengthGreaterThan,
+  isStringMatchRegEx
+} from "./utils";
 
 const blackList = ["\\*", "\\#", "\\;", "\\\"", "\\'", "\\<", "\\>", "\\\\", " ", "\\="];
 const regexMidiumPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@$%^&()_+]).{8,}$/;
@@ -11,8 +16,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const firstNameInput = document.getElementById('firstName');
   const lastNameInput = document.getElementById('lastName');
   const addressInput = document.getElementById('address');
-  const emailInput = document.getElementById('email');
   const phoneInput = document.getElementById('phone');
+  const emailInput = document.getElementById('email');
   const passwordInput = document.getElementById("password");
   const passwordConfirmInput = document.getElementById("confirmPassword");
   const readOnlyFirstName = document.getElementById('readonly-firstName')
@@ -38,7 +43,8 @@ document.addEventListener("DOMContentLoaded", () => {
     hidePassword(hidePasswordIcon)
   ); //hide password
 
-  
+
+  //populate the readOnly inputs of the firstModal with form data
   submitSignupFormButton.addEventListener("click", function () {
     readOnlyFirstName.setAttribute('value', firstNameInput.value)
     readOnlyLastName.setAttribute('value', lastNameInput.value)
@@ -47,14 +53,42 @@ document.addEventListener("DOMContentLoaded", () => {
     readOnlyPhone.setAttribute('value', phoneInput.value)
   });
 
+  //check the length of firstName field, lastName field and address
   const fullNameAndAdress = document.querySelectorAll('#firstName, #lastName, #address')
   fullNameAndAdress.forEach((input )=> {
-    input.addEventListener('change', function() {
+    input.addEventListener('input', function() {
       const minLength = parseInt(input.getAttribute('data-minLength'), 10)
-      console.log(typeof(minLength), minLength)
+      if(!isStringLengthGreaterThan(input.value, minLength)){
+        input.style.outline = 'solid 2px red'
+        input.nextElementSibling.style.display = 'block'
+      }else{
+        input.style.outline = 'solid 2px #09CD1C'
+        input.nextElementSibling.style.display = 'none'
+      }
     })
   })
   
+  //check if phone field is valid
+  phoneInput.addEventListener('input', ()=>{
+    if(isStringMatchRegEx(regexPhoneNumber, phoneInput.value)){
+      phoneInput.style.outline = 'solid 2px #09CD1C'
+      document.querySelector('.error').style.display = 'none'
+    }else{
+      phoneInput.style.outline = 'solid 2px red'
+      document.querySelector('.error').style.display = 'block'
+    }
+  })
+
+  //check if email field is valid
+  emailInput.addEventListener('input', ()=>{
+    if(isStringMatchRegEx(regexEmail, emailInput.value)){
+        emailInput.style.outline = 'solid 2px #09CD1C'
+        emailInput.nextElementSibling.style.display = 'none'
+    }else{
+        emailInput.style.outline = 'solid 2px red'
+        emailInput.nextElementSibling.style.display = 'block'
+      }
+  })
 
   // Handle review confirmation
   document
