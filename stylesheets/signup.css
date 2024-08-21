@@ -24,13 +24,16 @@ body {
   color: white;
 }
 
-.btn-reset {
+.btn-reset, .btn-second {
   background-color: #f8f9fa;
   color: gray;
   border: none;
 }
 .btn-reset:hover{
   background-color: #e5e5ea;
+}
+.btn-second:hover{
+  background-color: #d3d3d3;
 }
 .password-container span{
   position: absolute;

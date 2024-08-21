@@ -19,6 +19,7 @@
     <?php
         include_once("../components/navbar.php")
     ?>
+    <!-- signup form -->
     <div class="form_container d-flex justify-content-center pt-3">
         <div class="signup-form">
             <h2 class="text-center font-weight-bold">INSCRIPTION</h2>
@@ -37,17 +38,17 @@
                     <label for="address">Adress</label>
                     <input type="text" class="form-control" id="address" placeholder="Adress">
                 </div>
-                <div class="row mt-3 pt-3">
-                    <div class="form-group col-md-6">
+                <div class="row mt-3">
+                    <div class="form-group col-md-6 mt-2">
                         <label for="phone">Téléphone</label><br>
                         <input type="text" class="form-control" id="phone" placeholder="Téléphone" value="+1">
                     </div>
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-6 mt-2">
                         <label for="email">Email</label>
                         <input type="email" class="form-control" id="email" placeholder="Email">
                     </div>
                 </div>
-                <div class="row mt-3 pt-2">
+                <div class="row mt-3">
                     <div class="form-group col-md-6 position-relative password-container">
                         <label for="password">Mot de passe</label>
                         <input type="password" class="form-control passwordField" name="password" id="password" placeholder="Mot de passe">
@@ -56,12 +57,12 @@
                     </div>
                     <div class="form-group col-md-6 position-relative password-container confirm-pass-container">
                         <label for="confirmPassword">Mot de passe</label>
-                        <input type="password" class="form-control passwordField" name="confirmPassword" id="confirmPassword" placeholder="Mot de passe">
+                        <input type="password" class="form-control passwordField" name="confirmPassword" id="confirmPassword" placeholder="confirmation">
                         <span class="eye-icon">👁️</span>
                         <span style="display: none;" class="hide-password">🙈</span>
                     </div>
                 </div>
-                <button type="button" class="btn col-12 signup-btn mt-2" data-bs-toggle="modal" data-bs-target="#reviewModal">SIGNUP</button>
+                <button type="button" id="submitSignup" class="btn col-12 signup-btn mt-2" data-bs-toggle="modal" data-bs-target="#reviewModal">SIGNUP</button>
                 <button type="reset" class="btn col-12 btn-reset mt-2">reset</button>
             </form>
             <div class="text-center mt-3">
@@ -74,22 +75,38 @@
     <div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="reviewModalLabel">Vérifiez vos informations</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="modal-header d-flex flex-column">
+                    <button type="button" class="btn-close col-12" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h4 class="modal-title col-12 text-center" id="reviewModalLabel">Vérifiez vos informations</h4>
+                    
                 </div>
                 <div class="modal-body">
                     <p>Veuillez vérifier les informations suivantes avant de confirmer :</p>
-                    <ul>
-                        <li><strong>Nom :</strong> <span id="userName"></span></li>
-                        <li><strong>Email :</strong> <span id="userEmail"></span></li>
-                        <li><strong>Téléphone :</strong> <span id="userPhone"></span></li>
-                        <!-- Ajoutez d'autres éléments de données ici -->
-                    </ul>
+                    <hr>
+                    <div>
+                        <label for="">Prenom</label>
+                        <input class="form-control" id="readonly-firstName" type="text" value="" aria-label="Disabled input example" disabled readonly>
+                    </div>
+                    <div>
+                        <label for="">Nom</label>
+                        <input class="form-control" id="readonly-lastName" type="text" value="" aria-label="Disabled input example" disabled readonly>
+                    </div>
+                    <div>
+                        <label for="">Address</label>
+                        <input class="form-control" id="readonly-address" type="text" value="" aria-label="Disabled input example" disabled readonly>
+                    </div>
+                    <div>
+                        <label for="">Téléphone</label>
+                        <input class="form-control" id="readonly-phone" type="text" value="" aria-label="Disabled input example" disabled readonly>
+                    </div>
+                    <div>
+                        <label for="email">Email</label>
+                        <input class="form-control" id="readonly-email" type="text" value="" aria-label="Disabled input example" disabled readonly>
+                    </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Modifier</button>
-                    <button type="button" class="btn btn-primary" id="confirmReviewButton">Confirmer</button>
+                    <button type="button" class="btn signup-btn col-12" id="confirmReviewButton">Confirmer</button>
+                    <button type="button" class="btn btn-second col-12" data-bs-dismiss="modal">Modifier</button>
                 </div>
             </div>
         </div>
@@ -123,6 +140,7 @@
             </div>
         </div>
     </div>
+
     <!--- scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
