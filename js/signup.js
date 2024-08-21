@@ -5,9 +5,9 @@ import {
   isStringMatchRegEx
 } from "./utils";
 
-const blackList = ["\\*", "\\#", "\\;", "\\\"", "\\'", "\\<", "\\>", "\\\\", " ", "\\="];
-const regexMidiumPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@$%^&()_+]).{8,}$/;
-const regexStrongPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@$%^&()_+]).{12,}$/;
+const regexPasswordMedium = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[^\w\s])(?=.{8,12}$)/;
+const regexStrongPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[^\w\s]).{13,}$/;
+const regexBlacklist = /[\*\=\'\"\-\/\\\,]/;
 const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 const regexPhoneNumber = /^(?:\+|00|0)[1-9]\d{0,2}\s?(\d{1,4}\s?[\d\s\-]{5,14}|\(\d{1,4}\)\s?[\d\s\-]{5,14})$/;
 
@@ -20,12 +20,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const emailInput = document.getElementById('email');
   const passwordInput = document.getElementById("password");
   const passwordConfirmInput = document.getElementById("confirmPassword");
+  const passwordInputsFields = document.querySelectorAll('.password, .confirmPassword')
   const readOnlyFirstName = document.getElementById('readonly-firstName')
   const readOnlyLastName = document.getElementById('readonly-lastName')
   const readOnlyAddress = document.getElementById('readonly-address')
   const readOnlyPhone = document.getElementById('readonly-phone')
   const readOnlyEmail = document.getElementById('readonly-email')
   const submitSignupFormButton = document.getElementById("submitSignup");
+  const passwordsMessageText = document.querySelector('.passwordMessage');
 
 
   //script for intelinput
@@ -90,6 +92,17 @@ document.addEventListener("DOMContentLoaded", () => {
       }
   })
 
+  //check if password fields is valid
+  passwordInputsFields.forEach((input) => {
+    input.addEventListener('input', function(){
+      if(!isStringLengthGreaterThan(input.value, 8)){
+        passwordsMessageText.classList.add('text-danger')
+        passwordsMessageText.textContent = 'mot de passe très vulnerable'
+        passwordsMessageText.style.display = 'block'
+        console.log('weak password')
+      }
+    })
+  })
   // Handle review confirmation
   document
     .getElementById("confirmReviewButton")

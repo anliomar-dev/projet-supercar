@@ -8,10 +8,16 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" 
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"
     >
-    <!--lien plugin indicateurs telephonique-->
+    <!--cdn font awsome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" 
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" 
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!--cdn css plugin indicateurs telephonique-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@19.2.14/build/css/intlTelInput.css">
     <!--script plugin indicateurs telephonique-->
     <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@19.2.14/build/js/intlTelInput.min.js"></script>
+    
     <link href="../stylesheets/navbar.css" rel="stylesheet">
     <link href="../stylesheets/signup.css" rel="stylesheet">
 </head>
@@ -68,7 +74,7 @@
                         <input type="password" class="form-control passwordField" name="confirmPassword" id="confirmPassword" placeholder="confirmation" autocomplete="current-password">
                     </div>
                 </div>
-                <p class="text-danger">Les deux mot de passes ne sont pas identiques</p>
+                <p class="passwordMessage" style="display: none;">Les deux mot de passes ne sont pas identiques</p>
                 <button type="button" id="submitSignup" class="btn col-12 signup-btn mt-2" data-bs-toggle="modal" data-bs-target="#reviewModal">SIGNUP</button>
                 <button type="reset" class="btn col-12 btn-reset mt-2">reset</button>
             </form>
