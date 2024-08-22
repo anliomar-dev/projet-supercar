@@ -1,6 +1,6 @@
 <?php
 // Inclure le fichier de connexion à la base de données
-include('../database/connexionDB.php');
+include('../php/connexionDB.php');
 
 // Requête SQL pour sélectionner toutes les marques avec le nombre de modèles associés
 $query = "

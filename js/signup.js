@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const emailInput = document.getElementById('email');
   const passwordInput = document.getElementById("password");
   const passwordConfirmInput = document.getElementById("confirmPassword");
-  const passwordInputsFields = document.querySelectorAll('.password, .confirmPassword')
+  const passwordInputsFields = [passwordInput, passwordConfirmInput]
   const readOnlyFirstName = document.getElementById('readonly-firstName')
   const readOnlyLastName = document.getElementById('readonly-lastName')
   const readOnlyAddress = document.getElementById('readonly-address')
@@ -92,17 +92,61 @@ document.addEventListener("DOMContentLoaded", () => {
       }
   })
 
-  //check if password fields is valid
-  passwordInputsFields.forEach((input) => {
-    input.addEventListener('input', function(){
-      if(!isStringLengthGreaterThan(input.value, 8)){
-        passwordsMessageText.classList.add('text-danger')
-        passwordsMessageText.textContent = 'mot de passe très vulnerable'
-        passwordsMessageText.style.display = 'block'
-        console.log('weak password')
+  //check if password field is valid
+  passwordInput.addEventListener('input', function(){
+    if(isStringMatchRegEx(regexBlacklist, passwordInput.value)){
+      passwordsMessageText.style.color = 'red';
+      passwordsMessageText.textContent = 'caractères interdits: *, /, \\, =, ", -,  ,'
+      passwordInput.style.outline = 'solid 2px red'
+    }else{
+      passwordsMessageText.textContent = ''
+      if(passwordInput.value.trim().length > 0 && !isStringLengthGreaterThan(passwordInput.value, 8)){
+        passwordsMessageText.textContent = 'Votre mot de passe est très vulnerable. ignorez ce message si vous voulez utiliser ce mot de passe'
+        passwordsMessageText.style.color = '#ffc107'
+        passwordInput.style.outline = 'solid 3px #ffc107'
+      }else{
+        passwordsMessageText.textContent = 'pour un mot de passe sécurisé, minimum: 8 caractères, 1 lettre majuscule, 1 lettre miniscule, un chiffre, 1 caractère spéciale'
+        passwordsMessageText.style.color = 'black';
+        passwordInput.style.outline = 'none'
+        if(
+          passwordInput.value.trim().length > 0 && 
+          isStringMatchRegEx(regexPasswordMedium, passwordInput.value)
+        ){
+          passwordsMessageText.textContent = 'votre mot de passe est fort';
+          passwordsMessageText.style.color = '#0d6efd';
+          passwordInput.style.outline = 'solid 3px #0d6efd';
+        }else if(
+          passwordInput.value.trim().length > 0 &&
+          isStringMatchRegEx(regexStrongPassword, passwordInput.value)
+          ){
+            passwordsMessageText.textContent = 'votre mot de passe est très fort';
+            passwordsMessageText.style.color = '#28a745';
+            passwordInput.style.outline = 'solid 3px #28a745';
+          }else{
+            passwordsMessageText.textContent = 'votre mot de passe est assez long mais pas très complexe';
+            passwordsMessageText.style.color = '#D7CE00';
+            passwordInput.style.outline = 'solid 3px #D7CE00';
+          }
+      }
+    }  
+  })
+
+  //handle password confirm
+  passwordConfirmInput.addEventListener('input', function(){
+    passwordsMessageText.textContent = 'les deux mot de passe doivent être identiques'
+    if(isStringMatchRegEx(regexBlacklist, passwordConfirmInput.value)){
+      passwordsMessageText.style.color = 'red';
+      passwordsMessageText.textContent = 'caractères interdits: *, /, \\, =, ", -,  ,'
+      passwordConfirmInput.style.outline = 'solid 2px red'
+      }else{
+        passwordsMessageText.style.color = 'black';
+        passwordConfirmInput.style.outline = 'none'
+        if(passwordInput.value === passwordConfirmInput.value){
+          passwordsMessageText.textContent = 'Les deux mot de passe sont identiques'
+          passwordsMessageText.style.color = '#28a745';
+        }
       }
     })
-  })
   // Handle review confirmation
   document
     .getElementById("confirmReviewButton")

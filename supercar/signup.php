@@ -74,7 +74,10 @@
                         <input type="password" class="form-control passwordField" name="confirmPassword" id="confirmPassword" placeholder="confirmation" autocomplete="current-password">
                     </div>
                 </div>
-                <p class="passwordMessage" style="display: none;">Les deux mot de passes ne sont pas identiques</p>
+                <p class="passwordMessage">
+                    pour un mot de passe sécurisé, minimum: <br>
+                    8 caractères, 1 lettre majuscule, 1 lettre miniscule, un chiffre, 1 caractère spéciale
+                </p>
                 <button type="button" id="submitSignup" class="btn col-12 signup-btn mt-2" data-bs-toggle="modal" data-bs-target="#reviewModal">SIGNUP</button>
                 <button type="reset" class="btn col-12 btn-reset mt-2">reset</button>
             </form>

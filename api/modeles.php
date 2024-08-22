@@ -1,6 +1,6 @@
 <?php
     // database connexion
-    include('../database/connexionDB.php');
+    include('../php/connexionDB.php');
     header('Content-Type: application/json; charset=utf-8');
 
     //check if there parameter brand_id
