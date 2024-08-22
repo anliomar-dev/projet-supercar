@@ -1,6 +1,6 @@
 /**
  * hiding show password icon, set attribut type from password to text and display hide password icon
- * @param {HTMLElement} icon the eye icon for hiding password
+ * @param {HTMLElement} icon - the eye icon for hiding password
  */
 
 export function showPassword(icon) {
@@ -15,10 +15,9 @@ export function showPassword(icon) {
   });
 }
 
-
 /**
  * hiding hide password icon, set attribut type from text to password and display "show password icon"
- * @param {HTMLElement} icon the eye icon for hiding password
+ * @param {HTMLElement} icon - the eye icon for hiding password
  */
 
 export function hidePassword(icon) {
@@ -45,7 +44,7 @@ export function isStringLengthGreaterThan(string, minLength) {
 
 /**
  * Tests a string against a regular expression.
- * 
+ *
  * @param {RegExp} regEx - The regular expression to test against.
  * @param {string} str - The string to be tested.
  * @returns {boolean} - Returns `true` if the string matches the regular expression, otherwise `false`.
@@ -53,10 +52,37 @@ export function isStringLengthGreaterThan(string, minLength) {
  */
 export function isStringMatchRegEx(regEx, str) {
   if (!(regEx instanceof RegExp)) {
-    throw new TypeError('The first argument must be a regular expression.');
+    throw new TypeError("The first argument must be a regular expression.");
   }
-  if (typeof str !== 'string') {
-    throw new TypeError('The second argument must be a string.');
+  if (typeof str !== "string") {
+    throw new TypeError("The second argument must be a string.");
   }
   return regEx.test(str);
+}
+
+/**
+ * Updates the appearance of an input field and manages the display of a message.
+ * 
+ * This function modifies the outline of the specified input field, sets the display 
+ * and color properties of a message container, and updates the text content of the message.
+ * 
+ * @param {HTMLElement} field - The input field to be styled.
+ * @param {string} displayProperty - The CSS display property for the message container (e.g., 'block' or 'none').
+ * @param {HTMLElement} messageTextContainer - The container element for the message text.
+ * @param {string} message - The message to be displayed in the container.
+ * @param {string} [color='black'] - The color of the message text. Defaults to 'black'.
+ * @param {string} [outline='none'] - The CSS outline property for the input field. Defaults to 'none'.
+ */
+export function controlField(
+  field,
+  displayProperty,
+  messageTextContainer,
+  message,
+  color = "black",
+  outline = "none"
+) {
+  field.style.outline = outline;
+  messageTextContainer.style.color = color;
+  messageTextContainer.style.display = displayProperty;
+  messageTextContainer.textContent = message;
 }

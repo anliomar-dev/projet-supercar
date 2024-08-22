@@ -29,7 +29,7 @@
     <div class="form_container d-flex justify-content-center pt-3">
         <div class="signup-form">
             <h2 class="text-center font-weight-bold">INSCRIPTION</h2>
-            <p class="text-center text-danger">*tous les champs sont obligatoire</p>
+            <p class="text-center text-danger">*Tous les champs sont obligatoire et doivent être correct</p>
             <form style="width: 100%;">
                 <div class="row mt-3 pt-2">
                     <div class="form-group col-md-6">
@@ -39,7 +39,7 @@
                     </div>
                     <div class="form-group col-md-6">
                         <label for="lastName">Nom</label>
-                        <input type="text" class="form-control" data-minLength="2" id="lastName" placeholder="Nom" autocomplete="cc-family-name">
+                        <input type="text" class="form-control" data-minLength="2" id="lastName" placeholder="Nom" autocomplete="family-name">
                         <p class="text-danger" style="display: none;">Minimum 2 caractères</p>
                     </div>
                 </div>
@@ -131,7 +131,7 @@
     <!-- Second Modal: Consent and Conditions -->
     <div class="modal fade" id="consentModal" tabindex="-1" aria-labelledby="consentModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content">
+            <div class="modal-content px-3">
                 <div class="modal-header">
                     <h5 class="modal-title" id="consentModalLabel">Consentement au traitement des données</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
