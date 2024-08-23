@@ -1,10 +1,12 @@
-import {
-  showPassword,
-  hidePassword,
-  isStringLengthGreaterThan,
-  isStringMatchRegEx,
-  controlField,
-} from "./utils";
+import { showPassword, hidePassword } from "./utils";
+
+import { 
+  isStringLengthGreaterThan, 
+  isStringMatchRegEx, 
+  controlField, 
+  fullNameAndAdressValid, 
+  passwordsFieldValid 
+} from "./forms-validation"
 
 const regexPasswordMedium = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[^\w\s])(?=.{8,12}$)/;
 const regexStrongPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[^\w\s]).{13,}$/;
