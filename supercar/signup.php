@@ -76,7 +76,7 @@
                     </div>
                 </div>
                 <p class="passwordMessage">
-                    pour un mot de passe sécurisé, minimum: <br>
+                    pour un mot de passe fort, minimum: <br>
                     8 caractères, 1 lettre majuscule, 1 lettre miniscule, un chiffre, 1 caractère spéciale
                 </p>
                 <button type="button" id="submitSignup" class="btn col-12 signup-btn mt-2" data-bs-toggle="modal" data-bs-target="#reviewModal">SIGNUP</button>

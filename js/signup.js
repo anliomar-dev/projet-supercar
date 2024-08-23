@@ -30,12 +30,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const submitSignupFormButton = document.getElementById("submitSignup");
   const passwordsMessageText = document.querySelector(".passwordMessage");
 
+  const fullNameAndAdress = document.querySelectorAll(
+    "#firstName, #lastName, #address"
+  );
+
   //script for intelinput
-  const input = document.querySelector("#phone");
-  window.intlTelInput(input, {
+  window.intlTelInput(phoneInput, {
     utilsScript:
       "https://cdn.jsdelivr.net/npm/intl-tel-input@19.2.14/build/js/utils.js",
   });
+
+
 
   //show and hide password
   const eyeIcons = document.querySelectorAll(".eye-icon"); //show password icons
@@ -55,9 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   //check the length of firstName field, lastName field and address
-  const fullNameAndAdress = document.querySelectorAll(
-    "#firstName, #lastName, #address"
-  );
+  
   fullNameAndAdress.forEach((input) => {
     input.addEventListener("input", function () {
       const minLength = parseInt(input.getAttribute("data-minLength"), 10);
@@ -111,21 +114,36 @@ document.addEventListener("DOMContentLoaded", () => {
       //password length is less tha 8 characters
       if (
         passwordInput.value.trim().length > 0 &&
-        !isStringLengthGreaterThan(passwordInput.value, 8)
+        !isStringLengthGreaterThan(passwordInput.value, 5)
       ) {
         const message =
-          "Votre mot de passe est très vulnerable. ignorez ce message si vous voulez utiliser ce mot de passe";
+          "Votre mot de passe n'est pas acceptable. choisissez un mot de passe d'au moin 5 caractères";
         controlField(
           passwordInput,
           "block",
           passwordsMessageText,
           message,
-          "#ffc107",
-          "solid 3px #ffc107"
+          "red",
+          "solid 3px red"
         );
-      } else {
+      } else if(
+        isStringLengthGreaterThan(passwordInput.value, 5) &&
+        !isStringLengthGreaterThan(passwordInput.value, 8)
+      ){
+        //password length is between 5 and 7
         const message =
-          "pour un mot de passe sécurisé, minimum: 8 caractères, 1 lettre majuscule, 1 lettre miniscule, un chiffre, 1 caractère spéciale";
+          "Votre mot de passe est très vulnérable. ignorez ce message si vous voulez continuer a utiliser ce mot de passe";
+        controlField(
+          passwordInput,
+          "block",
+          passwordsMessageText,
+          message,
+          "#fd7e14",
+          "solid 3px #fd7e14"
+        ); 
+      }else {
+        const message =
+          "pour un mot de passe fort, minimum: 8 caractères, 1 lettre majuscule, 1 lettre miniscule, un chiffre, 1 caractère spéciale";
         controlField(
           passwordInput,
           "block",
