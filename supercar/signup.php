@@ -30,8 +30,10 @@
     <div class="form_container d-flex justify-content-center pt-3">
         <div class="signup-form">
             <h2 class="text-center font-weight-bold">INSCRIPTION</h2>
-            <p class="text-center text-danger">*Tous les champs sont obligatoire et doivent être correct</p>
-            <form style="width: 100%;">
+            <p class="text-center text-danger validation-message">
+                Le bouton d'inscription restera désactivé jusqu'à ce que tous les champs soient correctement remplis
+            </p>
+            <form style="width: 100%;" id="signupForm">
                 <div class="row mt-3 pt-2">
                     <div class="form-group col-md-6">
                         <label for="firstName">Prenom</label>
@@ -139,7 +141,7 @@
                 </div>
                 <div class="modal-body">
                     <p>
-                        En soumettant ce formulaire, vous consentez expressément à la collecte, au stockage, et au traitement de vos données personnelles par [Nom de l'Entreprise ou du Service]. 
+                        En soumettant ce formulaire, vous consentez expressément à la collecte, au stockage, et au traitement de vos données personnelles par "SUPERCAR". 
                         Vous reconnaissez avoir pris connaissance des informations relatives à la collecte, au stockage, et au traitement de vos données personnelles, telles que détaillées dans notre 
                         <a href="#" target="_blank">Page des Mentions Légales</a>.
                     </p>

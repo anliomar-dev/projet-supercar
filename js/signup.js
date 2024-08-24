@@ -16,9 +16,11 @@ const regexPhoneNumber =
   /^(?:\+|00|0)[1-9]\d{0,2}\s?(\d{1,4}\s?[\d\s\-]{5,14}|\(\d{1,4}\)\s?[\d\s\-]{5,14})$/;
 
 document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("signupForm");
   const firstNameInput = document.getElementById("firstName");
   const lastNameInput = document.getElementById("lastName");
   const addressInput = document.getElementById("address");
+  const fullNameAndAdress = [firstNameInput, lastNameInput, addressInput]
   const phoneInput = document.getElementById("phone");
   const emailInput = document.getElementById("email");
   const passwordInput = document.getElementById("password");
@@ -31,10 +33,31 @@ document.addEventListener("DOMContentLoaded", () => {
   const readOnlyEmail = document.getElementById("readonly-email");
   const submitSignupFormButton = document.getElementById("submitSignup");
   const passwordsMessageText = document.querySelector(".passwordMessage");
+  const validationMessage = document.querySelector('.validation-message');
+  const allInputs = form.querySelectorAll('input')
 
-  const fullNameAndAdress = document.querySelectorAll(
-    "#firstName, #lastName, #address"
-  );
+  function allFiledsValid(){
+      return (isStringMatchRegEx(regexEmail, emailInput.value) && 
+      isStringMatchRegEx(regexPhoneNumber, phoneInput.value) &&
+      fullNameAndAdressValid(fullNameAndAdress) &&
+      passwordsFieldValid(passwordInputsFields))
+  }
+  allInputs.forEach((input)=>{
+    input.addEventListener('input', (e)=>{
+      submitSignupFormButton.disabled = !allFiledsValid()
+      if(allFiledsValid()){
+        validationMessage.textContent = 'Tous les sont correctement remplis'
+        validationMessage.classList.remove('text-danger')
+        validationMessage.classList.add('text-success')
+      }else{
+        validationMessage.textContent = 'Le bouton d\'inscription restera désactivé jusqu\'à ce que tous les champs soient correctement remplis'
+        validationMessage.classList.remove('text-success')
+        validationMessage.classList.add('text-danger')
+      }
+    })
+  })
+
+  
 
   //script for intelinput
   window.intlTelInput(phoneInput, {
@@ -61,8 +84,8 @@ document.addEventListener("DOMContentLoaded", () => {
     readOnlyPhone.setAttribute("value", phoneInput.value);
   });
 
+
   //check the length of firstName field, lastName field and address
-  
   fullNameAndAdress.forEach((input) => {
     input.addEventListener("input", function () {
       const minLength = parseInt(input.getAttribute("data-minLength"), 10);
