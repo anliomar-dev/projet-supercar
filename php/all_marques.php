@@ -27,7 +27,7 @@ function display_brands(){
           : "pas de modèle disponible";
 
       echo "
-          <div class='card shadow mx-3 my-4 rounded-5' style='height: 300px; width: 230px'>
+          <div class='card mx-3 my-4 rounded-5' style='height: 300px; width: 230px'>
             <div 
               class='
                 card_head px-3 

@@ -16,6 +16,14 @@
       background-color: #218739;
       color: white;
     }
+
+    .card:hover{
+      box-shadow: 0 10px 5px #28a745;
+      transform: translateY(-10px)
+    }
+    .card{
+      transition: all 0.3s ease-in-out;
+    }
   </style>
 </head>
 <body>
