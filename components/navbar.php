@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-custom">
+<nav class="navbar navbar-expand-lg navbar-custom sticky-top">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">
             <img src="../medias/images/logos&icones/supercar_logo_blanc.webp" alt="SuperCar" style="height: 50px;">
@@ -12,10 +12,10 @@
                     <a class="nav-link" href="/super-car/">Accueil</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Marques</a>
+                    <a class="nav-link" href="/super-car/supercar/marques">Marques</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Essai</a>
+                    <a class="nav-link" href="">Essai</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Événements</a>
