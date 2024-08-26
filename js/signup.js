@@ -35,6 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const passwordsMessageText = document.querySelector(".passwordMessage");
   const validationMessage = document.querySelector('.validation-message');
   const allInputs = form.querySelectorAll('input')
+  
 
   function allFiledsValid(){
       return (isStringMatchRegEx(regexEmail, emailInput.value) && 
@@ -42,6 +43,8 @@ document.addEventListener("DOMContentLoaded", () => {
       fullNameAndAdressValid(fullNameAndAdress) &&
       passwordsFieldValid(passwordInputsFields))
   }
+
+  submitSignupFormButton.disabled = !allFiledsValid()
   allInputs.forEach((input)=>{
     input.addEventListener('input', (e)=>{
       submitSignupFormButton.disabled = !allFiledsValid()

@@ -6,13 +6,13 @@
   background-color: #218739;
   color: white;
 }
-.side-bar svg{
+.close-side-bar svg{
   width: 25px;
   height: 25px;
   fill: white;
   color: white;
 }
-.side-bar svg:hover{
+.close-side-bar svg:hover{
   cursor: pointer;
   color: #28a745;
   fill: #28a745;
@@ -37,4 +37,58 @@
 
 .toggle-container:hover .pop-over{
   display: inline;
+}
+
+.sidbar{
+  overflow-y: hidden;
+  height: 0;
+  opacity: 0;
+}
+
+
+.sidebar-opened{
+  animation: sidebar-animate 1S ease-in-out normal forwards;
+}
+
+@keyframes sidebar-animate {
+  0%{
+    opacity: 0;
+    height: 0;
+    overflow-y: hidden;
+  }100%{
+    height: auto;
+    opacity: 1;
+  }
+}
+
+.search-form{
+  background-color: #000D50;
+}
+
+.omar{
+  background-image: url("../medias/images/812_Competizione-removebg-preview.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.card{
+  background-image: linear-gradient(#DADADA, #959494);
+  box-shadow: 10px 8px 10px black;
+}
+.card-details-items{
+  background-color: #D9D9D9;
+}
+.primary-custom-btn {
+  background-color: #28a745;
+  color: white;
+}
+.primary-custom-btn:hover{
+  background-color: #218739;
+  color: white;
+}
+
+.close-search-bar{
+  color: white;
+  width: 25px;
+  height: 25px;
 }
