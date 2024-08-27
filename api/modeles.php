@@ -89,7 +89,7 @@
                 echo json_encode(array(
                     'page' => $page,
                     'total_pages' => $total_pages,
-                    'data' => $data
+                    'models' => $data
                 ));
             }
         } else {

@@ -32,4 +32,20 @@ export function hidePassword(icon) {
   });
 }
 
+export async function fetchModelsByBrand(brandId, page=1){
+  try{
+    const response = await fetch(`http://localhost/Super-car/api/modeles?brand_id=${brandId}&page=${page}`)
+    if(!response.ok){
+      throw new Error(response.statusText)
+    }else{
+      const data = await response.json()
+      const models = data.models
+      const totalPages = data.total_pages
+      const currentPage = data.page
+      return {models, totalPages, currentPage}
+    }
+  }catch(e){
+    console.log(`erreur lors de la récupération des données ${e.message}`)
+  }
+}
 

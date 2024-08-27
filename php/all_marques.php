@@ -63,7 +63,7 @@ function display_brands(){
                 <p style=''>$NombreModeles</p>
               </div>
               <div class='mt-3'>
-                <button class='btn primary-custom-btn' data-id-marque='$IdMarque' >voir les models</button>
+                <button class='view-modelsBtn btn primary-custom-btn' data-id-marque='$IdMarque' >voir les models</button>
               </div>
             </div>
           </div>

@@ -1,4 +1,6 @@
-document.addEventListener('DOMContentLoaded', ()=>{
+import { fetchModelsByBrand } from "./utils";
+
+document.addEventListener('DOMContentLoaded', async()=>{
   const sideBarSections = document.querySelectorAll('.brows-by-type, .filter, .sort, .search')
   const filterOptions = document.getElementById('filterOptions')
   const sideBar = document.querySelector('.sidbar');
@@ -19,4 +21,18 @@ document.addEventListener('DOMContentLoaded', ()=>{
   closeSidebarButton.addEventListener('click', ()=>{
     sideBar.classList.remove('sidebar-opened')
   })
+
+  // Get the query string (everything after the '?')
+  const queryString = window.location.search;
+
+  // Create a URLSearchParams object from the query string
+  const urlParams = new URLSearchParams(queryString);
+
+  // Retrieve the value of the 'brand_id' parameter
+  const brandId = urlParams.get('brand');
+  const data = await fetchModelsByBrand(brandId)
+  console.log(data.currentPage)
+  console.log(data.totalPages)
+  console.log(data.models)
+  
 })

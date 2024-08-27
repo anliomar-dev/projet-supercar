@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../bootstrap-5.3.3-dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="../stylesheets/navbar.css" rel="stylesheet">
-  <link href="../stylesheets/footer_style.css" rel="stylesheet">
   <title>Marques</title>
   <style>
     .primary-custom-btn {
