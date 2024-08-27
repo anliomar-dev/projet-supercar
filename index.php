@@ -17,7 +17,7 @@
         <section class="header">
             <div class="header_container">
                 <div  class="header_logo">
-                    <img src="medias/images/logos&icones/supercar_logo_blanc.webp" alt="" class="logo" id="logo">
+                    <img src="medias/images/logos/supercar_logo_blanc.webp" alt="" class="logo" id="logo">
                 </div>
                 <div class="toggle-button">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
@@ -80,19 +80,19 @@
                                     <div class="marques-section_marques scroller">
                                         <div class="logos scroller_inner">
                                             <div class="browse-type">
-                                                <img src="medias/images/logos&icones/thermique.webp" alt="">
+                                                <img src="medias/images/icons/thermique.webp" alt="">
                                             </div>
                                             <div class="browse-type">
-                                                <img src="medias/images/logos&icones/electric-car.webp" alt="">
+                                                <img src="medias/images/icons/electric-car.webp" alt="">
                                             </div>
                                             <div class="browse-type">
-                                                <img src="medias/images/logos&icones/voiture-hybride.webp" alt="">
+                                                <img src="medias/images/icons/voiture-hybride.webp" alt="">
                                             </div>
                                             <div class="browse-type">
-                                                <img src="medias/images/logos&icones/boite-manuelle.webp" alt="">
+                                                <img src="medias/images/icons/boite-manuelle.webp" alt="">
                                             </div>
                                             <div class="browse-type">
-                                                <img src="medias/images/logos&icones/boite-auto.webp" alt="">
+                                                <img src="medias/images/icons/boite-auto.webp" alt="">
                                             </div>
                                         </div>
                                     </div>
@@ -294,7 +294,7 @@
                     <div class="statistiques">
                         <div class="experience">
                             <div class="icon">
-                                <img src="medias/images/logos&icones/Happy_User-avatar-positive-ux-experience-512.webp" alt="">
+                                <img src="medias/images/icons/Happy_User-avatar-positive-ux-experience-512.webp" alt="">
                             </div>
                             <div class="nombre"><strong>35</strong></div>
                             <div class="text">
@@ -303,21 +303,21 @@
                         </div>
                         <div class="experience">
                             <div class="icon">
-                                <img src="medias/images/logos&icones/Happy_User-avatar-positive-ux-experience-512.webp" alt="">
+                                <img src="medias/images/icons/Happy_User-avatar-positive-ux-experience-512.webp" alt="">
                             </div>
                             <div class="nombre"><strong>95</strong></div>
                             <div class="text">Lorem ipsum dolor sit amet.</div>
                         </div>
                         <div class="experience">
                             <div class="icon">
-                                <img src="medias/images/logos&icones/Happy_User-avatar-positive-ux-experience-512.webp" alt="">
+                                <img src="medias/images/icons/Happy_User-avatar-positive-ux-experience-512.webp" alt="">
                             </div>
                             <div class="nombre"><strong>125+</strong></div>
                             <div class="text">Lorem ipsum dolor sit amet.</div>
                         </div>
                         <div class="experience">
                             <div class="icon">
-                                <img src="medias/images/logos&icones/Happy_User-avatar-positive-ux-experience-512.webp" alt="">
+                                <img src="medias/images/icons/Happy_User-avatar-positive-ux-experience-512.webp" alt="">
                             </div>
                             <div class="nombre"><strong>200+</strong></div>
                             <div class="text">Lorem ipsum dolor sit amet.</div>
@@ -338,19 +338,19 @@
                             <div class="logos scroller_inner ">
                                 <div class="marque">
                                     <p class="text-center">Ferari</p>  
-                                    <img src="medias/images/logos&icones/Ferrari-logo.webp" alt="">
+                                    <img src="medias/images/icons/Ferrari-logo.webp" alt="">
                                 </div>
                                 <div class="marque">
                                     <p class="text-center">Porsche</p>  
-                                    <img src="medias/images/logos&icones/porsche_logo.webp" alt="">
+                                    <img src="medias/images/icons/porsche_logo.webp" alt="">
                                 </div>
                                 <div class="marque">
                                     <p class="text-center">Jeep</p>  
-                                    <img src="medias/images/Jeep-logo-history-_-Body-7-3-10-23-1024x640-removebg-preview.webp" alt="">
+                                    <img src="medias/images/logos/Jeep-logo-history-_-Body-7-3-10-23-1024x640-removebg-preview.webp" alt="">
                                 </div>
                                 <div class="marque">
                                     <p class="text-center">mercedes</p>  
-                                    <img src="medias/images/mercedes_logo.webp" alt="">
+                                    <img src="medias/images/logos/mercedes_logo.webp" alt="">
                                 </div>
                             </div>
                         </div>
@@ -362,7 +362,7 @@
             <div class="container">
                 <div class="footer_logo">
                     <div class="logo">
-                        <img src="medias/images/logos&icones/supercar_logo_blanc.webp" alt="">
+                        <img src="medias/images/logos/supercar_logo_blanc.webp" alt="">
                     </div>
                     <div class="copyright">
                         <p>Copyright © 2024 Supercar ltd.</p>

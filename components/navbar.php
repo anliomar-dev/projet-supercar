@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-custom sticky-top">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">
-            <img src="../medias/images/logos&icones/supercar_logo_blanc.webp" alt="SuperCar" style="height: 50px;">
+            <img src="../medias/images/logos/supercar_logo_blanc.webp" alt="SuperCar" style="height: 50px;">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
