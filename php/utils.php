@@ -1,7 +1,7 @@
 <?php
-  include_once('connexionDB.php');
+    include_once('connexionDB.php');
 
-  function login($email, $password) {
+function login($email, $password) {
     global $DB;
 
     // Prépare la requête SQL pour sélectionner l'utilisateur par email
@@ -48,41 +48,40 @@
         mysqli_stmt_close($stmt);
         return false;
     }
-  }
+}
 
 
+function create_user(
+    $firstname, 
+    $lastname, 
+    $address, 
+    $phone, 
+    $email, 
+    $password
+){
+    global $DB; // Assurez-vous que la variable $DB est disponible ici
+    
+    // Hash the password
+    $hashed_password = password_hash($password, PASSWORD_BCRYPT);
 
-  function create_user(
-      $firstname, 
-      $lastname, 
-      $address, 
-      $phone, 
-      $email, 
-      $password
-    ){
-      global $DB; // Assurez-vous que la variable $DB est disponible ici
-      
-      // Hash the password
-      $hashed_password = password_hash($password, PASSWORD_BCRYPT);
-
-      // Prepare the SQL query
-      $query = 'INSERT INTO utilisateur (Nom, Prenom, Adresse, NumTel, Email, MotDePasse)
-                VALUES (?, ?, ?, ?, ?, ?)';
-      
-      // Prepare the statement
-      if ($stmt = mysqli_prepare($DB, $query)) {
-          // Bind the parameters
-          mysqli_stmt_bind_param($stmt, 'ssssss', $firstname, $lastname, $address, $phone, $email, $hashed_password);
-          
-          // Execute the statement
-          $result = mysqli_stmt_execute($stmt);
-          // Close the statement
-          mysqli_stmt_close($stmt);
-          return $result;
-      } else {
-          // If the statement preparation failed, you might want to handle this case
-          echo "Failed to prepare the SQL statement.";
-          return false;
-      }
+    // Prepare the SQL query
+    $query = 'INSERT INTO utilisateur (Nom, Prenom, Adresse, NumTel, Email, MotDePasse)
+            VALUES (?, ?, ?, ?, ?, ?)';
+    
+    // Prepare the statement
+    if ($stmt = mysqli_prepare($DB, $query)) {
+        // Bind the parameters
+        mysqli_stmt_bind_param($stmt, 'ssssss', $firstname, $lastname, $address, $phone, $email, $hashed_password);
+        
+        // Execute the statement
+        $result = mysqli_stmt_execute($stmt);
+        // Close the statement
+        mysqli_stmt_close($stmt);
+        return $result;
+    } else {
+        // If the statement preparation failed, you might want to handle this case
+        echo "Failed to prepare the SQL statement.";
+        return false;
     }
+}
 ?>
