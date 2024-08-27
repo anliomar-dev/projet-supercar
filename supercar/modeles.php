@@ -13,17 +13,14 @@
     include_once("../components/navbar.php");
     include_once("../php/all_marques.php");
   ?>
-  <div class="position-relative z-5 toggle-container" style="max-width: 235px;">
-    <svg class="toggle-side-bar" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+  <div class="toggle-side-bar position-absolute z-5 toggle-container" style="max-width: 235px;">
+    <svg class="" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
       <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12H12m-8.25 5.25h16.5" />
     </svg>
-    <span class="position-absolute bottom-0 border bg-white py-2 px-3 z-5 shadow mt-2 ms-2 rounded-3 pop-over">click to open options</span>
+    <!--<span class="position-absolute bottom-0 border bg-white py-2 px-3 z-5 shadow mt-2 ms-2 rounded-3 pop-over">click to open options</span>-->
   </div>
-  <div class="sidbar ms-2 pt-2 pb-5 px-3 rounded-2 position-fixed" style="background-color: #000D50; width: auto; z-index: 1000;">
+  <div class="sidbar ms-2 pt-2 pb-5 px-3 rounded-2 position-fixed" style="background-color: #000D50; width: auto; z-index: 1000; top: 120px;">
     <div class="close-side-bar d-flex justify-content-between pb-3 pt-2">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
-        <path fill-rule="evenodd" d="M10.5 3.75a6.75 6.75 0 1 0 0 13.5 6.75 6.75 0 0 0 0-13.5ZM2.25 10.5a8.25 8.25 0 1 1 14.59 5.28l4.69 4.69a.75.75 0 1 1-1.06 1.06l-4.69-4.69A8.25 8.25 0 0 1 2.25 10.5Z" clip-rule="evenodd" />
-      </svg>
       <svg class="close-sidebar" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
       </svg>
