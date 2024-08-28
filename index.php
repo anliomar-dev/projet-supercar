@@ -44,12 +44,31 @@
                     <div class="header_buttons">
                         <a href="/super-car/supercar/signin" class="btn btn-secondary header_secondary">Login</a>
                         <a href="/super-car/supercar/signup" class="btn btn-primary">Sign up</a>
-                        <!--<button>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
-                                <path fill-rule="evenodd" d="M18.685 19.097A9.723 9.723 0 0 0 21.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 0 0 3.065 7.097A9.716 9.716 0 0 0 12 21.75a9.716 9.716 0 0 0 6.685-2.653Zm-12.54-1.285A7.486 7.486 0 0 1 12 15a7.486 7.486 0 0 1 5.855 2.812A8.224 8.224 0 0 1 12 20.25a8.224 8.224 0 0 1-5.855-2.438ZM15.75 9a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" clip-rule="evenodd" />
-                            </svg>
-                        </button>
-                        <strong class="header_secondary" style="border: none;" disabled>User</strong>-->
+                        <!--Liens à droite -->
+                        <!--
+                        <ul class="navbar-nav d-flex gap-5 pr-5 align-items-lg-center flex-row flex-sm-row">
+                            <li class="nav-item dropdown">
+                                <div class="dropdown">
+                                <span class="nav-link" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="../medias/images/icons/user.svg" alt="" style="width: 25px; height: 25px; border-radius: 50%; border: none;">
+                                </span>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <li>
+                                    <a class="dropdown-item text-black" href="">profil</a>
+                                    </li>
+                                    <li>
+                                    <a class="dropdown-item text-black" href="">Account settings</a>
+                                    </li>
+                                    <div class="dropdown-divider"></div>
+                                    <li>
+                                    <form action="" method="post" class="dropdown-item">
+                                        <button type="submit" class="btn">Logout</button>
+                                    </form>
+                                    </li>
+                                </ul>
+                                </div>
+                            </li>
+                        </ul>-->
                     </div>
                 </div>
             </div>

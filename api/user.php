@@ -38,7 +38,7 @@
                         if($result){
                             $response = [
                                 'status' => 'success',
-                                'message' => 'Account successfully created',
+                                'message' => 'Account successfully created you can now login',
                             ];
                         }else{
                             $response = [
@@ -48,7 +48,7 @@
                         }
                         
                     } else {
-                        $response['message'] = 'Method not allowed for creation';
+                        $response['message'] = 'Http Method not allowed for creation';
                     }
                     break;
                 
@@ -69,7 +69,7 @@
                         $response['message'] = 'Method not allowed for updating';
                     }
                     break;
-
+                    
                 case 'delete':
                     if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
                         $user_id = $data['user_id'];
