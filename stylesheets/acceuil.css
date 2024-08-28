@@ -70,7 +70,7 @@ p {
 
 /* style entete */
 .entete {
-  background-image: url("../medias/images/logos&icones/header-backgroud.webp");
+  background-image: url("../medias/images/header-backgroud.webp");
   height: auto;
   padding-bottom: 60px;
   background-repeat: no-repeat;

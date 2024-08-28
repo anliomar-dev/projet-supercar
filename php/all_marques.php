@@ -25,7 +25,6 @@ function display_brands(){
           isset($row["NombreModeles"]) && is_numeric($row["NombreModeles"]) && (int)$row["NombreModeles"] > 0 
           ? "+ ". (int)$row["NombreModeles"]. " modèles"
           : "pas de modèle disponible";
-
       echo "
           <div class='card mx-3 my-4 rounded-5' style='height: 300px; width: 230px'>
             <div 
@@ -39,7 +38,7 @@ function display_brands(){
               <h3 class='card-title'>$NomMarque</h3>
               <hr class='my-0 w-75' style='background-color: white;'/>
               <div class='mt-1' style='height: 70%;'>
-                <img src='../medias/images/logos&icones/$logo' alt='logo' class='h-100'>
+                <img src='../medias/images/logos/$logo' alt='logo' class='h-100'>
               </div>
               <div class='position-absolute' 
               style='height: 25px; width: 25px; background-color: white; right: 0; bottom: 0;'>

@@ -338,11 +338,11 @@
                             <div class="logos scroller_inner ">
                                 <div class="marque">
                                     <p class="text-center">Ferari</p>  
-                                    <img src="medias/images/icons/Ferrari-logo.webp" alt="">
+                                    <img src="medias/images/logos/Ferrari-logo.webp" alt="">
                                 </div>
                                 <div class="marque">
                                     <p class="text-center">Porsche</p>  
-                                    <img src="medias/images/icons/porsche_logo.webp" alt="">
+                                    <img src="medias/images/logos/porsche_logo.webp" alt="">
                                 </div>
                                 <div class="marque">
                                     <p class="text-center">Jeep</p>  
