@@ -22,10 +22,23 @@
     <link href="../stylesheets/navbar.css" rel="stylesheet">
     <link href="../stylesheets/signup.css" rel="stylesheet">
 </head>
-<body>
+<body class="position-relative">
     <?php
         include_once("../components/navbar.php")
     ?>
+    <span class="alert alert-success position-absolute z-5 mt-3 d-flex" role="alert">
+        <p class="m-0">commte crée avec succès, vous pouvez maintenant vous connecter</p>
+        <svg class="close-alert-success" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
+            <path d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 0 0-1.06-1.06L10 8.94 6.28 5.22Z" />
+        </svg>
+    </span>
+    <span class="alert alert-danger position-absolute z-5 mt-3 d-flex" role="alert">
+        <p class="m-0">internal server error</p>
+        <svg class="close-alert-danger" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
+            <path d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 0 0-1.06-1.06L10 8.94 6.28 5.22Z" />
+        </svg>
+    </span>
+    
     <!-- signup form -->
     <div class="form_container d-flex justify-content-center pt-3">
         <div class="signup-form">

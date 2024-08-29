@@ -47,3 +47,47 @@ body {
   text-decoration: none;
 }
 
+.close-alert-success, .close-alert-danger{
+  width: 25px;
+  height: 25px;
+  margin-left: 10px;
+}
+
+.close-alert-success:hover, .close-alert-danger:hover{
+  cursor: pointer;
+}
+
+.alert-danger{
+  position: relative;
+  width: auto; 
+  left: 70%; 
+  transform: translateX(-50%);
+}
+
+.alert-success{
+  position: relative;
+  width: auto;  
+}
+
+
+.alert-danger::before{
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 4px;
+  background-color: rgb(166, 2, 2);
+  border-radius: 0 0 5px 5px;
+}
+
+.alert-success::before{
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 4px;
+  background-color: rgb(13, 159, 2);
+  border-radius: 0 0 5px 5px;
+}
