@@ -22,7 +22,7 @@
         // Check if the JSON data is valid
         if (json_last_error() === JSON_ERROR_NONE) {
             // Get the action option to perform
-            $action = isset($data['action']) ? $data['action'] : '';
+            $action = $data['action'];
 
             switch ($action) {
                 //case create for creating nuw user

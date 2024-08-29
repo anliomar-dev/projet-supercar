@@ -17,7 +17,7 @@
         <div class="col-10 col-md-6 col-lg-4">
           <form action="" class="shadow border mt-5 pt-3 pb-5 rounded" style="box-sizing: border-box; padding-inline: 30px;">
             <div class="logo text-center my-3 py-2">
-              <img style="width: 190px; height: 56px;" class="img-fluid" src="../medias/images/logos&icones/supercar_logo_noir.webp" alt="logo supercar">
+              <img style="width: 190px; height: 56px;" class="img-fluid" src="../medias/images/logos/supercar_logo_noir.webp" alt="logo supercar">
             </div>
             <h4 class="text-center mt-3">CONNEXION</h4>
             <div class="form-group py-3">

@@ -34,6 +34,7 @@
                 Le bouton d'inscription restera désactivé jusqu'à ce que tous les champs soient correctement remplis
             </p>
             <form style="width: 100%;" id="signupForm">
+                <input type="hidden" id="action" value="create">
                 <div class="row mt-3 pt-2">
                     <div class="form-group col-md-6">
                         <label for="firstName">Prenom</label>
@@ -103,23 +104,23 @@
                     <p>Veuillez vérifier les informations suivantes avant de confirmer :</p>
                     <hr>
                     <div>
-                        <label for="">Prenom</label>
+                        <label for="readonly-firstName">Prenom</label>
                         <input class="form-control" id="readonly-firstName" type="text" value="" aria-label="Disabled input example" disabled readonly>
                     </div>
                     <div>
-                        <label for="">Nom</label>
+                        <label for="readonly-lastName">Nom</label>
                         <input class="form-control" id="readonly-lastName" type="text" value="" aria-label="Disabled input example" disabled readonly>
                     </div>
                     <div>
-                        <label for="">Address</label>
+                        <label for="readonly-address">Address</label>
                         <input class="form-control" id="readonly-address" type="text" value="" aria-label="Disabled input example" disabled readonly>
                     </div>
                     <div>
-                        <label for="">Téléphone</label>
+                        <label for="readonly-phone">Téléphone</label>
                         <input class="form-control" id="readonly-phone" type="text" value="" aria-label="Disabled input example" disabled readonly>
                     </div>
                     <div>
-                        <label for="email">Email</label>
+                        <label for="readonly-email">Email</label>
                         <input class="form-control" id="readonly-email" type="text" value="" aria-label="Disabled input example" disabled readonly>
                     </div>
                 </div>
@@ -154,7 +155,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                    <button type="button" class="btn btn-primary" id="finalConfirmButton" disabled>Confirmer et Soumettre</button>
+                    <button type="button" class="btn btn-primary confirm-signup-btn" id="finalConfirmButton" disabled>Confirmer et Soumettre</button>
                 </div>
             </div>
         </div>

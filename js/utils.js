@@ -32,6 +32,14 @@ export function hidePassword(icon) {
   });
 }
 
+
+/**
+ * Fetch models by brand with pagination.
+ * @param {number} brandId - The ID of the brand for which we want to get all models.
+ * @param {number} [page=1] - The number of the current page (defaults to 1).
+ * @returns {Promise<object>} An object containing models, total pages, and the current page.
+ * @throws Will throw an error if the fetch operation fails.
+ */
 export async function fetchModelsByBrand(brandId, page=1){
   try{
     const response = await fetch(`http://localhost/Super-car/api/modeles?brand_id=${brandId}&page=${page}`)
@@ -49,3 +57,58 @@ export async function fetchModelsByBrand(brandId, page=1){
   }
 }
 
+
+/**
+ * Create a new user account
+ * @param {...string} data - The user details: first_name, last_name, address, phone, email, password, action.
+ * @returns {Promise<object>} The server response.
+ */
+export async function createUser(...data){
+  const [first_name, last_name, address, phone, email, password, action] = data;
+
+  const user = {
+    first_name,
+    last_name,
+    address,
+    phone,
+    email,
+    password,
+    action
+  };
+  try {
+    const response = await fetch('http://localhost/super-car/api/user', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(user)
+    });
+    
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+  
+    const message = await response.json();
+    return message;
+  } catch (e) {
+    console.error('Internal server error: ' + e.message);
+  }
+  
+}
+
+
+/**
+ * Resets the value of form fields.
+ * @param {...HTMLInputElement|HTMLTextAreaElement|HTMLSelectElement} fields - The form fields to reset.
+ */
+export function resetForm(...fields) {
+  for (let field of fields) {
+    // Vérifie si le champ est un élément de formulaire avec une propriété 'value'
+    if (field && 'value' in field) {
+      field.value = '';
+      field.style.outline = 'none'
+    } else {
+      console.warn('Un champ non valide a été fourni pour la réinitialisation.');
+    }
+  }
+}

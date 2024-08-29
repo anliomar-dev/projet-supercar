@@ -1,12 +1,12 @@
-import { showPassword, hidePassword } from "./utils";
+import { showPassword, hidePassword, createUser, resetForm } from "./utils";
 
-import { 
-  isStringLengthGreaterThan, 
-  isStringMatchRegEx, 
-  controlField, 
-  fullNameAndAdressValid, 
-  passwordsFieldValid 
-} from "./forms-validation"
+import {
+  isStringLengthGreaterThan,
+  isStringMatchRegEx,
+  controlField,
+  fullNameAndAdressValid,
+  passwordsFieldValid,
+} from "./forms-validation";
 
 const regexPasswordMedium = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[^\w\s])(?=.{8,12}$)/;
 const regexStrongPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[^\w\s]).{13,}$/;
@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const firstNameInput = document.getElementById("firstName");
   const lastNameInput = document.getElementById("lastName");
   const addressInput = document.getElementById("address");
-  const fullNameAndAdress = [firstNameInput, lastNameInput, addressInput]
+  const fullNameAndAdress = [firstNameInput, lastNameInput, addressInput];
   const phoneInput = document.getElementById("phone");
   const emailInput = document.getElementById("email");
   const passwordInput = document.getElementById("password");
@@ -33,42 +33,42 @@ document.addEventListener("DOMContentLoaded", () => {
   const readOnlyEmail = document.getElementById("readonly-email");
   const submitSignupFormButton = document.getElementById("submitSignup");
   const passwordsMessageText = document.querySelector(".passwordMessage");
-  const validationMessage = document.querySelector('.validation-message');
-  const allInputs = form.querySelectorAll('input')
+  const validationMessage = document.querySelector(".validation-message");
+  const action = 'create'
+  const allInputs = form.querySelectorAll("input");
   
 
-  function allFiledsValid(){
-      return (isStringMatchRegEx(regexEmail, emailInput.value) && 
+  function allFiledsValid() {
+    return (
+      isStringMatchRegEx(regexEmail, emailInput.value) &&
       isStringMatchRegEx(regexPhoneNumber, phoneInput.value) &&
       fullNameAndAdressValid(fullNameAndAdress) &&
-      passwordsFieldValid(passwordInputsFields))
+      passwordsFieldValid(passwordInputsFields)
+    );
   }
 
-  submitSignupFormButton.disabled = !allFiledsValid()
-  allInputs.forEach((input)=>{
-    input.addEventListener('input', (e)=>{
-      submitSignupFormButton.disabled = !allFiledsValid()
-      if(allFiledsValid()){
-        validationMessage.textContent = 'Tous les sont correctement remplis'
-        validationMessage.classList.remove('text-danger')
-        validationMessage.classList.add('text-success')
-      }else{
-        validationMessage.textContent = 'Le bouton d\'inscription restera désactivé jusqu\'à ce que tous les champs soient correctement remplis'
-        validationMessage.classList.remove('text-success')
-        validationMessage.classList.add('text-danger')
+  submitSignupFormButton.disabled = !allFiledsValid();
+  allInputs.forEach((input) => {
+    input.addEventListener("input", (e) => {
+      submitSignupFormButton.disabled = !allFiledsValid();
+      if (allFiledsValid()) {
+        validationMessage.textContent = "Tous les sont correctement remplis";
+        validationMessage.classList.remove("text-danger");
+        validationMessage.classList.add("text-success");
+      } else {
+        validationMessage.textContent =
+          "Le bouton d'inscription restera désactivé jusqu'à ce que tous les champs soient correctement remplis";
+        validationMessage.classList.remove("text-success");
+        validationMessage.classList.add("text-danger");
       }
-    })
-  })
-
-  
+    });
+  });
 
   //script for intelinput
   window.intlTelInput(phoneInput, {
     utilsScript:
       "https://cdn.jsdelivr.net/npm/intl-tel-input@19.2.14/build/js/utils.js",
   });
-
-
 
   //show and hide password
   const eyeIcons = document.querySelectorAll(".eye-icon"); //show password icons
@@ -80,13 +80,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
   //populate the readOnly inputs of the firstModal with form data
   submitSignupFormButton.addEventListener("click", function () {
-    readOnlyFirstName.setAttribute("value", firstNameInput.value);
-    readOnlyLastName.setAttribute("value", lastNameInput.value);
-    readOnlyAddress.setAttribute("value", addressInput.value);
-    readOnlyEmail.setAttribute("value", emailInput.value);
-    readOnlyPhone.setAttribute("value", phoneInput.value);
+    const first_name = firstNameInput.value;
+    const last_name = lastNameInput.value;
+    const address = addressInput.value;
+    const phone = phoneInput.value;
+    const email = emailInput.value;
+    readOnlyFirstName.setAttribute("value", first_name);
+    readOnlyLastName.setAttribute("value", last_name);
+    readOnlyAddress.setAttribute("value", address);
+    readOnlyEmail.setAttribute("value", phone);
+    readOnlyPhone.setAttribute("value", email);
   });
-
 
   //check the length of firstName field, lastName field and address
   fullNameAndAdress.forEach((input) => {
@@ -154,10 +158,10 @@ document.addEventListener("DOMContentLoaded", () => {
           "red",
           "solid 3px red"
         );
-      } else if(
+      } else if (
         isStringLengthGreaterThan(passwordInput.value, 5) &&
         !isStringLengthGreaterThan(passwordInput.value, 8)
-      ){
+      ) {
         //password length is between 5 and 7
         const message =
           "Votre mot de passe est très vulnérable. ignorez ce message si vous voulez continuer a utiliser ce mot de passe";
@@ -168,8 +172,8 @@ document.addEventListener("DOMContentLoaded", () => {
           message,
           "#fd7e14",
           "solid 3px #fd7e14"
-        ); 
-      }else {
+        );
+      } else {
         const message =
           "pour un mot de passe fort, minimum: 8 caractères, 1 lettre majuscule, 1 lettre miniscule, un chiffre, 1 caractère spéciale";
         controlField(
@@ -246,6 +250,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
   });
+
   // Handle review confirmation
   document
     .getElementById("confirmReviewButton")
@@ -278,13 +283,42 @@ document.addEventListener("DOMContentLoaded", () => {
   // Handle final confirmation
   document
     .getElementById("finalConfirmButton")
-    .addEventListener("click", function () {
+    .addEventListener("click", async function () {
       // Close the second modal
       const consentModal = bootstrap.Modal.getInstance(
         document.getElementById("consentModal")
       );
       consentModal.hide();
-      // Optionally, submit the form or take any final action here
-      alert("Formulaire soumis avec consentement.");
+      //user date
+      const userData = [
+        firstNameInput.value,
+        lastNameInput.value,
+        addressInput.value,
+        phoneInput.value,
+        emailInput.value,
+        passwordInput.value,
+        action,
+      ];
+      try{
+        const createUserResponse = await createUser(...userData)
+        console.log(`status: ${createUserResponse.status}; message: ${createUserResponse.message}`)
+      }catch(e){
+        console.error(e);
+      }
+      resetForm(
+        firstNameInput,
+        lastNameInput,
+        addressInput,
+        phoneInput,
+        emailInput,
+        passwordInput,
+        passwordConfirmInput
+      );
+      validationMessage.textContent =
+        "Le bouton d'inscription restera désactivé jusqu'à ce que tous les champs soient correctement remplis";
+      validationMessage.style.color = "red";
+      passwordsMessageText.textContent =
+        "pour un mot de passe fort, minimum: 8 caractères, 1 lettre majuscule, 1 lettre miniscule, un chiffre, 1 caractère spéciale";
+      validationMessage.style.color = "black";
     });
 });

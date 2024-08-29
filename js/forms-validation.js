@@ -32,7 +32,7 @@ export function isStringMatchRegEx(regEx, str) {
  * This function modifies the outline of the specified input field, sets the display 
  * and color properties of a message container, and updates the text content of the message.
  * 
- * @param {HTMLElement} field - The input field to be styled.
+ * @param {HTMLInputElement} field - The input field to be styled.
  * @param {string} displayProperty - The CSS display property for the message container (e.g., 'block' or 'none').
  * @param {HTMLElement} messageTextContainer - The container element for the message text.
  * @param {string} message - The message to be displayed in the container.
@@ -56,7 +56,7 @@ export function controlField(
 
 /**
  * ensure password length is greather or equale to 5 ans password and confirm passwod match
- * @param {Array<HTMLElement>} passwordInputsFields - passwords inputs
+ * @param {Array<HTMLInputElement>} passwordInputsFields - passwords inputs
  * @returns {boolean} return true if both of two conditions are true
  */
 export function passwordsFieldValid(passwordInputsFields) {
@@ -71,7 +71,7 @@ export function passwordsFieldValid(passwordInputsFields) {
 
 /**
  * 
- * @param {Array<HTMLElement>} fullNameAndAdress - firstname, lastname and address
+ * @param {Array<HTMLInputElement>} fullNameAndAdress - firstname, lastname and address
  * @returns {boolean} return true if firstname, lastname and address are all field and the length is greather or eqaul to the minimum length
  */
 export function fullNameAndAdressValid(fullNameAndAdress) {
