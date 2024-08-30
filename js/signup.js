@@ -36,8 +36,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const validationMessage = document.querySelector(".validation-message");
   const action = 'create'
   const allInputs = form.querySelectorAll("input");
+  const alertSuccess = document.querySelector('.alert-success');
+  const alertDanger = document.querySelector('.alert-danger');
   
-
   function allFiledsValid() {
     return (
       isStringMatchRegEx(regexEmail, emailInput.value) &&
@@ -301,10 +302,37 @@ document.addEventListener("DOMContentLoaded", () => {
       ];
       try{
         const createUserResponse = await createUser(...userData)
-        console.log(`status: ${createUserResponse.status}; message: ${createUserResponse.message}`)
+        const responseStatus = createUserResponse.status;
+        const messageResponse = createUserResponse.message
+        if (responseStatus === 'error') {
+          alertDanger.style.display = 'block';
+          alertDanger.querySelector('p').textContent = messageResponse;
+          alertDanger.classList.add('alert-show');
+        }else if(responseStatus === 'success'){
+          alertSuccess.style.display = 'block';
+          alertSuccess.querySelector('p').textContent = messageResponse;
+          alertSuccess.classList.add('alert-show');
+        }
       }catch(e){
         console.error(e);
       }
+
+      //hide alert message 
+      document.querySelectorAll('.alert').forEach((alert)=>{
+        setTimeout(() => {
+          alert.style.display = 'none';
+          alert.classList.remove('alert-show');
+          }, 6800);
+      })
+
+      //hide alert message
+      document.querySelectorAll('.close-alert-success, .close-alert-danger').forEach((svg)=>{
+        svg.addEventListener('click', function(){
+          this.parentNode.style.display = 'none';
+          this.parentNode.classList.remove('alert-show');
+          })
+      })
+      // reset signup form
       resetForm(
         firstNameInput,
         lastNameInput,
