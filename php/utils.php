@@ -86,4 +86,27 @@
             return false;
         }
     }
+
+    function is_email_already_exist($email){
+        global $DB;
+        $check_email_query = "SELECT email FROM utilisateur WHERE email = ?";
+        // prepare query
+        $stmt = mysqli_prepare($DB, $check_email_query);
+
+        mysqli_stmt_bind_param($stmt, 's', $email);
+
+        // execute query
+        mysqli_stmt_execute($stmt);
+
+        // get the result of the query
+        $result = mysqli_stmt_get_result($stmt);
+        // Check if any row is returned
+        $email_exists = mysqli_num_rows($result) > 0;
+
+        // Close the statement
+        mysqli_stmt_close($stmt);
+
+        // Return true if email exists, false otherwise
+        return $email_exists;
+    }
 ?>

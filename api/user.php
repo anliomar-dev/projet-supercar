@@ -34,19 +34,26 @@
                         $phone = $data['phone'];
                         $email = $data['email'];
                         $password = $data['password'];
-                        $result = create_user($first_name, $last_name, $address, $phone, $email, $password);
-                        if($result){
-                            $response = [
-                                'status' => 'success',
-                                'message' => 'Account successfully created you can now login',
-                            ];
-                        }else{
+                        $is_email_already_taken = is_email_already_exist($email);
+                        if ($is_email_already_taken){
                             $response = [
                                 'status' => 'error',
-                                'message' => 'cannot create account: internal server error',
-                            ];
+                                'message' => 'Email already exist. please choose another email address'
+                                ];
+                        }else{
+                            $result = create_user($first_name, $last_name, $address, $phone, $email, $password);
+                            if($result){
+                                $response = [
+                                    'status' => 'success',
+                                    'message' => 'Account successfully created you can now login',
+                                ];
+                            }else{
+                                $response = [
+                                    'status' => 'error',
+                                    'message' => 'cannot create account: internal server error',
+                                ];
+                            }
                         }
-                        
                     } else {
                         $response['message'] = 'Http Method not allowed for creation';
                     }
