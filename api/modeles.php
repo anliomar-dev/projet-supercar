@@ -36,7 +36,7 @@ if (isset($_GET['brand_id'])) {
     mysqli_stmt_execute($stmt_sql);
     $count = mysqli_stmt_get_result($stmt_sql);
     $total = mysqli_fetch_assoc($count)['total'];
-    $limit = 2;
+    $limit = 10;
     $total_pages = ceil($total / $limit);
 
     // Current page
@@ -64,29 +64,34 @@ if (isset($_GET['brand_id'])) {
             if (!isset($models[$model_id])) {
                 $models[$model_id] = [
                     'IdModele' => $row['IdModele'],
-                    'Nom' => $row['NomModele'] ? $row['NomModele'] : 'Name not available',
+                    'NomModele' => $row['NomModele'] ? $row['NomModele'] : 'Name not available',
                     'IdMarque' => $row['IdMarque'],
                     'NomMarque' => $row['NomMarque'],
+                    'Annee' => $row['Annee'],
+                    'Prix' => $row['Prix'],
+                    'TypeMoteur' => $row['TypeMoteur'],
                     'logo' => $row['logo'],
-                    'Images' => []
+                    'images' => []
                 ];
             }
         }
 
-        // Retrieve all images associated with the models fetched
-        $model_ids = array_keys($models);
-        if (count($model_ids) > 0) {
-            $model_ids_placeholder = implode(',', array_fill(0, count($model_ids), '?'));
-            $image_query = "SELECT * FROM images WHERE IdModele IN ($model_ids_placeholder) AND type =\"outside\" LIMIT 3";
+        // Retrieve up to 3 images per model
+        foreach ($models as $model_id => $model_data) {
+            $image_query = "SELECT * FROM images 
+                            WHERE IdModele = ? 
+                            AND type ='outside'
+                            ORDER BY IdImage
+                            LIMIT 3";
             $image_stmt = mysqli_prepare($DB, $image_query);
-            mysqli_stmt_bind_param($image_stmt, str_repeat('i', count($model_ids)), ...$model_ids);
-            mysqli_stmt_execute($image_stmt);
-            $image_result = mysqli_stmt_get_result($image_stmt);
 
-            while ($row = mysqli_fetch_assoc($image_result)) {
-                $model_id = $row['IdModele'];
-                if (isset($models[$model_id])) {
-                    $models[$model_id]['Images'][] = [
+            if ($image_stmt) {
+                mysqli_stmt_bind_param($image_stmt, "i", $model_id);
+                mysqli_stmt_execute($image_stmt);
+                $image_result = mysqli_stmt_get_result($image_stmt);
+
+                while ($row = mysqli_fetch_assoc($image_result)) {
+                    $models[$model_id]['images'][] = [
                         'id' => $row['IdImage'],
                         'Nom' => $row['Nom'],
                         'type' => $row['type'],
