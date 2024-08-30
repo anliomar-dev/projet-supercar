@@ -12,7 +12,7 @@
                     <a class="nav-link" href="/super-car/">Accueil</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/super-car/supercar/marques">Marques</a>
+                    <a class="nav-link" href="../supercar/marques.php">Marques</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="">Essai</a>
