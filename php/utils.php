@@ -3,7 +3,10 @@
 
     function login($email, $password) {
         global $DB;
-
+        $response = [
+            'status' => 'error',
+            'message' => 'invalid email and/or password'
+        ];
         // query
         $query = "SELECT * FROM utilisateur WHERE Email = ?";
 

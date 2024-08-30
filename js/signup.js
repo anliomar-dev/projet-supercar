@@ -47,8 +47,9 @@ document.addEventListener("DOMContentLoaded", () => {
       passwordsFieldValid(passwordInputsFields)
     );
   }
-
+  // disabled the signup button while at least on of the fields is not field or is not valid
   submitSignupFormButton.disabled = !allFiledsValid();
+  // check if all field are filled ans are valid
   allInputs.forEach((input) => {
     input.addEventListener("input", (e) => {
       submitSignupFormButton.disabled = !allFiledsValid();

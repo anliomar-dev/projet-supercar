@@ -96,6 +96,30 @@ export async function createUser(...data){
   
 }
 
+export async function login(email, password, action='login'){
+  const credentials = {
+    email,
+    password,
+    action
+  }
+  try {
+    const response = await fetch('http://localhost/super-car/api/user/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(credentials)
+    })
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+  
+    const message = await response.json();
+    return message;
+  }catch(e){
+    console.error('Internal server error: ' + e.message);
+  }
+}
 
 /**
  * Resets the value of form fields.

@@ -92,7 +92,26 @@
                         $response['message'] = 'Method not allowed for deletion';
                     }
                     break;
-
+                case 'login':
+                    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                        $email = $data['email'];
+                        $password = $data['password'];
+                        $is_authenticated = login($email, $password);
+                        if($is_authenticated){
+                            $response = [
+                                'status' => 'success',
+                                'message' => 'Account successfully deleted',
+                            ];
+                        }else{
+                            $response = [
+                                'status' => 'error',
+                                'message' => 'Invalid email or password',
+                            ];
+                        }
+                    } else {
+                        $response['message'] = 'Method not allowed for login';
+                    }
+                    break;
                 default:
                     $response = [
                         'status' => 'error',
