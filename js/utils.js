@@ -44,9 +44,14 @@ export async function fetchModelsByBrand(brandId, page=1){
   try{
     const response = await fetch(`http://localhost/Super-car/api/modeles?brand_id=${brandId}&page=${page}`)
     if(!response.ok){
-      throw new Error(response.statusText)
+      const data = response.json()
+      return data
     }else{
       const data = await response.json()
+      if(!data['models'] && data.error){
+        console.log(data)
+        return data
+      }
       const models = data.models
       const totalPages = data.total_pages
       const currentPage = data.page

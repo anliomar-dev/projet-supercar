@@ -1,4 +1,5 @@
 import { fetchModelsByBrand } from "./utils";
+
 // Get the query string (everything after the '?')
 const queryString = window.location.search;
 
@@ -8,43 +9,119 @@ const urlParams = new URLSearchParams(queryString);
 // Retrieve the value of the 'brand_id' parameter
 const brandId = urlParams.get('brand');
 
+/**
+ * Filters models by a specified attribute (NomModele, TypeMoteur, or Prix) and supports pagination.
+ * 
+ * @param {number} currentPage - The current page number to display.
+ * @param {string} [filterBy='NomModele'] - The attribute to filter by. Defaults to 'NomModele'.
+ * @param {string} [filter=''] - The filter value to match against the specified attribute.
+ * @returns {Promise<Object>} - An object containing the filtered models, current page, total pages, and optionally an error message.
+ * 
+ * @returns {Promise<Object>} - The returned object includes:
+ * - {Array} filteredData - An array of model objects that match the filter criteria.
+ * - {number} currentPage - The current page number.
+ * - {number} totalPages - The total number of pages available.
+ * - {string} [MsgError] - An optional error message if an error occurred.
+ */
+async function filterModels(currentPage = 1, filterBy = 'NomModele', filter = '') {
+  try {
+    const data = await fetchModelsByBrand(brandId, currentPage);
 
-document.addEventListener('DOMContentLoaded', async()=>{
-  const sideBarSections = document.querySelectorAll('.brows-by-type, .filter, .sort, .search')
-  const filterOptions = document.getElementById('filterOptions')
+    if (data.error) {
+      console.log(data.error);
+      return { filteredData: [], currentPage: 1, totalPages: 1, MsgError: data.error };
+    }
+
+    const totalPages = data.totalPages;
+
+    // Filter models
+    const filteredData = data.models.filter(model =>
+      model[filterBy]?.toLowerCase().startsWith(filter.toLowerCase())
+    );
+
+    // Return filtered data
+    return { filteredData, currentPage, totalPages };
+  } catch (e) {
+    console.log(`Error filtering models: ${e.message}`);
+    return { filteredData: [], currentPage: 1, totalPages: 1, MsgError: e.message };
+  }
+}
+
+document.addEventListener('DOMContentLoaded', async () => {
+  const sideBarSections = document.querySelectorAll('.brows-by-type, .filter, .sort, .search');
+  const filterOptions = document.getElementById('filterOptions');
   const sideBar = document.querySelector('.sidbar');
   const toggleSideBar = document.querySelector('.toggle-side-bar');
   const closeSidebarButton = document.querySelector('.close-sidebar');
-  const template = document.getElementById('template-model')
+  const template = document.getElementById('template-model');
+  const filterByEngine = document.querySelectorAll('.filterByEngine');
+  const modelsContainer = document.querySelector('.models-container');
 
-  filterOptions.addEventListener('change', ()=>{
-    const selectedOption = filterOptions.value
-    sideBarSections.forEach(section => section.style.display = 'none')
-    const optionsToShow = document.querySelector(`.${selectedOption}`)
-    optionsToShow.style.display = 'block'
-  })
+  filterOptions.addEventListener('change', () => {
+    const selectedOption = filterOptions.value;
+    sideBarSections.forEach(section => section.style.display = 'none');
+    const optionsToShow = document.querySelector(`.${selectedOption}`);
+    optionsToShow.style.display = 'block';
+  });
 
-  toggleSideBar.addEventListener('click', ()=>{
-    sideBar.classList.add('sidebar-opened')
-  })
+  toggleSideBar.addEventListener('click', () => {
+    sideBar.classList.add('sidebar-opened');
+  });
 
-  closeSidebarButton.addEventListener('click', ()=>{
-    sideBar.classList.remove('sidebar-opened')
-  })
-  async function displayModelsByBrand(page=1){
-    let data = await fetchModelsByBrand(brandId, page)
-    let models = data.models
-    models.forEach((model)=>{
+  closeSidebarButton.addEventListener('click', () => {
+    sideBar.classList.remove('sidebar-opened');
+  });
+
+  /**
+  
+   * Displays the models by brand in the models container.
+   * 
+   * @param {Object} data - The data object containing model information
+   * @returns {void}
+   */
+  async function displayModelsByBrand(data) {
+    modelsContainer.innerHTML = ''; // Clear previous models
+
+    if (data.MsgError) {
+      console.log(data.MsgError);
+      // Optionally, show error message to user
+      modelsContainer.innerHTML = `<p class="error-message">${data.MsgError}</p>`;
+      return;
+    }
+
+    if (data.filteredData.length === 0) {
+      modelsContainer.innerHTML = '<p>No models found.</p>';
+      return;
+    }
+
+    data.filteredData.forEach((model) => {
       const clone = template.content.cloneNode(true);
-      clone.getElementById('model-name').textContent = model.NomModele;
-      clone.getElementById('model-brand').textContent = model.NomMarque;
-      clone.getElementById('model-year').textContent = model.Annee;
-      clone.getElementById('model-price').textContent = model.Prix;
-      clone.getElementById('model-engine').textContent = model.TypeMoteur;
-      clone.querySelector('.brand-logo').src = `../medias/images/logos/${model.logo}`;
-      clone.getElementById('image-model').src = `../medias/images/${model.NomMarque}/${model.images[0].Nom}`;  
-      document.querySelector('.models-container').appendChild(clone);
-    })
+      clone.getElementById('model-name').textContent = model.NomModele || 'Unknown';
+      clone.getElementById('model-brand').textContent = model.NomMarque || 'Unknown';
+      clone.getElementById('model-year').textContent = model.Annee || 'Unknown';
+      clone.getElementById('model-price').textContent = model.Prix || 'Unknown';
+      clone.getElementById('model-engine').textContent = model.TypeMoteur || 'Unknown';
+      clone.querySelector('.brand-logo').src = `../medias/images/logos/${model.logo || 'default-logo.png'}`;
+
+      if (model.images.length > 0) {
+        clone.getElementById('image-model').src = `../medias/images/${model.NomMarque}/${model.images[0].Nom}`;
+      }
+
+      modelsContainer.appendChild(clone);
+    });
   }
-  displayModelsByBrand()
-})
+
+  // Display models on initial load
+  const initialData = await filterModels();
+  displayModelsByBrand(initialData);
+
+  // Add event listeners for filter buttons
+  filterByEngine.forEach((filterBtn) => {
+    filterBtn.addEventListener('click', async (e) => {
+      const filterBy = 'TypeMoteur';
+      const filterValue = e.currentTarget.dataset.type;
+      const newData = await filterModels(1, filterBy, filterValue);
+      displayModelsByBrand(newData);
+    });
+  });
+});

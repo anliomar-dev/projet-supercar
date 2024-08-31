@@ -35,13 +35,13 @@
       <h5 class="text-white px-2"><u>Parcourir par type</u></h5>
       <div class="buttons mt-3">
         <div class="btn-container my-2 px-2">
-          <button class="btn primary-custom-btn fs-6">Thermique</button>
+          <button class="btn primary-custom-btn fs-6 filterByEngine" data-type="Thermique">Thermique</button>
         </div>
         <div class="btn-container my-2 px-2">
-          <button class="btn primary-custom-btn fs-6">électrique</button>
+          <button class="btn primary-custom-btn fs-6 filterByEngine" data-type="électrique">électrique</button>
         </div>
         <div class="btn-container my-2 px-2">
-          <button class="btn primary-custom-btn fs-6">Hybride</button>
+          <button class="btn primary-custom-btn fs-6 filterByEngine" data-type="Hybride">Hybride</button>
         </div>
       </div>
     </div>
