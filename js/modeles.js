@@ -23,7 +23,7 @@ const brandId = urlParams.get('brand');
  * - {number} totalPages - The total number of pages available.
  * - {string} [MsgError] - An optional error message if an error occurred.
  */
-async function filterModels(currentPage = 1, filterBy = 'NomModele', filter = '') {
+async function filterModels(currentPage = 1, filterBy = 'NomModele', filter = '', compare='min') {
   try {
     const data = await fetchModelsByBrand(brandId, currentPage);
 
@@ -34,15 +34,29 @@ async function filterModels(currentPage = 1, filterBy = 'NomModele', filter = ''
 
     const totalPages = data.totalPages;
 
-    // Filter models
-    const filteredData = data.models.filter(model =>
-      model[filterBy]?.toLowerCase().startsWith(filter.toLowerCase())
-    );
+    
+    if(filterBy === 'Prix'){
+      if(compare === 'min'){
+        const filteredData = data.models.filter(model => parseFloat(model.Prix) >= filter);
+        // Return filtered data
+        return { filteredData, currentPage, totalPages };
+      }else if(compare === 'max'){
+        const filteredData = data.models.filter(model => parseFloat(model.Prix) <= filter);
+        // Return filtered data
+        return { filteredData, currentPage, totalPages };
+      }
+    }else{
+      // Filter models
+      const filteredData = data.models.filter(model =>
+        model[filterBy]?.toLowerCase().startsWith(filter.toLowerCase())
+      );
+      // Return filtered data
+      return { filteredData, currentPage, totalPages };
+    }
 
-    // Return filtered data
-    return { filteredData, currentPage, totalPages };
+    
   } catch (e) {
-    console.log(`Error filtering models: ${e.message}`);
+    throw(e)
     return { filteredData: [], currentPage: 1, totalPages: 1, MsgError: e.message };
   }
 }
@@ -56,6 +70,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const template = document.getElementById('template-model');
   const filterByEngine = document.querySelectorAll('.filterByEngine');
   const modelsContainer = document.querySelector('.models-container');
+  const searchButtons = document.querySelectorAll('.searchButton');
 
   filterOptions.addEventListener('change', () => {
     const selectedOption = filterOptions.value;
@@ -124,4 +139,15 @@ document.addEventListener('DOMContentLoaded', async () => {
       displayModelsByBrand(newData);
     });
   });
+
+  //add event listener to serach button
+  searchButtons.forEach((searchBtn)=>{
+    searchBtn.addEventListener('click', async (e)=>{
+      const filterBy = 'Prix';
+      const filterValue = parseFloat(e.currentTarget.previousElementSibling.value.trim());
+      const compareSymbole = e.currentTarget.dataset.compare;
+      const newData = await filterModels(1, filterBy, filterValue, compareSymbole);
+      displayModelsByBrand(newData);
+    })
+  })
 });

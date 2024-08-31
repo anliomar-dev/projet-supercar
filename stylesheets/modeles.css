@@ -92,3 +92,22 @@
   width: 25px;
   height: 25px;
 }
+
+.serachIcon{
+  width: 25px;
+  height: 25px;
+  fill: #ffffff;
+}
+
+.serachIcon:hover{
+  cursor: pointer;
+}
+
+.searchButton{
+  border-color: transparent;
+  border-radius: 0 10px 10px 0;
+}
+
+.filter-price-field{
+  border-radius: 10px 0 0 10px;
+}

@@ -50,11 +50,25 @@
       <form action="">
         <div class="form-group my-2">
           <label for="min" class="text-white">Prix manimum</label>
-          <input type="number" name="" id="min" class="form-control" placeholder="prix minimum" min="0">
+          <div class="d-flex">
+            <input type="number" name="min-price" id="min" class="form-control filter-price-field" placeholder="prix minimum" min="0">
+            <button type="button" class="primary-custom-btn searchButton" data-compare="min">
+              <svg class="serachIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
+                <path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11ZM2 9a7 7 0 1 1 12.452 4.391l3.328 3.329a.75.75 0 1 1-1.06 1.06l-3.329-3.328A7 7 0 0 1 2 9Z" clip-rule="evenodd" />
+              </svg>
+            </button>
+          </div>
         </div>
         <div class="form-group my-2">
           <label for="max" class="text-white">Prix maximum</label>
-          <input type="number" name="" id="max" class="form-control" placeholder="Prix maximum" min="0">
+          <div class="d-flex">
+            <input type="number" name="max-price" id="max" class="form-control filter-price-field" placeholder="Prix maximum" min="0">
+            <button type="button" class="primary-custom-btn searchButton" data-compare="max">
+              <svg class="serachIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
+                <path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11ZM2 9a7 7 0 1 1 12.452 4.391l3.328 3.329a.75.75 0 1 1-1.06 1.06l-3.329-3.328A7 7 0 0 1 2 9Z" clip-rule="evenodd" />
+              </svg>
+            </button>
+          </div>
         </div> 
       </form>
     </div>
