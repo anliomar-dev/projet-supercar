@@ -2,9 +2,6 @@
 // Détecter l'URL demandée
 $url = isset($_GET['url']) ? rtrim($_GET['url'], '/') : '/';
 
-// Afficher l'URL pour le débogage (optionnel)
-echo "URL demandée : " . htmlspecialchars($url) . "<br>";
-
 // Définir les routes (URL et page associée)
 switch ($url) {
     case '':

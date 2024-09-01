@@ -31,6 +31,7 @@
       <option value="sort">Trier</option>
       <option value="search">Search</option>
     </select>
+    <!--parcourir par type -->
     <div class="brows-by-type mt-3 pt-3">
       <h5 class="text-white px-2"><u>Parcourir par type</u></h5>
       <div class="buttons mt-3">
@@ -45,6 +46,7 @@
         </div>
       </div>
     </div>
+    <!-- filter by Prix -->
     <div class="filter mt-3 pt-3" style="display: none">
       <h5 class="text-white px-2 pb-2"><u>Filtrer par le prix</u></h5>
       <form action="">
@@ -72,6 +74,7 @@
         </div> 
       </form>
     </div>
+    <!-- sort by NomModele or Annee or Prix -->
     <div class="sort mt-3 pt-3" style="display: none">
       <h5 class="text-white px-2"><u>Trier par</u></h5>
       <select name="" id="" class="form-select">
@@ -80,6 +83,7 @@
         <option value="">Prix</option>
       </select>
     </div>
+    <!--search model-->
     <div class="search mt-3" style="display: none">
       <form action="" class="search-form border py-2 px-3 rounded-3 shadow d-flex justify-content-center align-items-center" style="width: 300px;">
       <input type="text" class="form-control w-100" name="search" id="search" placeholder="search a model">
