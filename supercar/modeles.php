@@ -28,11 +28,11 @@
     <select name="" id="filterOptions" class="form-select">
       <option value="brows-by-type">parcourir par type</option>
       <option value="filter">filtrer par le prix</option>
-      <option value="sort">Trier</option>
       <option value="search">Search</option>
     </select>
+    <button type="button" class="mt-2 bg-transparent text-white show-all-models-btn">Tous les modèles</button>
     <!--parcourir par type -->
-    <div class="brows-by-type mt-3 pt-3">
+    <div class="brows-by-type mt-2 pt-3">
       <h5 class="text-white px-2"><u>Parcourir par type</u></h5>
       <div class="buttons mt-3">
         <div class="btn-container my-2 px-2">
@@ -74,15 +74,6 @@
         </div> 
       </form>
     </div>
-    <!-- sort by NomModele or Annee or Prix -->
-    <div class="sort mt-3 pt-3" style="display: none">
-      <h5 class="text-white px-2"><u>Trier par</u></h5>
-      <select name="" id="" class="form-select">
-        <option value="">Le nom du modèle</option>
-        <option value="">Année</option>
-        <option value="">Prix</option>
-      </select>
-    </div>
     <!--search model-->
     <div class="search mt-3" style="display: none">
       <form action="" class="search-form border py-2 px-3 rounded-3 shadow d-flex justify-content-center align-items-center" style="width: 300px;">
@@ -102,10 +93,10 @@
           </div>
         </div>
         <p class="ms-2 py-0 my-0" style="color: #000D50;" id="model-brand"></p>
-        <div class="body mt-2">
-          <img class="w-100 rounded-3" id="image-model" src="" alt="">
+        <div class="card_body mt-2 rounded-3">
+          <img class="w-100 rounded-3 w-100" id="image-model" src="" alt="" style="height: 165px;">
         </div>
-        <div class="footer mt-2 py-3 px-2">
+        <div class="footer mt-1 py-2 px-2">
           <h4 class="mx-0 px-0" style="color: #000D50;">Details</h4>
           <div class="row card-details">
             <div class="col-6 border py-1 card-details-items"><strong style="color:#000D50;">Année</strong></div>
@@ -115,22 +106,12 @@
             <div class="col-6 border py-1 card-details-items"><strong style="color:#000D50;">Moteur</strong></div>
             <div class="col-6 border py-1 card-details-items" id="model-engine"></div>
             <div class="col-12 mt-2">
-              <div class="row">
+              <div class="row py-2">
                 <a href="" class="test btn col-6 mx-auto primary-custom-btn">Essayer</a>
-                <a href="" class="more-details btn col-6 mx-auto" style="color:#218739;"><strong>Voir plus</strong></a>
+                <a href="" class="more-details btn col-6 mx-auto" style="color:#000D50;"><strong>Voir plus</strong></a>
               </div>
             </div>
-            <div class="other-models d-flex justify-content-end pe-0 mt-3">
-              <div class="me-2 omar border rounded-5" style="width: 40px; height: 40px; border-radius: 100%;">
-                
-              </div>
-              <div class="me-2 omar border rounded-5" style="width: 40px; height: 40px; border-radius: 100%;">
-                
-              </div>
-              <div class="omar border rounded-5" style="width: 40px; height: 40px; border-radius: 100%;">
-                
-              </div>
-            </div>
+            
           </div>
         </div>
       </div>

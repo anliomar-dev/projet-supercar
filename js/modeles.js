@@ -61,6 +61,18 @@ async function filterModels(currentPage = 1, filterBy = 'NomModele', filter = ''
   }
 }
 
+function sortModels(data, sortBy) {
+  return data.sort((a, b) => {
+    if (a[sortBy] < b[sortBy]) {
+      return -1;
+    }
+    if (a[sortBy] > b[sortBy]) {
+      return 1;
+    }
+    return 0;
+  });
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
   const sideBarSections = document.querySelectorAll('.brows-by-type, .filter, .sort, .search');
   const filterOptions = document.getElementById('filterOptions');
@@ -72,6 +84,11 @@ document.addEventListener('DOMContentLoaded', async () => {
   const modelsContainer = document.querySelector('.models-container');
   const filterByPriceButtons = document.querySelectorAll('.searchButton');
   const searchBarModel = document.getElementById('search');
+  const searchForm = document.querySelector('.search-form');
+  const showAllModelsBtn = document.querySelector('.show-all-models-btn');
+  searchForm.addEventListener('submit', (e) =>{
+    e.preventDefault()
+  })
 
   filterOptions.addEventListener('change', () => {
     const selectedOption = filterOptions.value;
@@ -162,4 +179,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       displayModelsByBrand(initialData);
     }
   })
+  
+  //show all models button
+  showAllModelsBtn.addEventListener('click', ()=>{displayModelsByBrand(initialData)})
 });
