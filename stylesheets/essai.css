@@ -28,6 +28,6 @@ body {
   height: 20px;
 }
 
-#heure {
+#heure, #modele{
   border-radius: 0 7px 7px 0!important;
 }

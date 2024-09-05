@@ -37,14 +37,27 @@
                         </div>
                     </div>
                 </div>
-                <div class="row mt-3 pt-2">
-                    <div class="form-group col-md-6">
-                        <label for="marque">Marque</label>
-                        <input type="text" class="form-control" id="marque" placeholder="Marque" autocomplete="given-name">
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="modele">Modèle</label>
-                        <input type="text" class="form-control" id="modele" placeholder="Modèle" autocomplete="family-name">
+                <div class="form-group col-md-12">
+                    <label for="marque">Marque</label>
+                    <select name="marque" id="marque" class="form-control">
+                      <?php
+                        include("../php/all_marques.php");
+                        option_brands();
+                      ?>
+                    </select>
+                </div>
+                <div class="form-group col-md-12">
+                    <label for="modele">Modèle</label>
+                    <div class="d-flex">
+                      <button type="button" 
+                        class="rounded-start-2 primary-custom-btn border-0 px-2 
+                        d-flex justify-content-center align-items-center" 
+                        style="height: 37.5px; width: 60px;"
+                        data-bs-toggle="modal" data-bs-target="#scrollModal"
+                        >
+                        <img src="../medias/images/logos/porsche_logo.webp" alt="" style="width: 100%; height: 75%;">
+                      </button>
+                      <input type="text" class="form-control" id="modele" placeholder="modele" autocomplete="">
                     </div>
                 </div>
                 <button type="button" id="" class="btn col-12 primary-custom-btn mt-2">submit</button>
@@ -52,8 +65,40 @@
             </form>
         </div>
     </div>
+    <!-- Modal -->
+    <div class="modal fade" id="scrollModal" data-bs-backdrop="scrollModal" data-bs-keyboard="false" tabindex="-1" aria-labelledby="scrollModal" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="scrollModal">Modal title</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus repudiandae inventore deleniti veniam ea vero non veritatis, 
+            dolores ducimus eaque fugiat, rem animi ipsum quos laboriosam nobis at, quaerat voluptates.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus repudiandae inventore deleniti veniam ea vero non veritatis, 
+            dolores ducimus eaque fugiat, rem animi ipsum quos laboriosam nobis at, quaerat voluptates.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus repudiandae inventore deleniti veniam ea vero non veritatis, 
+            dolores ducimus eaque fugiat, rem animi ipsum quos laboriosam nobis at, quaerat voluptates.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus repudiandae inventore deleniti veniam ea vero non veritatis, 
+            dolores ducimus eaque fugiat, rem animi ipsum quos laboriosam nobis at, quaerat voluptates.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus repudiandae inventore deleniti veniam ea vero non veritatis, 
+            dolores ducimus eaque fugiat, rem animi ipsum quos laboriosam nobis at, quaerat voluptates.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus repudiandae inventore deleniti veniam ea vero non veritatis, 
+            dolores ducimus eaque fugiat, rem animi ipsum quos laboriosam nobis at, quaerat voluptates.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus repudiandae inventore deleniti veniam ea vero non veritatis, 
+            dolores ducimus eaque fugiat, rem animi ipsum quos laboriosam nobis at, quaerat voluptates.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus repudiandae inventore deleniti veniam ea vero non veritatis, 
+            dolores ducimus eaque fugiat, rem animi ipsum quos laboriosam nobis at, quaerat voluptates.
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Understood</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </main>
-
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
   </script>

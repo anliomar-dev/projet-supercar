@@ -70,4 +70,17 @@
     }
     mysqli_free_result($curseur);
   }
+
+  function option_brands(){
+    global $DB;
+    $query = "SELECT * FROM marque";
+    $curseur = mysqli_query($DB, $query);
+    while($row = mysqli_fetch_array($curseur)){
+        $marque = $row['NomMarque'];
+        $id = $row['IdMarque'];
+        echo "<option value='$id'>$marque</option>";
+    }
+    mysqli_free_result($curseur);
+  }
+
 ?>
