@@ -74,22 +74,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus repudiandae inventore deleniti veniam ea vero non veritatis, 
-            dolores ducimus eaque fugiat, rem animi ipsum quos laboriosam nobis at, quaerat voluptates.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus repudiandae inventore deleniti veniam ea vero non veritatis, 
-            dolores ducimus eaque fugiat, rem animi ipsum quos laboriosam nobis at, quaerat voluptates.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus repudiandae inventore deleniti veniam ea vero non veritatis, 
-            dolores ducimus eaque fugiat, rem animi ipsum quos laboriosam nobis at, quaerat voluptates.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus repudiandae inventore deleniti veniam ea vero non veritatis, 
-            dolores ducimus eaque fugiat, rem animi ipsum quos laboriosam nobis at, quaerat voluptates.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus repudiandae inventore deleniti veniam ea vero non veritatis, 
-            dolores ducimus eaque fugiat, rem animi ipsum quos laboriosam nobis at, quaerat voluptates.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus repudiandae inventore deleniti veniam ea vero non veritatis, 
-            dolores ducimus eaque fugiat, rem animi ipsum quos laboriosam nobis at, quaerat voluptates.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus repudiandae inventore deleniti veniam ea vero non veritatis, 
-            dolores ducimus eaque fugiat, rem animi ipsum quos laboriosam nobis at, quaerat voluptates.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus repudiandae inventore deleniti veniam ea vero non veritatis, 
-            dolores ducimus eaque fugiat, rem animi ipsum quos laboriosam nobis at, quaerat voluptates.
+            
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
