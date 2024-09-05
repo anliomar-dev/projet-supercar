@@ -33,7 +33,12 @@
                               <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                             </svg>
                           </button>
-                          <input type="text" class="form-control" id="heure" placeholder="Heure" autocomplete="">
+                          <select name="heure" id="heure" class="form-control">
+                            <option value="">11:30</option>
+                            <option value="">12:00</option>
+                            <option value="">12:30</option>
+                            <option value="">13:00</option>
+                          </select>
                         </div>
                     </div>
                 </div>
@@ -68,17 +73,30 @@
     <!-- Modal -->
     <div class="modal fade" id="scrollModal" data-bs-backdrop="scrollModal" data-bs-keyboard="false" tabindex="-1" aria-labelledby="scrollModal" aria-hidden="true">
       <div class="modal-dialog modal-dialog-scrollable">
-        <div class="modal-content">
+        <div class="modal-content px-3">
           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="scrollModal">Modal title</h1>
+            <h1 class="modal-title fs-5" id="scrollModal">models</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            
+            <div class="border-bottom d-flex align-items-center mt-2">
+              <img src="../medias/images/Mercedes-Benz/AMG-GT-63-S_black-front.webp" alt="" style="width: 80px; height: 60px;">
+              <h6 class="mx-3" style="color: #000D50;">AMG GT 63 S</h6>
+            </div>
+            <div class="border-bottom d-flex align-items-center mt-2">
+              <img src="../medias/images/Mercedes-Benz/AMG-GT-63-S_black-front.webp" alt="" style="width: 80px; height: 60px;">
+              <h6 class="mx-3" style="color: #000D50;">AMG GT 63 S</h6>
+            </div>
+            <div class="border-bottom d-flex align-items-center mt-2">
+              <img src="../medias/images/Mercedes-Benz/AMG-GT-63-S_black-front.webp" alt="" style="width: 80px; height: 60px;">
+              <h6 class="mx-3" style="color: #000D50;">AMG GT 63 S</h6>
+            </div>
+            <div class="border-bottom d-flex align-items-center mt-2">
+              <img src="../medias/images/Mercedes-Benz/AMG-GT-63-S_black-front.webp" alt="" style="width: 80px; height: 60px;">
+              <h6 class="mx-3" style="color: #000D50;">AMG GT 63 S</h6>
+            </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Understood</button>
           </div>
         </div>
       </div>

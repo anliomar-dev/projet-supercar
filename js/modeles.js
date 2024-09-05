@@ -106,7 +106,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   });
 
   /**
-  
    * Displays the models by brand in the models container.
    * 
    * @param {Object} data - The data object containing model information

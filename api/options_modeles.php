@@ -14,7 +14,11 @@
     }
 
     // Prepare the SQL query
-    $query = "SELECT IdModele, NomModele FROM modele WHERE IdMarque = ?";
+    $query = "SELECT modele.*, marque.*
+            FROM modele
+            LEFT JOIN marque ON modele.IdMarque = marque.IdMarque
+            WHERE modele.IdMarque = ?
+            ORDER BY modele.IdModele";
     $stmt = mysqli_prepare($DB, $query);
     mysqli_stmt_bind_param($stmt, "i", $brand_id);
     mysqli_stmt_execute($stmt);
@@ -31,6 +35,7 @@
               $models[$model_id] = [
                   'IdModele' => $row['IdModele'],
                   'NomModele' => $row['NomModele'],
+                  'NomMarque' => $row['NomMarque'],
                   'images' => []
               ];
           }

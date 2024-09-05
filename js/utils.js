@@ -34,7 +34,7 @@ export function hidePassword(icon) {
 
 
 /**
- * Fetch models by brand with pagination.
+ * Fetch models for a specific brand with pagination.
  * @param {number} brandId - The ID of the brand for which we want to get all models.
  * @param {number} [page=1] - The number of the current page (defaults to 1).
  * @returns {Promise<object>} An object containing models, total pages, and the current page.
