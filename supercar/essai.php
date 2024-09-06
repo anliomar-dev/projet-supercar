@@ -57,12 +57,14 @@
                       <button type="button" 
                         class="rounded-start-2 primary-custom-btn border-0 px-2 
                         d-flex justify-content-center align-items-center" 
-                        style="height: 37.5px; width: 60px;"
+                        style="height: 37.5px; width: 50px;"
                         data-bs-toggle="modal" data-bs-target="#scrollModal"
                         >
-                        <img src="../medias/images/logos/porsche_logo.webp" alt="" style="width: 100%; height: 75%;">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
+                          <path fill="white" d="M171.3 96L224 96l0 96-112.7 0 30.4-75.9C146.5 104 158.2 96 171.3 96zM272 192l0-96 81.2 0c9.7 0 18.9 4.4 25 12l67.2 84L272 192zm256.2 1L428.2 68c-18.2-22.8-45.8-36-75-36L171.3 32c-39.3 0-74.6 23.9-89.1 60.3L40.6 196.4C16.8 205.8 0 228.9 0 256L0 368c0 17.7 14.3 32 32 32l33.3 0c7.6 45.4 47.1 80 94.7 80s87.1-34.6 94.7-80l130.7 0c7.6 45.4 47.1 80 94.7 80s87.1-34.6 94.7-80l33.3 0c17.7 0 32-14.3 32-32l0-48c0-65.2-48.8-119-111.8-127zM434.7 368a48 48 0 1 1 90.5 32 48 48 0 1 1 -90.5-32zM160 336a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/>
+                        </svg>
                       </button>
-                      <input type="text" class="form-control" id="modele" placeholder="modele" autocomplete="">
+                      <input type="text" class="form-control" id="modele" data-id="" placeholder="modele" value="">
                     </div>
                 </div>
                 <button type="button" id="" class="btn col-12 primary-custom-btn mt-2">submit</button>
@@ -79,29 +81,24 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <div class="border-bottom d-flex align-items-center mt-2">
-              <img src="../medias/images/Mercedes-Benz/AMG-GT-63-S_black-front.webp" alt="" style="width: 80px; height: 60px;">
-              <h6 class="mx-3" style="color: #000D50;">AMG GT 63 S</h6>
-            </div>
-            <div class="border-bottom d-flex align-items-center mt-2">
-              <img src="../medias/images/Mercedes-Benz/AMG-GT-63-S_black-front.webp" alt="" style="width: 80px; height: 60px;">
-              <h6 class="mx-3" style="color: #000D50;">AMG GT 63 S</h6>
-            </div>
-            <div class="border-bottom d-flex align-items-center mt-2">
-              <img src="../medias/images/Mercedes-Benz/AMG-GT-63-S_black-front.webp" alt="" style="width: 80px; height: 60px;">
-              <h6 class="mx-3" style="color: #000D50;">AMG GT 63 S</h6>
-            </div>
-            <div class="border-bottom d-flex align-items-center mt-2">
-              <img src="../medias/images/Mercedes-Benz/AMG-GT-63-S_black-front.webp" alt="" style="width: 80px; height: 60px;">
-              <h6 class="mx-3" style="color: #000D50;">AMG GT 63 S</h6>
-            </div>
+            
           </div>
           <div class="modal-footer">
+            <nav aria-label="...">
+              <ul class="pagination pagination-sm">
+                <li class="page-item active" aria-current="page">
+                  <span class="page-link">1</span>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+              </ul>
+            </nav>
           </div>
         </div>
       </div>
     </div>
   </main>
+  <script src="../js/essai.js" type="module" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
   </script>

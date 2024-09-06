@@ -31,3 +31,11 @@ body {
 #heure, #modele{
   border-radius: 0 7px 7px 0!important;
 }
+
+.model-name{
+  color: #000D50;
+}
+.model-name:hover{
+  cursor: pointer;
+  color:#28a745;
+}

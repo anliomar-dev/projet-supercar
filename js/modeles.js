@@ -61,17 +61,6 @@ async function filterModels(currentPage = 1, filterBy = 'NomModele', filter = ''
   }
 }
 
-function sortModels(data, sortBy) {
-  return data.sort((a, b) => {
-    if (a[sortBy] < b[sortBy]) {
-      return -1;
-    }
-    if (a[sortBy] > b[sortBy]) {
-      return 1;
-    }
-    return 0;
-  });
-}
 
 document.addEventListener('DOMContentLoaded', async () => {
   const sideBarSections = document.querySelectorAll('.brows-by-type, .filter, .sort, .search');

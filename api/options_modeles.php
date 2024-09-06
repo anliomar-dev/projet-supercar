@@ -36,6 +36,7 @@
                   'IdModele' => $row['IdModele'],
                   'NomModele' => $row['NomModele'],
                   'NomMarque' => $row['NomMarque'],
+                  'IdMarque' => $row['IdMarque'],
                   'images' => []
               ];
           }
