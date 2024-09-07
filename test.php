@@ -16,7 +16,7 @@ $date = '2024-09-13';
   while($row = mysqli_fetch_assoc($result)){
     $dates[] = $row;
   }
-  $query_horaires = "SELECT * FROM horaires WHERE Heure NOT BETWEEN($dates)";
+  ;
   }
 // Fermer la déclaration préparée
 mysqli_stmt_close($stmt);

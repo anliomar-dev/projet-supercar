@@ -113,7 +113,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   // display initial data
   const brandId = optionBrands.value;
   const models = await filterModels(brandId);
-  console.log(models)
   displayModelsByBrand(models);
   //change the modal title to the textContent of the option selected
   modalTitle.textContent = optionBrands.selectedOptions[0].textContent
@@ -130,4 +129,24 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
     displayModelsByBrand(models);
   });
+
+  async function fetchAvailableHoures(date){
+    try{
+      const response = await fetch(`http://localhost/super-car/api/horaires.php`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({date: date})
+      })
+      if(!response.ok){
+        throw new Error(response.statusText)
+      }
+      const data = await response.json()
+      console.log(data)
+    }catch(e){
+      console.log(e)
+    }
+  }
+  fetchAvailableHoures('2024-09-14')
 });
