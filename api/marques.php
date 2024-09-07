@@ -14,7 +14,7 @@ $query = "
 // execute query
 $curseur = mysqli_query($DB, $query);
 
-// Vérifiez si la requête a réussi
+// check if query is executed seccessfully
 if (!$curseur) {
     http_response_code(500); // internal server error
     echo json_encode(['error' => 'Erreur lors de la récupération des données']);
