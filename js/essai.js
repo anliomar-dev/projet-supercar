@@ -46,6 +46,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const modelsModal = document.querySelector('.modal-body');
   const modelInput = document.getElementById('modele');
   const modalTitle = document.querySelector('.modal-title')
+  const dataInput = document.getElementById('date')
 
   /**
    * Displays the models by brand in the models container.
@@ -105,12 +106,19 @@ document.addEventListener('DOMContentLoaded', async () => {
       });
   }
 
+  dataInput.addEventListener('change', (e)=>{
+    console.log(e.currentTarget.value)
+  })
+
+  // display initial data
   const brandId = optionBrands.value;
   const models = await filterModels(brandId);
   console.log(models)
   displayModelsByBrand(models);
   //change the modal title to the textContent of the option selected
   modalTitle.textContent = optionBrands.selectedOptions[0].textContent
+
+  // display models in the modal according to the value of the selected brand ('marque')
   optionBrands.addEventListener('change', async (e) => {
     //change the modal title to the textContent of the option selected
     modalTitle.textContent = optionBrands.selectedOptions[0].textContent

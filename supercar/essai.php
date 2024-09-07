@@ -1,3 +1,7 @@
+<?php
+  include_once('../php/utils.php');
+  is_user_authenticated();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

@@ -1,5 +1,7 @@
 <?php
     include_once('connexionDB.php');
+    $LOGIN_URL = "/super-car/supercar/signin";
+    $SESSION_EXPIRED_URL = "/super-car/supercar/session_expired";
 
     function login($email, $password) {
         global $DB;
@@ -111,5 +113,51 @@
 
         // Return true if email exists, false otherwise
         return $email_exists;
+    }
+
+    /**
+     * check if the user is authenticated and redirect to login page if his is not or 
+     * redirect to session expired page is the auth session is expired
+     */
+    function is_user_authenticated() {
+        global $LOGIN_URL;
+        global $SESSION_EXPIRED_URL;
+        // session expire timestamp
+        $tempsExpiration = 1 * 60; // 5 minutes
+
+        // start new session if there is not a session
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        // check if session is active
+        if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > $tempsExpiration)) {
+            // logout user if the auth session is expired
+            session_unset();
+            session_destroy();
+            // redirect to session expired page
+            header("Location: $SESSION_EXPIRED_URL");
+            exit();
+        }
+
+        // check if user is authenticated
+        if (!isset($_SESSION['email'])) {
+            // if user is not authenticated, redirect to signin page
+            header("Location: $LOGIN_URL");
+            exit();
+        }
+        // upgrade the timestamp of the last activity
+        $_SESSION['last_activity'] = time();
+    }
+
+    function logout(){
+        global $LOGIN_URL;
+        if (isset($_POST["logout"])){
+            session_unset();
+            session_destroy();
+            // redirect user to the signin page
+            header("Location: $LOGIN_URL");
+            exit();
+        }
     }
 ?>
