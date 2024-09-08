@@ -113,7 +113,7 @@
             <div class="col-6 border py-1 card-details-items" id="model-engine"></div>
             <div class="col-12 mt-2">
               <div class="row py-2">
-                <a href="" class="test btn col-6 mx-auto primary-custom-btn">Essayer</a>
+                <a href="" class="test btn col-6 mx-auto primary-custom-btn essaiBtn">Essayer</a>
                 <a href="" class="more-details btn col-6 mx-auto" style="color:#000D50;"><strong>Voir plus</strong></a>
               </div>
             </div>

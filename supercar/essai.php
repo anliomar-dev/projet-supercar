@@ -36,7 +36,7 @@
                               <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                             </svg>
                           </button>
-                          <input type="text" class="form-control" name="heure" id="Heure" placeholder="Heure">
+                          <input type="text" class="form-control" name="heure" id="Heure" placeholder="Heure (cliquez l'horloge)">
                         </div>
                         <div class="available-hours-modale position-absolute overflow-y-scroll bg-white px-3 pb-3 ms-3 w-75 start-0 top-2 shadow rounded-3 border" style="height: 190px; display: none;">
                           <svg class="close-horaires my-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">

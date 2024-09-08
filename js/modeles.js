@@ -138,9 +138,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     // display models
     data.filteredData.forEach((model) => {
       const clone = template.content.cloneNode(true);
-      clone.getElementById("model-name").textContent =
+      const modelName = clone.getElementById('model-name');
+      modelName.textContent =
         model.NomModele || "Unknown";
-      clone.getElementById("model-brand").textContent =
+      
+      const modelBrand = clone.getElementById("model-brand")
+      modelBrand.textContent =
         model.NomMarque || "Unknown";
       clone.getElementById("model-year").textContent = model.Annee || "Unknown";
       clone.getElementById("model-price").textContent = model.Prix || "Unknown";
@@ -149,6 +152,11 @@ document.addEventListener("DOMContentLoaded", async () => {
       clone.querySelector(".brand-logo").src = `../medias/images/logos/${
         model.logo || "default-logo.png"
       }`;
+      const essaiBtn = clone.querySelector('.essaiBtn');
+      essaiBtn.dataset.nomModele = model.NomModele;
+      essaiBtn.dataset.idModele = model.IdModele;
+      essaiBtn.dataset.nomMarque = model.NomMarque;
+      essaiBtn.dataset.idMarque = model.IdMarque;
 
       if (model.images.length > 0) {
         clone.getElementById(
@@ -157,6 +165,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
 
       modelsContainer.appendChild(clone);
+
     });
   }
 
@@ -202,7 +211,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       const newData = await filterModels(currentPage, "NomModele", searchValue);
       displayModelsByBrand(newData);
     } else {
-      const initialData = await filterModels();
+      const initialData = await filterModels(currentPage);
       displayModelsByBrand(initialData);
     }
   });
@@ -252,6 +261,21 @@ document.addEventListener("DOMContentLoaded", async () => {
           const currentPage = parseInt(localStorage.getItem("currentPage"));
           const dataNewPage = await filterModels(currentPage);
           displayModelsByBrand(dataNewPage);
+          const essaiBtns = document.querySelectorAll('.essaiBtn');
+          essaiBtns.forEach((essaiBtn) => {
+            essaiBtn.addEventListener('click', (e) => {
+              e.preventDefault();
+              const essaiButton = e.currentTarget
+              const brandName = essaiButton.dataset.nomMarque;
+              const modelName = essaiButton.dataset.nomModele;
+              const idModel = essaiButton.dataset.idModele;
+              const idBrand = essaiButton.dataset.idMarque;
+              localStorage.setItem('NomModele', modelName)
+              localStorage.setItem('IdModele', idModel)
+              localStorage.setItem('IdMarque', idBrand)
+              window.location.href = 'http://localhost/super-car/supercar/essai'
+            })
+          })
         });
       });
     }
@@ -265,5 +289,24 @@ document.addEventListener("DOMContentLoaded", async () => {
     const currentPage = localStorage.getItem('currentPage')
     const allModelsInCurrentPage= await filterModels(currentPage);
     displayModelsByBrand(allModelsInCurrentPage);
+    essayerButtonClicked()
   });
+  function essayerButtonClicked(){
+    const essaiBtns = document.querySelectorAll('.essaiBtn');
+    essaiBtns.forEach((essaiBtn) => {
+      essaiBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const essaiButton = e.currentTarget
+        const brandName = essaiButton.dataset.nomMarque;
+        const modelName = essaiButton.dataset.nomModele;
+        const idModel = essaiButton.dataset.idModele;
+        const idBrand = essaiButton.dataset.idMarque;
+        localStorage.setItem('NomModele', modelName)
+        localStorage.setItem('IdModele', idModel)
+        localStorage.setItem('IdMarque', idBrand)
+        window.location.href = 'http://localhost/super-car/supercar/essai'
+      })
+    })
+  }
+  essayerButtonClicked()
 });
