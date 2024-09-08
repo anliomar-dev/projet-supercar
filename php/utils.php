@@ -123,7 +123,7 @@
         global $LOGIN_URL;
         global $SESSION_EXPIRED_URL;
         // session expire timestamp
-        $tempsExpiration = 1 * 60; // 5 minutes
+        $tempsExpiration = 10 * 60; // 5 minutes
 
         // start new session if there is not a session
         if (session_status() == PHP_SESSION_NONE) {

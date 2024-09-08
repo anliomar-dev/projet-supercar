@@ -20,29 +20,34 @@
   <main class="">
     <!-- signup form -->
     <div class="form_container d-flex justify-content-center pt-3 mt-5">
-        <div class="signup-form">
+        <div class="essai-form">
             <h2 class="text-center font-weight-bold">Reservez un essai</h2>
-            <form style="width: 100%;" id="signupForm">
-                <input type="hidden" id="action" value="create">
+            <form style="width: 100%;" id="essaiForm">
                 <div class="row mt-3 pt-2">
                     <div class="form-group col-md-6">
                         <label for="date">Date</label>
                         <input type="date" class="form-control" id="date" placeholder="Date" autocomplete="" autofocus>
                     </div>
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-6 position-relative">
                         <label for="heure">Heure</label>
                         <div class="d-flex">
-                          <button type="button" class="rounded-start-2 primary-custom-btn border-0 px-2 d-flex justify-content-center align-items-center" style="height: 38px">
+                          <button type="button" class="btn-clock rounded-start-2 primary-custom-btn border-0 px-2 d-flex justify-content-center align-items-center" style="height: 38px">
                             <svg class="clock-svg" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                               <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                             </svg>
                           </button>
-                          <select name="heure" id="heure" class="form-control">
-                            <option value="">11:30</option>
-                            <option value="">12:00</option>
-                            <option value="">12:30</option>
-                            <option value="">13:00</option>
-                          </select>
+                          <input type="text" class="form-control" name="heure" id="Heure" placeholder="Heure">
+                        </div>
+                        <div class="available-hours-modale position-absolute overflow-y-scroll bg-white px-3 pb-3 ms-3 w-75 start-0 top-2 shadow rounded-3 border" style="height: 190px; display: none;">
+                          <svg class="close-horaires my-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
+                            <path d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 0 0-1.06-1.06L10 8.94 6.28 5.22Z" />
+                          </svg>
+                          <p class="">
+                            <strong style="font-size: 13px;"><u>Horaires disponibles pour cette date</u></strong>
+                          </p>
+                          <div class="available-hours-container">
+                            <p class="timestamp">8:30</p>
+                          </div>
                         </div>
                     </div>
                 </div>

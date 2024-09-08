@@ -38,15 +38,34 @@ async function filterModels(brand, currentPage = 1, filterBy = 'NomModele', filt
   }
 }
 
-
+async function fetchAvailableHoures(date){
+  try{
+    const response = await fetch(`http://localhost/super-car/api/horaires.php`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({date: date})
+    })
+    if(!response.ok){
+      throw new Error(response.statusText)
+    }
+    const data = await response.json()
+    console.log(data)
+  }catch(e){
+    console.log(e)
+  }
+}
 
 
 document.addEventListener('DOMContentLoaded', async () => {
   const optionBrands = document.querySelector('#marque');
   const modelsModal = document.querySelector('.modal-body');
   const modelInput = document.getElementById('modele');
-  const modalTitle = document.querySelector('.modal-title')
-  const dataInput = document.getElementById('date')
+  const modalTitle = document.querySelector('.modal-title');
+  const dataInput = document.getElementById('date');
+  const btnClock = document.querySelector('.btn-clock');
+  const modalAvailableHours = document.querySelector('.available-hours-modale');
 
   /**
    * Displays the models by brand in the models container.
@@ -130,23 +149,26 @@ document.addEventListener('DOMContentLoaded', async () => {
     displayModelsByBrand(models);
   });
 
-  async function fetchAvailableHoures(date){
-    try{
-      const response = await fetch(`http://localhost/super-car/api/horaires.php`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({date: date})
-      })
-      if(!response.ok){
-        throw new Error(response.statusText)
-      }
-      const data = await response.json()
-      console.log(data)
-    }catch(e){
-      console.log(e)
-    }
-  }
+  
   fetchAvailableHoures('2024-09-14')
+
+  // display modal for available hours when clock button is clicked
+  btnClock.addEventListener('click', () => {
+    console.log('clicked')
+    if(modalAvailableHours.style.display === "block"){
+      modalAvailableHours.style.display = "none"
+    }else if(modalAvailableHours.style.display === "none"){
+      modalAvailableHours.style.display = "block"
+    }
+    modalAvailableHours.classList.toggle('available-hours-modale-open');
+  });
+  const closeModalours = document.querySelector('.close-horaires');
+  closeModalours.addEventListener('click', () => {
+    modalAvailableHours.style.display = "none"
+    const closeModalours = document.querySelector('.close-horaires')
+    closeModalours.addEventListener('click', ()=>{
+      modalAvailableHours.classList.remove('available-hours-modale-open');
+    })
+    });
+
 });
