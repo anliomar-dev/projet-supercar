@@ -36,7 +36,7 @@ if (isset($_GET['brand_id'])) {
     mysqli_stmt_execute($stmt_sql);
     $count = mysqli_stmt_get_result($stmt_sql);
     $total = mysqli_fetch_assoc($count)['total'];
-    $limit = 10;
+    $limit = 2;
     $total_pages = ceil($total / $limit);
 
     // Current page
