@@ -59,3 +59,15 @@ body {
 .available-hours-modale-open{
   animation: available-hours-modale-anim 0.5s ease-out forwards;
 }
+
+.hour-container{
+  border-radius: 6px;
+  
+  padding-inline: 5px;
+  transition: background-color 0.5s, color 0.3s;
+}
+.hour-container:hover{
+  background-color: #28a745;
+  color: white;
+  cursor: pointer;
+}

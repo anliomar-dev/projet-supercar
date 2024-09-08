@@ -51,7 +51,7 @@ async function fetchAvailableHoures(date){
       throw new Error(response.statusText)
     }
     const data = await response.json()
-    console.log(data)
+    return data;
   }catch(e){
     console.log(e)
   }
@@ -63,9 +63,11 @@ document.addEventListener('DOMContentLoaded', async () => {
   const modelsModal = document.querySelector('.modal-body');
   const modelInput = document.getElementById('modele');
   const modalTitle = document.querySelector('.modal-title');
-  const dataInput = document.getElementById('date');
+  const dateInput = document.getElementById('date');
+  const hourInput = document.getElementById('Heure')
   const btnClock = document.querySelector('.btn-clock');
   const modalAvailableHours = document.querySelector('.available-hours-modale');
+  const availableHoursContainer = document.querySelector('.available-hours-container');
 
   /**
    * Displays the models by brand in the models container.
@@ -125,11 +127,43 @@ document.addEventListener('DOMContentLoaded', async () => {
       });
   }
 
-  dataInput.addEventListener('change', (e)=>{
-    console.log(e.currentTarget.value)
+  // initialy display nothing in the available hours container
+  availableHoursContainer.textContent = "veuillez selectionner une date";
+
+  // display available hours of chosen date
+  dateInput.addEventListener('change', async(e)=>{
+    availableHoursContainer.textContent = "";
+    const date = e.currentTarget.value;
+    if(date.trim().length === 0){
+      availableHoursContainer.textContent = "veuillez selectionner une date";
+    }else{
+      const availableHours = await fetchAvailableHoures(date)
+      availableHours.forEach(hour => {
+        const hourContainer = document.createElement('p');
+        hourContainer.className = 'hour-container'
+        hourContainer.textContent = hour.Heure;
+        availableHoursContainer.appendChild(hourContainer);
+      });
+      fillInputForHeure()
+    }
   })
 
-  // display initial data
+  // change the value of input for hour the the textContent of the clicked hour
+  function fillInputForHeure(){
+    const displayedHours = document.querySelectorAll('.hour-container')
+    displayedHours.forEach(hour => {
+      hour.addEventListener('click', (e) => {
+        const hourValue = e.currentTarget.textContent;
+        hourInput.value = hourValue;
+        // close the modal
+        modalAvailableHours.style.display = "none"
+        modalAvailableHours.classList.remove('available-hours-modale-open');
+      })
+    })
+  }
+
+
+  // display initial models(all models ralated to the brand)
   const brandId = optionBrands.value;
   const models = await filterModels(brandId);
   displayModelsByBrand(models);
@@ -149,12 +183,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     displayModelsByBrand(models);
   });
 
-  
-  fetchAvailableHoures('2024-09-14')
 
   // display modal for available hours when clock button is clicked
   btnClock.addEventListener('click', () => {
-    console.log('clicked')
     if(modalAvailableHours.style.display === "block"){
       modalAvailableHours.style.display = "none"
     }else if(modalAvailableHours.style.display === "none"){
@@ -162,6 +193,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
     modalAvailableHours.classList.toggle('available-hours-modale-open');
   });
+  
+  // x-mark to hide available-hours-container
   const closeModalours = document.querySelector('.close-horaires');
   closeModalours.addEventListener('click', () => {
     modalAvailableHours.style.display = "none"

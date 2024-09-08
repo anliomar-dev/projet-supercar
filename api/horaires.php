@@ -46,7 +46,7 @@
       $horaires_disponible = [];
       while($row = mysqli_fetch_assoc($result_horaires)){
         $id = $row['IdHoraire'];
-        $horaires_disponible[$id] = [
+        $horaires_disponible[] = [
           'Heure' => $row['Heure'],
           ];
       }
@@ -61,7 +61,7 @@
       $horaires_disponible = [];
       while($row = mysqli_fetch_assoc($result_horaires)){
         $id = $row['IdHoraire'];
-        $horaires_disponible[$id] = [
+        $horaires_disponible[] = [
           'Heure' => $row['Heure'],
           ];
       }

@@ -46,7 +46,7 @@
                             <strong style="font-size: 13px;"><u>Horaires disponibles pour cette date</u></strong>
                           </p>
                           <div class="available-hours-container">
-                            <p class="timestamp">8:30</p>
+                            
                           </div>
                         </div>
                     </div>
@@ -76,7 +76,7 @@
                       <input type="text" class="form-control" id="modele" data-id="" placeholder="modele" value="">
                     </div>
                 </div>
-                <button type="button" id="" class="btn col-12 primary-custom-btn mt-2">submit</button>
+                <button type="button" id="" class="btn col-12 primary-custom-btn mt-2">Reserver</button>
                 <button type="reset" class="btn col-12 btn-reset mt-2">reset</button>
             </form>
         </div>

@@ -8,13 +8,15 @@
                 <img src="../medias/images/icons/user.svg" alt="" style="width: 25px; height: 25px; border-radius: 50%; border: none;">
             </span>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
-                <li>
-                <a class="dropdown-item text-black" href="">Compte</a>
+                <li class="d-flex justify-content-center">
+                    <button type="btn" class="btn text-center py-0" style="background-color: #28a745;">
+                        <a class="dropdown-item text-white" style="background-color: #28a745; font-size: 14px;" href="">Compte</a>
+                    </button>
                 </li>
                 <div class="dropdown-divider"></div>
                 <li>
                 <form action="" method="post" class="dropdown-item">
-                    <button type="submit" name="logout" class="btn">deconnexion</button>
+                    <button type="submit" name="logout" class="btn">Deconnexion</button>
                 </form>
                 </li>
             </ul>
