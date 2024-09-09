@@ -86,7 +86,7 @@
             mysqli_stmt_close($stmt);
             return $result;
         } else {
-            // If the statement preparation failed, you might want to handle this case
+            // If the statement preparation failed
             echo "Failed to prepare the SQL statement.";
             return false;
         }
@@ -158,6 +158,25 @@
             // redirect user to the signin page
             header("Location: $LOGIN_URL");
             exit();
+        }
+    }
+
+    function new_essai($date, $heure, $idMarque, $idModele, $idUtilisateur){
+        global $DB;
+
+        $query = "INSERT INTO essais 
+            (DateEssai, Heure, IdMarque, IdModele, IdUtilisateur)
+            VALUES (?, ?, ?, ?, ?)
+        ";
+        $stmt = mysqli_prepare($DB, $query);
+        if($stmt){
+            mysqli_stmt_bind_param($stmt, "ssiii", $date, $heure, $idMarque, $idModele, $idUtilisateur);
+            $result = mysqli_stmt_execute($stmt);
+            // Close the statement
+            mysqli_stmt_close($stmt);
+        return $result;
+        }else{
+            return false;
         }
     }
 ?>
