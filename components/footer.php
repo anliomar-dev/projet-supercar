@@ -1,8 +1,8 @@
-<footer class="text-light pt-4 footer" style="background-color: #263238;">
+<footer class="text-light py-4 footer" style="background-color: #263238;">
     <div class="container">
         <div class="row">
             <div class="col-md-4">
-                <img src="path-to-logo.png" alt="SuperCar Logo" class="mb-2" style="max-width: 150px;">
+                <img src="../medias/images/logos/supercar_logo_blanc.webp" alt="SuperCar Logo" class="mb-2 logo-footer" style="max-width: 160px;">
                 <p>Your dream car</p>
                 <p>Copyright &copy; 2024 Supercar Ltd.<br>All rights reserved</p>
                 <div class="d-flex">

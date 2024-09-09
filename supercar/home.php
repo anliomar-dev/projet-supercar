@@ -37,7 +37,7 @@
                             <li><a href="/super-car/supercar/marques" class="header_link">Marques</a></li>
                             <li><a href="/super-car/supercar/essai" class="header_link">Essai</a></li>
                             <li><a href="" class="header_link">Evénnements</a></li>
-                            <li><a href="" class="header_link">contact</a></li>
+                            <li><a href="/super-car/supercar/contact" class="header_link">contact</a></li>
                         </ul>
                     </nav>
                     <!--end navbar-->
