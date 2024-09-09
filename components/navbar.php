@@ -27,7 +27,7 @@
                     <a class="nav-link" href="/super-car/supercar/essai">Essai</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Événements</a>
+                    <a class="nav-link" href="/super-car/supercar/evennements">Événements</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/super-car/supercar/contact">Contact</a>

@@ -18,9 +18,14 @@
   <?php
     include_once("../components/navbar.php");
   ?>
-  
   <main class="">
-      
+    <h2 class="text-center mt-5 mb-3">Evennements</h2>
+    <div class="container py-3 d-flex justify-content-center flex-wrap mt-3">
+      <?php
+        include_once('../php/all_events.php');
+        display_events();
+      ?>
+    </div>
   </main>
   <script src="../js/essai.js" type="module" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
