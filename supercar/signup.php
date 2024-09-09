@@ -27,6 +27,13 @@
     
     <link href="../stylesheets/navbar.css" rel="stylesheet">
     <link href="../stylesheets/signup.css" rel="stylesheet">
+    <style>
+        .userDropdown{
+            width: 25px;
+            height: 25px;
+            fill: white;
+        }
+    </style>
 </head>
 <body class="position-relative">
     <?php

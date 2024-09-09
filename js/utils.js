@@ -142,3 +142,24 @@ export function resetForm(...fields) {
   }
 }
 
+export async function requestTest(...data){
+  const [date, heure, idMarque, idModele, user_id] = data
+  const essaiData = {date, heure, idMarque, idModele, user_id}
+  try {
+    const response = await fetch('http://localhost/super-car/api/essai/request', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(essaiData)
+    })
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+    const data = await response.json()
+    return data
+  }catch(e){
+    console.error('Internal server error: ' + e.message);
+  }
+}
+

@@ -29,6 +29,11 @@
     .card{
       transition: all 0.3s ease-in-out;
     }
+      .userDropdown{
+          width: 25px;
+          height: 25px;
+          fill: white;
+      }
   </style>
 </head>
 <body>

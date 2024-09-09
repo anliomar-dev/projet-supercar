@@ -161,6 +161,9 @@
         }
     }
 
+    /**
+     * insert a new lien in the table essai
+     */
     function new_essai($date, $heure, $idMarque, $idModele, $idUtilisateur){
         global $DB;
 

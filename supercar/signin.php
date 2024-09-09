@@ -16,6 +16,13 @@
     <link href="../bootstrap-5.3.3-dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="../stylesheets/signin.css" rel="stylesheet">
     <link href="../stylesheets/navbar.css" rel="stylesheet">
+    <style>
+      .userDropdown{
+          width: 25px;
+          height: 25px;
+          fill: white;
+      }
+    </style>
   </head>
   <body class="position-ralative">
     <?php

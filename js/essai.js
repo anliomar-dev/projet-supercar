@@ -1,4 +1,4 @@
-import { fetchModelsByBrand } from "./utils";
+import { fetchModelsByBrand, requestTest, resetForm } from "./utils";
 
 /**
  * Filters models by a specified attribute (NomModele, TypeMoteur, or Prix) and supports pagination.
@@ -70,6 +70,7 @@ async function fetchAvailableHoures(date) {
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
+  const essaiForm = document.getElementById('essaiForm');
   const optionBrands = document.querySelector("#marque");
   const modelsModal = document.querySelector(".modal-body");
   const modelInput = document.getElementById("modele");
@@ -138,7 +139,6 @@ document.addEventListener("DOMContentLoaded", async () => {
           document.getElementById("scrollModal")
         );
         scrollModal.hide();
-        console.log(modelInput.dataset.id);
       });
     });
   }
@@ -239,4 +239,31 @@ document.addEventListener("DOMContentLoaded", async () => {
       modalAvailableHours.classList.remove("available-hours-modale-open");
     });
   });
+
+  // form submission
+  essaiForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const date = dateInput.value;
+    const heure = hourInput.value;
+    const idMarque = optionBrands.value;
+    const idModele = modelInput.dataset.id;
+    const userId = document.getElementById('user_id').value;
+    const essaiData = [
+      date,
+      heure,
+      idMarque,
+      idModele,
+      userId
+    ]
+    const responseEssai = await requestTest(...essaiData)
+    const status = responseEssai.status;
+    if (status === 'success'){
+      console.log('Test created successfully')
+    }else{
+      console.log('Error creating test')
+    }
+    const formFields = [dateInput, hourInput, modelInput]
+    resetForm(...formFields)
+  })
+
 });

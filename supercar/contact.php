@@ -12,7 +12,13 @@
       <link href="../stylesheets/footer_style.css" rel="stylesheet">
       <link href="../stylesheets/contact.css" rel="stylesheet">
       <title>Formulaire de Contact</title>
-      <!-- Lien vers Bootstrap CSS -->
+      <style>
+        .userDropdown{
+            width: 25px;
+            height: 25px;
+            fill: white;
+        }
+      </style>
   </head>
   <body>
       <?php

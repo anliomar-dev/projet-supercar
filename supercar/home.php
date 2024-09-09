@@ -1,3 +1,10 @@
+<?php
+    // start new session if there is not a session
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -11,6 +18,13 @@
         <link rel="stylesheet" href="stylesheets/acceuil.css">
         <link rel="stylesheet" href="stylesheets/layout.css">
         <title>acceuil</title>
+        <style>
+            .userDropdown{
+                width: 25px;
+                height: 25px;
+                fill: white;
+            }
+        </style>
     </head>
     <body>
         <div class="overlay"></div>
@@ -41,34 +55,17 @@
                         </ul>
                     </nav>
                     <!--end navbar-->
-                    <div class="header_buttons">
-                        <a href="/super-car/supercar/signin" class="btn btn-secondary header_secondary">Login</a>
-                        <a href="/super-car/supercar/signup" class="btn btn-primary">Sign up</a>
-                        <!--Liens à droite -->
-                        <!--
-                        <ul class="navbar-nav d-flex gap-5 pr-5 align-items-lg-center flex-row flex-sm-row">
-                            <li class="nav-item dropdown">
-                                <div class="dropdown">
-                                <span class="nav-link" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src="../medias/images/icons/user.svg" alt="" style="width: 25px; height: 25px; border-radius: 50%; border: none;">
-                                </span>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <li>
-                                    <a class="dropdown-item text-black" href="">profil</a>
-                                    </li>
-                                    <li>
-                                    <a class="dropdown-item text-black" href="">Account settings</a>
-                                    </li>
-                                    <div class="dropdown-divider"></div>
-                                    <li>
-                                    <form action="" method="post" class="dropdown-item">
-                                        <button type="submit" class="btn">Logout</button>
-                                    </form>
-                                    </li>
-                                </ul>
-                                </div>
-                            </li>
-                        </ul>-->
+                    <div class="d-flex">
+                        <?php
+                            if(isset($_SESSION['email'])){
+                                include_once('components/dropdown_accountSettings.php');
+                            }else{
+                                echo"
+                                    <a href='/super-car/supercar/signin' class='btn btn-secondary header_secondary'>Login</a>
+                                    <a href='/super-car/supercar/signup' class='btn btn-primary ms-3'>Sign up</a>
+                                ";
+                            }
+                        ?>
                     </div>
                 </div>
             </div>
