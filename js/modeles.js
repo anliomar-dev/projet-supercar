@@ -218,7 +218,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   // dynamic pagination
   const pagination = document.querySelector(".pagination");
-  async function paginationModels() {
+  async function paginationModels(pagination) {
     const data = await filterModels();
     const models = data.filterData;
     const totalPages = data.totalPages;
@@ -282,7 +282,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   // dispal paginations buttons
-  paginationModels();
+  paginationModels(pagination);
 
   //show all models button
   showAllModelsBtn.addEventListener("click", async() => {

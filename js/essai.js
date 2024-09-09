@@ -203,6 +203,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   // display initial models(all models ralated to the brand)
   const brandId = optionBrands.value;
   const models = await filterModels(brandId);
+  let totalPages = models.totalPages;
   displayModelsByBrand(models);
   //change the modal title to the textContent of the option selected
   modalTitle.textContent = optionBrands.selectedOptions[0].textContent;
@@ -213,6 +214,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     modalTitle.textContent = optionBrands.selectedOptions[0].textContent;
     const brandId = optionBrands.value;
     const models = await filterModels(brandId);
+    totalPages = models.totalPages;
     if (models.filteredData.length === 0) {
       modelsModal.innerHTML = "<p>No models found.</p>";
       return;
@@ -265,5 +267,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     const formFields = [dateInput, hourInput, modelInput]
     resetForm(...formFields)
   })
-
+  const pagination = document.querySelector('.pagination')
+  if(totalPages.length > 1){
+    console.log(totalPages)
+  }
 });

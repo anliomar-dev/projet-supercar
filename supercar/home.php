@@ -416,7 +416,7 @@
                         <li><a href="">politiques de confidentialité</a></li>
                         <li><a href="">mentions legales</a></li>
                         <li><a href="">RGPD</a></li>
-                        <li><a href="">contactez nous</a></li>
+                        <li><a href="/super-car/supercar/contact">contactez nous</a></li>
                     </ul>
                 </div>
                 <div class="column">
