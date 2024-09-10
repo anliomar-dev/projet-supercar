@@ -28,7 +28,7 @@
                 <p class='card-text overflow-hidden' style='height: 68px;'>
                   $description
                 </p>
-                <a href='' class='btn btn-primary'>plus de details</a>
+                <a href='' class='btn primary-custom-btn'>plus de details</a>
               </div>
             </div>
           ";

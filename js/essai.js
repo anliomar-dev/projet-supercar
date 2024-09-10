@@ -78,6 +78,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   const dateInput = document.getElementById("date");
   const hourInput = document.getElementById("Heure");
   const btnClock = document.querySelector(".btn-clock");
+  const alertSuccess = document.querySelector('.alert-success');
+  const alertDanger = document.querySelector('.alert-danger');
   const modalAvailableHours = document.querySelector(".available-hours-modale");
   const availableHoursContainer = document.querySelector(
     ".available-hours-container"
@@ -259,10 +261,15 @@ document.addEventListener("DOMContentLoaded", async () => {
     ]
     const responseEssai = await requestTest(...essaiData)
     const status = responseEssai.status;
+    const messageResponse = responseEssai.message;
     if (status === 'success'){
-      console.log('Test created successfully')
+      alertSuccess.style.display = 'block';
+      alertSuccess.querySelector('p').textContent = messageResponse;
+      alertSuccess.classList.add('alert-show');
     }else{
-      console.log('Error creating test')
+      alertDanger.style.display = 'block';
+      alertDanger.querySelector('p').textContent = messageResponse;
+      alertDanger.classList.add('alert-show');
     }
     const formFields = [dateInput, hourInput, modelInput]
     resetForm(...formFields)
@@ -271,4 +278,20 @@ document.addEventListener("DOMContentLoaded", async () => {
   if(totalPages.length > 1){
     console.log(totalPages)
   }
+
+  //hide alert message 
+  document.querySelectorAll('.alert').forEach((alert)=>{
+    setTimeout(() => {
+      alert.style.display = 'none';
+      alert.classList.remove('alert-show');
+      }, 6800);
+  })
+
+  //hide alert message
+  document.querySelectorAll('.close-alert-success, .close-alert-danger').forEach((svg)=>{
+    svg.addEventListener('click', function(){
+      this.parentNode.style.display = 'none';
+      this.parentNode.classList.remove('alert-show');
+      })
+  })
 });
