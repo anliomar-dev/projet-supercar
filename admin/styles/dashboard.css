@@ -53,3 +53,23 @@ body {
   border-radius: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
+.icon svg{
+  width: 40px;
+  height: 40px;
+}
+.icon{
+  border: solid 0.5px rgba(0, 0, 0, 0.058);
+  box-shadow: 5px 5px 5px rgba(82, 82, 82, 0.105);
+  padding: 10px;
+  border-radius: 15px;
+  transform: translateY(-48%);
+  z-index: 1000;
+  background-color: white;
+}
+hr{
+  height: 3px;
+  border: none;
+  background-image: linear-gradient(to right, rgba(200, 200, 200, 0.27), rgba(47, 46, 46, 0.384), rgba(201, 198, 198, 0.149));
+  width: 90%;
+}
