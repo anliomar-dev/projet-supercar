@@ -1,0 +1,39 @@
+.sidebar{
+  width: 240px;
+}
+.dashboard{
+  width: calc(100% - 240px);
+}
+
+
+.navbar-brand{
+  transform: translateX(-12px);
+}
+
+.sidebar svg{
+  width: 25px;
+  height: 25px;
+  transform: translateY(1.5px);
+}
+
+.primary-custom-btn {
+  background-color: #28a745;
+  color: white;
+}
+.primary-custom-btn:hover{
+  background-color: #218739;
+  color: white;
+}
+
+.logout-btn {
+  background-color: #fb330647;
+  color: white;
+}
+.logout-btn:hover{
+  background-color: #ff0000a7!important;
+  color: white;
+}
+
+.home-btn{
+  padding-bottom: 0!important;
+}

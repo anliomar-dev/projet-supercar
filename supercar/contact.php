@@ -75,6 +75,7 @@
               <!-- Partie Droite - Formulaire -->
               <div class="col-md-6">
                   <div class="form-card">
+                      <h4 class="text-center">envoyez nous un mail</h4>
                       <form>
                           <div class="mb-3">
                               <label for="name" class="form-label">Votre nom</label>
