@@ -12,6 +12,37 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="/super-car/admin/styles/dashboard.css" rel="stylesheet">
     <link href="/super-car/admin/components/sidebar.css" rel="stylesheet">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', { packages: ['corechart'] });
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['essais', 'essais par marque'],
+                ['Ferrari', 8],
+                ['Jeep', 2],
+                ['Mercedes-Benz', 12],
+                ['Porsche', 4],
+            ]);
+
+            var options = {
+                title: 'Demandes d\'esssai par marques',
+                is3D: true,
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+            chart.draw(data, options);
+        }
+    </script>
+    <style>
+        #myChart {
+            max-width: 600px;
+            height: 200px;
+            margin: 0 auto; /* Centrer le canvas */
+        }
+    </style>
 </head>
 <body>
 
@@ -61,7 +92,7 @@
                         <hr class="py-0 my-0 d-flex justify-content-center" >
                     </div>
                     <div class="mt-3">
-                        <p><strong class="text-success">+55%</strong> than last week</p>
+                        <p><strong class="text-success">+ 100</strong> utilisateurs inscrits</p>
                     </div>
                 </div>
                 <div class="col-3 d-flex flex-column border rounded-4 px-3 py-2 shadow mx-5">
@@ -80,7 +111,7 @@
                         <hr class="py-0 my-0 d-flex justify-content-center" >
                     </div>
                     <div class="mt-3">
-                        <p><strong class="text-success">+55%</strong> than last week</p>
+                        <p><strong class="text-success">+24</strong> Modèles</p>
                     </div>
                 </div>
                 <div class="col-3 d-flex flex-column border rounded-4 px-3 py-2 shadow mx-5">
@@ -100,49 +131,71 @@
                         <hr class="py-0 my-0 d-flex justify-content-center" >
                     </div>
                     <div class="mt-3">
-                        <p><strong class="text-success">+55%</strong> than last week</p>
+                        <p><strong class="text-success">+55%</strong> que la semainde dernière</p>
                     </div>
                 </div>
             </div>
-
+            <div class="row mt-5">
+                <div id="piechart_3d" class="bg-transparent rounded-3 ms-3" style="width: 550px; height: 300px;"></div>
+                <canvas id="myChart" width="400" height="200" class=""></canvas>
+            </div>
             <!-- Enrolled Courses -->
             <div class="row mt-4">
                 <div class="col-md-6">
                     <div class="course-card">
-                        <h5>Object Oriented Programming</h5>
+                        <h5>Demandes d'essais</h5>
                         <a href="#" class="btn btn-primary">View</a>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="course-card">
-                        <h5>Fundamentals of Database Systems</h5>
+                        <h5>evennements</h5>
                         <a href="#" class="btn btn-primary">View</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Instructor Section & Notice -->
-            <div class="row mt-4">
-                <div class="col-md-4">
-                    <h5>Course Instructors</h5>
-                    <div class="d-flex">
-                        <img src="https://via.placeholder.com/50" class="avatar me-2" alt="Instructor 1">
-                        <img src="https://via.placeholder.com/50" class="avatar me-2" alt="Instructor 2">
-                        <img src="https://via.placeholder.com/50" class="avatar" alt="Instructor 3">
-                    </div>
-                </div>
-                <div class="col-md-8">
-                    <div class="notice">
-                        <h5>Daily Notice</h5>
-                        <p><strong>Prelim payment due:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        <p><strong>Exam schedule:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
+<script>
+    const ctx = document.getElementById('myChart').getContext('2d');
+    const myChart = new Chart(ctx, {
+        type: 'bar', // Type de graphique (ligne, barres, etc.)
+        data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'], // Labels de l'axe X
+            datasets: [{
+                label: 'Nombre de vues',
+                data: [12, 19, 3, 5, 2, 3], // Données à afficher
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true, // Responsive activé
+            maintainAspectRatio: false, // Désactiver la conservation du ratio d'aspect
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>

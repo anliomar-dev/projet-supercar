@@ -108,7 +108,7 @@ export async function login(email, password, action='login'){
     action
   }
   try {
-    const response = await fetch('http://localhost/super-car/api/user/login', {
+    const response = await fetch('http://localhost/super-car/api/user', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
