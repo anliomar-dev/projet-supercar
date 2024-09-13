@@ -41,6 +41,9 @@ switch ($url) {
     case 'newsletter':
         require 'newsletter.php';
         break;
+    case 'login':
+        require 'login.php';
+        break;
     default:
         // Page 404 si l'URL n'existe pas
         echo "404 - Page non trouvée pour l'URL : " . htmlspecialchars($url);
