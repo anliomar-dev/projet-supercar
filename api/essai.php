@@ -40,7 +40,7 @@
         ];
         echo json_encode($response);
       }else{
-        // Insert essai data into database
+        // Insert essai data into database (function new_essai() defiened is super-car/php/utils.php)
         $response_new_essai = new_essai($date, $heure, $id_marque, $id_modele, $user_id);
 
         if ($response_new_essai) {

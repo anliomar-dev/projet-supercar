@@ -2,6 +2,7 @@
   // Database connection
   include_once('../../php/connexionDB.php');
   include_once('../php/functions.php');
+  include_once('../../php/utils.php');
   
   // Set the content type as JSON
   header('Content-Type: application/json; charset=utf-8');
@@ -39,6 +40,7 @@
     $phone = $data['phone'] ?? '';
     $address = $data['address'] ?? '';
     $email = $data['email'] ?? '';
+    $csrf_token = $data['csrfToken'];
     // create associated array for new user: the name of each key is the same as the name of the column in the database
     $new_user = [
       'Prenom' => $first_name,
@@ -47,23 +49,54 @@
       'NumTel' => $phone,
       'Email' => $email,
       'MotDePasse' => $password
-      ];
+    ];
+    
+    // Check if the CSRF token is valid
+    if($csrf_token !== $_SESSION['csrf_token']){
+        $response = [
+          'status' => 'error',
+          'message' => 'token  csrf non valid'
+        ];
+        echo json_encode($response);
+        exit;
+    }
+
     // Handle different HTTP methods
     switch ($method) {
       case 'POST':
         $password = $data['password'] ? $data['password'] : '';
         // check if all fields are not empty
         if (!empty($first_name) && !empty($last_name) && !empty($phone)
-        && !empty($address) && !empty($email) && !empty($password)) {
+            && !empty($address) && !empty($email) && !empty($password)) {
         
-        
+          // verify is the email is already taken (funciton is_email_already_exist is defined in super-car/php/utils.php)
+          $is_email_already_exist = is_email_already_exist($email);
+          if ($is_email_already_exist){
+            $response = [
+                'status' => 'error',
+                'message' => 'Un compte avec cet email existe deja.'
+                ];
+          }else{
+              //create new user(funciton create_uesr() is defined in super-car/php/utils.php)
+              $result = create_user($first_name, $last_name, $address, $phone, $email, $password);
+              if($result){
+                  $response = [
+                      'status' => 'success',
+                      'message' => 'Votre compte a été crée avec succès.',
+                  ];
+              }else{
+                  $response = [
+                      'status' => 'error',
+                      'message' => 'cannot create account: internal server error',
+                  ];
+              }
+            }
         }else{
           $response = [
             'status' => 'error',
             'message' => 'tous les champs doivent être remplis'
           ];
         }
-        
         break;
       
       case 'PUT':
@@ -85,4 +118,5 @@
     echo json_encode($response);
     exit;
   }
+  //https://pdtfvsz7-80.asse.devtunnels.ms/
 ?>

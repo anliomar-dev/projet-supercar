@@ -34,6 +34,7 @@
                         $phone = $data['phone'];
                         $email = $data['email'];
                         $password = $data['password'];
+                        //verify id the email is already taken(funciton is_email_already_exist is defined in super-car/php/utils.php)
                         $is_email_already_taken = is_email_already_exist($email);
                         if ($is_email_already_taken){
                             $response = [
@@ -41,6 +42,7 @@
                                 'message' => 'Un compte avec cet email existe deja.'
                                 ];
                         }else{
+                            //create new user(funciton create_uesr() is defined in super-car/php/utils.php)
                             $result = create_user($first_name, $last_name, $address, $phone, $email, $password);
                             if($result){
                                 $response = [
@@ -62,6 +64,7 @@
                     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         $email = $data['email'];
                         $password = $data['password'];
+                        //create new user(funciton login() is defined in super-car/php/utils.php)
                         $is_authenticated = login($email, $password);
                         if($is_authenticated){
                             $response = [
