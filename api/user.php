@@ -38,14 +38,14 @@
                         if ($is_email_already_taken){
                             $response = [
                                 'status' => 'error',
-                                'message' => 'Email already exist. please choose another email address'
+                                'message' => 'Un compte avec cet email existe deja.'
                                 ];
                         }else{
                             $result = create_user($first_name, $last_name, $address, $phone, $email, $password);
                             if($result){
                                 $response = [
                                     'status' => 'success',
-                                    'message' => 'Account successfully created you can now login',
+                                    'message' => 'Votre compte a été crée avec succès.',
                                 ];
                             }else{
                                 $response = [
@@ -55,41 +55,7 @@
                             }
                         }
                     } else {
-                        $response['message'] = 'Http Method not allowed for creation';
-                    }
-                    break;
-                
-                case 'update':
-                    if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
-                        $user_id = $data['user_id'];
-                        // Get other fields to update
-                        // For example, first name, last name, address, etc.
-
-                        // Your logic to update a user
-                        // For example, call a function update_user()
-
-                        $response = [
-                            'status' => 'success',
-                            'message' => 'Account successfully updated',
-                        ];
-                    } else {
-                        $response['message'] = 'Method not allowed for updating';
-                    }
-                    break;
-                    
-                case 'delete':
-                    if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
-                        $user_id = $data['user_id'];
-
-                        // Your logic to delete a user
-                        // For example, call a function delete_user()
-
-                        $response = [
-                            'status' => 'success',
-                            'message' => 'Account successfully deleted',
-                        ];
-                    } else {
-                        $response['message'] = 'Method not allowed for deletion';
+                        $response['message'] = 'Http Method not allowed.';
                     }
                     break;
                 case 'login':
@@ -100,7 +66,7 @@
                         if($is_authenticated){
                             $response = [
                                 'status' => 'success',
-                                'message' => 'Account successfully deleted',
+                                'message' => 'Authentification réussi',
                             ];
                         }else{
                             $response = [
@@ -130,4 +96,3 @@
     // Return the response as JSON
     echo json_encode($response);
 ?>
-

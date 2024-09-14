@@ -252,12 +252,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     const idMarque = optionBrands.value;
     const idModele = modelInput.dataset.id;
     const userId = document.getElementById('user_id').value;
+    const csrfToken = document.getElementById('csrf_token').value
     const essaiData = [
       date,
       heure,
       idMarque,
       idModele,
-      userId
+      userId,
+      csrfToken,
     ]
     const responseEssai = await requestTest(...essaiData)
     const status = responseEssai.status;

@@ -143,8 +143,8 @@ export function resetForm(...fields) {
 }
 
 export async function requestTest(...data){
-  const [date, heure, idMarque, idModele, user_id] = data
-  const essaiData = {date, heure, idMarque, idModele, user_id}
+  const [date, heure, idMarque, idModele, user_id, csrfToken] = data
+  const essaiData = {date, heure, idMarque, idModele, user_id, csrfToken}
   try {
     const response = await fetch('http://localhost/super-car/api/essai/request', {
     method: 'POST',

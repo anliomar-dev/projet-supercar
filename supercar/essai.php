@@ -1,4 +1,5 @@
 <?php
+  // start new session if there is not a session
   include_once('../php/utils.php');
   is_user_authenticated();
 ?>
@@ -110,6 +111,7 @@
                     </div>
                 </div>
                 <input type="hidden" id="user_id" name="user_id" value="<?php echo $_SESSION['user_id'];?>">
+                <input type="hidden" id="csrf_token" name="csrf_token" value="sdlkfjlkjdlkj">
                 <button type="submit" id="" class="btn col-12 primary-custom-btn mt-2">Reserver</button>
                 <button type="reset" class="btn col-12 btn-reset mt-2">reset</button>
             </form>

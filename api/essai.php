@@ -31,21 +31,30 @@
       $id_marque = intval($data['idMarque']);
       $id_modele = intval($data['idModele']);
       $user_id = intval($_SESSION['user_id']);
-
-      // Insert essai in the database
-      $response_new_essai = new_essai($date, $heure, $id_marque, $id_modele, $user_id);
-
-      if ($response_new_essai) {
-        echo json_encode(array(
-          'status' => 'success',
-          'message' => 'Demande d\'essai ajoutée avec succès'
-        ));
-      } else {
+      $csrf_token = $data['csrfToken'];
+      // Validate CSRF token
+      if ($csrf_token !== $_SESSION['csrf_token']) {
         $response = [
           'status' => 'error',
-          'message' => 'Erreur lors de l\'ajout de l\'essai',
+          'message' => 'Token CSRF non valide',
         ];
         echo json_encode($response);
+      }else{
+        // Insert essai data into database
+        $response_new_essai = new_essai($date, $heure, $id_marque, $id_modele, $user_id);
+
+        if ($response_new_essai) {
+          echo json_encode(array(
+            'status' => 'success',
+            'message' => 'Demande d\'essai ajoutée avec succès'
+          ));
+        } else {
+          $response = [
+            'status' => 'error',
+            'message' => 'Erreur lors de l\'ajout de l\'essai',
+          ];
+          echo json_encode($response);
+        }
       }
     } else {
       // Handle missing required fields
