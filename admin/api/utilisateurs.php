@@ -26,9 +26,22 @@
       } elseif (is_numeric($user)) {
         $user_id = intval($user);
           echo get_user($user_id);  // Fetch user info
-        }
+      }else{
+        $response = [
+          'status' => 'error',
+          'message' => 'paramètre user est invalid'
+          ];
+        echo json_encode($response);
+        exit;
       }
-
+    }else{
+      $response = [
+        'status' => 'error',
+        'message' => 'le paramètre user est manquant'
+      ];
+      echo json_encode($response);
+      exit;
+    }
   }elseif(($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'PUT' || $_SERVER['REQUEST_METHOD'] === 'DELETE')){
     $method = $_SERVER['REQUEST_METHOD'];
     // Get the request body

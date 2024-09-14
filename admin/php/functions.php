@@ -52,4 +52,84 @@
     ]);
     }
   }
+
+  /**
+ * Check if a user exists in the database.
+ *
+ * @param int $user_id The ID of the user to check.
+ * @return bool True if the user exists, false otherwise.
+ */
+  function is_user_exist($user_id) {
+    global $DB; 
+    $query = "SELECT * FROM utilisateur WHERE IdUtilisateur = ?";
+
+    $stmt = mysqli_prepare($DB, $query);
+
+    mysqli_stmt_bind_param($stmt, 'i', $user_id);
+
+    mysqli_stmt_execute($stmt);
+
+    $result = mysqli_stmt_get_result($stmt);
+
+    return mysqli_num_rows($result) > 0;
+  }
+
+  /**
+   * Check if a user exists in the database.
+   * 
+   * @param int $user_id The ID of the user to check.
+   * @return string JSON encoded data containing user information
+   */
+  function get_user($user_id){
+    global $DB;
+    if(is_numeric($user_id)){
+      $user_id = intval($user_id);
+      if(!is_user_exist($user_id)){
+        $response = [
+          'status' => 'error',
+          'message' => 'Utilisateur non trouvé'
+        ];
+        echo json_encode($response);
+        exit;
+      }
+      $user = "SELECT * FROM utilisateur WHERE IdUtilisateur = ?";
+      $stmt = mysqli_prepare($DB, $user);
+      mysqli_stmt_bind_param($stmt, "i", $user_id);
+      mysqli_stmt_execute($stmt);
+
+      $result = mysqli_stmt_get_result($stmt);
+      if($row = mysqli_fetch_assoc($result)){
+        $user = [
+          "user_id" => $row['IdUtilisateur'],
+          "first_name" => $row['Nom'],
+          "prenom" => $row['Prenom'],
+          "email" => $row['Email'],
+          "address" => $row['Adresse'],
+          "phone" => $row['NumTel'],
+        ];
+        return json_encode($user);
+      }else{
+        $response = [
+          'status' => 'error',
+          'message' => 'Utilisateur non trouvé'
+        ];
+        echo json_encode($response);
+      }
+
+    }else{
+      $response = [
+        'status' => 'error',
+        'message' => 'l\'id de l\'utilisateur doit être un nombre entier'
+      ];
+      echo json_encode($response);
+    }
+  }
+
+  function update_user_data($user_id, $user_data){
+    global $DB;
+  }
+
+  function delete_user($user_id){
+    global $DB;
+  }
 ?>
