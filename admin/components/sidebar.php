@@ -1,6 +1,11 @@
 <?php
     echo"
-      <div class='sidebar start-0 overflow-x-hidden fixed-top px-3' style='z-index: 1000;'>
+      <div class='sidebar start-0 ms-3 rounded-3 px-3' style='z-index: 1000;'>
+        <div class='d-flex justify-content-end'>
+          <svg class='x-mark-sidebar' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor' class='size-5'>
+              <path d='M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 0 0-1.06-1.06L10 8.94 6.28 5.22Z' />
+          </svg>
+        </div>
         <div class='navbar-brand' href='/super-car/admin/admin/dashboard'>
           <img src='../medias/images/logos/supercar_logo_blanc.webp' alt='SuperCar logo' style='height: 50px;'>
         </div>
@@ -65,6 +70,14 @@
             </li>
             <li>
               <a class='dropdown-item text-dark d-flex align-items-center py-0' href='#'>
+                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'>
+                  <path d='M135.2 117.4L109.1 192l293.8 0-26.1-74.6C372.3 104.6 360.2 96 346.6 96L165.4 96c-13.6 0-25.7 8.6-30.2 21.4zM39.6 196.8L74.8 96.3C88.3 57.8 124.6 32 165.4 32l181.2 0c40.8 0 77.1 25.8 90.6 64.3l35.2 100.5c23.2 9.6 39.6 32.5 39.6 59.2l0 144 0 48c0 17.7-14.3 32-32 32l-32 0c-17.7 0-32-14.3-32-32l0-48L96 400l0 48c0 17.7-14.3 32-32 32l-32 0c-17.7 0-32-14.3-32-32l0-48L0 256c0-26.7 16.4-49.6 39.6-59.2zM128 288a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zm288 32a32 32 0 1 0 0-64 32 32 0 1 0 0 64z'/>
+                </svg>
+                <p class='mt-4 ms-2'>Demandes d'essais</p>
+              </a>
+            </li>
+            <li>
+              <a class='dropdown-item text-dark d-flex align-items-center py-0' href='#'>
               <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor' class='size-5'>
                 <path fill-rule='evenodd' d='M1 5.25A2.25 2.25 0 0 1 3.25 3h13.5A2.25 2.25 0 0 1 19 5.25v9.5A2.25 2.25 0 0 1 16.75 17H3.25A2.25 2.25 0 0 1 1 14.75v-9.5Zm1.5 5.81v3.69c0 .414.336.75.75.75h13.5a.75.75 0 0 0 .75-.75v-2.69l-2.22-2.219a.75.75 0 0 0-1.06 0l-1.91 1.909.47.47a.75.75 0 1 1-1.06 1.06L6.53 8.091a.75.75 0 0 0-1.06 0l-2.97 2.97ZM12 7a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z' clip-rule='evenodd' />
               </svg>
@@ -74,14 +87,13 @@
           </ul>
         </div>
         <a href='#'>Contacts</a>
-        <a href='#'>Essais</a>
         <a href='#'>Evennements</a>
         <a href='#'>Horaires</a>
         <a href='#'>Newsletter</a>
         <a href='#'>Visites</a>
         <a href='#'>Calendrier</a>
         <div class='col-12'>
-          <a href='#' class='btn position-fixed bottom-0 my-3 logout-btn btn-block py-1'>Se deconnecter</a>
+          <a href='#' class='btn mt-5 mb-3 logout-btn btn-block py-1'>Se deconnecter</a>
         </div>
       </div>
     ";
