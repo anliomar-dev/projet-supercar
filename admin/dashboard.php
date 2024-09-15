@@ -58,9 +58,10 @@
         ?>
         <!-- Main Content -->
         <div class="position-absolute end-0 dashboard" style="z-index: 10;">
-            <div class="dashboard-header mt-2 h-auto py-3 px-3 d-flex justify-content-flex-between">
-                <div class="d-flex justify-content-between align-items-center w-25 px-2">
-                    <h4>Bienvenue, John!</h4>
+            <div class="dashboard-header mt-2 h-auto py-2 px-3 d-flex justify-content-flex-between">
+                <div class="d-flex flex-column justify-content-center align-items-start w-25 px-2">
+                    <span style="font-size: 14px;">15-09-2024</span>
+                    <h5>Bienvenue, John!</h5>
                 </div>
                 <div class="d-flex justify-content-end align-items-center w-75 pe-3">
                     <div class="d-flex align-items-center">
@@ -166,7 +167,7 @@
             </div>
             <div class="row mt-5">
                 <div id="piechart_3d" class="bg-transparent rounded-3 ms-3" style="width: 550px; height: 300px;"></div>
-                <canvas id="myChart" width="400" height="200" class=""></canvas>
+                <canvas id="myChart" class=""></canvas>
             </div>
             <!-- Enrolled Courses -->
             <div class="row mt-4">
