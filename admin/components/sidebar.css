@@ -14,9 +14,15 @@
   text-decoration: none;
   display: block;
   padding: 10px;
+  border-radius: 10px;
+  transition: background-color 0.5s;
 }
 .sidebar a:hover {
   background-color: #28a745;
+}
+
+.sidebar span:hover{
+  color: #ffffff;
 }
 
 .x-mark-sidebar{
