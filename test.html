@@ -3,50 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Graphique avec Chart.js</title>
+    <title>Utilisateurs</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div class="container my-5">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h4 class="mb-0">Utilisateurs</h4>
+            <div>
+                <input type="text" class="form-control d-inline-block w-auto" placeholder="recherche par email">
+                <button class="btn btn-success ms-2">+ Ajouter</button>
+                <button class="btn btn-secondary ms-2">Supprimer</button>
+            </div>
+        </div>
 
-<canvas id="myChart" width="400" height="200"></canvas>
+        <table class="table table-hover table-bordered">
+            <thead>
+                <tr>
+                    <th><input type="checkbox"></th>
+                    <th>Prenom <i class="bi bi-sort"></i></th>
+                    <th>Nom <i class="bi bi-sort"></i></th>
+                    <th>Email <i class="bi bi-sort"></i></th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td>Omar</td>
+                    <td>Anli</td>
+                    <td>omaranli56@gmail.com</td>
+                    <td>
+                        <button class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil"></i></button>
+                        <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td>Julien</td>
+                    <td>Bonichon</td>
+                    <td>omaranli285@gmail.com</td>
+                    <td>
+                        <button class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil"></i></button>
+                        <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
+                    </td>
+                </tr>
+                <!-- Ajoutez plus de lignes ici -->
+            </tbody>
+        </table>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-    const ctx = document.getElementById('myChart').getContext('2d');
-    const myChart = new Chart(ctx, {
-        type: 'bar', // Type de graphique (ligne, barres, etc.)
-        data: {
-            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'], // Labels de l'axe X
-            datasets: [{
-                label: 'Nombre de vues',
-                data: [12, 19, 3, 5, 2, 3], // Données à afficher
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-</script>
+        <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item">
+            <a class="page-link" href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+            <a class="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+            </li>
+        </ul>
+        </nav>
+    </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
