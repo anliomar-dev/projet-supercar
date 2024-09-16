@@ -53,6 +53,8 @@
     $phone = $data['phone'] ?? '';
     $address = $data['address'] ?? '';
     $email = $data['email'] ?? '';
+    $is_admin = $data['is_admin'] ?? '';
+    $is_superadmin = $data['is_superadmin'] ?? '';
     $csrf_token = $data['csrfToken'];
     // create associated array for new user: the name of each key is the same as the name of the column in the database
     $new_user = [
@@ -61,7 +63,9 @@
       'Adresse' => $address,
       'NumTel' => $phone,
       'Email' => $email,
-      'MotDePasse' => $password
+      'MotDePasse' => $password,
+      'est_admin' => $is_admin,
+      'est_superadmin' => $is_superadmin
     ];
     
     // Check if the CSRF token is valid

@@ -22,6 +22,21 @@
             width: 20px;
             height: 20px
         }
+        .btn-enregistrer {
+            background-color: #28a745;
+            color: white;
+        }
+        .btn-supprimer {
+            background-color: #dc3545;
+            color: white;
+        }
+        .btn-historique {
+            background-color: #6c757d;
+            color: white;
+        }
+        .tab-content {
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
@@ -61,7 +76,10 @@
                     </div>
                 </div>
             </div>
-            <div class="container my-4">
+
+            <!--display all user section-->
+            <section class="container my-4">
+                <!-- section header -->
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <h4 class="mb-0">Utilisateurs</h4>
                     <div>
@@ -69,24 +87,60 @@
                         <button class="btn btn-secondary ms-2">Supprimer</button>
                     </div>
                 </div>
-
+                <!-- users -->
                 <table class="table table-hover table-bordered">
                     <thead>
                         <tr>
-                            <th><input type="checkbox"></th>
-                            <th>Prenom <i class="bi bi-sort"></i></th>
-                            <th>Nom <i class="bi bi-sort"></i></th>
-                            <th>Email <i class="bi bi-sort"></i></th>
-                            <th>Actions</th>
+                            <th class="d-flex justify-content-center pt-4"><input type="checkbox"></th>
+                            <th>
+                                <span>Prenom</span>
+                                <button class="btn" data-order="desc" data-sort-by="first_name">
+                                    <svg class="" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
+                                        <path fill-rule="evenodd" d="M2 3.75A.75.75 0 0 1 2.75 3h11.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 3.75ZM2 7.5a.75.75 0 0 1 .75-.75h7.508a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 7.5ZM14 7a.75.75 0 0 1 .75.75v6.59l1.95-2.1a.75.75 0 1 1 1.1 1.02l-3.25 3.5a.75.75 0 0 1-1.1 0l-3.25-3.5a.75.75 0 1 1 1.1-1.02l1.95 2.1V7.75A.75.75 0 0 1 14 7ZM2 11.25a.75.75 0 0 1 .75-.75h4.562a.75.75 0 0 1 0 1.5H2.75a.75.75 0 0 1-.75-.75Z" clip-rule="evenodd" />
+                                    </svg>
+                                </button>
+                                <button class="btn d-none" data-order="asc" data-sort-by="first_name">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
+                                        <path fill-rule="evenodd" d="M2 3.75A.75.75 0 0 1 2.75 3h11.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 3.75ZM2 7.5a.75.75 0 0 1 .75-.75h6.365a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 7.5ZM14 7a.75.75 0 0 1 .55.24l3.25 3.5a.75.75 0 1 1-1.1 1.02l-1.95-2.1v6.59a.75.75 0 0 1-1.5 0V9.66l-1.95 2.1a.75.75 0 1 1-1.1-1.02l3.25-3.5A.75.75 0 0 1 14 7ZM2 11.25a.75.75 0 0 1 .75-.75H7A.75.75 0 0 1 7 12H2.75a.75.75 0 0 1-.75-.75Z" clip-rule="evenodd" />
+                                    </svg>
+                                </button>
+                            </th>
+                            <th>
+                                <span>Nom</span>
+                                <button class="btn" data-order="desc" data-sort-by="last_name">
+                                    <svg class="" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
+                                        <path fill-rule="evenodd" d="M2 3.75A.75.75 0 0 1 2.75 3h11.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 3.75ZM2 7.5a.75.75 0 0 1 .75-.75h7.508a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 7.5ZM14 7a.75.75 0 0 1 .75.75v6.59l1.95-2.1a.75.75 0 1 1 1.1 1.02l-3.25 3.5a.75.75 0 0 1-1.1 0l-3.25-3.5a.75.75 0 1 1 1.1-1.02l1.95 2.1V7.75A.75.75 0 0 1 14 7ZM2 11.25a.75.75 0 0 1 .75-.75h4.562a.75.75 0 0 1 0 1.5H2.75a.75.75 0 0 1-.75-.75Z" clip-rule="evenodd" />
+                                    </svg>
+                                </button>
+                                <button class="btn d-none" data-order="asc" data-sort-by="last_name">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
+                                        <path fill-rule="evenodd" d="M2 3.75A.75.75 0 0 1 2.75 3h11.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 3.75ZM2 7.5a.75.75 0 0 1 .75-.75h6.365a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 7.5ZM14 7a.75.75 0 0 1 .55.24l3.25 3.5a.75.75 0 1 1-1.1 1.02l-1.95-2.1v6.59a.75.75 0 0 1-1.5 0V9.66l-1.95 2.1a.75.75 0 1 1-1.1-1.02l3.25-3.5A.75.75 0 0 1 14 7ZM2 11.25a.75.75 0 0 1 .75-.75H7A.75.75 0 0 1 7 12H2.75a.75.75 0 0 1-.75-.75Z" clip-rule="evenodd" />
+                                    </svg>
+                                </button>
+                            </th>
+                            <th>
+                                <span>Email</span>
+                                <button class="btn" data-order="desc" data-sort-by="email">
+                                    <svg class="" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
+                                        <path fill-rule="evenodd" d="M2 3.75A.75.75 0 0 1 2.75 3h11.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 3.75ZM2 7.5a.75.75 0 0 1 .75-.75h7.508a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 7.5ZM14 7a.75.75 0 0 1 .75.75v6.59l1.95-2.1a.75.75 0 1 1 1.1 1.02l-3.25 3.5a.75.75 0 0 1-1.1 0l-3.25-3.5a.75.75 0 1 1 1.1-1.02l1.95 2.1V7.75A.75.75 0 0 1 14 7ZM2 11.25a.75.75 0 0 1 .75-.75h4.562a.75.75 0 0 1 0 1.5H2.75a.75.75 0 0 1-.75-.75Z" clip-rule="evenodd" />
+                                    </svg>
+                                </button>
+                                <button class="btn d-none" data-order="asc" data-sort-by="email">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
+                                        <path fill-rule="evenodd" d="M2 3.75A.75.75 0 0 1 2.75 3h11.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 3.75ZM2 7.5a.75.75 0 0 1 .75-.75h6.365a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 7.5ZM14 7a.75.75 0 0 1 .55.24l3.25 3.5a.75.75 0 1 1-1.1 1.02l-1.95-2.1v6.59a.75.75 0 0 1-1.5 0V9.66l-1.95 2.1a.75.75 0 1 1-1.1-1.02l3.25-3.5A.75.75 0 0 1 14 7ZM2 11.25a.75.75 0 0 1 .75-.75H7A.75.75 0 0 1 7 12H2.75a.75.75 0 0 1-.75-.75Z" clip-rule="evenodd" />
+                                    </svg>
+                                </button>
+                            </th>
+                            <th class="pb-3">Actions</th>
                         </tr>
                     </thead>
                     <tbody class="template-user">
                         <template>
                             <tr class="table-row">
                                 <td class="checkbox"><input type="checkbox" value=""></td>
-                                <td class="first-name">Omar</td>
-                                <td class="last-name">Anli</td>
-                                <td class="email">omaranli56@gmail.com</td>
+                                <td class="first-name"></td>
+                                <td class="last-name"></td>
+                                <td class="email"></td>
                                 <td class="buttons">
                                     <button class="btn btn-sm btn-outline-primary edit-button" data-id="">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
@@ -104,7 +158,7 @@
                         </template>
                     </tbody>
                 </table>
-
+                <!-- pagination -->
                 <nav aria-label="Page navigation example">
                     <ul class="pagination">
                         <li class="page-item">
@@ -122,7 +176,112 @@
                         </li>
                     </ul>
                 </nav>
-            </div>
+            </section>
+            
+            <!--update user infos section-->
+            <section class="container mt-3 d-none">
+                <div class="row">
+                    <div class="col-md-8 border rounded-3 shadow py-4 px-4">
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="compte-tab" data-bs-toggle="tab" data-bs-target="#compte" type="button" role="tab" aria-controls="compte" aria-selected="true">Compte</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="groupe-tab" data-bs-toggle="tab" data-bs-target="#groupe" type="button" role="tab" aria-controls="groupe" aria-selected="false">Groupe et permissions</button>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane fade show active" id="compte" role="tabpanel" aria-labelledby="compte-tab">
+                                <form class="mt-4 update-user-form">
+                                    <div class="mb-3">
+                                        <label for="prenom" class="form-label">Prénom</label>
+                                        <input type="text" class="form-control" id="prenom" value="omar">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="nom" class="form-label">Nom</label>
+                                        <input type="text" class="form-control" id="nom" value="anli">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="adresse" class="form-label">Adresse</label>
+                                        <input type="text" class="form-control" id="adresse" value="E63, RUE EPICES EBENE">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="email" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="email" value="omaranli56@gmail.com">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="telephone" class="form-label">Téléphone</label>
+                                        <input type="text" class="form-control" id="telephone" value="+230 5429 7857">
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="tab-pane fade" id="groupe" role="tabpanel" aria-labelledby="groupe-tab">
+                                <!--  -->
+                                <p class="mt-4">Contenu des permissions et des groupes.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mt-1 d-flex flex-column align-items-start">
+                        <button class="btn btn-enregistrer w-100 mb-2">Enregistrer</button>
+                        <button class="btn btn-supprimer w-100 mb-2">Supprimer</button>
+                        <button class="btn btn-historique w-100">Historique</button>
+                    </div>
+                </div>
+            </section>
+
+            <!--section create new user-->
+            <section class="container mt-3 mb-3 d-none">
+                <div class="row">
+                    <div class="col-md-8 border rounded-3 shadow py-4 px-4">
+                        <ul class="nav nav-tabs" id="myTab2" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="inscription-tab" data-bs-toggle="tab" data-bs-target="#inscription" type="button" role="tab" aria-controls="inscription" aria-selected="true">Compte</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="details-tab" data-bs-toggle="tab" data-bs-target="#details" type="button" role="tab" aria-controls="details" aria-selected="false">Permissions</button>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <!-- create new user form -->
+                            <div class="tab-pane fade show active" id="inscription" role="tabpanel" aria-labelledby="inscription-tab">
+                                <form class="mt-4">
+                                    <div class="mb-3">
+                                        <label for="prenom-inscription" class="form-label">Prénom</label>
+                                        <input type="text" class="form-control" id="prenom-inscription" placeholder="Entrez votre prénom">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="nom-inscription" class="form-label">Nom</label>
+                                        <input type="text" class="form-control" id="nom-inscription" placeholder="Entrez votre nom">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="adresse-inscription" class="form-label">Adresse</label>
+                                        <input type="text" class="form-control" id="adresse-inscription" placeholder="Entrez votre adresse">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="email-inscription" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="email-inscription" placeholder="Entrez votre email">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="telephone-inscription" class="form-label">Téléphone</label>
+                                        <input type="text" class="form-control" id="telephone-inscription" placeholder="Entrez votre téléphone">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">S'inscrire</button>
+                                </form>
+                            </div>
+
+                            <!-- Détails supplémentaires pour l'inscription -->
+                            <div class="tab-pane fade" id="details" role="tabpanel" aria-labelledby="details-tab">
+                                <p class="mt-4">Détails supplémentaires concernant l'inscription.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mt-1 d-flex flex-column align-items-start">
+                        <button class="btn btn-enregistrer w-100 mb-2">Enregistrer</button>
+                        <button class="btn btn-supprimer w-100 mb-2">Annuler</button>
+                    </div>
+                </div>
+            </section>
+            <!---->
         </div>
     </div>
 </div>
