@@ -13,6 +13,10 @@
     <link href="/super-car/admin/styles/dashboard.css" rel="stylesheet">
     <script src="js/dashboard.js" type="module" defer></script>
     <link href="/super-car/admin/components/sidebar.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar/index.global.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.7/main.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@6.1.7/main.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/interaction@6.1.7/main.min.js"></script>
     <style>
         .close-sidebar{
             display: none;
@@ -31,8 +35,8 @@
         <div class="position-absolute end-0 dashboard" style="z-index: 10;">
             <div class="dashboard-header mt-2 h-auto py-2 px-3 d-flex justify-content-flex-between">
                 <div class="d-flex flex-column justify-content-center align-items-start w-25 px-2">
-                  <span style="font-size: 14px;">15-09-2024</span>
-                  <h5>Bienvenue, John!</h5>
+                    <span style="font-size: 14px;">15-09-2024</span>
+                    <h5>Bienvenue, John!</h5>
                 </div>
                 <div class="d-flex justify-content-end align-items-center w-75 pe-3">
                     <div class="d-flex align-items-center">
@@ -55,9 +59,30 @@
                     </div>
                 </div>
             </div>
+            
+            <div class="calander_container container d-flex justify-content-center mt-5">
+                <div id="calendar" style="width: 1000px"></div>
+            </div>
         </div>
     </div>
 </div>
+<script>
+    document.addEventListener("DOMContentLoaded", async function () {
+        const todayDate = new Date()
+        var calendarEl = document.getElementById("calendar");
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: "dayGridMonth",
+        headerToolbar: {
+            start: "dayGridMonth,timeGridWeek,timeGridDay,list today",
+            center: "title",
+            end: "prevYear,prev,next,nextYear",
+        },
+        
+        });
+
+        calendar.render();
+    });
+</script>
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
