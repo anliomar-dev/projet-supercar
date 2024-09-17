@@ -261,6 +261,8 @@ document.addEventListener("DOMContentLoaded", async () => {
           const currentPage = parseInt(localStorage.getItem("currentPage"));
           const dataNewPage = await filterModels(currentPage);
           displayModelsByBrand(dataNewPage);
+
+          // store car infos to localstorage when the essayer button is clicked and redirect to essai.php 
           const essaiBtns = document.querySelectorAll('.essaiBtn');
           essaiBtns.forEach((essaiBtn) => {
             essaiBtn.addEventListener('click', (e) => {
