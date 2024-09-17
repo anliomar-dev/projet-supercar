@@ -5,7 +5,7 @@ export async function fetchUsers(page=1){
       throw new Error(response.statusText)
     }
     const users = await response.json()
-    console.log(users)
+    return users
   }catch(e){
     console.log(e)
   }
@@ -20,7 +20,7 @@ export async function fetchUsers(page=1){
  * @param {string} order - Sorting order: 'asc' for ascending, 'desc' for descending.
  * @returns {Array} - The sorted array.
  */
-function sortData(data, sortBy, order) {
+export function sortData(data, sortBy, order) {
   return data.sort((a, b) => {
     if (a[sortBy] < b[sortBy]) {
       return order === 'asc' ? -1 : 1;

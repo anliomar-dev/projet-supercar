@@ -68,7 +68,7 @@
                 <table class="table table-hover table-bordered">
                     <thead>
                         <tr>
-                            <th class="d-flex justify-content-center pt-4"><input type="checkbox"></th>
+                            <th class="d-flex justify-content-center pt-4"><input class="check-all form-check-input" type="checkbox"></th>
                             <th>
                                 <span>Prenom</span>
                                 <button class="btn" data-order="desc" data-sort-by="first_name">
@@ -111,10 +111,10 @@
                             <th class="pb-3">Actions</th>
                         </tr>
                     </thead>
-                    <tbody class="template-user">
-                        <template>
+                    <tbody class="users-container">
+                        <template id="template-user">
                             <tr class="table-row">
-                                <td class="checkbox"><input type="checkbox" value=""></td>
+                                <td class="d-flex justify-content-center pt-4"><input class="checkbox-user form-check-input" type="checkbox" value=""></td>
                                 <td class="first-name"></td>
                                 <td class="last-name"></td>
                                 <td class="email"></td>
@@ -205,7 +205,7 @@
             </section>
 
             <!--section create new user-->
-            <section class="container mt-3 mb-3">
+            <section class="container mt-3 mb-3 d-none">
                 <form class="row">
                     <div class="col-md-8 border rounded-3 shadow py-4 px-4">
                         <ul class="nav nav-tabs" id="myTab2" role="tablist">
@@ -242,7 +242,7 @@
                             <div class="tab-pane fade border rounded-3 p-4" id="details" role="tabpanel" aria-labelledby="details-tab">
                                 <div class="mb-3">
                                     <label for="email-inscription" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="email-inscription" placeholder="Entrez votre email">
+                                    <input type="email" class="form-control" id="email-inscription" placeholder="Entrez votre email" autocomplete="email">
                                 </div>
                                 <div class="row mt-3">
                                     <div class="form-group col-md-6 position-relative password-container">
