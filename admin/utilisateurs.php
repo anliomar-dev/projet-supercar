@@ -11,33 +11,10 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="/super-car/admin/styles/dashboard.css" rel="stylesheet">
+    <link href="/super-car/admin/styles/users.css" rel="stylesheet">
     <script src="js/users.js" type="module" defer></script>
     <script src="js/sidebar_navbar.js" type="module" defer></script>
     <link href="/super-car/admin/components/sidebar.css" rel="stylesheet">
-    <style>
-        .close-sidebar{
-            display: none;
-        }
-        table svg{
-            width: 20px;
-            height: 20px
-        }
-        .btn-enregistrer {
-            background-color: #28a745;
-            color: white;
-        }
-        .btn-supprimer {
-            background-color: #dc3545;
-            color: white;
-        }
-        .btn-historique {
-            background-color: #6c757d;
-            color: white;
-        }
-        .tab-content {
-            margin-top: 20px;
-        }
-    </style>
 </head>
 <body>
 
@@ -178,16 +155,16 @@
                 </nav>
             </section>
             
-            <!--update user infos section-->
+            <!--update user infos section -->
             <section class="container mt-3 d-none">
                 <div class="row">
                     <div class="col-md-8 border rounded-3 shadow py-4 px-4">
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link active" id="compte-tab" data-bs-toggle="tab" data-bs-target="#compte" type="button" role="tab" aria-controls="compte" aria-selected="true">Compte</button>
+                                <button class="nav-link active" id="compte-tab" data-bs-toggle="tab" data-bs-target="#compte" type="button" role="tab" aria-controls="compte" aria-selected="true">infos personnelles</button>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="groupe-tab" data-bs-toggle="tab" data-bs-target="#groupe" type="button" role="tab" aria-controls="groupe" aria-selected="false">Groupe et permissions</button>
+                                <button class="nav-link" id="groupe-tab" data-bs-toggle="tab" data-bs-target="#groupe" type="button" role="tab" aria-controls="groupe" aria-selected="false">Compte et permissions</button>
                             </li>
                         </ul>
                         <div class="tab-content">
@@ -206,18 +183,16 @@
                                         <input type="text" class="form-control" id="adresse" value="E63, RUE EPICES EBENE">
                                     </div>
                                     <div class="mb-3">
-                                        <label for="email" class="form-label">Email</label>
-                                        <input type="email" class="form-control" id="email" value="omaranli56@gmail.com">
-                                    </div>
-                                    <div class="mb-3">
                                         <label for="telephone" class="form-label">Téléphone</label>
                                         <input type="text" class="form-control" id="telephone" value="+230 5429 7857">
                                     </div>
                                 </form>
                             </div>
                             <div class="tab-pane fade" id="groupe" role="tabpanel" aria-labelledby="groupe-tab">
-                                <!--  -->
-                                <p class="mt-4">Contenu des permissions et des groupes.</p>
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="email" value="omaranli56@gmail.com">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -230,21 +205,21 @@
             </section>
 
             <!--section create new user-->
-            <section class="container mt-3 mb-3 d-none">
-                <div class="row">
+            <section class="container mt-3 mb-3">
+                <form class="row">
                     <div class="col-md-8 border rounded-3 shadow py-4 px-4">
                         <ul class="nav nav-tabs" id="myTab2" role="tablist">
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link active" id="inscription-tab" data-bs-toggle="tab" data-bs-target="#inscription" type="button" role="tab" aria-controls="inscription" aria-selected="true">Compte</button>
+                                <button class="nav-link active" id="inscription-tab" data-bs-toggle="tab" data-bs-target="#inscription" type="button" role="tab" aria-controls="inscription" aria-selected="true">Infos personnelles</button>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="details-tab" data-bs-toggle="tab" data-bs-target="#details" type="button" role="tab" aria-controls="details" aria-selected="false">Permissions</button>
+                                <button class="nav-link" id="details-tab" data-bs-toggle="tab" data-bs-target="#details" type="button" role="tab" aria-controls="details" aria-selected="false">Compte et Permissions</button>
                             </li>
                         </ul>
                         <div class="tab-content">
                             <!-- create new user form -->
-                            <div class="tab-pane fade show active" id="inscription" role="tabpanel" aria-labelledby="inscription-tab">
-                                <form class="mt-4">
+                            <div class="tab-pane fade show active border rounded-3 p-4" id="inscription" role="tabpanel" aria-labelledby="inscription-tab">
+                                <div class="mt-4">
                                     <div class="mb-3">
                                         <label for="prenom-inscription" class="form-label">Prénom</label>
                                         <input type="text" class="form-control" id="prenom-inscription" placeholder="Entrez votre prénom">
@@ -258,20 +233,31 @@
                                         <input type="text" class="form-control" id="adresse-inscription" placeholder="Entrez votre adresse">
                                     </div>
                                     <div class="mb-3">
-                                        <label for="email-inscription" class="form-label">Email</label>
-                                        <input type="email" class="form-control" id="email-inscription" placeholder="Entrez votre email">
-                                    </div>
-                                    <div class="mb-3">
                                         <label for="telephone-inscription" class="form-label">Téléphone</label>
                                         <input type="text" class="form-control" id="telephone-inscription" placeholder="Entrez votre téléphone">
                                     </div>
-                                    <button type="submit" class="btn btn-primary">S'inscrire</button>
-                                </form>
+                                </div>
                             </div>
-
                             <!-- Détails supplémentaires pour l'inscription -->
-                            <div class="tab-pane fade" id="details" role="tabpanel" aria-labelledby="details-tab">
-                                <p class="mt-4">Détails supplémentaires concernant l'inscription.</p>
+                            <div class="tab-pane fade border rounded-3 p-4" id="details" role="tabpanel" aria-labelledby="details-tab">
+                                <div class="mb-3">
+                                    <label for="email-inscription" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="email-inscription" placeholder="Entrez votre email">
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="form-group col-md-6 position-relative password-container">
+                                        <label for="password">Mot de passe</label>
+                                        <span class="eye-icon">👁️</span>
+                                        <span style="display: none;" class="hide-password">🙈</span>
+                                        <input type="password" class="form-control passwordField" name="password" id="password" placeholder="Mot de passe" autocomplete="current-password">
+                                    </div>
+                                    <div class="form-group col-md-6 position-relative password-container confirm-pass-container">
+                                        <span class="eye-icon">👁️</span>
+                                        <span style="display: none;" class="hide-password">🙈</span>
+                                        <label for="confirmPassword">confirmation</label>
+                                        <input type="password" class="form-control passwordField" name="confirmPassword" id="confirmPassword" placeholder="confirmation" autocomplete="current-password">
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -279,7 +265,7 @@
                         <button class="btn btn-enregistrer w-100 mb-2">Enregistrer</button>
                         <button class="btn btn-supprimer w-100 mb-2">Annuler</button>
                     </div>
-                </div>
+                </form>
             </section>
             <!---->
         </div>

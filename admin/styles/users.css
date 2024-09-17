@@ -1,0 +1,6 @@
+.password-container span{
+  position: absolute;
+  top: 48%;
+  right: 20px;
+  cursor: pointer;
+}

@@ -25,6 +25,10 @@
   color: #ffffff;
 }
 
+.close-sidebar{
+  display: none;
+}
+
 .x-mark-sidebar{
   fill: white;
 }
@@ -69,4 +73,28 @@
 
 .home-btn{
   padding-bottom: 0!important;
+}
+
+
+/* right side for delete, register new line on talbes */
+
+
+table svg{
+    width: 20px;
+    height: 20px
+}
+.btn-enregistrer {
+    background-color: #28a745;
+    color: white;
+}
+.btn-supprimer {
+    background-color: #dc3545;
+    color: white;
+}
+.btn-historique {
+    background-color: #6c757d;
+    color: white;
+}
+.tab-content {
+    margin-top: 20px;
 }

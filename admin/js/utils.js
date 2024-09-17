@@ -1,4 +1,3 @@
-
 export async function fetchUsers(page=1){
   try{
     const response = await fetch(`http://localhost/Super-car/admin/api/utilisateurs?user=all&page=${page}`)

@@ -7,7 +7,7 @@
         global $DB;
         $response = [
             'status' => 'error',
-            'message' => 'invalid email and/or password'
+            'message' => 'email et/ou mot de passe invalid'
         ];
         // query
         $query = "SELECT * FROM utilisateur WHERE Email = ?";
@@ -116,7 +116,7 @@
     }
 
     /**
-     * check if the user is authenticated and redirect to login page if his is not or 
+     * check if the user is authenticated and redirect to login page if his is not authenticated or 
      * redirect to session expired page is the auth session is expired
      */
     function is_user_authenticated() {
@@ -162,7 +162,7 @@
     }
 
     /**
-     * insert a new lien in the table essai
+     * insert a new line in the table essai
      */
     function new_essai($date, $heure, $idMarque, $idModele, $idUtilisateur){
         global $DB;

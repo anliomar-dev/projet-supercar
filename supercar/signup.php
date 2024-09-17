@@ -98,8 +98,8 @@
                         <input type="password" class="form-control passwordField" name="password" id="password" placeholder="Mot de passe" autocomplete="current-password">
                     </div>
                     <div class="form-group col-md-6 position-relative password-container confirm-pass-container">
-                    <span class="eye-icon">👁️</span>
-                    <span style="display: none;" class="hide-password">🙈</span>
+                        <span class="eye-icon">👁️</span>
+                        <span style="display: none;" class="hide-password">🙈</span>
                         <label for="confirmPassword">Mot de passe</label>
                         <input type="password" class="form-control passwordField" name="confirmPassword" id="confirmPassword" placeholder="confirmation" autocomplete="current-password">
                     </div>
