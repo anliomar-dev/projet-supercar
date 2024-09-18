@@ -36,6 +36,9 @@ body {
   .toggle-sidebar{
     display: block;
   }
+  .dashboard{
+    width: 100vw;
+  }
 }
 
 .dashboard-header svg:hover{

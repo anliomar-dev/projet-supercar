@@ -9,6 +9,25 @@
   overflow-y: scroll;
   scrollbar-width: none;
 }
+
+@media screen and (max-width: 1200px){
+  .sidebar{
+    transform: translateX(-110%);
+    opacity: 0;
+  }
+}
+
+.sidebaropen{
+  transform: initial;
+  opacity: 1;
+  transition: transform 0.5s, opacity 0.3s;
+}
+.sidebarclose{
+  transform: translateX(-110%);
+  opacity: 0;
+  transition: transform 0.5s, opacity 0.3s;
+}
+
 .sidebar a {
   color: white;
   text-decoration: none;

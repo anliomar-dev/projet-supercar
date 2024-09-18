@@ -7,7 +7,11 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
   openSidebarButton.addEventListener('click', (e)=>{
     e.currentTarget.style.display = 'none';
-    closeSidebarButton.style.display = 'block'
+    closeSidebarButton.style.display = 'block';
+    sidebar.classList.add('sidebaropen');
+    if(sidebar.classList.contains('sidebarclose')){
+      sidebar.classList.remove('sidebarclose');
+    }
   })
   const closeSidebarButtons = [closeSidebarButton, xMarqueSidebar]
   closeSidebarButtons.forEach(btn =>{
@@ -16,6 +20,11 @@ document.addEventListener('DOMContentLoaded', ()=>{
       closeSidebarButton.style.display = 'none';
       openSidebarButton.style.display = 'block'
     }
+    sidebar.classList.remove('sidebaropen');
+    sidebar.classList.add('sidebarclose');
+    setTimeout(()=>{
+      sidebar.classList.remove('sidebarclose');
+    }, 1000)
   }) 
   })
 
@@ -23,9 +32,13 @@ document.addEventListener('DOMContentLoaded', ()=>{
     if(window.innerWidth < 1200){
       openSidebarButton.style.display = 'block';
       closeSidebarButton.style.display = 'none'
+      sidebar.classList.remove('sidebaropen');
     }else{
       openSidebarButton.style.display = 'none';
-      closeSidebarButton.style.display = 'none'
+      closeSidebarButton.style.display = 'none';
+      if(!sidebar.classList.contains('sidebaropen')){
+        sidebar.classList.add('sidebaropen');
+      }
     }
   })
 })
