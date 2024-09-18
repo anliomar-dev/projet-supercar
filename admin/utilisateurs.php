@@ -68,7 +68,14 @@
                 <table class="table table-hover table-bordered">
                     <thead>
                         <tr>
-                            <th class="d-flex justify-content-center pt-3"><input class="check-all form-check-input" type="checkbox"></th>
+                            <th class="d-flex justify-content-center pt-3">
+                                <input 
+                                    data-bs-toggle="tooltip" 
+                                    data-bs-placement="top" 
+                                    data-bs-title="tout sélectionner"
+                                    class="check-all form-check-input" type="checkbox"
+                                >
+                            </th>
                             <th>
                                 <span>Prenom</span>
                                 <button class="btn" data-order="desc" data-sort-by="first_name">
@@ -259,7 +266,18 @@
         </div>
     </div>
 </div>
+<script>
+    // Activer les tooltips sur tout le document
+    document.addEventListener('DOMContentLoaded', function () {
+    const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    const tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
+    });
+</script>
 <!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+</script>
 </body>
 </html>

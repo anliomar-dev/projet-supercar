@@ -2,9 +2,7 @@ import { fetchUsers, sortData } from "./utils";
 import { showPassword, hidePassword, createUser, resetForm } from "/super-car/js/utils";
 
 // current page
-if (!localStorage.hasOwnProperty("usersCurrentPage")) {
-  localStorage.setItem("usersCurrentPage", 1);
-}
+localStorage.setItem("usersCurrentPage", 1);
 
 document.addEventListener('DOMContentLoaded', async ()=>{
   const passwordInput = document.getElementById("password");
@@ -103,6 +101,7 @@ document.addEventListener('DOMContentLoaded', async ()=>{
           numPage.style.backgroundColor = "#28a745";
           numPage.style.color = "#fff";
           displayUsers(users, 'Prenom', 'asc')
+          checkAllUsers.checked = false;
         }
       })
 
@@ -129,7 +128,8 @@ document.addEventListener('DOMContentLoaded', async ()=>{
           numPage.style.backgroundColor = "#28a745";
           numPage.style.color = "#fff";
           const users = await fetchUsers(currentPage)
-          displayUsers(users, 'Prenom', 'asc')
+          displayUsers(users, 'Prenom', 'asc');
+          checkAllUsers.checked = false;
         });
       });
 
@@ -159,6 +159,7 @@ document.addEventListener('DOMContentLoaded', async ()=>{
           numPage.style.backgroundColor = "#28a745";
           numPage.style.color = "#fff";
           displayUsers(users, 'Prenom', 'asc')
+          checkAllUsers.checked = false;
         }
       })
       
