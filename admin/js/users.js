@@ -9,8 +9,49 @@ document.addEventListener('DOMContentLoaded', async ()=>{
   const passwordConfirmInput = document.getElementById("confirmPassword");
   const usersContainer = document.querySelector('.users-container');
   const template = document.getElementById("template-user");
+  const sortButtons = document.querySelectorAll('.sortBtn');
+  const theadColumns = document.querySelectorAll('.th-col')
   const checkAllUsers = document.querySelector('.check-all');
   let checkUser = [];
+  
+  theadColumns.forEach((col) => {
+    col.addEventListener('click', (e) => {
+      // Masquer tous les boutons de tri
+      sortButtons.forEach((btn) => {
+        btn.classList.add('d-none');
+      });
+  
+      // Récupérer le premier bouton de tri (desc) après le <span>
+      let btnSort = col.nextElementSibling;
+  
+      // Montrer le bouton tri courant (desc ou asc)
+      btnSort.classList.remove('d-none');
+  
+      // Fonction pour basculer les boutons de tri
+      const toggleSortButtons = (currentBtn) => {
+        // Récupérer l'autre bouton de tri (asc ou desc)
+        const otherSortBtn = currentBtn.nextElementSibling || currentBtn.previousElementSibling;
+  
+        // Basculer les classes d'affichage
+        currentBtn.classList.add('d-none');
+        otherSortBtn.classList.remove('d-none');
+  
+        // Attacher l'événement de nouveau au bouton qui vient d'apparaître
+        otherSortBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          toggleSortButtons(otherSortBtn);
+        }, { once: true }); // Utiliser `{ once: true }` pour que l'événement ne soit exécuté qu'une fois
+      };
+  
+      // Attacher l'événement au bouton de tri initial
+      btnSort.addEventListener('click', (e) => {
+        e.preventDefault();
+        toggleSortButtons(btnSort);
+      }, { once: true }); // Utiliser `{ once: true }` pour éviter d'attacher l'événement plusieurs fois
+    });
+  });
+  
+  
   
   //show and hide password
   const eyeIcons = document.querySelectorAll(".eye-icon"); //show password icons

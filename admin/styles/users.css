@@ -4,3 +4,8 @@
   right: 20px;
   cursor: pointer;
 }
+
+thead span:hover{
+  cursor: pointer;
+  color: #28a745;
+}
