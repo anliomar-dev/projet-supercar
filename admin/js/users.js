@@ -11,6 +11,8 @@ document.addEventListener('DOMContentLoaded', async ()=>{
   const passwordConfirmInput = document.getElementById("confirmPassword");
   const usersContainer = document.querySelector('.users-container');
   const template = document.getElementById("template-user");
+  const checkAllUsers = document.querySelector('.check-all');
+  let checkUser = [];
   
   //show and hide password
   const eyeIcons = document.querySelectorAll(".eye-icon"); //show password icons
@@ -31,6 +33,13 @@ document.addEventListener('DOMContentLoaded', async ()=>{
       
       const checkBoxUser = clone.querySelector('.checkbox-user');
       checkBoxUser.value = user.id;
+
+      // Listener for each user checkbox
+      checkBoxUser.addEventListener('change', (e) => {
+        if (!e.currentTarget.checked) {
+          checkAllUsers.checked = false; // uncheck checkAllUser if one checkbox is unchecked
+        }
+      });
       
       const first_name = clone.querySelector('.first-name'); // Correctly target from the clone
       first_name.textContent = user.first_name;
@@ -47,9 +56,17 @@ document.addEventListener('DOMContentLoaded', async ()=>{
       
       usersContainer.appendChild(clone);
     });
+    checkUser = document.querySelectorAll('.checkbox-user');
   }
   const users = await fetchUsers(1)
   displayUsers(users, 'Prenom', 'asc')
+
+  checkAllUsers.addEventListener('change', (e) => {
+    const isChecked = e.currentTarget.checked;
+    checkUser.forEach(checkbox => {
+      checkbox.checked = isChecked;
+    });
+  });
 
   // dynamic pagination
   const pagination = document.querySelector(".pagination");
@@ -78,6 +95,13 @@ document.addEventListener('DOMContentLoaded', async ()=>{
           const prevPage = currentPage - 1;
           localStorage.setItem('usersCurrentPage', prevPage);
           const users = await fetchUsers(prevPage)
+          numPages.forEach((num)=>{
+            num.style.backgroundColor = "transparent";
+            num.style.color = "black";
+          })
+          const numPage = document.getElementById(`${prevPage}`)
+          numPage.style.backgroundColor = "#28a745";
+          numPage.style.color = "#fff";
           displayUsers(users, 'Prenom', 'asc')
         }
       })
@@ -86,7 +110,7 @@ document.addEventListener('DOMContentLoaded', async ()=>{
       for (let i = 1; i <= totalPages; i++) {
         const pageItem = document.createElement("li");
         pageItem.classList.add("page-item");
-        pageItem.innerHTML = `<a class="page-link num-page" href="#" >${i}</a>`;
+        pageItem.innerHTML = `<a class="page-link num-page" href="#" id="${i}">${i}</a>`;
         pagination.appendChild(pageItem);
       }
 
@@ -95,8 +119,15 @@ document.addEventListener('DOMContentLoaded', async ()=>{
       numPages.forEach((numPage) => {
         numPage.addEventListener("click", async (e) => {
           e.preventDefault();
+          e.currentTarget.style.outline = 'none'
           localStorage.setItem("usersCurrentPage", e.currentTarget.textContent);
           const currentPage = parseInt(localStorage.getItem("usersCurrentPage"));
+          numPages.forEach((num)=>{
+            num.style.backgroundColor = "transparent";
+            num.style.color = "black";
+          })
+          numPage.style.backgroundColor = "#28a745";
+          numPage.style.color = "#fff";
           const users = await fetchUsers(currentPage)
           displayUsers(users, 'Prenom', 'asc')
         });
@@ -119,14 +150,31 @@ document.addEventListener('DOMContentLoaded', async ()=>{
         if(currentPage < totalPages){
           const NextPage = currentPage + 1;
           localStorage.setItem('usersCurrentPage', NextPage);
-          const users = await fetchUsers(NextPage)
+          const users = await fetchUsers(NextPage);
+          numPages.forEach((num)=>{
+            num.style.backgroundColor = "transparent";
+            num.style.color = "black";
+          })
+          const numPage = document.getElementById(`${NextPage}`)
+          numPage.style.backgroundColor = "#28a745";
+          numPage.style.color = "#fff";
           displayUsers(users, 'Prenom', 'asc')
         }
       })
       
     }
   }
-
+  checkAllUsers.addEventListener('change', (e)=>{
+    if(e.currentTarget.checked){
+      checkUser.forEach(checkbox => {
+        checkbox.checked = true;
+      })
+    }else{
+      checkUser.forEach(checkbox => {
+        checkbox.checked = false;
+      })
+    }
+  })
   // dispal paginations buttons
   paginationUsers(pagination);
 })

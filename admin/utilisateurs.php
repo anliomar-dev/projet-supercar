@@ -68,7 +68,7 @@
                 <table class="table table-hover table-bordered">
                     <thead>
                         <tr>
-                            <th class="d-flex justify-content-center pt-4"><input class="check-all form-check-input" type="checkbox"></th>
+                            <th class="d-flex justify-content-center pt-3"><input class="check-all form-check-input" type="checkbox"></th>
                             <th>
                                 <span>Prenom</span>
                                 <button class="btn" data-order="desc" data-sort-by="first_name">
@@ -114,7 +114,7 @@
                     <tbody class="users-container">
                         <template id="template-user">
                             <tr class="table-row">
-                                <td class="d-flex justify-content-center pt-4"><input class="checkbox-user form-check-input" type="checkbox" value=""></td>
+                                <td class="d-flex justify-content-center pt-3"><input class="checkbox-user form-check-input" type="checkbox" value=""></td>
                                 <td class="first-name"></td>
                                 <td class="last-name"></td>
                                 <td class="email"></td>
