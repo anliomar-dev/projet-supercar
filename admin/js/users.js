@@ -1,6 +1,11 @@
 import { fetchUsers, sortData } from "./utils";
 import { showPassword, hidePassword, createUser, resetForm } from "/super-car/js/utils";
 
+// current page
+if (!localStorage.hasOwnProperty("usersCurrentPage")) {
+  localStorage.setItem("usersCurrentPage", 1);
+}
+
 document.addEventListener('DOMContentLoaded', async ()=>{
   const passwordInput = document.getElementById("password");
   const passwordConfirmInput = document.getElementById("confirmPassword");
@@ -16,7 +21,7 @@ document.addEventListener('DOMContentLoaded', async ()=>{
   ); //hide password
   
   
-  async function displayUsers(currentPage = 1, data, sortBy, order) {
+  async function displayUsers(data, sortBy, order) {
     usersContainer.innerHTML = '';
     const users = data.users;
     const sortedUsers = sortData(users, sortBy, order);
@@ -44,7 +49,7 @@ document.addEventListener('DOMContentLoaded', async ()=>{
     });
   }
   const users = await fetchUsers(1)
-  displayUsers(1, users, 'Prenom', 'asc')
+  displayUsers(users, 'Prenom', 'asc')
 
   // dynamic pagination
   const pagination = document.querySelector(".pagination");
@@ -66,6 +71,17 @@ document.addEventListener('DOMContentLoaded', async ()=>{
       // append button to the ul tag for pagination
       pagination.appendChild(prevBtn);
 
+      prevBtn.addEventListener('click', async(e)=>{
+        e.preventDefault();
+        const currentPage = parseInt(localStorage.getItem('usersCurrentPage'));
+        if(currentPage > 1){
+          const prevPage = currentPage - 1;
+          localStorage.setItem('usersCurrentPage', prevPage);
+          const users = await fetchUsers(prevPage)
+          displayUsers(users, 'Prenom', 'asc')
+        }
+      })
+
       // create pagination buttons
       for (let i = 1; i <= totalPages; i++) {
         const pageItem = document.createElement("li");
@@ -73,6 +89,19 @@ document.addEventListener('DOMContentLoaded', async ()=>{
         pageItem.innerHTML = `<a class="page-link num-page" href="#" >${i}</a>`;
         pagination.appendChild(pageItem);
       }
+
+      // add event listener to pagination buttons
+      const numPages = document.querySelectorAll(".num-page");
+      numPages.forEach((numPage) => {
+        numPage.addEventListener("click", async (e) => {
+          e.preventDefault();
+          localStorage.setItem("usersCurrentPage", e.currentTarget.textContent);
+          const currentPage = parseInt(localStorage.getItem("usersCurrentPage"));
+          const users = await fetchUsers(currentPage)
+          displayUsers(users, 'Prenom', 'asc')
+        });
+      });
+
       // create next button
       const nextBtn = document.createElement("li");
       nextBtn.classList.add("page-item");
@@ -83,33 +112,18 @@ document.addEventListener('DOMContentLoaded', async ()=>{
       `;
       // append nextbutton to the ul for pagination
       pagination.appendChild(nextBtn);
-      /*const numPages = document.querySelectorAll(".num-page");
-      numPages.forEach((numPage) => {
-        numPage.addEventListener("click", async (e) => {
-          e.preventDefault();
-          localStorage.setItem("currentPage", e.currentTarget.textContent);
-          const currentPage = parseInt(localStorage.getItem("currentPage"));
-          const dataNewPage = await filterModels(currentPage);
-          displayModelsByBrand(dataNewPage);
 
-          // store car infos to localstorage when the essayer button is clicked and redirect to essai.php 
-          const essaiBtns = document.querySelectorAll('.essaiBtn');
-          essaiBtns.forEach((essaiBtn) => {
-            essaiBtn.addEventListener('click', (e) => {
-              e.preventDefault();
-              const essaiButton = e.currentTarget
-              const brandName = essaiButton.dataset.nomMarque;
-              const modelName = essaiButton.dataset.nomModele;
-              const idModel = essaiButton.dataset.idModele;
-              const idBrand = essaiButton.dataset.idMarque;
-              localStorage.setItem('NomModele', modelName)
-              localStorage.setItem('IdModele', idModel)
-              localStorage.setItem('IdMarque', idBrand)
-              window.location.href = 'http://localhost/super-car/supercar/essai'
-            })
-          })
-        });
-      });*/
+      nextBtn.addEventListener('click', async(e)=>{
+        e.preventDefault();
+        const currentPage = parseInt(localStorage.getItem('usersCurrentPage'));
+        if(currentPage < totalPages){
+          const NextPage = currentPage + 1;
+          localStorage.setItem('usersCurrentPage', NextPage);
+          const users = await fetchUsers(NextPage)
+          displayUsers(users, 'Prenom', 'asc')
+        }
+      })
+      
     }
   }
 
