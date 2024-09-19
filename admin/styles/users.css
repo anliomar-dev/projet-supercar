@@ -9,3 +9,19 @@ thead span:hover{
   cursor: pointer;
   color: #28a745;
 }
+
+.hover{
+  background-color: #28a745;
+  cursor: pointer;
+}
+
+.icon-backward{
+  height: 30px;
+  width: 30px;
+}
+.btn-retour{
+  background-color: aliceblue;
+}
+.btn-retour:hover{
+  background-color: rgb(205, 216, 225);
+}

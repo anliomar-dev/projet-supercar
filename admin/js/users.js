@@ -9,6 +9,8 @@ document.addEventListener('DOMContentLoaded', async ()=>{
   const passwordConfirmInput = document.getElementById("confirmPassword");
   const usersContainer = document.querySelector('.users-container');
   const template = document.getElementById("template-user");
+  const allSections = document.querySelectorAll('section');
+  const showSectionClickables = document.querySelectorAll('.show-section')
   const sortButtons = document.querySelectorAll('.sortBtn');
   const theadColumns = document.querySelectorAll('.th-col')
   const checkAllUsers = document.querySelector('.check-all');
@@ -82,18 +84,33 @@ document.addEventListener('DOMContentLoaded', async ()=>{
       
       const first_name = clone.querySelector('.first-name'); // Correctly target from the clone
       first_name.textContent = user.first_name;
+  
       
       const last_name = clone.querySelector('.last-name'); // Correctly target from the clone
       last_name.textContent = user.last_name;
       
       const email = clone.querySelector('.email'); // Correctly target from the clone
       email.textContent = user.email;
+
       
       const editButton = clone.querySelector('.edit-button'); // Correctly target from the clone
       const deleteButton = clone.querySelector('.delete-button'); // Correctly target from the clone
       [editButton, deleteButton].forEach(btn => btn.dataset.id = user.id);
-      
+  
       usersContainer.appendChild(clone);
+
+      [first_name, last_name, email, editButton].forEach((btn)=>{
+        btn.addEventListener('click', (e) => {
+          const sectionToShowClass = e.currentTarget.dataset.section;
+          const sectionToShow = document.querySelector(`.${sectionToShowClass}`)
+          allSections.forEach((section)=>{
+            if(!section.classList.contains('d-none')){
+              section.classList.add('d-none');
+            }
+            sectionToShow.classList.remove('d-none');
+          })
+        })
+      })
     });
     checkUser = document.querySelectorAll('.checkbox-user');
   }
@@ -219,4 +236,16 @@ document.addEventListener('DOMContentLoaded', async ()=>{
   })
   // dispal paginations buttons
   paginationUsers(pagination);
+  showSectionClickables.forEach((clickable)=>{
+    clickable.addEventListener('click', (e)=>{
+      const sectionToShowClass = e.currentTarget.dataset.section;
+      const sectionToShow = document.querySelector(`.${sectionToShowClass}`)
+      allSections.forEach((section)=>{
+        if(!section.classList.contains('d-none')){
+          section.classList.add('d-none');
+        }
+        sectionToShow.classList.remove('d-none');
+      })
+    })
+  })
 })
