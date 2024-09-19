@@ -10,6 +10,10 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!--cdn css plugin indicateurs telephonique-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@19.2.14/build/css/intlTelInput.css">
+    <!--script plugin indicateurs telephonique-->
+    <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@19.2.14/build/js/intlTelInput.min.js"></script>
     <link href="/super-car/admin/styles/dashboard.css" rel="stylesheet">
     <link href="/super-car/admin/styles/users.css" rel="stylesheet">
     <script src="js/users.js" type="module" defer></script>
@@ -60,7 +64,7 @@
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <h4 class="mb-0">Utilisateurs</h4>
                     <div>
-                        <button class="btn btn-success ms-2 show-section" data-section="new-user-section">+ Ajouter</button>
+                        <button class="btn btn-success ms-2 show-section add-user-btn" data-section="new-user-section">+ Ajouter</button>
                         <button class="btn btn-secondary ms-2">Supprimer</button>
                     </div>
                 </div>
@@ -181,34 +185,34 @@
                                 <form class="mt-4 update-user-form">
                                     <div class="mb-3">
                                         <label for="prenom" class="form-label">Prénom</label>
-                                        <input type="text" class="form-control" id="prenom" value="omar">
+                                        <input type="text" class="form-control" id="prenom" value="">
                                     </div>
                                     <div class="mb-3">
                                         <label for="nom" class="form-label">Nom</label>
-                                        <input type="text" class="form-control" id="nom" value="anli">
+                                        <input type="text" class="form-control" id="nom" value="">
                                     </div>
                                     <div class="mb-3">
                                         <label for="adresse" class="form-label">Adresse</label>
-                                        <input type="text" class="form-control" id="adresse" value="E63, RUE EPICES EBENE">
+                                        <input type="text" class="form-control" id="adresse" value="">
                                     </div>
                                     <div class="mb-3">
                                         <label for="telephone" class="form-label">Téléphone</label>
-                                        <input type="text" class="form-control" id="telephone" value="+230 5429 7857">
+                                        <input type="text" class="form-control phone" id="telephone" value="">
                                     </div>
                                 </form>
                             </div>
                             <div class="tab-pane fade" id="groupe" role="tabpanel" aria-labelledby="groupe-tab">
                                 <div class="mb-3">
                                     <label for="email" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="email" value="omaranli56@gmail.com">
+                                    <input type="email" class="form-control" id="email" value="">
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4 mt-1 d-flex flex-column align-items-start">
-                        <button class="btn btn-enregistrer w-100 mb-2">Enregistrer</button>
-                        <button class="btn btn-supprimer w-100 mb-2">Supprimer</button>
-                        <button class="btn btn-historique w-100 mb-2">Historique</button>
+                        <button type="submit" class="btn btn-enregistrer w-100 mb-2">Enregistrer</button>
+                        <button type="button" class="btn btn-supprimer w-100 mb-2">Supprimer</button>
+                        <button type="button" class="btn btn-historique w-100 mb-2">Historique</button>
                         <button type="button" class="btn btn-retour w-100 show-section" data-section="all-users-section">
                             <i class="fa-solid fa-left-long"></i>
                             Retour
@@ -247,7 +251,7 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="telephone-inscription" class="form-label">Téléphone</label>
-                                        <input type="text" class="form-control" id="telephone-inscription" placeholder="Entrez votre téléphone">
+                                        <input type="text" class="form-control phone" id="telephone-inscription" placeholder="Entrez votre téléphone">
                                     </div>
                                 </div>
                             </div>
@@ -275,8 +279,8 @@
                         </div>
                     </div>
                     <div class="col-md-4 mt-1 d-flex flex-column align-items-start">
-                        <button class="btn btn-enregistrer w-100 mb-2">Enregistrer</button>
-                        <button class="btn btn-supprimer w-100 mb-2">Annuler</button>
+                        <button type="submit" class="btn btn-enregistrer w-100 mb-2">Enregistrer</button>
+                        <button type="reset" class="btn btn-supprimer w-100 mb-2">Annuler</button>
                         <button type="button" class="btn btn-retour w-100 mb-2 show-section" 
                             data-section="all-users-section">
                             <i class="fa-solid fa-left-long"></i>
