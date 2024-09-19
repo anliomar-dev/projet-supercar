@@ -16,38 +16,38 @@ document.addEventListener('DOMContentLoaded', async ()=>{
   
   theadColumns.forEach((col) => {
     col.addEventListener('click', (e) => {
-      // Masquer tous les boutons de tri
-      sortButtons.forEach((btn) => {
-        btn.classList.add('d-none');
-      });
-  
-      // Récupérer le premier bouton de tri (desc) après le <span>
-      let btnSort = col.nextElementSibling;
-  
-      // Montrer le bouton tri courant (desc ou asc)
-      btnSort.classList.remove('d-none');
-  
-      // Fonction pour basculer les boutons de tri
-      const toggleSortButtons = (currentBtn) => {
-        // Récupérer l'autre bouton de tri (asc ou desc)
-        const otherSortBtn = currentBtn.nextElementSibling || currentBtn.previousElementSibling;
-  
-        // Basculer les classes d'affichage
-        currentBtn.classList.add('d-none');
-        otherSortBtn.classList.remove('d-none');
-  
-        // Attacher l'événement de nouveau au bouton qui vient d'apparaître
-        otherSortBtn.addEventListener('click', (e) => {
-          e.preventDefault();
-          toggleSortButtons(otherSortBtn);
-        }, { once: true }); // Utiliser `{ once: true }` pour que l'événement ne soit exécuté qu'une fois
-      };
-  
-      // Attacher l'événement au bouton de tri initial
-      btnSort.addEventListener('click', (e) => {
+      // Récupérer les boutons de tri de la colonne cliquée
+      const buttons = col.parentElement.querySelectorAll('.sortBtn');
+      
+      // Vérifier si un bouton est déjà visible
+      const visibleButton = Array.from(buttons).find(btn => !btn.classList.contains('d-none'));
+
+      if (visibleButton) {
+        // if there is any visible button: then hide it
+        visibleButton.classList.add('d-none');
+      } else {
+        // hide all sort button to ensure only one button is display
+        sortButtons.forEach((btn) => {
+          btn.classList.add('d-none');
+        });
+
+        // display first sort button for the first click of the column
+        buttons[0].classList.remove('d-none');
+      }
+    });
+
+    // handdle display and hide sort buttons
+    col.parentElement.querySelectorAll('.sortBtn').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
         e.preventDefault();
-        toggleSortButtons(btnSort);
-      }, { once: true }); // Utiliser `{ once: true }` pour éviter d'attacher l'événement plusieurs fois
+
+        // hide clicked button
+        btn.classList.add('d-none');
+
+        // display other sort button
+        const otherBtn = btn.nextElementSibling || btn.previousElementSibling;
+        otherBtn.classList.remove('d-none');
+      });
     });
   });
   
