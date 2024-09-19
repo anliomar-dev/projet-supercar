@@ -209,7 +209,7 @@
                         <button class="btn btn-enregistrer w-100 mb-2">Enregistrer</button>
                         <button class="btn btn-supprimer w-100 mb-2">Supprimer</button>
                         <button class="btn btn-historique w-100 mb-2">Historique</button>
-                        <button class="btn btn-retour w-100">
+                        <button type="button" class="btn btn-retour w-100 show-section" data-section="all-users-section">
                             <i class="fa-solid fa-left-long"></i>
                             Retour
                         </button>
@@ -277,7 +277,8 @@
                     <div class="col-md-4 mt-1 d-flex flex-column align-items-start">
                         <button class="btn btn-enregistrer w-100 mb-2">Enregistrer</button>
                         <button class="btn btn-supprimer w-100 mb-2">Annuler</button>
-                        <button class="btn btn-retour w-100 mb-2">
+                        <button type="button" class="btn btn-retour w-100 mb-2 show-section" 
+                            data-section="all-users-section">
                             <i class="fa-solid fa-left-long"></i>
                             Retour
                         </button>
