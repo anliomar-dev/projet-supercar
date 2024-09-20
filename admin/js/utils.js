@@ -32,3 +32,15 @@ export function sortData(data, sortBy, order) {
   });
 }
 
+export async function getUser(userId){
+  try{
+    const response = await fetch(`http://localhost/Super-car/admin/api/utilisateurs?user=${userId}`)
+    if(!response.ok){
+      throw new Error(response.statusText)
+    }
+    const user = await response.json()
+    return user
+  }catch(e){
+    console.log(e)
+  }
+}

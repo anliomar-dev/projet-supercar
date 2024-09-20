@@ -166,7 +166,7 @@
             
             <!--update user infos section -->
             <section class="container mt-3 update-user-section d-none">
-                <div class="row">
+                <form class="row">
                     <div class="col-md-8 border rounded-3 shadow py-4 px-4">
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item" role="presentation">
@@ -178,43 +178,43 @@
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane fade show active" id="compte" role="tabpanel" aria-labelledby="compte-tab">
-                                <form class="mt-4 update-user-form">
+                                <div class="mt-4 update-user-form">
                                     <div class="mb-3">
-                                        <label for="prenom" class="form-label">Prénom</label>
-                                        <input type="text" class="form-control" id="prenom" value="omar">
+                                        <label for="fitst_name" class="form-label">Prénom</label>
+                                        <input type="text" name="first_name" class="form-control" id="first_name" value="" required>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="nom" class="form-label">Nom</label>
-                                        <input type="text" class="form-control" id="nom" value="anli">
+                                        <label for="last_name" class="form-label">Nom</label>
+                                        <input type="text" name="last_name" class="form-control" id="last_name" value="" required>
                                     </div>
                                     <div class="mb-3">
                                         <label for="adresse" class="form-label">Adresse</label>
-                                        <input type="text" class="form-control" id="adresse" value="E63, RUE EPICES EBENE">
+                                        <input type="text" name="adresse" class="form-control" id="adresse" value="" required>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="telephone" class="form-label">Téléphone</label>
-                                        <input type="text" class="form-control" id="telephone" value="+230 5429 7857">
+                                        <label for="phone" class="form-label">Téléphone</label>
+                                        <input type="text" name="phone" class="form-control" id="phone" value="" required>
                                     </div>
-                                </form>
+                                </div>
                             </div>
                             <div class="tab-pane fade" id="groupe" role="tabpanel" aria-labelledby="groupe-tab">
                                 <div class="mb-3">
                                     <label for="email" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="email" value="omaranli56@gmail.com">
+                                    <input type="email" name="email" class="form-control" id="email" value="" required>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4 mt-1 d-flex flex-column align-items-start">
-                        <button class="btn btn-enregistrer w-100 mb-2">Enregistrer</button>
-                        <button class="btn btn-supprimer w-100 mb-2">Supprimer</button>
-                        <button class="btn btn-historique w-100 mb-2">Historique</button>
+                        <button type="submit" class="btn btn-enregistrer w-100 mb-2 save-change">Enregistrer</button>
+                        <button type="button" class="btn btn-supprimer w-100 mb-2">Supprimer</button>
+                        <button type="button" class="btn btn-historique w-100 mb-2">Historique</button>
                         <button type="button" class="btn btn-retour w-100 show-section" data-section="all-users-section">
                             <i class="fa-solid fa-left-long"></i>
                             Retour
                         </button>
                     </div>
-                </div>
+                </form>
             </section>
 
             <!--section create new user-->

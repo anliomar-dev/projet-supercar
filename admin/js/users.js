@@ -1,4 +1,4 @@
-import { fetchUsers, sortData } from "./utils";
+import { fetchUsers, sortData, getUser } from "./utils";
 import { showPassword, hidePassword, createUser, resetForm } from "/super-car/js/utils";
 
 // current page
@@ -84,14 +84,15 @@ document.addEventListener('DOMContentLoaded', async ()=>{
       
       const first_name = clone.querySelector('.first-name'); // Correctly target from the clone
       first_name.textContent = user.first_name;
-  
+      first_name.dataset.id = user.id;
       
       const last_name = clone.querySelector('.last-name'); // Correctly target from the clone
       last_name.textContent = user.last_name;
+      last_name.dataset.id = user.id;
       
       const email = clone.querySelector('.email'); // Correctly target from the clone
       email.textContent = user.email;
-
+      email.dataset.id = user.id;
       
       const editButton = clone.querySelector('.edit-button'); // Correctly target from the clone
       const deleteButton = clone.querySelector('.delete-button'); // Correctly target from the clone
@@ -100,7 +101,7 @@ document.addEventListener('DOMContentLoaded', async ()=>{
       usersContainer.appendChild(clone);
 
       [first_name, last_name, email, editButton].forEach((btn)=>{
-        btn.addEventListener('click', (e) => {
+        btn.addEventListener('click', async(e) => {
           const sectionToShowClass = e.currentTarget.dataset.section;
           const sectionToShow = document.querySelector(`.${sectionToShowClass}`)
           allSections.forEach((section)=>{
@@ -109,6 +110,9 @@ document.addEventListener('DOMContentLoaded', async ()=>{
             }
             sectionToShow.classList.remove('d-none');
           })
+          const userId = e.currentTarget.dataset.id;
+          const user = await getUser(userId);
+          displayUserInfos(user)
         })
       })
     });
@@ -123,6 +127,20 @@ document.addEventListener('DOMContentLoaded', async ()=>{
       checkbox.checked = isChecked;
     });
   });
+
+
+  async function displayUserInfos(user){
+    const firstName = document.getElementById('first_name');
+    const lastName = document.getElementById('last_name');
+    const email = document.getElementById('email');
+    const address = document.getElementById('adresse');
+    const phone = document.getElementById('phone');
+    firstName.value = user.first_name;
+    lastName.value = user.last_name;
+    email.value = user.email;
+    address.value = user.address;
+    phone.value = user.phone;
+  }
 
   // dynamic pagination
   const pagination = document.querySelector(".pagination");
