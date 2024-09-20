@@ -101,8 +101,8 @@
       if($row = mysqli_fetch_assoc($result)){
         $user = [
           "user_id" => $row['IdUtilisateur'],
-          "first_name" => $row['Nom'],
-          "prenom" => $row['Prenom'],
+          "first_name" => $row['Prenom'],
+          "last_name" => $row['Nom'],
           "email" => $row['Email'],
           "address" => $row['Adresse'],
           "phone" => $row['NumTel'],
