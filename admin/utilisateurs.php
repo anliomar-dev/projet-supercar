@@ -193,7 +193,7 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="phone" class="form-label">Téléphone</label>
-                                        <input type="text" name="phone" class="form-control" id="phone" value="" required>
+                                        <input type="" name="phone" class="form-control" id="phone" value="" required>
                                     </div>
                                 </div>
                             </div>
@@ -235,19 +235,19 @@
                                 <div class="mt-4">
                                     <div class="mb-3">
                                         <label for="prenom-inscription" class="form-label">Prénom</label>
-                                        <input type="text" class="form-control" id="prenom-inscription" placeholder="Entrez votre prénom">
+                                        <input type="text" class="form-control" id="prenom-inscription" placeholder="Entrez votre prénom" required>
                                     </div>
                                     <div class="mb-3">
                                         <label for="nom-inscription" class="form-label">Nom</label>
-                                        <input type="text" class="form-control" id="nom-inscription" placeholder="Entrez votre nom">
+                                        <input type="text" class="form-control" id="nom-inscription" placeholder="Entrez votre nom" required>
                                     </div>
                                     <div class="mb-3">
                                         <label for="adresse-inscription" class="form-label">Adresse</label>
-                                        <input type="text" class="form-control" id="adresse-inscription" placeholder="Entrez votre adresse">
+                                        <input type="text" class="form-control" id="adresse-inscription" placeholder="Entrez votre adresse" required>
                                     </div>
                                     <div class="mb-3">
                                         <label for="telephone-inscription" class="form-label">Téléphone</label>
-                                        <input type="text" class="form-control" id="telephone-inscription" placeholder="Entrez votre téléphone">
+                                        <input type="text" class="form-control" id="telephone-inscription" placeholder="Entrez votre téléphone" required>
                                     </div>
                                 </div>
                             </div>
@@ -255,28 +255,42 @@
                             <div class="tab-pane fade border rounded-3 p-4" id="details" role="tabpanel" aria-labelledby="details-tab">
                                 <div class="mb-3">
                                     <label for="email-inscription" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="email-inscription" placeholder="Entrez votre email" autocomplete="email">
+                                    <input type="email" class="form-control" id="email-inscription" placeholder="Entrez votre email" autocomplete="email" required>
                                 </div>
                                 <div class="row mt-3">
                                     <div class="form-group col-md-6 position-relative password-container">
                                         <label for="password">Mot de passe</label>
                                         <span class="eye-icon">👁️</span>
                                         <span style="display: none;" class="hide-password">🙈</span>
-                                        <input type="password" class="form-control passwordField" name="password" id="password" placeholder="Mot de passe" autocomplete="current-password">
+                                        <input type="password" class="form-control passwordField" name="password" id="password" placeholder="Mot de passe" autocomplete="current-password" required>
                                     </div>
                                     <div class="form-group col-md-6 position-relative password-container confirm-pass-container">
                                         <span class="eye-icon">👁️</span>
                                         <span style="display: none;" class="hide-password">🙈</span>
                                         <label for="confirmPassword">confirmation</label>
-                                        <input type="password" class="form-control passwordField" name="confirmPassword" id="confirmPassword" placeholder="confirmation" autocomplete="current-password">
+                                        <input type="password" class="form-control passwordField" name="confirmPassword" id="confirmPassword" placeholder="confirmation" autocomplete="current-password" required>
+                                    </div>
+                                </div>
+                                <h5 class="col-12 mt-4">Privilèges</h5>
+                                <hr>
+                                <div class="mt-0">
+                                    <div class="form-group d-flex">
+                                        <span>est admin</span>
+                                        <input type="checkbox" class="form-check-input ms-1" value="true">
+                                        <p class="ms-2">: determine si ce compte peut se connecter à l'interface admin</p>
+                                    </div>
+                                    <div class="form-group d-flex">
+                                        <span>est superadmin</span>
+                                        <input type="checkbox" class="form-check-input ms-1" value="true">
+                                        <p class="ms-2">: donner tous ls droit et privilèges à l'utilisateur</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4 mt-1 d-flex flex-column align-items-start">
-                        <button class="btn btn-enregistrer w-100 mb-2">Enregistrer</button>
-                        <button class="btn btn-supprimer w-100 mb-2">Annuler</button>
+                        <button type="submit" class="btn btn-enregistrer w-100 mb-2">Enregistrer</button>
+                        <button type="button" class="btn btn-supprimer w-100 mb-2">Annuler</button>
                         <button type="button" class="btn btn-retour w-100 mb-2 show-section" 
                             data-section="all-users-section">
                             <i class="fa-solid fa-left-long"></i>

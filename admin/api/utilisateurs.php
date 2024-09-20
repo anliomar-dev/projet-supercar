@@ -121,7 +121,19 @@
         break;
       
       case 'DELETE':
-        $user_id = $data['user_id'];
+        $user_id = intval($data['user_id']);
+        $delete_user = delete_user($user_id);
+        if($delete_user){
+          $response = [
+            'status' => 'success',
+            'message' => 'Compte supprimé avec succès'
+          ];
+        }else{
+          $response = [
+            'status' => 'error',
+            'message' => 'erreur lors de la suppression du compte',
+          ];
+        }
         break;
       
       default:
