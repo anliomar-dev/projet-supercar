@@ -185,7 +185,71 @@
     if ($result) {
       $model = mysqli_fetch_assoc($result);
       return json_encode($model);
-      }
+    }else{
+      echo json_encode(
+        [
+          'status' => 'error',
+          'message' => 'modele non trouvé.'
+        ]
+      );
+    }
+  }
+
+
+  function get_all_contacts() {
+    global $DB;
+    
+    // Préparer la requête SQL
+    $query = "SELECT * FROM contacts";
+    $stmt = mysqli_prepare($DB, $query);
+    
+    if ($stmt === false) {
+        die('Erreur lors de la préparation de la requête : ' . mysqli_error($DB));
+    }
+    
+    // Exécuter la requête
+    mysqli_stmt_execute($stmt);
+    
+    // Obtenir le résultat
+    $result = mysqli_stmt_get_result($stmt);
+    
+    $contacts = []; // Tableau pour stocker tous les contacts
+    
+    // Récupérer tous les contacts
+    while ($row = mysqli_fetch_assoc($result)) {
+        $contacts[] = $row;
+    }
+    
+    // Vérifier si des contacts ont été trouvés
+    if (!empty($contacts)) {
+        return json_encode($contacts);
+    } else {
+        return json_encode([
+            'status' => 'error',
+            'message' => 'aucun contact trouvé'
+        ]);
+    }
+}
+
+
+  function get_contact_infos($contact_id){
+    global $DB;
+    $query = "SELECT * FROM contacts WHERE IdContact = ?";
+    $stmt = mysqli_prepare($DB, $query);
+    mysqli_stmt_bind_param($stmt, "i", $contact_id);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    if ($row = mysqli_fetch_assoc($result)) {
+      $contact = mysqli_fetch_assoc($result);
+      return json_encode($contact);
+    }else{
+      echo json_encode(
+        [
+          'status' => 'error',
+          'message' => 'contact non trouvé'
+        ]
+      );
+    }
   }
 
 ?>
