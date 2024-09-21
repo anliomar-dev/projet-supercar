@@ -282,7 +282,7 @@
                                     <div class="form-group d-flex">
                                         <span>est superadmin</span>
                                         <input type="checkbox" class="form-check-input ms-1" value="true">
-                                        <p class="ms-2">: donner tous ls droit et privilèges à l'utilisateur</p>
+                                        <p class="ms-2">: donner tous les droit et privilèges à l'utilisateur</p>
                                     </div>
                                 </div>
                             </div>
