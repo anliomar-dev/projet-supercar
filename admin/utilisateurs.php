@@ -170,7 +170,7 @@
             
             <!--update user infos section -->
             <section class="container mt-3 update-user-section d-none">
-                <div class="row">
+                <form class="row">
                     <div class="col-md-8 border rounded-3 shadow py-4 px-4">
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item" role="presentation">
@@ -182,8 +182,9 @@
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane fade show active" id="compte" role="tabpanel" aria-labelledby="compte-tab">
-                                <form class="mt-4 update-user-form">
+                                <div class="mt-4 update-user-form">
                                     <div class="mb-3">
+<<<<<<< HEAD
                                         <label for="prenom" class="form-label">Prénom</label>
                                         <input type="text" class="form-control" id="prenom" value="">
                                     </div>
@@ -198,19 +199,43 @@
                                     <div class="mb-3">
                                         <label for="telephone" class="form-label">Téléphone</label>
                                         <input type="text" class="form-control phone" id="telephone" value="">
+=======
+                                        <label for="fitst_name" class="form-label">Prénom</label>
+                                        <input type="text" name="first_name" class="form-control" id="first_name" value="" required>
                                     </div>
-                                </form>
+                                    <div class="mb-3">
+                                        <label for="last_name" class="form-label">Nom</label>
+                                        <input type="text" name="last_name" class="form-control" id="last_name" value="" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="adresse" class="form-label">Adresse</label>
+                                        <input type="text" name="adresse" class="form-control" id="adresse" value="" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="phone" class="form-label">Téléphone</label>
+                                        <input type="" name="phone" class="form-control" id="phone" value="" required>
+>>>>>>> f3513e037157d363484adc563ae46dc6b58c1e87
+                                    </div>
+                                </div>
                             </div>
                             <div class="tab-pane fade" id="groupe" role="tabpanel" aria-labelledby="groupe-tab">
                                 <div class="mb-3">
                                     <label for="email" class="form-label">Email</label>
+<<<<<<< HEAD
                                     <input type="email" class="form-control" id="email" value="">
+=======
+                                    <input type="email" name="email" class="form-control" id="email" value="" required>
+>>>>>>> f3513e037157d363484adc563ae46dc6b58c1e87
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4 mt-1 d-flex flex-column align-items-start">
+<<<<<<< HEAD
                         <button type="submit" class="btn btn-enregistrer w-100 mb-2">Enregistrer</button>
+=======
+                        <button type="submit" class="btn btn-enregistrer w-100 mb-2 save-change">Enregistrer</button>
+>>>>>>> f3513e037157d363484adc563ae46dc6b58c1e87
                         <button type="button" class="btn btn-supprimer w-100 mb-2">Supprimer</button>
                         <button type="button" class="btn btn-historique w-100 mb-2">Historique</button>
                         <button type="button" class="btn btn-retour w-100 show-section" data-section="all-users-section">
@@ -218,7 +243,7 @@
                             Retour
                         </button>
                     </div>
-                </div>
+                </form>
             </section>
 
             <!--section create new user-->
@@ -239,19 +264,23 @@
                                 <div class="mt-4">
                                     <div class="mb-3">
                                         <label for="prenom-inscription" class="form-label">Prénom</label>
-                                        <input type="text" class="form-control" id="prenom-inscription" placeholder="Entrez votre prénom">
+                                        <input type="text" class="form-control" id="prenom-inscription" placeholder="Entrez votre prénom" required>
                                     </div>
                                     <div class="mb-3">
                                         <label for="nom-inscription" class="form-label">Nom</label>
-                                        <input type="text" class="form-control" id="nom-inscription" placeholder="Entrez votre nom">
+                                        <input type="text" class="form-control" id="nom-inscription" placeholder="Entrez votre nom" required>
                                     </div>
                                     <div class="mb-3">
                                         <label for="adresse-inscription" class="form-label">Adresse</label>
-                                        <input type="text" class="form-control" id="adresse-inscription" placeholder="Entrez votre adresse">
+                                        <input type="text" class="form-control" id="adresse-inscription" placeholder="Entrez votre adresse" required>
                                     </div>
                                     <div class="mb-3">
                                         <label for="telephone-inscription" class="form-label">Téléphone</label>
+<<<<<<< HEAD
                                         <input type="text" class="form-control phone" id="telephone-inscription" placeholder="Entrez votre téléphone">
+=======
+                                        <input type="text" class="form-control" id="telephone-inscription" placeholder="Entrez votre téléphone" required>
+>>>>>>> f3513e037157d363484adc563ae46dc6b58c1e87
                                     </div>
                                 </div>
                             </div>
@@ -259,20 +288,34 @@
                             <div class="tab-pane fade border rounded-3 p-4" id="details" role="tabpanel" aria-labelledby="details-tab">
                                 <div class="mb-3">
                                     <label for="email-inscription" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="email-inscription" placeholder="Entrez votre email" autocomplete="email">
+                                    <input type="email" class="form-control" id="email-inscription" placeholder="Entrez votre email" autocomplete="email" required>
                                 </div>
                                 <div class="row mt-3">
                                     <div class="form-group col-md-6 position-relative password-container">
                                         <label for="password">Mot de passe</label>
                                         <span class="eye-icon">👁️</span>
                                         <span style="display: none;" class="hide-password">🙈</span>
-                                        <input type="password" class="form-control passwordField" name="password" id="password" placeholder="Mot de passe" autocomplete="current-password">
+                                        <input type="password" class="form-control passwordField" name="password" id="password" placeholder="Mot de passe" autocomplete="current-password" required>
                                     </div>
                                     <div class="form-group col-md-6 position-relative password-container confirm-pass-container">
                                         <span class="eye-icon">👁️</span>
                                         <span style="display: none;" class="hide-password">🙈</span>
                                         <label for="confirmPassword">confirmation</label>
-                                        <input type="password" class="form-control passwordField" name="confirmPassword" id="confirmPassword" placeholder="confirmation" autocomplete="current-password">
+                                        <input type="password" class="form-control passwordField" name="confirmPassword" id="confirmPassword" placeholder="confirmation" autocomplete="current-password" required>
+                                    </div>
+                                </div>
+                                <h5 class="col-12 mt-4">Privilèges</h5>
+                                <hr>
+                                <div class="mt-0">
+                                    <div class="form-group d-flex">
+                                        <span>est admin</span>
+                                        <input type="checkbox" class="form-check-input ms-1" value="true">
+                                        <p class="ms-2">: determine si ce compte peut se connecter à l'interface admin</p>
+                                    </div>
+                                    <div class="form-group d-flex">
+                                        <span>est superadmin</span>
+                                        <input type="checkbox" class="form-check-input ms-1" value="true">
+                                        <p class="ms-2">: donner tous les droit et privilèges à l'utilisateur</p>
                                     </div>
                                 </div>
                             </div>
@@ -280,7 +323,11 @@
                     </div>
                     <div class="col-md-4 mt-1 d-flex flex-column align-items-start">
                         <button type="submit" class="btn btn-enregistrer w-100 mb-2">Enregistrer</button>
+<<<<<<< HEAD
                         <button type="reset" class="btn btn-supprimer w-100 mb-2">Annuler</button>
+=======
+                        <button type="button" class="btn btn-supprimer w-100 mb-2">Annuler</button>
+>>>>>>> f3513e037157d363484adc563ae46dc6b58c1e87
                         <button type="button" class="btn btn-retour w-100 mb-2 show-section" 
                             data-section="all-users-section">
                             <i class="fa-solid fa-left-long"></i>
