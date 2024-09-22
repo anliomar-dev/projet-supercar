@@ -3,7 +3,13 @@
   include_once('../../php/connexionDB.php');
   include_once('../php/utils.php');
 
-  function get_all_users(int $page) {
+    /**
+   * Returns all users in JSON format.
+   *
+   * @param int $page The page number for pagination.
+   * @return json The JSON containing the list of users.
+   */
+  function get_all_users(int $page): string {
     global $DB;
     
     // Modify the query to fetch user details
@@ -55,13 +61,14 @@
   }
 
 
-    /**
-   * Check if a user exists in the database.
-   * 
-   * @param int $user_id The ID of the user to check.
-   * @return string JSON encoded data containing user information
-   */
-  function get_user($user_id){
+  /**
+ * Returns the details of the user whose ID is passed as a parameter.
+ *
+ * @param int $user_id The ID of the user to retrieve.
+ * @return string JSON encoded data containing user information.
+ */
+  function get_user_details(int  $user_id): string {
+
     global $DB;
     if(is_numeric($user_id)){
       $user_id = intval($user_id);
@@ -108,8 +115,13 @@
     }
   }
 
-
-  function get_all_models(int $brand_id){
+  /**
+   * Returns all modeles in JSON format.
+   *
+   * @param int $brand_id The id brand we want to get all modeles.
+   * @return json The JSON containing the list of modeles.
+   */
+  function get_all_models_by_brand(int $brand_id): string{
     global $DB;
     // Get total number of models for pagination
     $sql = "SELECT COUNT(*) AS total FROM modele WHERE IdMarque = ?";
@@ -175,7 +187,13 @@
     }
   }
 
-  function get_modele_infos($model_id){
+  /**
+ * Returns the details of the modele which ID is passed as a parameter.
+ *
+ * @param int $modele_id The ID of the modele to retrieve.
+ * @return string JSON encoded data containing modele information.
+ */
+  function get_modele_details(int $model_id): string{
     global $DB;
     $query = "SELECT * FROM modele WHERE IdModele = ?";
     $stmt = mysqli_prepare($DB, $query);
@@ -196,7 +214,12 @@
   }
 
 
-  function get_all_contacts() {
+  /**
+   * Returns all contacts in JSON format.
+   *
+   * @return json The JSON containing the list of contacts.
+   */
+  function get_all_contacts(): string {
     global $DB;
     
     // Préparer la requête SQL
@@ -231,8 +254,13 @@
     }
 }
 
-
-  function get_contact_infos($contact_id){
+  /**
+ * Returns the details of the conhtact whose ID is passed as a parameter.
+ *
+ * @param int $contact_id The ID of the contact to retrieve.
+ * @return string JSON encoded data containing contact information.
+ */
+  function get_contact_details(int $contact_id): string{
     global $DB;
     $query = "SELECT * FROM contacts WHERE IdContact = ?";
     $stmt = mysqli_prepare($DB, $query);
@@ -250,6 +278,74 @@
         ]
       );
     }
+  }
+
+  /**
+   * Returns all events(evennement: table evennements) in JSON format.
+   *
+   * @return json The JSON containing the list of events.
+   */
+  function get_all_events(): string{
+    global $DB;
+  }
+
+
+  function get_event_details(int $event_id): string{
+    global $DB;
+  }
+
+  function get_all_images_by_modele(int $modele_id): string{
+    global $DB;
+  }
+
+  function get_image_details(int $image_id): string{
+    global $DB;
+  }
+
+
+  function get_all_groupes(): string{
+    global $DB;
+  }
+
+  function get_groupe_details(int $groupe_id): string{
+    global $DB;
+  }
+
+  function get_all_permissions(): string{
+    global $DB;
+  }
+
+  function get_permission_details(int $perm_id): string{
+    global $DB;
+  }
+
+  function get_all_essais(): string{
+    global $DB;
+  }
+
+  function get_essai_details(int $essai_id): string{
+    global $DB;
+  }
+
+  function get_all_horaires(): string{
+    global $DB;
+  }
+
+  function get_horaire_details(int $horaire_id): string{
+    global $DB;
+  }
+
+  function get_all_visites(): string{
+    global $DB;
+  }
+
+  function get_visite_details(int $visite_id): string{
+    global $DB;
+  }
+
+
+  function get_all_newletter_members(): string{
+    global $DB;
   }
 
 ?>

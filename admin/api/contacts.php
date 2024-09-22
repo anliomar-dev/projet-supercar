@@ -13,7 +13,7 @@
     'status' => 'error',
     'message' => 'HTTP method not allowed'
   ];
-  // Check if the request method is POST
+  // Check if the request method is GET
   if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     if (isset($_GET['contact'])) {
       $contact = $_GET['contact'];
@@ -26,7 +26,7 @@
       // If 'contact' is a numeric ID, handle different HTTP methods
       } elseif (is_numeric($contact)) {
         $contact_id = intval($contact);
-          echo get_contact_infos($contact_id);  // Fetch contact info
+          echo get_contact_details($contact_id);  // Fetch contact info
       }else{
         $response = [
           'status' => 'error',

@@ -33,6 +33,7 @@
             <?php
                 include_once('components/navbar.php');
             ?>
+
         </div>
     </div>
 </div>

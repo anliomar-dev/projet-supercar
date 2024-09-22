@@ -23,7 +23,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
             mysqli_close($DB);
             exit;
         }
-        get_all_models($brand_id);
+        get_all_models_by_brand($brand_id);
 
         // Close database connection
         mysqli_close($DB);
@@ -38,7 +38,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
             echo json_encode($response);
             exit;
         }
-        echo get_modele_infos($model_id);
+        echo get_modele_details($model_id);
     }else {
         http_response_code(400); // Bad request
         echo json_encode(['error' => 'paramètre invalid(brand_id ou modele_id.']);
