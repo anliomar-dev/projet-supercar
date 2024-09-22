@@ -8,7 +8,8 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
     // Check if brand_id parameter is set
     if (isset($_GET['brand_id'])) {
         $brand_id = intval($_GET['brand_id']);
-
+        // Current page
+        $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
         // Validate brand_id
         if ($brand_id <= 0) {
             http_response_code(400); // Bad request
@@ -23,7 +24,14 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
             mysqli_close($DB);
             exit;
         }
-        get_all_models_by_brand($brand_id);
+        echo get_rows_with_clause(
+            "modele", 
+            "IdMarque", 
+            $brand_id, 
+            "int", 
+            $limit = 2, 
+            $page
+        );
 
         // Close database connection
         mysqli_close($DB);
@@ -38,7 +46,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
             echo json_encode($response);
             exit;
         }
-        echo get_modele_details($model_id);
+        echo get_row_details("modele", "IdModele", $model_id);
     }else {
         http_response_code(400); // Bad request
         echo json_encode(['error' => 'paramètre invalid(brand_id ou modele_id.']);
