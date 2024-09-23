@@ -97,3 +97,10 @@ export async function toggleAndSortDataBtns(theadColumns, sortButtons){
     });
   });
 }
+
+export function resetFormInputs(form){
+  form.querySelectorAll('input').forEach((input) => {
+    input.value = '';
+    });
+}
+

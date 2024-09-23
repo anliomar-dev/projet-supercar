@@ -38,11 +38,12 @@
                 <div class="d-flex flex-wrap justify-content-between align-items-center mb-3">
                     <h4 class="mb-0 title">Modèles</h4>
                     <div class="d-flex flex-wrap">
-                        <select id="Marque" name="marque" class="form-select" aria-label="Default select example" style="width: 250px;">
-                            <option selected>Toutes les modèles</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                        <select id="marqueOption" name="marque" class="form-select" aria-label="Default select example" style="width: 250px;">
+                            <option selected value="all">Toutes les modèles</option>
+                            <?php
+                                include_once('../php/all_marques.php');
+                                option_brands()
+                            ?>
                         </select>
                         <button class="btn btn-success ms-2 show-section" data-section="update-and-create-section">+ Ajouter</button>
                         <button class="btn btn-secondary ms-2">Supprimer</button>
@@ -97,7 +98,7 @@
                             <th class="">
                                 <span class="th-col" data-bs-toggle="tooltip" 
                                     data-bs-placement="top" 
-                                    data-bs-title="cliquez pour trier par la marque">
+                                    data-bs-title="cliquez pour trier par l'année">
                                     Année
                                 </span>
                                 <button class="btn d-none sortBtn" data-order="desc" data-sort-by="IdMarque">
@@ -149,7 +150,7 @@
             </section>
             <!--section update or create modele-->
             <section class="container my-3 update-and-create-section d-none">
-                <form class="row">
+                <form class="row update-and-add-form">
                     <div class="col-md-8 border rounded-3 shadow p-4">
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item" role="presentation">
@@ -171,15 +172,16 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="Marque" class="form-label">Marque</label>
-                                        <select id="Marque" name="marque" class="form-select" aria-label="Default select example">
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
+                                        <select id="Marque" name="IdMarque" class="form-select" aria-label="Default select example">
+                                            <?php
+                                                include_once('../php/all_marques.php');
+                                                option_brands()
+                                            ?>
                                         </select>
                                     </div>
                                     <div class="mb-3">
                                         <label for="Annee" class="form-label">Année</label>
-                                        <input type="year" name="Annee" class="form-control" id="Annee" value="">
+                                        <input type="number" name="Annee" class="form-control" id="Annee" value="" min="1900" max="2100" step="1">
                                     </div>
                                     <div class="mb-3">
                                         <label for="Prix" class="form-label">Prix</label>
@@ -190,19 +192,19 @@
                             <div class="tab-pane fade mt-4 border rounded-3 p-4" id="techniques" role="tabpanel" aria-labelledby="technique-tab">
                                 <div class="mb-3">
                                     <label for="TypeMoteur" class="form-label">Type Moteur</label>
-                                    <input type="text" class="form-control" id="TypeMoteur" value="">
+                                    <input type="text" name="TypeMoteur" class="form-control" id="TypeMoteur" value="">
                                 </div>
                                 <div class="mb-3">
                                     <label for="BoiteVitesse" class="form-label">Boite Vitesse</label>
-                                    <input type="text" class="form-control" id="BoiteVitesse" value="">
+                                    <input type="text" name="BoiteVitesse" class="form-control" id="BoiteVitesse" value="">
                                 </div>
                                 <div class="mb-3">
                                     <label for="Carburant" class="form-label">Carburant</label>
-                                    <input type="text" class="form-control" id="Carburant" value="">
+                                    <input type="text" name="Carburant" class="form-control" id="Carburant" value="">
                                 </div>
                                 <div class="mb-3">
                                     <label for="exampleFormControlTextarea1" class="form-label">Description</label>
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                    <textarea class="form-control" name="Description" id="exampleFormControlTextarea1" rows="3"></textarea>
                                 </div>
                             </div>
                             <div class="tab-pane fade mt-4 border rounded-3 p-4" id="images" role="tabpanel" aria-labelledby="images-tab">

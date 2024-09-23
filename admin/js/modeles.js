@@ -1,13 +1,14 @@
-import { fetchUsers, sortData, getUser, toggleAndSortDataBtns, fetchData } from "./utils";
-import { showPassword, hidePassword, createUser, resetForm } from "/super-car/js/utils";
+import { fetchUsers, sortData, getUser, toggleAndSortDataBtns, fetchData, resetFormInputs } from "./utils";
+import { showPassword, hidePassword, createUser } from "/super-car/js/utils";
 
 // current page
 localStorage.setItem("modelsCurrentPage", 1);
 function isNumeric(value) {
   return !isNaN(value) && !isNaN(parseFloat(value));
 }
-function endPoint(value, page = 1, byBrand = false) {
-  if (byBrand) {
+let byBrand = false;
+function endPoint(value, page = 1, ifByBrand = byBrand) {
+  if (ifByBrand) {
     return `http://localhost/Super-car/admin/api/modeles?brand_id=${value}&page=${page}`;
   } else {
     if (isNumeric(value)) {
@@ -20,16 +21,24 @@ function endPoint(value, page = 1, byBrand = false) {
   }
 }
 
-console.log("url " + endPoint("all"));
+let urlEndPoint = endPoint("all")
+
 document.addEventListener('DOMContentLoaded', async ()=>{
   const modeleContainer = document.querySelector('.models-container');
   const template = document.getElementById("template-modele");
   const allSections = document.querySelectorAll('section');
   const showSectionClickables = document.querySelectorAll('.show-section')
   const sortButtons = document.querySelectorAll('.sortBtn');
+  const btnRetour = document.querySelector('.btn-retour')
   const theadColumns = document.querySelectorAll('.th-col')
   const checkAllModels = document.querySelector('.check-all');
+  const updateAndAddForm = document.querySelector('.update-and-add-form');
+  const title = document.querySelector('.title')
   let checkModele = [];
+
+  btnRetour.addEventListener('click', ()=>{
+    resetFormInputs(updateAndAddForm)
+  })
   
   toggleAndSortDataBtns(theadColumns, sortButtons)
   
@@ -52,7 +61,7 @@ document.addEventListener('DOMContentLoaded', async ()=>{
       const clone = template.content.cloneNode(true);
       
       const checkBoxModele = clone.querySelector('.checkbox-modele');
-      checkBoxModele.value = row.IdModele;
+      checkBoxModele.value = data.IdModele;
 
       // Listener for each user checkbox
       checkBoxModele.addEventListener('change', (e) => {
@@ -73,7 +82,7 @@ document.addEventListener('DOMContentLoaded', async ()=>{
   
       const editButton = clone.querySelector('.edit-button'); // Correctly target from the clone
       const deleteButton = clone.querySelector('.delete-button'); // Correctly target from the clone
-      [year, NomModele, Prix, editButton, deleteButton].forEach(btn => btn.dataset.id = row);
+      [year, NomModele, Prix, editButton, deleteButton].forEach(btn => btn.dataset.id = row.IdModele);
   
       modeleContainer.appendChild(clone);
 
@@ -87,18 +96,44 @@ document.addEventListener('DOMContentLoaded', async ()=>{
             }
             sectionToShow.classList.remove('d-none');
           })
-          /*const userId = e.currentTarget.dataset.id;
-          const user = await getUser(userId);
-          displayUserInfos(user)*/
+          const modeleId = parseInt(e.currentTarget.dataset.id);
+          const modele = await fetchData(`http://localhost/Super-car/admin/api/modeles?modele=${modeleId}`);
+          const currentPrice = parseFloat(modele.Prix);
+          const priceInput = document.querySelector(`[name="Prix"]`)
+          priceInput.setAttribute('min', `${currentPrice}`)
+          const maxPrice = currentPrice * 1.25
+          priceInput.setAttribute('max', `${maxPrice}`)
+          Object.keys(modele).forEach(key => {
+            const input = document.querySelector(`[name="${key}"]`);
+            if (input) {
+                input.value = modele[key];  // Assigner la valeur correspondante au champ
+            }
+          });
         })
       })
     });
     checkModele = document.querySelectorAll('.checkbox-modele');
   }
-  const url = endPoint("all")
-  const models = await fetchData(url)
+  let models = await fetchData(urlEndPoint)
   displayData(models, 'NomModele', 'asc')
 
+  const marqueOption = document.getElementById('marqueOption');
+  marqueOption.addEventListener('change', async(e)=>{
+    const value = e.target.value;
+    const selectedOption = marqueOption.options[marqueOption.selectedIndex]; // Obtenir l'option sélectionnée
+    const selectedText = selectedOption.textContent;
+    if(value === "all"){
+      byBrand = false;
+      models = await fetchData(endPoint(value, 1, byBrand))
+      displayData(models, 'NomModele', 'asc')
+      title.textContent = "Modèles";
+    }else if(parseInt(value)){
+      byBrand = true;
+      models = await fetchData(endPoint(value, 1, byBrand));
+      displayData(models, 'NomModele', 'asc');
+      title.textContent = selectedText;
+    }
+  })
   checkAllModels.addEventListener('change', (e) => {
     const isChecked = e.currentTarget.checked;
     checkModele.forEach(checkbox => {
@@ -124,8 +159,7 @@ document.addEventListener('DOMContentLoaded', async ()=>{
   const pagination = document.querySelector(".pagination");
   async function paginationData(pagination) {
     
-    const data = await fetchData(endPoint("all"))
-    const models = data.data;
+    const data = await fetchData(urlEndPoint)
     const totalPages =data.total_pages;
 
     // if we have more than one page
@@ -147,7 +181,9 @@ document.addEventListener('DOMContentLoaded', async ()=>{
         if(currentPage > 1){
           const prevPage = currentPage - 1;
           localStorage.setItem('modelsCurrentPage', prevPage);
-          const models = await fetchData(endPoint("all", prevPage))
+          
+          models = byBrand ? await fetchData(endPoint(parseInt(marqueOption.value), prevPage)) : 
+          await fetchData(endPoint("all", prevPage))
           numPages.forEach((num)=>{
             num.style.backgroundColor = "transparent";
             num.style.color = "black";
@@ -183,7 +219,9 @@ document.addEventListener('DOMContentLoaded', async ()=>{
           numPage.style.backgroundColor = "#28a745";
           numPage.style.color = "#fff";
           const newEndpoint = endPoint("all", )
-          const models = await fetchData(endPoint("all", currentPage))
+          //models = await fetchData(endPoint("all", currentPage))
+          models = byBrand ? await fetchData(endPoint(parseInt(marqueOption.value), currentPage)) : 
+          await fetchData(endPoint("all", currentPage))
           displayData(models, 'NomModele', 'asc');
           checkAllModels.checked = false;
         });
@@ -206,7 +244,9 @@ document.addEventListener('DOMContentLoaded', async ()=>{
         if(currentPage < totalPages){
           const NextPage = currentPage + 1;
           localStorage.setItem('modelsCurrentPage', NextPage);
-          const models = await fetchData(endPoint('all', NextPage))
+          //models = await fetchData(endPoint("all", NextPage))
+          models = byBrand ? await fetchData(endPoint(parseInt(marqueOption.value), NextPage)) : 
+          await fetchData(endPoint("all", NextPage))
           numPages.forEach((num)=>{
             num.style.backgroundColor = "transparent";
             num.style.color = "black";
