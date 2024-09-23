@@ -3,7 +3,13 @@
   include_once('../../php/connexionDB.php');
   include_once('../php/utils.php');
 
-  function get_all_users(int $page) {
+    /**
+   * Returns all users in JSON format.
+   *
+   * @param int $page The page number for pagination.
+   * @return json The JSON containing the list of users.
+   */
+  function get_all_users(int $page){
     global $DB;
     
     // Modify the query to fetch user details
@@ -55,13 +61,14 @@
   }
 
 
-    /**
-   * Check if a user exists in the database.
-   * 
-   * @param int $user_id The ID of the user to check.
-   * @return string JSON encoded data containing user information
-   */
-  function get_user($user_id){
+  /**
+ * Returns the details of the user whose ID is passed as a parameter.
+ *
+ * @param int $user_id The ID of the user to retrieve.
+ * @return string JSON encoded data containing user information.
+ */
+  function get_user_details(int  $user_id){
+
     global $DB;
     if(is_numeric($user_id)){
       $user_id = intval($user_id);
@@ -108,8 +115,13 @@
     }
   }
 
-
-  function get_all_models(int $brand_id){
+  /**
+   * Returns all modeles in JSON format.
+   *
+   * @param int $brand_id The id brand we want to get all modeles.
+   * @return json The JSON containing the list of modeles.
+   */
+  function get_all_models_by_brand(int $brand_id, $pages){
     global $DB;
     // Get total number of models for pagination
     $sql = "SELECT COUNT(*) AS total FROM modele WHERE IdMarque = ?";
@@ -121,8 +133,6 @@
     $limit = 2;
     $total_pages = ceil($total / $limit);
 
-    // Current page
-    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
     $offset = ($page - 1) * $limit;
 
     // Query to retrieve models with pagination
@@ -175,81 +185,170 @@
     }
   }
 
-  function get_modele_infos($model_id){
-    global $DB;
-    $query = "SELECT * FROM modele WHERE IdModele = ?";
-    $stmt = mysqli_prepare($DB, $query);
-    mysqli_stmt_bind_param($stmt, "i", $model_id);
-    mysqli_stmt_execute($stmt);
-    $result = mysqli_stmt_get_result($stmt);
-    if ($result) {
-      $model = mysqli_fetch_assoc($result);
-      return json_encode($model);
-    }else{
-      echo json_encode(
-        [
-          'status' => 'error',
-          'message' => 'modele non trouvé.'
-        ]
-      );
-    }
-  }
 
-
-  function get_all_contacts() {
+    /**
+   * Returns paginated rows for a specific table in JSON format.
+   *
+   * @param string $table_name The name of the table.
+   * @param int $limit The number of rows per page.
+   * @param int $page The current page number.
+   * @return string JSON containing the paginated list of data or an error message.
+   */
+  function get_all_rows(string $table_name, int $limit, int $page): string {
     global $DB;
-    
-    // Préparer la requête SQL
-    $query = "SELECT * FROM contacts";
+
+    // Calculer l'offset pour la pagination
+    $offset = ($page - 1) * $limit;
+
+    // Préparer la requête SQL pour récupérer les lignes
+    $query = "SELECT * FROM $table_name LIMIT ? OFFSET ?";
     $stmt = mysqli_prepare($DB, $query);
     
     if ($stmt === false) {
         die('Erreur lors de la préparation de la requête : ' . mysqli_error($DB));
     }
-    
-    // Exécuter la requête
+
+    // Lier les paramètres limit et offset
+    mysqli_stmt_bind_param($stmt, "ii", $limit, $offset);
     mysqli_stmt_execute($stmt);
-    
-    // Obtenir le résultat
     $result = mysqli_stmt_get_result($stmt);
     
-    $contacts = []; // Tableau pour stocker tous les contacts
-    
-    // Récupérer tous les contacts
+    $data = [];
+
+    // Récupérer les lignes et les ajouter dans le tableau $data
     while ($row = mysqli_fetch_assoc($result)) {
-        $contacts[] = $row;
+        $data[] = $row;
     }
+
+    // Récupérer le nombre total de lignes pour calculer le nombre de pages
+    $total_query = "SELECT COUNT(*) as total FROM $table_name";
+    $total_result = mysqli_query($DB, $total_query);
+    $total_rows = mysqli_fetch_assoc($total_result)['total'];
+    $total_pages = ceil($total_rows / $limit);
+
+    // Retourner les données ou un message d'erreur si aucune ligne trouvée
+    return !empty($data) ? json_encode([
+        "page" => $page,
+        "total_pages" => $total_pages,
+        "data" => $data
+    ]) : json_encode([
+        "status" => "error",
+        "message" => "Aucune donnée trouvée dans $table_name pour cette page"
+    ]);
+  }
+
+
+    /**
+   * Returns the details of the conhtact whose ID is passed as a parameter.
+   *
+   * @param int $contact_id The ID of the contact to retrieve.
+   * @return string JSON encoded data containing contact information.
+   */
+  function get_row_details(string $table_name, string $row_id, int $id){
+    global $DB;
+
+    // Préparer la requête SQL
+    $query = "SELECT * FROM $table_name WHERE $row_id = ?";
+    $stmt = mysqli_prepare($DB, $query);
+
+    if ($stmt === false) {
+        die('Erreur lors de la préparation de la requête : ' . mysqli_error($DB));
+    }
+
+    mysqli_stmt_bind_param($stmt, "i", $id);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
     
-    // Vérifier si des contacts ont été trouvés
-    if (!empty($contacts)) {
-        return json_encode($contacts);
+    // Vérifier si une ligne est trouvée
+    if ($row = mysqli_fetch_assoc($result)) {
+        return json_encode($row);
     } else {
         return json_encode([
-            'status' => 'error',
-            'message' => 'aucun contact trouvé'
+            "status" => "error",
+            "message" => "$table_name non trouvé"
         ]);
-    }
-}
-
-
-  function get_contact_infos($contact_id){
-    global $DB;
-    $query = "SELECT * FROM contacts WHERE IdContact = ?";
-    $stmt = mysqli_prepare($DB, $query);
-    mysqli_stmt_bind_param($stmt, "i", $contact_id);
-    mysqli_stmt_execute($stmt);
-    $result = mysqli_stmt_get_result($stmt);
-    if ($row = mysqli_fetch_assoc($result)) {
-      $contact = mysqli_fetch_assoc($result);
-      return json_encode($contact);
-    }else{
-      echo json_encode(
-        [
-          'status' => 'error',
-          'message' => 'contact non trouvé'
-        ]
-      );
     }
   }
 
+
+    /**
+   * Returns rows for a specific table filtered by a foreign key with pagination.
+   *
+   * @param string $table_name The name of the table to query.
+   * @param string $clause_row The name of the column to filter on.
+   * @param mixed $clause_value The value to filter the results by.
+   * @param string $name_row The data type of the clause value ('int' or 'string').
+   * @param int $limit The number of results per page.
+   * @param int $page The current page number.
+   * @return string JSON containing the list of rows or an error message.
+   */
+  function get_rows_with_clause(
+    string $table_name, 
+    string $clause_row, 
+    $clause_value, 
+    string $name_row = "int", 
+    int $limit = 2, 
+    int $page = 1
+  ) {
+    global $DB;
+
+    // Calculate the offset for pagination
+    $offset = ($page - 1) * $limit;
+
+    // Prepare the SQL query with the foreign key and pagination
+    $query = "SELECT * FROM $table_name WHERE $clause_row = ? LIMIT ? OFFSET ?";
+    $stmt = mysqli_prepare($DB, $query);
+    
+    if ($stmt === false) {
+        // Handle query preparation error
+        return json_encode([
+            "status" => "error",
+            "message" => "Error preparing the query"
+        ]);
+    }
+
+    // Bind parameters (clause_value, limit, and offset) to the query
+    if ($name_row === 'int') {
+        mysqli_stmt_bind_param($stmt, "iii", $clause_value, $limit, $offset);
+    } else {
+        mysqli_stmt_bind_param($stmt, "sii", $clause_value, $limit, $offset);
+    }
+
+    // Execute the query
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    
+    $data = [];
+
+    // Fetch all rows and add them to the $data array
+    while ($row = mysqli_fetch_assoc($result)) {
+        $data[] = $row;
+    }
+
+    // Retrieve the total number of rows for pagination
+    $total_query = "SELECT COUNT(*) as total FROM $table_name WHERE $clause_row = ?";
+    $total_stmt = mysqli_prepare($DB, $total_query);
+    
+    // Bind parameter for the total query
+    if ($name_row === 'int') {
+        mysqli_stmt_bind_param($total_stmt, "i", $clause_value);
+    } else {
+        mysqli_stmt_bind_param($total_stmt, "s", $clause_value);
+    }
+
+    mysqli_stmt_execute($total_stmt);
+    $total_result = mysqli_stmt_get_result($total_stmt);
+    $total_rows = mysqli_fetch_assoc($total_result)['total'];
+    $total_pages = ceil($total_rows / $limit);
+
+    // Check if there are results and return the response in JSON format
+    return !empty($data) ? json_encode([
+        "page" => $page,
+        "total_pages" => $total_pages,
+        "data" => $data
+    ]) : json_encode([
+        "status" => "error",
+        "message" => "No data found"
+    ]);
+  }
 ?>

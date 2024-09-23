@@ -12,6 +12,19 @@ export async function fetchUsers(page=1){
 }
 
 
+export async function fetchData(endPoint){
+  try{
+    const response = await fetch(`${endPoint}`)
+    if(!response.ok){
+      throw new Error(response.statusText)
+    }
+    const data = await response.json()
+    return data
+  }catch(e){
+    console.log(e)
+  }
+}
+
 /**
  * Sorts an array of objects by a specified key in ascending or descending order.
  * 
@@ -44,3 +57,50 @@ export async function getUser(userId){
     console.log(e)
   }
 }
+
+
+export async function toggleAndSortDataBtns(theadColumns, sortButtons){
+  theadColumns.forEach((col) => {
+    col.addEventListener('click', (e) => {
+      // Récupérer les boutons de tri de la colonne cliquée
+      const buttons = col.parentElement.querySelectorAll('.sortBtn');
+      
+      // Vérifier si un bouton est déjà visible
+      const visibleButton = Array.from(buttons).find(btn => !btn.classList.contains('d-none'));
+
+      if (visibleButton) {
+        // if there is any visible button: then hide it
+        visibleButton.classList.add('d-none');
+      } else {
+        // hide all sort button to ensure only one button is display
+        sortButtons.forEach((btn) => {
+          btn.classList.add('d-none');
+        });
+
+        // display first sort button for the first click of the column
+        buttons[0].classList.remove('d-none');
+      }
+    });
+
+    // handdle display and hide sort buttons
+    col.parentElement.querySelectorAll('.sortBtn').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        // hide clicked button
+        btn.classList.add('d-none');
+
+        // display other sort button
+        const otherBtn = btn.nextElementSibling || btn.previousElementSibling;
+        otherBtn.classList.remove('d-none');
+      });
+    });
+  });
+}
+
+export function resetFormInputs(form){
+  form.querySelectorAll('input').forEach((input) => {
+    input.value = '';
+    });
+}
+

@@ -13,7 +13,7 @@
     'status' => 'error',
     'message' => 'HTTP method not allowed'
   ];
-  // Check if the request method is POST
+  // Check if the request method is GET
   if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     if (isset($_GET['contact'])) {
       $contact = $_GET['contact'];
@@ -21,12 +21,13 @@
       // If 'contact' is 'all', retrieve all contact with pagination
       if ($contact == 'all') {
         $page = isset($_GET['page']) ? intval($_GET['page']) : 1;  // Default value of 1 if 'page' is not set
-        echo get_all_contacts($page);
+        echo get_all_rows("contacts", 2, $page);
       
       // If 'contact' is a numeric ID, handle different HTTP methods
       } elseif (is_numeric($contact)) {
         $contact_id = intval($contact);
-          echo get_contact_infos($contact_id);  // Fetch contact info
+          // Fetch contact info
+          echo get_row_details("contacts", "IdContact", $contact_id);
       }else{
         $response = [
           'status' => 'error',

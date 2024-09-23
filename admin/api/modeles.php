@@ -8,7 +8,8 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
     // Check if brand_id parameter is set
     if (isset($_GET['brand_id'])) {
         $brand_id = intval($_GET['brand_id']);
-
+        // Current page
+        $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
         // Validate brand_id
         if ($brand_id <= 0) {
             http_response_code(400); // Bad request
@@ -23,22 +24,33 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
             mysqli_close($DB);
             exit;
         }
-        get_all_models($brand_id);
-
-        // Close database connection
-        mysqli_close($DB);
-    }else if(isset($_GET['modele_id'])){
-        $model_id = intval($_GET['modele_id']);
-        $model_exists = is_row_exist($model_id, 'modele', 'IdModele');
-        if (!$model_exists) {
+        echo get_rows_with_clause(
+            "modele", 
+            "IdMarque", 
+            $brand_id, 
+            "int", 
+            $limit = 2, 
+            $page
+        );
+    }else if(isset($_GET['modele'])){
+        $modele = $_GET['modele'];
+        // If 'contact' is 'all', retrieve all contact with pagination
+        if ($modele == 'all') {
+            $page = isset($_GET['page']) ? intval($_GET['page']) : 1;  // Default value of 1 if 'page' is not set
+            echo get_all_rows("modele", 3, $page);
+            // If 'contact' is a numeric ID, handle different HTTP methods
+        } elseif (is_numeric($modele)) {
+            $modele_id = intval($modele);
+            // Fetch contact info
+            echo get_row_details("modele", "IdModele", $modele_id);
+        }else{
             $response = [
                 'status' => 'error',
-                'message' => 'modele non trouvé'
-            ];
+                'message' => 'paramètre modele est invalid'
+                ];
             echo json_encode($response);
             exit;
         }
-        echo get_modele_infos($model_id);
     }else {
         http_response_code(400); // Bad request
         echo json_encode(['error' => 'paramètre invalid(brand_id ou modele_id.']);

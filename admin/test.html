@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .searh-container{
+          left: 50%;
+          top: 10%;
+          transform: translateX(-50%);
+        }
+    </style>
+    <title>Barre de Recherche</title>
+</head>
+<body class="position-relative">
+    <div id="search-overlay" class="position-fixed top-0 start-0 w-100 h-100 bg-dark d-none" style="--bs-bg-opacity: .5; z-index: 1210;"></div>
+
+    <button class="btn btn-primary" id="search-button" style="position: absolute; top: 20px; left: 20px;">Rechercher</button>
+
+    <div class="search-container position-absolute bg-dark py-2 px-3">
+      <input type="text" class="form-control search-input" id="search-input" placeholder="Rechercher..." style="width: 250px;"/>
+    </div>
+    <div id="search-results"></div>
+
+    
+
+    <script>
+        document.addEventListener('DOMContentLoaded', ()=>{
+          
+        })
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

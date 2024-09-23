@@ -26,7 +26,7 @@
       // If 'user' is a numeric ID, handle different HTTP methods
       } elseif (is_numeric($user)) {
         $user_id = intval($user);
-          echo get_user($user_id);  // Fetch user info
+          echo get_user_details($user_id);  // Fetch user info
       }else{
         $response = [
           'status' => 'error',

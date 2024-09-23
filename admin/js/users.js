@@ -1,4 +1,4 @@
-import { fetchUsers, sortData, getUser } from "./utils";
+import { fetchUsers, sortData, getUser, toggleAndSortDataBtns } from "./utils";
 import { showPassword, hidePassword, createUser, resetForm } from "/super-car/js/utils";
 
 // current page
@@ -16,43 +16,7 @@ document.addEventListener('DOMContentLoaded', async ()=>{
   const checkAllUsers = document.querySelector('.check-all');
   let checkUser = [];
   
-  theadColumns.forEach((col) => {
-    col.addEventListener('click', (e) => {
-      // Récupérer les boutons de tri de la colonne cliquée
-      const buttons = col.parentElement.querySelectorAll('.sortBtn');
-      
-      // Vérifier si un bouton est déjà visible
-      const visibleButton = Array.from(buttons).find(btn => !btn.classList.contains('d-none'));
-
-      if (visibleButton) {
-        // if there is any visible button: then hide it
-        visibleButton.classList.add('d-none');
-      } else {
-        // hide all sort button to ensure only one button is display
-        sortButtons.forEach((btn) => {
-          btn.classList.add('d-none');
-        });
-
-        // display first sort button for the first click of the column
-        buttons[0].classList.remove('d-none');
-      }
-    });
-
-    // handdle display and hide sort buttons
-    col.parentElement.querySelectorAll('.sortBtn').forEach((btn) => {
-      btn.addEventListener('click', (e) => {
-        e.preventDefault();
-
-        // hide clicked button
-        btn.classList.add('d-none');
-
-        // display other sort button
-        const otherBtn = btn.nextElementSibling || btn.previousElementSibling;
-        otherBtn.classList.remove('d-none');
-      });
-    });
-  });
-  
+  toggleAndSortDataBtns(theadColumns, sortButtons)
   
   
   //show and hide password
