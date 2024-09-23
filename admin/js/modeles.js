@@ -133,6 +133,7 @@ document.addEventListener('DOMContentLoaded', async ()=>{
       displayData(models, 'NomModele', 'asc');
       title.textContent = selectedText;
     }
+    paginationData(pagination, models.total_pages);
   })
   checkAllModels.addEventListener('change', (e) => {
     const isChecked = e.currentTarget.checked;
@@ -157,11 +158,10 @@ document.addEventListener('DOMContentLoaded', async ()=>{
 
   // dynamic pagination
   const pagination = document.querySelector(".pagination");
-  async function paginationData(pagination) {
+  async function paginationData(pagination, totalPages) {
     
-    const data = await fetchData(urlEndPoint)
-    const totalPages =data.total_pages;
-
+    pagination.innerHTML = "";
+    
     // if we have more than one page
     if (totalPages > 1) {
       // create previous button
@@ -273,7 +273,8 @@ document.addEventListener('DOMContentLoaded', async ()=>{
     }
   })
   // dispal paginations buttons
-  paginationData(pagination);
+  const initialData = await fetchData(endPoint("all"))
+  paginationData(pagination, initialData.total_pages);
   showSectionClickables.forEach((clickable)=>{
     clickable.addEventListener('click', (e)=>{
       const sectionToShowClass = e.currentTarget.dataset.section;
