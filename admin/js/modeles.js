@@ -1,20 +1,18 @@
-import { fetchUsers, sortData, getUser, toggleAndSortDataBtns } from "./utils";
+import { fetchUsers, sortData, getUser, toggleAndSortDataBtns, fetchData } from "./utils";
 import { showPassword, hidePassword, createUser, resetForm } from "/super-car/js/utils";
 
 // current page
-localStorage.setItem("usersCurrentPage", 1);
+localStorage.setItem("modelsCurrentPage", 1);
 
 document.addEventListener('DOMContentLoaded', async ()=>{
-  const passwordInput = document.getElementById("password");
-  const passwordConfirmInput = document.getElementById("confirmPassword");
-  const usersContainer = document.querySelector('.users-container');
-  const template = document.getElementById("template-user");
+  const modeleContainer = document.querySelector('.models-container');
+  const template = document.getElementById("template-modele");
   const allSections = document.querySelectorAll('section');
   const showSectionClickables = document.querySelectorAll('.show-section')
   const sortButtons = document.querySelectorAll('.sortBtn');
   const theadColumns = document.querySelectorAll('.th-col')
-  const checkAllUsers = document.querySelector('.check-all');
-  let checkUser = [];
+  const checkAllModels = document.querySelector('.check-all');
+  let checkModele = [];
   
   toggleAndSortDataBtns(theadColumns, sortButtons)
   
@@ -28,43 +26,41 @@ document.addEventListener('DOMContentLoaded', async ()=>{
   ); //hide password
   
   
-  async function displayUsers(data, sortBy, order) {
-    usersContainer.innerHTML = '';
-    const users = data.users;
-    const sortedUsers = sortData(users, sortBy, order);
+  async function displayData(data, sortBy, order) {
+    modeleContainer.innerHTML = '';
+    const models = data.data;
+    const sortedData = sortData(models, sortBy, order);
     
-    sortedUsers.forEach(user => {
+    sortedData.forEach(row => {
       const clone = template.content.cloneNode(true);
       
-      const checkBoxUser = clone.querySelector('.checkbox-user');
-      checkBoxUser.value = user.id;
+      const checkBoxModele = clone.querySelector('.checkbox-modele');
+      checkBoxModele.value = row.IdModele;
 
       // Listener for each user checkbox
-      checkBoxUser.addEventListener('change', (e) => {
+      checkBoxModele.addEventListener('change', (e) => {
         if (!e.currentTarget.checked) {
-          checkAllUsers.checked = false; // uncheck checkAllUser if one checkbox is unchecked
+          checkAllModels.checked = false;
         }
       });
       
-      const first_name = clone.querySelector('.first-name'); // Correctly target from the clone
-      first_name.textContent = user.first_name;
-      first_name.dataset.id = user.id;
+      const  year = clone.querySelector('.annee');
+      year.textContent = row.Annee;
       
-      const last_name = clone.querySelector('.last-name'); // Correctly target from the clone
-      last_name.textContent = user.last_name;
-      last_name.dataset.id = user.id;
+      const NomModele = clone.querySelector('.modele');
+      NomModele.textContent = row.NomModele
       
-      const email = clone.querySelector('.email'); // Correctly target from the clone
-      email.textContent = user.email;
-      email.dataset.id = user.id;
       
+      const Prix = clone.querySelector('.prix');
+      Prix.textContent = row.Prix;
+  
       const editButton = clone.querySelector('.edit-button'); // Correctly target from the clone
       const deleteButton = clone.querySelector('.delete-button'); // Correctly target from the clone
-      [editButton, deleteButton].forEach(btn => btn.dataset.id = user.id);
+      [year, NomModele, Prix, editButton, deleteButton].forEach(btn => btn.dataset.id = row);
   
-      usersContainer.appendChild(clone);
+      modeleContainer.appendChild(clone);
 
-      [first_name, last_name, email, editButton].forEach((btn)=>{
+      [NomModele, Prix, year, editButton].forEach((btn)=>{
         btn.addEventListener('click', async(e) => {
           const sectionToShowClass = e.currentTarget.dataset.section;
           const sectionToShow = document.querySelector(`.${sectionToShowClass}`)
@@ -74,26 +70,27 @@ document.addEventListener('DOMContentLoaded', async ()=>{
             }
             sectionToShow.classList.remove('d-none');
           })
-          const userId = e.currentTarget.dataset.id;
+          /*const userId = e.currentTarget.dataset.id;
           const user = await getUser(userId);
-          displayUserInfos(user)
+          displayUserInfos(user)*/
         })
       })
     });
-    checkUser = document.querySelectorAll('.checkbox-user');
+    checkModele = document.querySelectorAll('.checkbox-modele');
   }
-  const users = await fetchUsers(1)
-  displayUsers(users, 'Prenom', 'asc')
+  const endPoint = `http://localhost/Super-car/admin/api/modeles?modele=all`;
+  const models = await fetchData(1, endPoint)
+  displayData(models, 'NomModele', 'asc')
 
-  checkAllUsers.addEventListener('change', (e) => {
+  checkAllModels.addEventListener('change', (e) => {
     const isChecked = e.currentTarget.checked;
-    checkUser.forEach(checkbox => {
+    checkModele.forEach(checkbox => {
       checkbox.checked = isChecked;
     });
   });
 
 
-  async function displayUserInfos(user){
+ /* async function displayUserInfos(user){
     const firstName = document.getElementById('first_name');
     const lastName = document.getElementById('last_name');
     const email = document.getElementById('email');
@@ -217,7 +214,7 @@ document.addEventListener('DOMContentLoaded', async ()=>{
     }
   })
   // dispal paginations buttons
-  paginationUsers(pagination);
+  paginationUsers(pagination);*/
   showSectionClickables.forEach((clickable)=>{
     clickable.addEventListener('click', (e)=>{
       const sectionToShowClass = e.currentTarget.dataset.section;
