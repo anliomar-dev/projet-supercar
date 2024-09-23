@@ -184,22 +184,6 @@
                             <div class="tab-pane fade show active" id="compte" role="tabpanel" aria-labelledby="compte-tab">
                                 <div class="mt-4 update-user-form">
                                     <div class="mb-3">
-<<<<<<< HEAD
-                                        <label for="prenom" class="form-label">Prénom</label>
-                                        <input type="text" class="form-control" id="prenom" value="">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="nom" class="form-label">Nom</label>
-                                        <input type="text" class="form-control" id="nom" value="">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="adresse" class="form-label">Adresse</label>
-                                        <input type="text" class="form-control" id="adresse" value="">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="telephone" class="form-label">Téléphone</label>
-                                        <input type="text" class="form-control phone" id="telephone" value="">
-=======
                                         <label for="fitst_name" class="form-label">Prénom</label>
                                         <input type="text" name="first_name" class="form-control" id="first_name" value="" required>
                                     </div>
@@ -214,28 +198,19 @@
                                     <div class="mb-3">
                                         <label for="phone" class="form-label">Téléphone</label>
                                         <input type="" name="phone" class="form-control" id="phone" value="" required>
->>>>>>> f3513e037157d363484adc563ae46dc6b58c1e87
                                     </div>
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="groupe" role="tabpanel" aria-labelledby="groupe-tab">
                                 <div class="mb-3">
                                     <label for="email" class="form-label">Email</label>
-<<<<<<< HEAD
-                                    <input type="email" class="form-control" id="email" value="">
-=======
                                     <input type="email" name="email" class="form-control" id="email" value="" required>
->>>>>>> f3513e037157d363484adc563ae46dc6b58c1e87
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4 mt-1 d-flex flex-column align-items-start">
-<<<<<<< HEAD
-                        <button type="submit" class="btn btn-enregistrer w-100 mb-2">Enregistrer</button>
-=======
                         <button type="submit" class="btn btn-enregistrer w-100 mb-2 save-change">Enregistrer</button>
->>>>>>> f3513e037157d363484adc563ae46dc6b58c1e87
                         <button type="button" class="btn btn-supprimer w-100 mb-2">Supprimer</button>
                         <button type="button" class="btn btn-historique w-100 mb-2">Historique</button>
                         <button type="button" class="btn btn-retour w-100 show-section" data-section="all-users-section">
