@@ -12,7 +12,7 @@ export async function fetchUsers(page=1){
 }
 
 
-export async function fetchData(page=1, endPoint){
+export async function fetchData(endPoint){
   try{
     const response = await fetch(`${endPoint}`)
     if(!response.ok){
