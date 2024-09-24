@@ -28,3 +28,13 @@ thead span:hover{
   width: 20px;
   height: 20px;
 }
+
+/*marques.php*/
+.btn-list svg{
+  width: 20px;
+  height: 20px;
+}
+.btn-colonne svg{
+  width: 20px;
+  height: 20px;
+}

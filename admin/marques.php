@@ -39,8 +39,26 @@
                 <!-- section header -->
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <h4 class="mb-0">Marques</h4>
-                    <div class="">
-                        <button class="btn btn-success ms-2 show-section" data-section="update-and-create-section"
+                    <div class="btns-container">
+                        <button class="btn btn-outline-info ms-2 show-section btn-colonne d-none" data-section="update-and-create-section"
+                            data-bs-toggle="tooltip" 
+                            data-bs-placement="top" 
+                            data-bs-title="affichage en colonnes"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 0 1 6 3.75h2.25A2.25 2.25 0 0 1 10.5 6v2.25a2.25 2.25 0 0 1-2.25 2.25H6a2.25 2.25 0 0 1-2.25-2.25V6ZM3.75 15.75A2.25 2.25 0 0 1 6 13.5h2.25a2.25 2.25 0 0 1 2.25 2.25V18a2.25 2.25 0 0 1-2.25 2.25H6A2.25 2.25 0 0 1 3.75 18v-2.25ZM13.5 6a2.25 2.25 0 0 1 2.25-2.25H18A2.25 2.25 0 0 1 20.25 6v2.25A2.25 2.25 0 0 1 18 10.5h-2.25a2.25 2.25 0 0 1-2.25-2.25V6ZM13.5 15.75a2.25 2.25 0 0 1 2.25-2.25H18a2.25 2.25 0 0 1 2.25 2.25V18A2.25 2.25 0 0 1 18 20.25h-2.25A2.25 2.25 0 0 1 13.5 18v-2.25Z" />
+                            </svg>
+                        </button>
+                        <button class="btn btn-outline-info ms-2 show-section btn-list " data-section="update-and-create-section"
+                            data-bs-toggle="tooltip" 
+                            data-bs-placement="top" 
+                            data-bs-title="affichage list"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                                <path fill-rule="evenodd" d="M2.625 6.75a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Zm4.875 0A.75.75 0 0 1 8.25 6h12a.75.75 0 0 1 0 1.5h-12a.75.75 0 0 1-.75-.75ZM2.625 12a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0ZM7.5 12a.75.75 0 0 1 .75-.75h12a.75.75 0 0 1 0 1.5h-12A.75.75 0 0 1 7.5 12Zm-4.875 5.25a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Zm4.875 0a.75.75 0 0 1 .75-.75h12a.75.75 0 0 1 0 1.5h-12a.75.75 0 0 1-.75-.75Z" clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                        <button class="btn btn-outline-success ms-2 show-section add-btn" data-section="update-and-create-section"
                             data-bs-toggle="tooltip" 
                             data-bs-placement="top" 
                             data-bs-title="ajouter une nouvelle marque"
@@ -52,7 +70,7 @@
                         <button class="btn btn-outline-danger ms-2 delete-all-btn"
                             data-bs-toggle="tooltip" 
                             data-bs-placement="top" 
-                            data-bs-title="supprimer tous les modèles selectionées"
+                            data-bs-title="supprimer tous les marques selectionées"
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
                                 <path fill-rule="evenodd" d="M8.75 1A2.75 2.75 0 0 0 6 3.75v.443c-.795.077-1.584.176-2.365.298a.75.75 0 1 0 .23 1.482l.149-.022.841 10.518A2.75 2.75 0 0 0 7.596 19h4.807a2.75 2.75 0 0 0 2.742-2.53l.841-10.52.149.023a.75.75 0 0 0 .23-1.482A41.03 41.03 0 0 0 14 4.193V3.75A2.75 2.75 0 0 0 11.25 1h-2.5ZM10 4c.84 0 1.673.025 2.5.075V3.75c0-.69-.56-1.25-1.25-1.25h-2.5c-.69 0-1.25.56-1.25 1.25v.325C8.327 4.025 9.16 4 10 4ZM8.58 7.72a.75.75 0 0 0-1.5.06l.3 7.5a.75.75 0 1 0 1.5-.06l-.3-7.5Zm4.34.06a.75.75 0 1 0-1.5-.06l-.3 7.5a.75.75 0 1 0 1.5.06l.3-7.5Z" clip-rule="evenodd" />
@@ -155,12 +173,12 @@
                             <div class="tab-pane fade show active" id="infosMarque" role="tabpanel" aria-labelledby="infos-tab">
                                 <div class="mt-4 update-user-form border rounded-3 p-4">
                                     <div class="mb-3">
-                                        <label for="NomModele" class="form-label">Nom Marque</label>
-                                        <input type="text" name="NomMarque" class="form-control" id="NomMarque" value="">
+                                        <label for="NomMarque" class="form-label">Nom Marque</label>
+                                        <input type="text" name="NomMarque" class="form-control" id="NomMarque" value="" required>
                                     </div>
                                     <div class="mb-3">
                                         <label for="logo" class="form-label">Logo</label>
-                                        <input type="file" name="Prix" class="form-control" id="logo" value="">
+                                        <input type="file" accept=" .webp" name="logo" class="form-control" id="logo" value="" required>
                                     </div>                                 
                                 </div>
                             </div>
@@ -176,6 +194,15 @@
         </div>
     </div>
 </div>
+<script>
+    // Activer les tooltips sur tout le document
+    document.addEventListener('DOMContentLoaded', function () {
+    const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    const tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
+    });
+</script>
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
