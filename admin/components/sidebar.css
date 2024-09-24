@@ -36,7 +36,7 @@
   border-radius: 10px;
   transition: background-color 0.5s;
 }
-.sidebar a:hover {
+.sidebar a:not(.navbar-brand):hover {
   background-color: #28a745;
 }
 

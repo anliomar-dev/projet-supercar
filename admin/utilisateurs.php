@@ -16,6 +16,7 @@
     <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@19.2.14/build/js/intlTelInput.min.js"></script>
     <link href="/super-car/admin/styles/dashboard.css" rel="stylesheet">
     <link href="/super-car/admin/styles/users.css" rel="stylesheet">
+    <link href="/super-car/admin/styles/common.css" rel="stylesheet">
     <script src="js/users.js" type="module" defer></script>
     <script src="js/sidebar_navbar.js" type="module" defer></script>
     <link href="/super-car/admin/components/sidebar.css" rel="stylesheet">
@@ -41,7 +42,7 @@
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <h4 class="mb-0">Utilisateurs</h4>
                     <div>
-                        <button class="btn btn-success ms-2 show-section add-user-btn" data-section="new-user-section">+ Ajouter</button>
+                        <button class="btn btn-success ms-2 show-section" data-section="new-user-section">+ Ajouter</button>
                         <button class="btn btn-secondary ms-2">Supprimer</button>
                     </div>
                 </div>
@@ -183,6 +184,18 @@
                                     <label for="email" class="form-label">Email</label>
                                     <input type="email" name="email" class="form-control" id="email" value="" required>
                                 </div>
+                                <div class="mt-0">
+                                    <div class="form-group d-flex">
+                                        <span>est admin</span>
+                                        <input type="checkbox" class="form-check-input ms-1" value="true">
+                                        <p class="ms-2">: determine si ce compte peut se connecter à l'interface admin</p>
+                                    </div>
+                                    <div class="form-group d-flex">
+                                        <span>est superadmin</span>
+                                        <input type="checkbox" class="form-check-input ms-1" value="true">
+                                        <p class="ms-2">: donner tous les droit et privilèges à l'utilisateur</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -228,11 +241,7 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="telephone-inscription" class="form-label">Téléphone</label>
-<<<<<<< HEAD
-                                        <input type="text" class="form-control phone" id="telephone-inscription" placeholder="Entrez votre téléphone">
-=======
                                         <input type="text" class="form-control" id="telephone-inscription" placeholder="Entrez votre téléphone" required>
->>>>>>> f3513e037157d363484adc563ae46dc6b58c1e87
                                     </div>
                                 </div>
                             </div>
