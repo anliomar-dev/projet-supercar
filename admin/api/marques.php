@@ -81,7 +81,7 @@
         }else{
           $response = [
             'status' => 'error',
-            'message' => 'erreur lors de la suppression des marque.',
+            'message' => 'erreur lors de la suppression des marques.',
           ];
         }
         break;

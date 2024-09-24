@@ -138,9 +138,9 @@
                                 <td class="d-flex justify-content-center pt-3">
                                     <input class="checkbox-modele form-check-input" type="checkbox" value="">
                                 </td>
-                                <td class="modele hover show-user-infos" data-section="update-and-create-section"></td>
-                                <td class="prix hover show-user-infos" data-section="update-and-create-section"></td>
-                                <td class="annee hover show-user-infos" data-section="update-and-create-section"></td>
+                                <td class="modele hover" data-section="update-and-create-section"></td>
+                                <td class="prix hover" data-section="update-and-create-section"></td>
+                                <td class="annee hover" data-section="update-and-create-section"></td>
                                 <td class="buttons">
                                     <button class="btn btn-sm btn-outline-primary edit-button show-section" data-id="" data-section="update-and-create-section">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">

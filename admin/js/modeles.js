@@ -1,5 +1,4 @@
-import { fetchUsers, sortData, getUser, toggleAndSortDataBtns, fetchData, resetFormInputs } from "./utils";
-import { showPassword, hidePassword, createUser } from "/super-car/js/utils";
+import { sortData, toggleAndSortDataBtns, fetchData, resetFormInputs } from "./utils";
 
 // current page
 localStorage.setItem("modelsCurrentPage", 1);
@@ -41,15 +40,6 @@ document.addEventListener('DOMContentLoaded', async ()=>{
   })
   
   toggleAndSortDataBtns(theadColumns, sortButtons)
-  
-  
-  //show and hide password
-  const eyeIcons = document.querySelectorAll(".eye-icon"); //show password icons
-  const hidePasswordIcons = document.querySelectorAll(".hide-password"); //hide password icons
-  eyeIcons.forEach((eyeIcon) => showPassword(eyeIcon)); //show password
-  hidePasswordIcons.forEach((hidePasswordIcon) =>
-    hidePassword(hidePasswordIcon)
-  ); //hide password
   
   
   async function displayData(data, sortBy, order) {

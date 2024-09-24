@@ -13,6 +13,7 @@
     <link href="/super-car/admin/styles/dashboard.css" rel="stylesheet">
     <link href="/super-car/admin/styles/common.css" rel="stylesheet">
     <script src="js/dashboard.js" type="module" defer></script>
+    <script src="js/marques.js" type="module" defer></script>
     <script src="js/sidebar_navbar.js" type="module" defer></script>
     <link href="/super-car/admin/components/sidebar.css" rel="stylesheet">
     <style>
@@ -35,12 +36,12 @@
                 include_once('components/navbar.php');
             ?>
             <!--display all marques-->
-            <section class="container my-4 mx-auto all-models-section">
+            <section class="container my-4 mx-auto all-marques-section">
                 <!-- section header -->
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <h4 class="mb-0">Marques</h4>
                     <div class="btns-container">
-                        <button class="btn btn-outline-info ms-2 show-section btn-colonne d-none" data-section="update-and-create-section"
+                        <button class="btn btn-outline-info ms-2 btn-colonne" data-style-display="display-all-marques-column"
                             data-bs-toggle="tooltip" 
                             data-bs-placement="top" 
                             data-bs-title="affichage en colonnes"
@@ -49,16 +50,16 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 0 1 6 3.75h2.25A2.25 2.25 0 0 1 10.5 6v2.25a2.25 2.25 0 0 1-2.25 2.25H6a2.25 2.25 0 0 1-2.25-2.25V6ZM3.75 15.75A2.25 2.25 0 0 1 6 13.5h2.25a2.25 2.25 0 0 1 2.25 2.25V18a2.25 2.25 0 0 1-2.25 2.25H6A2.25 2.25 0 0 1 3.75 18v-2.25ZM13.5 6a2.25 2.25 0 0 1 2.25-2.25H18A2.25 2.25 0 0 1 20.25 6v2.25A2.25 2.25 0 0 1 18 10.5h-2.25a2.25 2.25 0 0 1-2.25-2.25V6ZM13.5 15.75a2.25 2.25 0 0 1 2.25-2.25H18a2.25 2.25 0 0 1 2.25 2.25V18A2.25 2.25 0 0 1 18 20.25h-2.25A2.25 2.25 0 0 1 13.5 18v-2.25Z" />
                             </svg>
                         </button>
-                        <button class="btn btn-outline-info ms-2 show-section btn-list " data-section="update-and-create-section"
+                        <button class="btn btn-outline-info ms-2 btn-list d-none" data-style-display="display-all-marques-list"
                             data-bs-toggle="tooltip" 
                             data-bs-placement="top" 
-                            data-bs-title="affichage list"
+                            data-bs-title="affichage en list"
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
                                 <path fill-rule="evenodd" d="M2.625 6.75a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Zm4.875 0A.75.75 0 0 1 8.25 6h12a.75.75 0 0 1 0 1.5h-12a.75.75 0 0 1-.75-.75ZM2.625 12a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0ZM7.5 12a.75.75 0 0 1 .75-.75h12a.75.75 0 0 1 0 1.5h-12A.75.75 0 0 1 7.5 12Zm-4.875 5.25a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Zm4.875 0a.75.75 0 0 1 .75-.75h12a.75.75 0 0 1 0 1.5h-12a.75.75 0 0 1-.75-.75Z" clip-rule="evenodd" />
                             </svg>
                         </button>
-                        <button class="btn btn-outline-success ms-2 show-section add-btn" data-section="update-and-create-section"
+                        <button class="btn btn-outline-success ms-2 show-section add-btn" data-section="create-section"
                             data-bs-toggle="tooltip" 
                             data-bs-placement="top" 
                             data-bs-title="ajouter une nouvelle marque"
@@ -79,7 +80,7 @@
                     </div>
                 </div>
                 <!-- marques -->
-                <table class="table table-hover table-bordered">
+                <table class="table table-hover table-bordered display-all-marques-list">
                     <thead>
                         <tr>
                             <th class="d-flex justify-content-center pt-3">
@@ -131,13 +132,12 @@
                         <template id="template-marque">
                             <tr class="table-row">
                                 <td class="d-flex justify-content-center pt-3">
-                                    <input class="checkbox-user form-check-input" type="checkbox" value="">
+                                    <input class="checkbox-marque form-check-input" type="checkbox" value="">
                                 </td>
-                                <td class="first-name hover show-user-infos" data-section="update-user-section"></td>
-                                <td class="last-name hover show-user-infos" data-section="update-user-section"></td>
-                                <td class="email hover show-user-infos" data-section="update-user-section"></td>
+                                <td class="id-brand hover" data-section="update-section"></td>
+                                <td class="brand-name hover" data-section="update-section"></td>
                                 <td class="buttons">
-                                    <button class="btn btn-sm btn-outline-primary edit-button show-section" data-id="" data-section="update-user-section">
+                                    <button class="btn btn-sm btn-outline-primary edit-button show-section" data-id="" data-section="update-section">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
                                             <path d="m5.433 13.917 1.262-3.155A4 4 0 0 1 7.58 9.42l6.92-6.918a2.121 2.121 0 0 1 3 3l-6.92 6.918c-.383.383-.84.685-1.343.886l-3.154 1.262a.5.5 0 0 1-.65-.65Z" />
                                             <path d="M3.5 5.75c0-.69.56-1.25 1.25-1.25H10A.75.75 0 0 0 10 3H4.75A2.75 2.75 0 0 0 2 5.75v9.5A2.75 2.75 0 0 0 4.75 18h9.5A2.75 2.75 0 0 0 17 15.25V10a.75.75 0 0 0-1.5 0v5.25c0 .69-.56 1.25-1.25 1.25h-9.5c-.69 0-1.25-.56-1.25-1.25v-9.5Z" />
@@ -153,15 +153,15 @@
                         </template>
                     </tbody>
                 </table>
-                <!-- pagination -->
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination">
-                        
-                    </ul>
-                </nav>
             </section>
-            <!--section update or create marque-->
-            <section class="container my-3 update-and-create-section">
+            <section class="container mt-3 d-flex justify-content-center flex-wrap display-all-marques-column d-none">
+                <?php
+                    include_once('php/all_marques.php');
+                    display_all_brands();
+                ?>
+            </section>
+            <!--section update marque-->
+            <section class="container my-3 update-section d-none">
                 <form class="row">
                     <div class="col-md-8 border rounded-3 shadow p-4">
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -178,7 +178,7 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="logo" class="form-label">Logo</label>
-                                        <input type="file" accept=" .webp" name="logo" class="form-control" id="logo" value="" required>
+                                        <input type="text" name="logo" class="form-control" id="logo" value="" required>
                                     </div>                                 
                                 </div>
                             </div>
@@ -188,6 +188,45 @@
                         <button type="submit" class="btn btn-enregistrer w-100 mb-2">Enregistrer</button>
                         <button type="button" class="btn btn-supprimer w-100 mb-2">Supprimer</button>
                         <button type="button" class="btn btn-historique w-100">Historique</button>
+                        <button type="button" class="btn btn-retour w-100 show-section" data-section="all-marques-section">
+                            <i class="fa-solid fa-left-long"></i>
+                            Retour
+                        </button>
+                    </div>
+                </form>
+            </section>
+            <!--section add marque-->
+            <section class="container my-3 create-section d-none">
+                <form class="row">
+                    <div class="col-md-8 border rounded-3 shadow p-4">
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="infos-tab" data-bs-toggle="tab" data-bs-target="#infosMarque" type="button" role="tab" aria-controls="infosModele" aria-selected="true">Marque</button>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane fade show active" id="" role="tabpanel" aria-labelledby="infos-tab">
+                                <div class="mt-4 update-user-form border rounded-3 p-4">
+                                    <div class="mb-3">
+                                        <label for="name-new-brand" class="form-label">Nom Marque</label>
+                                        <input type="text" name="name-new-brand" class="form-control" id="name-new-brand" value="" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="logo-new-brand" class="form-label">Logo</label>
+                                        <input type="file" accept=" .webp " name="logo-new-brand" class="form-control" id="logo-new-brand" value="" required>
+                                    </div>                                 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mt-1 d-flex flex-column align-items-start">
+                        <button type="submit" class="btn btn-enregistrer w-100 mb-2">Enregistrer</button>
+                        <button type="button" class="btn btn-supprimer w-100 mb-2">Supprimer</button>
+                        <button type="button" class="btn btn-historique w-100">Historique</button>
+                        <button type="button" class="btn btn-retour w-100 show-section new-marque-btn" data-section="all-marques-section">
+                            <i class="fa-solid fa-left-long"></i>
+                            Retour
+                        </button>
                     </div>
                 </form>
             </section>
@@ -198,8 +237,12 @@
     // Activer les tooltips sur tout le document
     document.addEventListener('DOMContentLoaded', function () {
     const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+
     const tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        // Vérification si l'élément est visible avant d'activer le tooltip
+        if (tooltipTriggerEl.offsetParent !== null) {
         return new bootstrap.Tooltip(tooltipTriggerEl);
+        }
     });
     });
 </script>
