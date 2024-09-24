@@ -11,6 +11,7 @@
     <!-- Bootstrap CSS -->
     <link href="../bootstrap-5.3.3-dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="/super-car/admin/styles/dashboard.css" rel="stylesheet">
+    <link href="/super-car/admin/styles/common.css" rel="stylesheet">
     <script src="js/dashboard.js" type="module" defer></script>
     <script src="js/sidebar_navbar.js" type="module" defer></script>
     <link href="/super-car/admin/components/sidebar.css" rel="stylesheet">
@@ -33,23 +34,33 @@
             <?php
                 include_once('components/navbar.php');
             ?>
-            <!--display all modele-->
+            <!--display all marques-->
             <section class="container my-4 mx-auto all-models-section">
                 <!-- section header -->
                 <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h4 class="mb-0">Modèles</h4>
-                    <select id="Marque" name="marque" class="form-select" aria-label="Default select example" style="width: 300px;">
-                        <option selected>Toutes les modèles</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                    </select>
+                    <h4 class="mb-0">Marques</h4>
                     <div class="">
-                        <button class="btn btn-success ms-2 show-section" data-section="new-user-section">+ Ajouter</button>
-                        <button class="btn btn-secondary ms-2">Supprimer</button>
+                        <button class="btn btn-success ms-2 show-section" data-section="update-and-create-section"
+                            data-bs-toggle="tooltip" 
+                            data-bs-placement="top" 
+                            data-bs-title="ajouter une nouvelle marque"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm.75-11.25a.75.75 0 0 0-1.5 0v2.5h-2.5a.75.75 0 0 0 0 1.5h2.5v2.5a.75.75 0 0 0 1.5 0v-2.5h2.5a.75.75 0 0 0 0-1.5h-2.5v-2.5Z" clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                        <button class="btn btn-outline-danger ms-2 delete-all-btn"
+                            data-bs-toggle="tooltip" 
+                            data-bs-placement="top" 
+                            data-bs-title="supprimer tous les modèles selectionées"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
+                                <path fill-rule="evenodd" d="M8.75 1A2.75 2.75 0 0 0 6 3.75v.443c-.795.077-1.584.176-2.365.298a.75.75 0 1 0 .23 1.482l.149-.022.841 10.518A2.75 2.75 0 0 0 7.596 19h4.807a2.75 2.75 0 0 0 2.742-2.53l.841-10.52.149.023a.75.75 0 0 0 .23-1.482A41.03 41.03 0 0 0 14 4.193V3.75A2.75 2.75 0 0 0 11.25 1h-2.5ZM10 4c.84 0 1.673.025 2.5.075V3.75c0-.69-.56-1.25-1.25-1.25h-2.5c-.69 0-1.25.56-1.25 1.25v.325C8.327 4.025 9.16 4 10 4ZM8.58 7.72a.75.75 0 0 0-1.5.06l.3 7.5a.75.75 0 1 0 1.5-.06l-.3-7.5Zm4.34.06a.75.75 0 1 0-1.5-.06l-.3 7.5a.75.75 0 1 0 1.5.06l.3-7.5Z" clip-rule="evenodd" />
+                            </svg>
+                        </button>
                     </div>
                 </div>
-                <!-- models -->
+                <!-- marques -->
                 <table class="table table-hover table-bordered">
                     <thead>
                         <tr>
@@ -98,8 +109,8 @@
                             <th class="pb-3">Actions</th>
                         </tr>
                     </thead>
-                    <tbody class="users-container">
-                        <template id="template-user">
+                    <tbody class="marques-container">
+                        <template id="template-marque">
                             <tr class="table-row">
                                 <td class="d-flex justify-content-center pt-3">
                                     <input class="checkbox-user form-check-input" type="checkbox" value="">
@@ -131,7 +142,7 @@
                     </ul>
                 </nav>
             </section>
-            <!--section update or create modele-->
+            <!--section update or create marque-->
             <section class="container my-3 update-and-create-section">
                 <form class="row">
                     <div class="col-md-8 border rounded-3 shadow p-4">
