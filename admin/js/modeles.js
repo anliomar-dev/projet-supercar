@@ -143,19 +143,6 @@ document.addEventListener('DOMContentLoaded', async ()=>{
   });
 
 
-  /*async function displayUserInfos(user){
-    const firstName = document.getElementById('first_name');
-    const lastName = document.getElementById('last_name');
-    const email = document.getElementById('email');
-    const address = document.getElementById('adresse');
-    const phone = document.getElementById('phone');
-    firstName.value = user.first_name;
-    lastName.value = user.last_name;
-    email.value = user.email;
-    address.value = user.address;
-    phone.value = user.phone;
-  }*/
-
   // dynamic pagination
   const pagination = document.querySelector(".pagination");
   async function paginationData(pagination, totalPages) {
