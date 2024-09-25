@@ -1,3 +1,11 @@
+<?php
+    include_once('../php/connexionDB.php');
+    include_once('php/functions.php');
+    $page_404 ="/super-car/404.php";
+    is_ressource_exists($DB, "contact", "contacts", "IdContact");
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +21,6 @@
     <link href="/super-car/admin/styles/dashboard.css" rel="stylesheet">
     <link href="/super-car/admin/styles/users.css" rel="stylesheet">
     <link href="/super-car/admin/styles/common.css" rel="stylesheet">
-    <script src="js/users.js" type="module" defer></script>
     <script src="js/sidebar_navbar.js" type="module" defer></script>
     <link href="/super-car/admin/components/sidebar.css" rel="stylesheet">
 </head>
@@ -31,12 +38,12 @@
             <?php
                 include_once('components/navbar.php');
             ?>
-
+            
             <!--display all user section-->
-            <section class="container my-4 mx-auto all-users-section">
+            <section class="container my-4 mx-auto all-users-section d-none">
                 <!-- section header -->
                 <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h4 class="mb-0">Utilisateurs</h4>
+                    <h4 class="mb-0">Contacts</h4>
                     <div>
                         <button class="btn btn-outline-success ms-2 show-section add-btn" data-section="new-user-section"
                             data-bs-toggle="tooltip" 
@@ -217,89 +224,6 @@
                         <button type="button" class="btn btn-supprimer w-100 mb-2">Supprimer</button>
                         <button type="button" class="btn btn-historique w-100 mb-2">Historique</button>
                         <button type="button" class="btn btn-retour w-100 show-section" data-section="all-users-section">
-                            <i class="fa-solid fa-left-long"></i>
-                            Retour
-                        </button>
-                    </div>
-                </form>
-            </section>
-
-            <!--section create new user-->
-            <section class="container mt-3 mb-3 new-user-section d-none">
-                <form class="row">
-                    <div class="col-md-8 border rounded-3 shadow py-4 px-4">
-                        <ul class="nav nav-tabs" id="myTab2" role="tablist">
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link active" id="inscription-tab" data-bs-toggle="tab" data-bs-target="#inscription" type="button" role="tab" aria-controls="inscription" aria-selected="true">Infos personnelles</button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="details-tab" data-bs-toggle="tab" data-bs-target="#details" type="button" role="tab" aria-controls="details" aria-selected="false">Compte et Permissions</button>
-                            </li>
-                        </ul>
-                        <div class="tab-content">
-                            <!-- create new user form -->
-                            <div class="tab-pane fade show active border rounded-3 p-4" id="inscription" role="tabpanel" aria-labelledby="inscription-tab">
-                                <div class="mt-4">
-                                    <div class="mb-3">
-                                        <label for="prenom-inscription" class="form-label">Prénom</label>
-                                        <input type="text" class="form-control" id="prenom-inscription" placeholder="Entrez votre prénom" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="nom-inscription" class="form-label">Nom</label>
-                                        <input type="text" class="form-control" id="nom-inscription" placeholder="Entrez votre nom" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="adresse-inscription" class="form-label">Adresse</label>
-                                        <input type="text" class="form-control" id="adresse-inscription" placeholder="Entrez votre adresse" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="telephone-inscription" class="form-label">Téléphone</label>
-                                        <input type="text" class="form-control" id="telephone-inscription" placeholder="Entrez votre téléphone" required>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Détails supplémentaires pour l'inscription -->
-                            <div class="tab-pane fade border rounded-3 p-4" id="details" role="tabpanel" aria-labelledby="details-tab">
-                                <div class="mb-3">
-                                    <label for="email-inscription" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="email-inscription" placeholder="Entrez votre email" autocomplete="email" required>
-                                </div>
-                                <div class="row mt-3">
-                                    <div class="form-group col-md-6 position-relative password-container">
-                                        <label for="password">Mot de passe</label>
-                                        <span class="eye-icon">👁️</span>
-                                        <span style="display: none;" class="hide-password">🙈</span>
-                                        <input type="password" class="form-control passwordField" name="password" id="password" placeholder="Mot de passe" autocomplete="current-password" required>
-                                    </div>
-                                    <div class="form-group col-md-6 position-relative password-container confirm-pass-container">
-                                        <span class="eye-icon">👁️</span>
-                                        <span style="display: none;" class="hide-password">🙈</span>
-                                        <label for="confirmPassword">confirmation</label>
-                                        <input type="password" class="form-control passwordField" name="confirmPassword" id="confirmPassword" placeholder="confirmation" autocomplete="current-password" required>
-                                    </div>
-                                </div>
-                                <h5 class="col-12 mt-4">Privilèges</h5>
-                                <hr>
-                                <div class="mt-0">
-                                    <div class="form-group d-flex">
-                                        <span>est admin</span>
-                                        <input type="checkbox" class="form-check-input ms-1" value="true">
-                                        <p class="ms-2">: determine si ce compte peut se connecter à l'interface admin</p>
-                                    </div>
-                                    <div class="form-group d-flex">
-                                        <span>est superadmin</span>
-                                        <input type="checkbox" class="form-check-input ms-1" value="true">
-                                        <p class="ms-2">: donner tous les droit et privilèges à l'utilisateur</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mt-1 d-flex flex-column align-items-start">
-                        <button type="submit" class="btn btn-enregistrer w-100 mb-2">Enregistrer</button>
-                        <button type="button" class="btn btn-supprimer w-100 mb-2">Annuler</button>
-                        <button type="button" class="btn btn-retour w-100 mb-2 show-section" 
-                            data-section="all-users-section">
                             <i class="fa-solid fa-left-long"></i>
                             Retour
                         </button>
