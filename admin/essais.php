@@ -36,7 +36,7 @@
             <section class="container my-4 mx-auto all-users-section">
                 <!-- section header -->
                 <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h4 class="mb-0">Utilisateurs</h4>
+                    <h4 class="mb-0">Demande d'essais</h4>
                     <div>
                         <button class="btn btn-outline-success ms-2 show-section add-btn" data-section="new-user-section"
                             data-bs-toggle="tooltip" 
@@ -74,8 +74,8 @@
                             <th class="">
                                 <span class="th-col" data-bs-toggle="tooltip" 
                                     data-bs-placement="top" 
-                                    data-bs-title="cliquez pour trier par le prenom">
-                                    Prenom
+                                    data-bs-title="cliquez pour trier par la date">
+                                    Date
                                 </span>
                                 <button class="btn d-none sortBtn" data-order="desc" data-sort-by="first_name">
                                     <svg class="" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
@@ -89,43 +89,19 @@
                                 </button>
                             </th>
                             <th class="">
-                                <span class="th-col" data-bs-toggle="tooltip" 
-                                    data-bs-placement="top" 
-                                    data-bs-title="cliquez pour trier par le nom">
-                                    Nom
+                                <span class="">
+                                    Heure
                                 </span>
-                                <button class="btn d-none sortBtn" data-order="desc" data-sort-by="last_name">
-                                    <svg class="" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
-                                        <path fill-rule="evenodd" d="M2 3.75A.75.75 0 0 1 2.75 3h11.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 3.75ZM2 7.5a.75.75 0 0 1 .75-.75h7.508a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 7.5ZM14 7a.75.75 0 0 1 .75.75v6.59l1.95-2.1a.75.75 0 1 1 1.1 1.02l-3.25 3.5a.75.75 0 0 1-1.1 0l-3.25-3.5a.75.75 0 1 1 1.1-1.02l1.95 2.1V7.75A.75.75 0 0 1 14 7ZM2 11.25a.75.75 0 0 1 .75-.75h4.562a.75.75 0 0 1 0 1.5H2.75a.75.75 0 0 1-.75-.75Z" clip-rule="evenodd" />
-                                    </svg>
-                                </button>
-                                <button class="btn d-none sortBtn" data-order="asc" data-sort-by="last_name">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
-                                        <path fill-rule="evenodd" d="M2 3.75A.75.75 0 0 1 2.75 3h11.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 3.75ZM2 7.5a.75.75 0 0 1 .75-.75h6.365a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 7.5ZM14 7a.75.75 0 0 1 .55.24l3.25 3.5a.75.75 0 1 1-1.1 1.02l-1.95-2.1v6.59a.75.75 0 0 1-1.5 0V9.66l-1.95 2.1a.75.75 0 1 1-1.1-1.02l3.25-3.5A.75.75 0 0 1 14 7ZM2 11.25a.75.75 0 0 1 .75-.75H7A.75.75 0 0 1 7 12H2.75a.75.75 0 0 1-.75-.75Z" clip-rule="evenodd" />
-                                    </svg>
-                                </button>
                             </th>
                             <th class="">
-                                <span class="th-col" data-bs-toggle="tooltip" 
-                                    data-bs-placement="top" 
-                                    data-bs-title="cliquez pour trier par email">
-                                    Email
+                                <span class="">
+                                    status
                                 </span>
-                                <button class="btn d-none sortBtn" data-order="desc" data-sort-by="email">
-                                    <svg class="" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
-                                        <path fill-rule="evenodd" d="M2 3.75A.75.75 0 0 1 2.75 3h11.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 3.75ZM2 7.5a.75.75 0 0 1 .75-.75h7.508a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 7.5ZM14 7a.75.75 0 0 1 .75.75v6.59l1.95-2.1a.75.75 0 1 1 1.1 1.02l-3.25 3.5a.75.75 0 0 1-1.1 0l-3.25-3.5a.75.75 0 1 1 1.1-1.02l1.95 2.1V7.75A.75.75 0 0 1 14 7ZM2 11.25a.75.75 0 0 1 .75-.75h4.562a.75.75 0 0 1 0 1.5H2.75a.75.75 0 0 1-.75-.75Z" clip-rule="evenodd" />
-                                    </svg>
-                                </button>
-                                <button class="btn d-none sortBtn" data-order="asc" data-sort-by="email">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
-                                        <path fill-rule="evenodd" d="M2 3.75A.75.75 0 0 1 2.75 3h11.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 3.75ZM2 7.5a.75.75 0 0 1 .75-.75h6.365a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 7.5ZM14 7a.75.75 0 0 1 .55.24l3.25 3.5a.75.75 0 1 1-1.1 1.02l-1.95-2.1v6.59a.75.75 0 0 1-1.5 0V9.66l-1.95 2.1a.75.75 0 1 1-1.1-1.02l3.25-3.5A.75.75 0 0 1 14 7ZM2 11.25a.75.75 0 0 1 .75-.75H7A.75.75 0 0 1 7 12H2.75a.75.75 0 0 1-.75-.75Z" clip-rule="evenodd" />
-                                    </svg>
-                                </button>
                             </th>
                             <th class="pb-3">Actions</th>
                         </tr>
                     </thead>
-                    <tbody class="users-container">
+                    <tbody class="essais-container">
                         <template id="template-user">
                             <tr class="table-row">
                                 <td class="d-flex justify-content-center pt-3">
