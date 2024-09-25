@@ -1,8 +1,8 @@
 <?php
   // Database connection
   include_once('../../php/connexionDB.php');
-  include_once('../php/functions.php');
   include_once('../../php/utils.php');
+  include_once('../php/utils.php');
   include_once('../php/functions_get_data.php');
   
   // Set the content type as JSON

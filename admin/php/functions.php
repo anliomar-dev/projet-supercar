@@ -1,62 +1,26 @@
 <?php
   // Database connection
-  include_once('../../php/connexionDB.php');
-
-  /**
- * Check if a user exists in the database.
- *
- * @param int $user_id The ID of the user to check.
- * @return bool True if the user exists, false otherwise.
- */
-  function is_user_exist($user_id) {
-    global $DB; 
-    $query = "SELECT * FROM utilisateur WHERE IdUtilisateur = ?";
-
-    $stmt = mysqli_prepare($DB, $query);
-
-    mysqli_stmt_bind_param($stmt, 'i', $user_id);
-
-    mysqli_stmt_execute($stmt);
-
-    $result = mysqli_stmt_get_result($stmt);
-
-    return mysqli_num_rows($result) > 0;
-  }
-
-
-
-  function update_user_data($user_id, $user_data){
-    global $DB;
-    
-  }
-
-    /**
-   * Delete a user from the database.
-   *
-   * @param int $user_id The ID of the user to delete.
-   * @return bool True if the user was deleted successfully, false otherwise.
-   */
-  function delete_user($user_id) {
-    global $DB;
-
-    // Prepare the SQL query
-    $query = "DELETE FROM utilisateur WHERE IdUtilisateur = ?";
-    $stmt = mysqli_prepare($DB, $query);
-
-    if ($stmt === false) {
-        // Handle prepare error
-        return false;
+  include_once('utils.php');
+  function is_ressource_exists($db, $param, $table, $row_id_name){
+    $page_404 = "/super-car/404.php";
+    if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+      if (isset($_GET[$param]) || !isset($_GET[$param])) {
+        $param_value = $_GET[$param];
+        if ($param_value == 'all') {
+          $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+          
+        } elseif (is_numeric($param)) {
+          $id = intval($param);
+          $row_exist = is_row_exist($id, $table, $row_id_name);
+          if (!$row_exist) {
+            header("location: $page_404");
+          }
+          
+        }else{
+          header("location: $page_404");
+        }
+      }
     }
-
-    // Bind the parameter
-    mysqli_stmt_bind_param($stmt, 'i', $user_id);
-
-    // Execute the query
-    $result = mysqli_stmt_execute($stmt);
-
-    // Close the statement
-    mysqli_stmt_close($stmt);
-
-    return $result;
   }
+  
 ?>
