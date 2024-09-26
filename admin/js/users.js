@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', async ()=>{
   const sortButtons = document.querySelectorAll('.sortBtn');
   const theadColumns = document.querySelectorAll('.th-col')
   const checkAllUsers = document.querySelector('.check-all');
+  const deleteMultipleRowsBtn = document.querySelector('.delete-all-btn');
   let checkUser = [];
   
   toggleAndSortDataBtns(theadColumns, sortButtons)
@@ -81,6 +82,22 @@ document.addEventListener('DOMContentLoaded', async ()=>{
       })
     });
     checkUser = document.querySelectorAll('.checkbox-user');
+    const checkUserArray = [...checkUser]
+    checkUserArray.forEach((checkbox)=>{
+      checkbox.addEventListener('change', (e)=>{
+        if(checkUserArray.every(checkbox=>checkbox.checked)){
+          checkAllUsers.checked = true;
+          }
+          else{
+            checkAllUsers.checked = false;
+          }
+          if (checkUserArray.some(checkbox => checkbox.checked)) {
+            deleteMultipleRowsBtn.disabled = false; // Activez le bouton si au moins une case est cochée
+          } else {
+            deleteMultipleRowsBtn.disabled = true; // Désactivez le bouton si aucune case n'est cochée
+          }
+        })
+    })
   }
   const users = await fetchUsers(1)
   displayUsers(users, 'Prenom', 'asc')
@@ -89,6 +106,7 @@ document.addEventListener('DOMContentLoaded', async ()=>{
     const isChecked = e.currentTarget.checked;
     checkUser.forEach(checkbox => {
       checkbox.checked = isChecked;
+      deleteMultipleRowsBtn.disabled = !isChecked;
     });
   });
 

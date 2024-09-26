@@ -36,7 +36,7 @@
             <section class="container my-4 mx-auto all-contacts-section">
                 <!-- section header -->
                 <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h4 class="mb-0">Utilisateurs</h4>
+                    <h4 class="mb-0">Contacts</h4>
                     <div>
                         <button class="btn btn-outline-success ms-2 show-section add-btn" data-section="create-contact-section "
                             data-bs-toggle="tooltip" 
