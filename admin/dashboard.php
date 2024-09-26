@@ -144,8 +144,8 @@
                     </div>
                 </div>
             </div>
-            <div class="row mt-5">
-                <div id="piechart_3d" class="bg-transparent rounded-3 ms-3" style="width: 550px; height: 300px;"></div>
+            <div class="row mt-3">
+                <div id="piechart_3d" class="bg-transparent rounded-3 ms-3" style="width: auto; height: 300px;"></div>
                 <canvas id="myChart" class=""></canvas>
             </div>
             <!-- Enrolled Courses -->

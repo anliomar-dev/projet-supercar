@@ -1,11 +1,3 @@
-<?php
-    include_once('../php/connexionDB.php');
-    include_once('php/functions.php');
-    $page_404 ="/super-car/404.php";
-    is_ressource_exists($DB, "contact", "contacts", "IdContact");
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,6 +13,7 @@
     <link href="/super-car/admin/styles/dashboard.css" rel="stylesheet">
     <link href="/super-car/admin/styles/users.css" rel="stylesheet">
     <link href="/super-car/admin/styles/common.css" rel="stylesheet">
+    <script src="js/contacts.js" type="module" defer></script>
     <script src="js/sidebar_navbar.js" type="module" defer></script>
     <link href="/super-car/admin/components/sidebar.css" rel="stylesheet">
 </head>
@@ -38,22 +31,21 @@
             <?php
                 include_once('components/navbar.php');
             ?>
-            
+
             <!--display all user section-->
-            <section class="container my-4 mx-auto all-users-section d-none">
+            <section class="container my-4 mx-auto all-contacts-section">
                 <!-- section header -->
                 <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h4 class="mb-0">Contacts</h4>
+                    <h4 class="mb-0">Utilisateurs</h4>
                     <div>
-                        <button class="btn btn-outline-success ms-2 show-section add-btn" data-section="new-user-section"
+                        <button class="btn btn-outline-success ms-2 show-section add-btn" data-section="create-contact-section "
                             data-bs-toggle="tooltip" 
                             data-bs-placement="top" 
-                            data-bs-title="ajouter un nouveau utilisateur"
+                            data-bs-title="ajouter un nouveau contact"
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
-                                <path d="M10 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM1.615 16.428a1.224 1.224 0 0 1-.569-1.175 6.002 6.002 0 0 1 11.908 0c.058.467-.172.92-.57 1.174A9.953 9.953 0 0 1 7 18a9.953 9.953 0 0 1-5.385-1.572ZM16.25 5.75a.75.75 0 0 0-1.5 0v2h-2a.75.75 0 0 0 0 1.5h2v2a.75.75 0 0 0 1.5 0v-2h2a.75.75 0 0 0 0-1.5h-2v-2Z" />
+                                <path fill-rule="evenodd" d="M2 3.5A1.5 1.5 0 0 1 3.5 2h1.148a1.5 1.5 0 0 1 1.465 1.175l.716 3.223a1.5 1.5 0 0 1-1.052 1.767l-.933.267c-.41.117-.643.555-.48.95a11.542 11.542 0 0 0 6.254 6.254c.395.163.833-.07.95-.48l.267-.933a1.5 1.5 0 0 1 1.767-1.052l3.223.716A1.5 1.5 0 0 1 18 15.352V16.5a1.5 1.5 0 0 1-1.5 1.5H15c-1.149 0-2.263-.15-3.326-.43A13.022 13.022 0 0 1 2.43 8.326 13.019 13.019 0 0 1 2 5V3.5Z" clip-rule="evenodd" />
                             </svg>
-
                         </button>
                         <button class="btn btn-outline-danger ms-2 delete-all-btn"
                             data-bs-toggle="tooltip" 
@@ -84,12 +76,12 @@
                                     data-bs-title="cliquez pour trier par le prenom">
                                     Prenom
                                 </span>
-                                <button class="btn d-none sortBtn" data-order="desc" data-sort-by="first_name">
+                                <button class="btn d-none sortBtn" data-order="desc" data-sort-by="Prenom">
                                     <svg class="" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
                                         <path fill-rule="evenodd" d="M2 3.75A.75.75 0 0 1 2.75 3h11.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 3.75ZM2 7.5a.75.75 0 0 1 .75-.75h7.508a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 7.5ZM14 7a.75.75 0 0 1 .75.75v6.59l1.95-2.1a.75.75 0 1 1 1.1 1.02l-3.25 3.5a.75.75 0 0 1-1.1 0l-3.25-3.5a.75.75 0 1 1 1.1-1.02l1.95 2.1V7.75A.75.75 0 0 1 14 7ZM2 11.25a.75.75 0 0 1 .75-.75h4.562a.75.75 0 0 1 0 1.5H2.75a.75.75 0 0 1-.75-.75Z" clip-rule="evenodd" />
                                     </svg>
                                 </button>
-                                <button class="btn d-none sortBtn" data-order="asc" data-sort-by="first_name">
+                                <button class="btn d-none sortBtn" data-order="asc" data-sort-by="Prenom">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
                                         <path fill-rule="evenodd" d="M2 3.75A.75.75 0 0 1 2.75 3h11.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 3.75ZM2 7.5a.75.75 0 0 1 .75-.75h6.365a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 7.5ZM14 7a.75.75 0 0 1 .55.24l3.25 3.5a.75.75 0 1 1-1.1 1.02l-1.95-2.1v6.59a.75.75 0 0 1-1.5 0V9.66l-1.95 2.1a.75.75 0 1 1-1.1-1.02l3.25-3.5A.75.75 0 0 1 14 7ZM2 11.25a.75.75 0 0 1 .75-.75H7A.75.75 0 0 1 7 12H2.75a.75.75 0 0 1-.75-.75Z" clip-rule="evenodd" />
                                     </svg>
@@ -101,12 +93,12 @@
                                     data-bs-title="cliquez pour trier par le nom">
                                     Nom
                                 </span>
-                                <button class="btn d-none sortBtn" data-order="desc" data-sort-by="last_name">
+                                <button class="btn d-none sortBtn" data-order="desc" data-sort-by="Nom">
                                     <svg class="" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
                                         <path fill-rule="evenodd" d="M2 3.75A.75.75 0 0 1 2.75 3h11.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 3.75ZM2 7.5a.75.75 0 0 1 .75-.75h7.508a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 7.5ZM14 7a.75.75 0 0 1 .75.75v6.59l1.95-2.1a.75.75 0 1 1 1.1 1.02l-3.25 3.5a.75.75 0 0 1-1.1 0l-3.25-3.5a.75.75 0 1 1 1.1-1.02l1.95 2.1V7.75A.75.75 0 0 1 14 7ZM2 11.25a.75.75 0 0 1 .75-.75h4.562a.75.75 0 0 1 0 1.5H2.75a.75.75 0 0 1-.75-.75Z" clip-rule="evenodd" />
                                     </svg>
                                 </button>
-                                <button class="btn d-none sortBtn" data-order="asc" data-sort-by="last_name">
+                                <button class="btn d-none sortBtn" data-order="asc" data-sort-by="Nom">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
                                         <path fill-rule="evenodd" d="M2 3.75A.75.75 0 0 1 2.75 3h11.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 3.75ZM2 7.5a.75.75 0 0 1 .75-.75h6.365a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 7.5ZM14 7a.75.75 0 0 1 .55.24l3.25 3.5a.75.75 0 1 1-1.1 1.02l-1.95-2.1v6.59a.75.75 0 0 1-1.5 0V9.66l-1.95 2.1a.75.75 0 1 1-1.1-1.02l3.25-3.5A.75.75 0 0 1 14 7ZM2 11.25a.75.75 0 0 1 .75-.75H7A.75.75 0 0 1 7 12H2.75a.75.75 0 0 1-.75-.75Z" clip-rule="evenodd" />
                                     </svg>
@@ -132,17 +124,17 @@
                             <th class="pb-3">Actions</th>
                         </tr>
                     </thead>
-                    <tbody class="users-container">
-                        <template id="template-user">
+                    <tbody class="contacts-container">
+                        <template id="template-contact">
                             <tr class="table-row">
                                 <td class="d-flex justify-content-center pt-3">
-                                    <input class="checkbox-user form-check-input" type="checkbox" value="">
+                                    <input class="checkbox-contact form-check-input" type="checkbox" value="">
                                 </td>
-                                <td class="first-name hover show-user-infos" data-section="update-user-section"></td>
-                                <td class="last-name hover show-user-infos" data-section="update-user-section"></td>
-                                <td class="email hover show-user-infos" data-section="update-user-section"></td>
+                                <td class="first_name hover" data-section="update-contact-section"></td>
+                                <td class="last_name hover" data-section="update-contact-section"></td>
+                                <td class="email hover" data-section="update-contact-section"></td>
                                 <td class="buttons">
-                                    <button class="btn btn-sm btn-outline-primary edit-button show-section" data-id="" data-section="update-user-section">
+                                    <button class="btn btn-sm btn-outline-primary edit-button show-section" data-id="" data-section="update-contact-section">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
                                             <path d="m5.433 13.917 1.262-3.155A4 4 0 0 1 7.58 9.42l6.92-6.918a2.121 2.121 0 0 1 3 3l-6.92 6.918c-.383.383-.84.685-1.343.886l-3.154 1.262a.5.5 0 0 1-.65-.65Z" />
                                             <path d="M3.5 5.75c0-.69.56-1.25 1.25-1.25H10A.75.75 0 0 0 10 3H4.75A2.75 2.75 0 0 0 2 5.75v9.5A2.75 2.75 0 0 0 4.75 18h9.5A2.75 2.75 0 0 0 17 15.25V10a.75.75 0 0 0-1.5 0v5.25c0 .69-.56 1.25-1.25 1.25h-9.5c-.69 0-1.25-.56-1.25-1.25v-9.5Z" />
@@ -167,53 +159,32 @@
             </section>
             
             <!--update user infos section -->
-            <section class="container mt-3 update-user-section d-none">
+            <section class="container mt-3 update-contact-section d-none">
                 <form class="row">
                     <div class="col-md-8 border rounded-3 shadow py-4 px-4">
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link active" id="compte-tab" data-bs-toggle="tab" data-bs-target="#compte" type="button" role="tab" aria-controls="compte" aria-selected="true">infos personnelles</button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="groupe-tab" data-bs-toggle="tab" data-bs-target="#groupe" type="button" role="tab" aria-controls="groupe" aria-selected="false">Compte et permissions</button>
+                                <button class="nav-link active" id="compte-tab" data-bs-toggle="tab" data-bs-target="#compte" type="button" role="tab" aria-controls="compte" aria-selected="true">contact infos</button>
                             </li>
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane fade show active" id="compte" role="tabpanel" aria-labelledby="compte-tab">
-                                <div class="mt-4 update-user-form">
+                                <div class="mt-4 update-contact-form">
                                     <div class="mb-3">
-                                        <label for="fitst_name" class="form-label">Prénom</label>
-                                        <input type="text" name="first_name" class="form-control" id="first_name" value="" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="last_name" class="form-label">Nom</label>
-                                        <input type="text" name="last_name" class="form-control" id="last_name" value="" required>
+                                        <label for="Prenom" class="form-label">Prénom</label>
+                                        <input type="text" name="Prenom" class="form-control" id="Prenom" value="" required>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="adresse" class="form-label">Adresse</label>
-                                        <input type="text" name="adresse" class="form-control" id="adresse" value="" required>
+                                        <label for="Nom" class="form-label">Nom</label>
+                                        <input type="text" name="Nom" class="form-control" id="Nom" value="" required>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="phone" class="form-label">Téléphone</label>
-                                        <input type="" name="phone" class="form-control" id="phone" value="" required>
+                                        <label for="email" class="form-label">Email</label>
+                                        <input type="text" name="email" class="form-control" id="email" value="" required>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="groupe" role="tabpanel" aria-labelledby="groupe-tab">
-                                <div class="mb-3">
-                                    <label for="email" class="form-label">Email</label>
-                                    <input type="email" name="email" class="form-control" id="email" value="" required>
-                                </div>
-                                <div class="mt-0">
-                                    <div class="form-group d-flex">
-                                        <span>est admin</span>
-                                        <input type="checkbox" class="form-check-input ms-1" value="true">
-                                        <p class="ms-2">: determine si ce compte peut se connecter à l'interface admin</p>
-                                    </div>
-                                    <div class="form-group d-flex">
-                                        <span>est superadmin</span>
-                                        <input type="checkbox" class="form-check-input ms-1" value="true">
-                                        <p class="ms-2">: donner tous les droit et privilèges à l'utilisateur</p>
+                                    <div class="mb-3">
+                                        <label for="NumTel" class="form-label">Téléphone</label>
+                                        <input type="text" name="NumTel" class="form-control" id="NumTel" value="" required>
                                     </div>
                                 </div>
                             </div>
@@ -223,7 +194,49 @@
                         <button type="submit" class="btn btn-enregistrer w-100 mb-2 save-change">Enregistrer</button>
                         <button type="button" class="btn btn-supprimer w-100 mb-2">Supprimer</button>
                         <button type="button" class="btn btn-historique w-100 mb-2">Historique</button>
-                        <button type="button" class="btn btn-retour w-100 show-section" data-section="all-users-section">
+                        <button type="button" class="btn btn-retour w-100 show-section" data-section="all-contacts-section">
+                            <i class="fa-solid fa-left-long"></i>
+                            Retour
+                        </button>
+                    </div>
+                </form>
+            </section>
+            <!--update user infos section -->
+            <section class="container mt-3 create-contact-section d-none">
+                <form class="row">
+                    <div class="col-md-8 border rounded-3 shadow py-4 px-4">
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="true">contact infos</button>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane fade show active" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                                <div class="mt-4 update-contact-form">
+                                    <div class="mb-3">
+                                        <label for="new-prenom" class="form-label">Prénom</label>
+                                        <input type="text" name="new-prenom" class="form-control" id="new-prenom" value="" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="new-nom" class="form-label">Nom</label>
+                                        <input type="text" name="new-nom" class="form-control" id="new-nom" value="" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="new-email" class="form-label">Email</label>
+                                        <input type="text" name="new-email" class="form-control" id="new-email" value="" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="new-numTel" class="form-label">Téléphone</label>
+                                        <input type="text" name="new-numTel" class="form-control" id="new-numTel" value="" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mt-1 d-flex flex-column align-items-start">
+                        <button type="submit" class="btn btn-enregistrer w-100 mb-2 save-change">Enregistrer</button>
+                        <button type="button" class="btn btn-supprimer w-100 mb-2">Supprimer</button>
+                        <button type="button" class="btn btn-retour w-100 show-section" data-section="all-contacts-section">
                             <i class="fa-solid fa-left-long"></i>
                             Retour
                         </button>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>utilisateurs</title>
+    <title>demandes d'essais</title>
     <!--cdn font awsome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" 
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" 
@@ -13,7 +13,7 @@
     <link href="/super-car/admin/styles/dashboard.css" rel="stylesheet">
     <link href="/super-car/admin/styles/users.css" rel="stylesheet">
     <link href="/super-car/admin/styles/common.css" rel="stylesheet">
-    <script src="js/users.js" type="module" defer></script>
+    <script src="js/essais.js" type="module" defer></script>
     <script src="js/sidebar_navbar.js" type="module" defer></script>
     <link href="/super-car/admin/components/sidebar.css" rel="stylesheet">
 </head>
@@ -33,20 +33,19 @@
             ?>
 
             <!--display all user section-->
-            <section class="container my-4 mx-auto all-users-section">
+            <section class="container my-4 mx-auto all-essais-section">
                 <!-- section header -->
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <h4 class="mb-0">Demande d'essais</h4>
                     <div>
-                        <button class="btn btn-outline-success ms-2 show-section add-btn" data-section="new-user-section"
+                        <button class="btn btn-outline-success ms-2 show-section add-btn" data-section="new-essai-section"
                             data-bs-toggle="tooltip" 
                             data-bs-placement="top" 
-                            data-bs-title="ajouter un nouveau utilisateur"
+                            data-bs-title="ajouter une nouvelle demande"
                         >
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
-                                <path d="M10 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM1.615 16.428a1.224 1.224 0 0 1-.569-1.175 6.002 6.002 0 0 1 11.908 0c.058.467-.172.92-.57 1.174A9.953 9.953 0 0 1 7 18a9.953 9.953 0 0 1-5.385-1.572ZM16.25 5.75a.75.75 0 0 0-1.5 0v2h-2a.75.75 0 0 0 0 1.5h2v2a.75.75 0 0 0 1.5 0v-2h2a.75.75 0 0 0 0-1.5h-2v-2Z" />
+                            <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='w-6 h-6'>
+                                <path stroke-linecap='round' stroke-linejoin='round' d='M19.5 10.5V6.75A2.25 2.25 0 0017.25 4.5h-10.5A2.25 2.25 0 004.5 6.75v10.5A2.25 2.25 0 006.75 19.5h10.5a2.25 2.25 0 002.25-2.25V13.5m-6 0H9m3 3H9m6-6h-6m6 0H9' />
                             </svg>
-
                         </button>
                         <button class="btn btn-outline-danger ms-2 delete-all-btn"
                             data-bs-toggle="tooltip" 
@@ -77,12 +76,12 @@
                                     data-bs-title="cliquez pour trier par la date">
                                     Date
                                 </span>
-                                <button class="btn d-none sortBtn" data-order="desc" data-sort-by="first_name">
+                                <button class="btn d-none sortBtn" data-order="desc" data-sort-by="DateEssai">
                                     <svg class="" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
                                         <path fill-rule="evenodd" d="M2 3.75A.75.75 0 0 1 2.75 3h11.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 3.75ZM2 7.5a.75.75 0 0 1 .75-.75h7.508a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 7.5ZM14 7a.75.75 0 0 1 .75.75v6.59l1.95-2.1a.75.75 0 1 1 1.1 1.02l-3.25 3.5a.75.75 0 0 1-1.1 0l-3.25-3.5a.75.75 0 1 1 1.1-1.02l1.95 2.1V7.75A.75.75 0 0 1 14 7ZM2 11.25a.75.75 0 0 1 .75-.75h4.562a.75.75 0 0 1 0 1.5H2.75a.75.75 0 0 1-.75-.75Z" clip-rule="evenodd" />
                                     </svg>
                                 </button>
-                                <button class="btn d-none sortBtn" data-order="asc" data-sort-by="first_name">
+                                <button class="btn d-none sortBtn" data-order="asc" data-sort-by="DateEssai">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
                                         <path fill-rule="evenodd" d="M2 3.75A.75.75 0 0 1 2.75 3h11.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 3.75ZM2 7.5a.75.75 0 0 1 .75-.75h6.365a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 7.5ZM14 7a.75.75 0 0 1 .55.24l3.25 3.5a.75.75 0 1 1-1.1 1.02l-1.95-2.1v6.59a.75.75 0 0 1-1.5 0V9.66l-1.95 2.1a.75.75 0 1 1-1.1-1.02l3.25-3.5A.75.75 0 0 1 14 7ZM2 11.25a.75.75 0 0 1 .75-.75H7A.75.75 0 0 1 7 12H2.75a.75.75 0 0 1-.75-.75Z" clip-rule="evenodd" />
                                     </svg>
@@ -98,20 +97,20 @@
                                     status
                                 </span>
                             </th>
-                            <th class="pb-3">Actions</th>
+                            <th class="pb-3"><span>Actions</span></th>
                         </tr>
                     </thead>
                     <tbody class="essais-container">
-                        <template id="template-user">
+                        <template id="template-essai">
                             <tr class="table-row">
                                 <td class="d-flex justify-content-center pt-3">
-                                    <input class="checkbox-user form-check-input" type="checkbox" value="">
+                                    <input class="checkbox-essai form-check-input" type="checkbox" value="">
                                 </td>
-                                <td class="first-name hover show-user-infos" data-section="update-user-section"></td>
-                                <td class="last-name hover show-user-infos" data-section="update-user-section"></td>
-                                <td class="email hover show-user-infos" data-section="update-user-section"></td>
+                                <td class="date hover" data-section="update-essai-section"></td>
+                                <td class="heure hover" data-section="update-essai-section"></td>
+                                <td class="status hover" data-section="update-essai-section"></td>
                                 <td class="buttons">
-                                    <button class="btn btn-sm btn-outline-primary edit-button show-section" data-id="" data-section="update-user-section">
+                                    <button class="btn btn-sm btn-outline-primary edit-button show-section" data-id="" data-section="update-essai-section">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
                                             <path d="m5.433 13.917 1.262-3.155A4 4 0 0 1 7.58 9.42l6.92-6.918a2.121 2.121 0 0 1 3 3l-6.92 6.918c-.383.383-.84.685-1.343.886l-3.154 1.262a.5.5 0 0 1-.65-.65Z" />
                                             <path d="M3.5 5.75c0-.69.56-1.25 1.25-1.25H10A.75.75 0 0 0 10 3H4.75A2.75 2.75 0 0 0 2 5.75v9.5A2.75 2.75 0 0 0 4.75 18h9.5A2.75 2.75 0 0 0 17 15.25V10a.75.75 0 0 0-1.5 0v5.25c0 .69-.56 1.25-1.25 1.25h-9.5c-.69 0-1.25-.56-1.25-1.25v-9.5Z" />
@@ -135,55 +134,56 @@
                 </nav>
             </section>
             
-            <!--update user infos section -->
-            <section class="container mt-3 update-user-section d-none">
+            <!--update essai infos section -->
+            <section class="container mt-3 update-essai-section d-none">
                 <form class="row">
                     <div class="col-md-8 border rounded-3 shadow py-4 px-4">
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link active" id="compte-tab" data-bs-toggle="tab" data-bs-target="#compte" type="button" role="tab" aria-controls="compte" aria-selected="true">infos personnelles</button>
+                                <button class="nav-link active" id="compte-tab" data-bs-toggle="tab" data-bs-target="#compte" type="button" role="tab" aria-controls="compte" aria-selected="true">infos générale</button>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="groupe-tab" data-bs-toggle="tab" data-bs-target="#groupe" type="button" role="tab" aria-controls="groupe" aria-selected="false">Compte et permissions</button>
+                                <button class="nav-link" id="user-tab" data-bs-toggle="tab" data-bs-target="#user" type="button" role="tab" aria-controls="user" aria-selected="false">demandeur</button>
                             </li>
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane fade show active" id="compte" role="tabpanel" aria-labelledby="compte-tab">
                                 <div class="mt-4 update-user-form">
                                     <div class="mb-3">
-                                        <label for="fitst_name" class="form-label">Prénom</label>
-                                        <input type="text" name="first_name" class="form-control" id="first_name" value="" required>
+                                        <label for="DateEssai" class="form-label">Date</label>
+                                        <input type="text" name="DateEssai" class="form-control" id="DateEssai" value="" required>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="last_name" class="form-label">Nom</label>
-                                        <input type="text" name="last_name" class="form-control" id="last_name" value="" required>
+                                        <label for="Heure" class="form-label">Heure</label>
+                                        <input type="text" name="Heure" class="form-control" id="Heure" value="" required>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="adresse" class="form-label">Adresse</label>
-                                        <input type="text" name="adresse" class="form-control" id="adresse" value="" required>
+                                        <label for="status" class="form-label">Status</label>
+                                        <input type="text" name="status" class="form-control" id="status" value="" required>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="phone" class="form-label">Téléphone</label>
-                                        <input type="" name="phone" class="form-control" id="phone" value="" required>
+                                        <label for="Marque" class="form-label">Marque</label>
+                                        <select id="Marque" name="IdMarque" class="form-select" aria-label="Default select example">
+                                            <?php
+                                                include_once('../php/all_marques.php');
+                                                option_brands()
+                                            ?>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="groupe" role="tabpanel" aria-labelledby="groupe-tab">
+                            <div class="tab-pane fade" id="user" role="tabpanel" aria-labelledby="user-tab">
                                 <div class="mb-3">
-                                    <label for="email" class="form-label">Email</label>
-                                    <input type="email" name="email" class="form-control" id="email" value="" required>
+                                    <label for="email" class="form-label">Prenom</label>
+                                    <input type="Prenom" name="Prenom" class="form-control" id="Prenom" value="" required>
                                 </div>
-                                <div class="mt-0">
-                                    <div class="form-group d-flex">
-                                        <span>est admin</span>
-                                        <input type="checkbox" class="form-check-input ms-1" value="true">
-                                        <p class="ms-2">: determine si ce compte peut se connecter à l'interface admin</p>
-                                    </div>
-                                    <div class="form-group d-flex">
-                                        <span>est superadmin</span>
-                                        <input type="checkbox" class="form-check-input ms-1" value="true">
-                                        <p class="ms-2">: donner tous les droit et privilèges à l'utilisateur</p>
-                                    </div>
+                                <div class="mb-3">
+                                    <label for="Nom" class="form-label">Nom</label>
+                                    <input type="text" name="email" class="form-control" id="Nom" value="" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="phone" class="form-label">Téléphone</label>
+                                    <input type="phone" name="phone" class="form-control" id="phone" value="" required>
                                 </div>
                             </div>
                         </div>
@@ -192,7 +192,7 @@
                         <button type="submit" class="btn btn-enregistrer w-100 mb-2 save-change">Enregistrer</button>
                         <button type="button" class="btn btn-supprimer w-100 mb-2">Supprimer</button>
                         <button type="button" class="btn btn-historique w-100 mb-2">Historique</button>
-                        <button type="button" class="btn btn-retour w-100 show-section" data-section="all-users-section">
+                        <button type="button" class="btn btn-retour w-100 show-section" data-section="all-essais-section">
                             <i class="fa-solid fa-left-long"></i>
                             Retour
                         </button>
@@ -200,8 +200,8 @@
                 </form>
             </section>
 
-            <!--section create new user-->
-            <section class="container mt-3 mb-3 new-user-section d-none">
+            <!--section create new essai-->
+            <section class="container mt-3 mb-3 new-essai-section d-none">
                 <form class="row">
                     <div class="col-md-8 border rounded-3 shadow py-4 px-4">
                         <ul class="nav nav-tabs" id="myTab2" role="tablist">
@@ -213,7 +213,7 @@
                             </li>
                         </ul>
                         <div class="tab-content">
-                            <!-- create new user form -->
+                            <!-- create new essai form -->
                             <div class="tab-pane fade show active border rounded-3 p-4" id="inscription" role="tabpanel" aria-labelledby="inscription-tab">
                                 <div class="mt-4">
                                     <div class="mb-3">
@@ -240,34 +240,6 @@
                                     <label for="email-inscription" class="form-label">Email</label>
                                     <input type="email" class="form-control" id="email-inscription" placeholder="Entrez votre email" autocomplete="email" required>
                                 </div>
-                                <div class="row mt-3">
-                                    <div class="form-group col-md-6 position-relative password-container">
-                                        <label for="password">Mot de passe</label>
-                                        <span class="eye-icon">👁️</span>
-                                        <span style="display: none;" class="hide-password">🙈</span>
-                                        <input type="password" class="form-control passwordField" name="password" id="password" placeholder="Mot de passe" autocomplete="current-password" required>
-                                    </div>
-                                    <div class="form-group col-md-6 position-relative password-container confirm-pass-container">
-                                        <span class="eye-icon">👁️</span>
-                                        <span style="display: none;" class="hide-password">🙈</span>
-                                        <label for="confirmPassword">confirmation</label>
-                                        <input type="password" class="form-control passwordField" name="confirmPassword" id="confirmPassword" placeholder="confirmation" autocomplete="current-password" required>
-                                    </div>
-                                </div>
-                                <h5 class="col-12 mt-4">Privilèges</h5>
-                                <hr>
-                                <div class="mt-0">
-                                    <div class="form-group d-flex">
-                                        <span>est admin</span>
-                                        <input type="checkbox" class="form-check-input ms-1" value="true">
-                                        <p class="ms-2">: determine si ce compte peut se connecter à l'interface admin</p>
-                                    </div>
-                                    <div class="form-group d-flex">
-                                        <span>est superadmin</span>
-                                        <input type="checkbox" class="form-check-input ms-1" value="true">
-                                        <p class="ms-2">: donner tous les droit et privilèges à l'utilisateur</p>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -275,7 +247,7 @@
                         <button type="submit" class="btn btn-enregistrer w-100 mb-2">Enregistrer</button>
                         <button type="button" class="btn btn-supprimer w-100 mb-2">Annuler</button>
                         <button type="button" class="btn btn-retour w-100 mb-2 show-section" 
-                            data-section="all-users-section">
+                            data-section="all-essais-section">
                             <i class="fa-solid fa-left-long"></i>
                             Retour
                         </button>
