@@ -4,6 +4,7 @@
   include_once('../../php/utils.php');
   include_once('../php/utils.php');
   include_once('../php/functions_get_data.php');
+  include_once('../php/del-update_functions.php');
   
   // Set the content type as JSON
   header('Content-Type: application/json; charset=utf-8');
@@ -122,8 +123,8 @@
         break;
       
       case 'DELETE':
-        $user_id = intval($data['user_id']);
-        $delete_user = delete_user($user_id);
+        $ids = [$data];
+        $delete_user = delete_rows("utilisateur", "IdUtilisateuer",);
         if($delete_user){
           $response = [
             'status' => 'success',

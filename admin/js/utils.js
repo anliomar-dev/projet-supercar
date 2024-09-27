@@ -104,3 +104,20 @@ export function resetFormInputs(form){
     });
 }
 
+export async function fetchDeleteROws(endPoint, ids){
+  try {
+    const response = await fetch(endPoint, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({"ids": ids}),
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error occurred while deleting rows:', error);
+    return { error: error.message };
+  }
+}
+
