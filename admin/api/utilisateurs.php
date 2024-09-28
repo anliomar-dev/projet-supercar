@@ -5,7 +5,7 @@
   include_once('../php/utils.php');
   include_once('../php/functions_get_data.php');
   include_once('../php/del-update_functions.php');
-  
+  session_start();
   // Set the content type as JSON
   header('Content-Type: application/json; charset=utf-8');
 
@@ -50,40 +50,41 @@
     $input = file_get_contents('php://input');  
     // Convert the received JSON data into an associative array
     $data = json_decode($input, true);
-    $first_name = $data['first_name'] ?? '';
-    $last_name = $data['last_name'] ?? '';
-    $phone = $data['phone'] ?? '';
-    $address = $data['address'] ?? '';
-    $email = $data['email'] ?? '';
-    $is_admin = $data['is_admin'] ?? '';
-    $is_superadmin = $data['is_superadmin'] ?? '';
-    $csrf_token = $data['csrfToken'];
-    // create associated array for new user: the name of each key is the same as the name of the column in the database
-    $new_user = [
-      'Prenom' => $first_name,
-      'Nom' => $last_name,
-      'Adresse' => $address,
-      'NumTel' => $phone,
-      'Email' => $email,
-      'MotDePasse' => $password,
-      'est_admin' => $is_admin,
-      'est_superadmin' => $is_superadmin
-    ];
+    
+    //$csrf_token = $data['csrfToken'];
     
     // Check if the CSRF token is valid
-    if($csrf_token !== $_SESSION['csrf_token']){
+    /*if($csrf_token !== $_SESSION['csrf_token']){
         $response = [
           'status' => 'error',
           'message' => 'token  csrf non valid'
         ];
         echo json_encode($response);
         exit;
-    }
+    }*/
 
     // Handle different HTTP methods
     switch ($method) {
       case 'POST':
+        $first_name = $data['first_name'] ?? '';
+        $last_name = $data['last_name'] ?? '';
+        $phone = $data['phone'] ?? '';
+        $address = $data['address'] ?? '';
+        $email = $data['email'] ?? '';
+        $is_admin = $data['is_admin'] ?? '';
+        $is_superadmin = $data['is_superadmin'] ?? '';
         $password = $data['password'] ? $data['password'] : '';
+            // create associated array for new user: the name of each key is the same as the name of the column in the database
+        $new_user = [
+          'Prenom' => $first_name,
+          'Nom' => $last_name,
+          'Adresse' => $address,
+          'NumTel' => $phone,
+          'Email' => $email,
+          'MotDePasse' => $password,
+          'est_admin' => $is_admin,
+          'est_superadmin' => $is_superadmin
+        ];
         // check if all fields are not empty
         if (!empty($first_name) && !empty($last_name) && !empty($phone)
             && !empty($address) && !empty($email) && !empty($password)) {
@@ -123,18 +124,22 @@
         break;
       
       case 'DELETE':
-        $ids = [$data];
-        $delete_user = delete_rows("utilisateur", "IdUtilisateuer",);
+        $ids = $data['ids'];
+        $delete_user = delete_rows("utilisateur", "IdUtilisateur", $ids);
         if($delete_user){
           $response = [
             'status' => 'success',
-            'message' => 'Compte supprimé avec succès'
+            'message' => 'Compte(s) supprimé avec succès'
           ];
+          echo json_encode($response);
+          exit();
         }else{
           $response = [
             'status' => 'error',
             'message' => 'erreur lors de la suppression du compte',
           ];
+          echo json_encode($response);
+          exit();
         }
         break;
       

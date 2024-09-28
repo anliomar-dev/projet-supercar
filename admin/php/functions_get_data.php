@@ -19,7 +19,7 @@
     $result = mysqli_query($DB, $count);
     $row = mysqli_fetch_assoc($result);
     $total = $row['total'];
-    $limit = 2;
+    $limit = 10;
     $total_pages = ceil($total / $limit);
     $offset = ($page - 1) * $limit;
     if($page > $total_pages || $page <= 0 || !is_numeric($page)){

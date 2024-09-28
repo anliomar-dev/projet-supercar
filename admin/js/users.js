@@ -1,7 +1,7 @@
 import { 
-  fetchUsers, sortData, 
+  fetchUsers, sortData, fetchDeleteRows,
   getUser, toggleAndSortDataBtns, 
-  updateCheckedCasesDatasetIds 
+  updateCheckedCasesDatasetIds
 } from "./utils";
 import { showPassword, hidePassword, createUser, resetForm } from "/super-car/js/utils";
 
@@ -159,6 +159,7 @@ showSectionClickables.forEach((clickable) => {
 // dynamic pagination
 const pagination = document.querySelector(".pagination");
 async function paginationUsers(pagination) {
+    pagination.textContent = "";
     const data = await fetchUsers();
     const users = data.users;
     const totalPages = data.total_pages;
@@ -254,4 +255,39 @@ async function paginationUsers(pagination) {
     }
 }
 paginationUsers(pagination);
+const alertSuccess = document.querySelector('.alert-success');
+const hideAlertBtn = document.querySelector('.hide-alert-btn');
+deleteMultipleRowsBtn.addEventListener('click', async(e)=>{
+  e.preventDefault();
+  const checkedUsers = document.querySelectorAll('input[type="checkbox"]:checked');
+  const userIds = Array.from(checkedUsers).map(user => user.value);
+  if (userIds.length > 0) {
+    
+    const response = await fetchDeleteRows("http://localhost/Super-car/admin/api/utilisateurs", userIds)
+
+    if (response.status === "success") {
+      const users = await fetchUsers();
+      displayUsers(users, 'Prenom', 'asc');
+      const successMessage = response.message;
+      alertSuccess.querySelector('span').innerHTML = successMessage;
+      alertSuccess.classList.remove('d-none');
+      alertSuccess.classList.add('alert-show');
+      
+      checkAllUsers.checked = false;
+      paginationUsers(pagination);
+    }
+  }
+})
+hideAlertBtn.addEventListener('click', ()=>{
+  alertSuccess.classList.remove('alert-show');
+  alertSuccess.classList.add('d-none');
+  alertSuccess.innerHTML = "";
+})
+setTimeout(() => {
+    if(!alertSuccess.classList.contains('d-none')){
+      alertSuccess.classList.remove('alert-show');
+      alertSuccess.classList.add('d-none');
+      alertSuccess.querySelector('span').innerHTML = successMessage;
+    }
+  }, 5000);
 })

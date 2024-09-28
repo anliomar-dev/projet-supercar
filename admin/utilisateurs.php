@@ -16,6 +16,22 @@
     <script src="js/users.js" type="module" defer></script>
     <script src="js/sidebar_navbar.js" type="module" defer></script>
     <link href="/super-car/admin/components/sidebar.css" rel="stylesheet">
+    <style>
+        @keyframes alert-animate {
+            to{
+                display: block;
+                opacity: 1;
+                
+            }
+        }
+        .alert-show{
+            animation: alert-animate 1.5s ease-out 1s forwards;
+        }
+        .hide-alert-btn svg{
+            width: 20px;
+            height: 20px;
+        }
+    </style>
 </head>
 <body>
 
@@ -33,7 +49,18 @@
             ?>
 
             <!--display all user section-->
-            <section class="container my-4 mx-auto all-users-section">
+            <section class="container my-3 mx-auto all-users-section position-relative">
+                <div class="position-absolute">
+                    
+                </div>
+                <div class="alert alert-success d-flex justify-content-between align-items-center d-none" role="alert">
+                    <span></span>
+                    <button class="btn hide-alert-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
+                            <path d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 0 0-1.06-1.06L10 8.94 6.28 5.22Z" />
+                        </svg>
+                    </button>
+                </div>
                 <!-- section header -->
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <h4 class="mb-0">Utilisateurs</h4>

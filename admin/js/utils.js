@@ -104,15 +104,22 @@ export function resetFormInputs(form){
     });
 }
 
-export async function fetchDeleteROws(endPoint, ids){
+export async function fetchDeleteRows(endPoint, ids) {
   try {
     const response = await fetch(endPoint, {
-    method: 'DELETE',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({"ids": ids}),
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ "ids": ids }),
     });
+
+    // Vérifier si la réponse est un succès
+    if (!response.ok) {
+      throw new Error(`Error: ${response.status} - ${response.statusText}`);
+    }
+
+    // Convertir la réponse en JSON
     const data = await response.json();
     return data;
   } catch (error) {
@@ -120,6 +127,7 @@ export async function fetchDeleteROws(endPoint, ids){
     return { error: error.message };
   }
 }
+
 
 
 // Function to update the checkedCasesDatasetIds array based on checked checkboxes
