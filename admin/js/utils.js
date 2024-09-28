@@ -121,3 +121,15 @@ export async function fetchDeleteROws(endPoint, ids){
   }
 }
 
+
+// Function to update the checkedCasesDatasetIds array based on checked checkboxes
+export function updateCheckedCasesDatasetIds(checkedCasesDatasetIdsArray, checkRowsArray) {
+  // Clear the array before populating it
+  checkedCasesDatasetIdsArray.length = 0;
+  checkRowsArray.forEach(checkbox => {
+    if (checkbox.checked) {
+      checkedCasesDatasetIdsArray.push(checkbox.value);
+    }
+  });
+  console.log(checkedCasesDatasetIdsArray)
+};
