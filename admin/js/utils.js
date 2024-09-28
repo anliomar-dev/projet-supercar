@@ -116,7 +116,8 @@ export async function fetchDeleteROws(endPoint, ids){
     const data = await response.json();
     return data;
   } catch (error) {
-    
+    console.error('Error occurred while deleting rows:', error);
+    return { error: error.message };
   }
 }
 
