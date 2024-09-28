@@ -82,21 +82,25 @@ document.addEventListener('DOMContentLoaded', async ()=>{
       })
     });
     checkUser = document.querySelectorAll('.checkbox-user');
+    const checkedCasesDatasetIds = []
     const checkUserArray = [...checkUser]
     checkUserArray.forEach((checkbox)=>{
       checkbox.addEventListener('change', (e)=>{
         if(checkUserArray.every(checkbox=>checkbox.checked)){
           checkAllUsers.checked = true;
-          }
-          else{
-            checkAllUsers.checked = false;
-          }
-          if (checkUserArray.some(checkbox => checkbox.checked)) {
-            deleteMultipleRowsBtn.disabled = false; // Activez le bouton si au moins une case est cochée
-          } else {
-            deleteMultipleRowsBtn.disabled = true; // Désactivez le bouton si aucune case n'est cochée
-          }
-        })
+        }
+        else{
+          checkAllUsers.checked = false;
+        }
+        if (checkUserArray.some(checkbox => checkbox.checked)) {
+          deleteMultipleRowsBtn.disabled = false; // Activez le bouton si au moins une case est cochée
+        } else {
+          deleteMultipleRowsBtn.disabled = true; // Désactivez le bouton si aucune case n'est cochée
+        }
+      })
+      if(checkbox.checked){
+        checkedCasesDatasetIds.append(checkbox.dataset.id)
+      }
     })
   }
   const users = await fetchUsers(1)
