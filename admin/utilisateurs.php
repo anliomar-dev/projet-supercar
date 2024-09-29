@@ -31,10 +31,14 @@
             width: 20px;
             height: 20px;
         }
+        .confirmation-box{
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -20%);
+        }
     </style>
 </head>
 <body>
-
 <div class="container-fluid">
     <div class="row position-relative">
         <!-- Sidebar -->
@@ -47,28 +51,41 @@
             <?php
                 include_once('components/navbar.php');
             ?>
+            <div class="position-fixed top-0 start-0 w-100 h-100 confirmation d-none" style="background-color: rgba(0, 0, 0, 0.5); z-index: 3000;">
+            </div>
 
+            <!-- Boîte de confirmation -->
+            <div class="position-absolute confirmation-box shadow confirmation d-none" style="z-index: 3500;">
+                <div class="border rounded p-4 shadow-sm bg-white" style="width: 400px;">
+                    <div class="text-center mb-3">
+                        <p class="mb-4">Voulez-vous vraiment supprimer ?</p>
+                        <div class="d-flex justify-content-center gap-2">
+                            <button class="btn btn-danger px-4 cancel-delete">Annuler</button>
+                            <button 
+                                class="btn btn-secondary px-4 confirm-delete show-section" 
+                                data-section="all-users-section">Confirmer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="alert alert-success d-flex justify-content-between align-items-center d-none" role="alert">
+                <span class="message"></span>
+                <button class="btn hide-alert-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
+                        <path d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 0 0-1.06-1.06L10 8.94 6.28 5.22Z" />
+                    </svg>
+                </button>
+            </div>
+            <div class="alert alert-danger d-flex justify-content-between align-items-center d-none" role="alert">
+                <span></span>
+                <button class="btn hide-alert-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
+                        <path d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 0 0-1.06-1.06L10 8.94 6.28 5.22Z" />
+                    </svg>
+                </button>
+            </div>
             <!--display all user section-->
-            <section class="container my-3 mx-auto all-users-section position-relative">
-                <div class="position-absolute">
-                    
-                </div>
-                <div class="alert alert-success d-flex justify-content-between align-items-center d-none" role="alert">
-                    <span class="message"></span>
-                    <button class="btn hide-alert-btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
-                            <path d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 0 0-1.06-1.06L10 8.94 6.28 5.22Z" />
-                        </svg>
-                    </button>
-                </div>
-                <div class="alert alert-danger d-flex justify-content-between align-items-center d-none" role="alert">
-                    <span></span>
-                    <button class="btn hide-alert-btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
-                            <path d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 0 0-1.06-1.06L10 8.94 6.28 5.22Z" />
-                        </svg>
-                    </button>
-                </div>
+            <section class="container my-3 mx-auto all-users-section">
                 <!-- section header -->
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <h4 class="mb-0">Utilisateurs</h4>
@@ -235,12 +252,12 @@
                                 <div class="mt-0">
                                     <div class="form-group d-flex">
                                         <span>est admin</span>
-                                        <input type="checkbox" name="is-admin" class="form-check-input ms-1" value="true">
+                                        <input type="checkbox" name="is-admin" id="is-admin" class="form-check-input ms-1" value="true">
                                         <p class="ms-2">: determine si ce compte peut se connecter à l'interface admin</p>
                                     </div>
                                     <div class="form-group d-flex">
                                         <span>est superadmin</span>
-                                        <input type="checkbox" name="is-superadmin" class="form-check-input ms-1" value="true">
+                                        <input type="checkbox" name="is-superadmin" id="is-superadmin" class="form-check-input ms-1" value="true">
                                         <p class="ms-2">: donner tous les droit et privilèges à l'utilisateur</p>
                                     </div>
                                 </div>
@@ -249,8 +266,6 @@
                     </div>
                     <div class="col-md-4 mt-1 d-flex flex-column align-items-start">
                         <button type="submit" class="btn btn-enregistrer w-100 mb-2 save-change">Enregistrer</button>
-                        <button type="button" class="btn btn-supprimer w-100 mb-2">Supprimer</button>
-                        <button type="button" class="btn btn-historique w-100 mb-2">Historique</button>
                         <button type="button" class="btn btn-retour w-100 show-section" data-section="all-users-section">
                             <i class="fa-solid fa-left-long"></i>
                             Retour

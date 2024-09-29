@@ -95,7 +95,7 @@
           "address" => $row['Adresse'],
           "phone" => $row['NumTel'],
           "is_admin" => $row['est_admin'],
-          "is_superuser" => $row['est_superadmin']
+          "is_superadmin" => $row['est_superadmin']
         ];
         return json_encode($user);
       }else{

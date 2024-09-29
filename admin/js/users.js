@@ -4,7 +4,8 @@ import {
   removeAlert, showAlert,
   toggleAndSortDataBtns,
   updateCheckedCasesDatasetIds,
-  handleClickDeleteMultiRowsBtn
+  handleClickDeleteMultiRowsBtn,
+  showAndHideConfirmationBox
 } from "./utils";
 import {
   showPassword,
@@ -27,6 +28,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   const theadColumns = document.querySelectorAll(".th-col");
   const checkAllUsers = document.querySelector(".check-all");
   const deleteMultipleRowsBtn = document.querySelector(".delete-all-btn");
+  const confirmDeleteBtn = document.querySelector('.confirm-delete');
+  const cancelDelete = document.querySelector('.cancel-delete');
+  const overlayAndConfirmationBox = document.querySelectorAll('.confirmation');
   let checkUser = [];
   const checkedCasesDatasetIds = [];
 
@@ -36,85 +40,106 @@ document.addEventListener("DOMContentLoaded", async () => {
   const eyeIcons = document.querySelectorAll(".eye-icon"); // show password icons
   const hidePasswordIcons = document.querySelectorAll(".hide-password"); // hide password icons
   eyeIcons.forEach((eyeIcon) => showPassword(eyeIcon)); // show password
-  hidePasswordIcons.forEach((hidePasswordIcon) =>
+    hidePasswordIcons.forEach((hidePasswordIcon) =>
     hidePassword(hidePasswordIcon)
   ); // hide password
 
   async function displayUsers(data, sortBy, order) {
-    usersContainer.innerHTML = "";
-    const users = data.users || [];
-    const sortedUsers = sortData(users, sortBy, order);
+    usersContainer.innerHTML = ""; // Clear previous users
+    const users = data.users || []; // Get users or default to an empty array
+    const sortedUsers = sortData(users, sortBy, order); // Sort users
 
+    // Handle empty user list
     if (sortedUsers.length === 0) {
-      usersContainer.innerHTML = "<p>No users available.</p>";
-      return;
+        usersContainer.innerHTML = "<p>No users available.</p>";
+        return;
     }
 
+    // Iterate through each user to create the UI elements
     sortedUsers.forEach((user) => {
-      const clone = template.content.cloneNode(true);
+        const clone = template.content.cloneNode(true);
 
-      const checkBoxUser = clone.querySelector(".checkbox-user");
-      checkBoxUser.value = user.id;
+        const checkBoxUser = clone.querySelector(".checkbox-user");
+        checkBoxUser.value = user.id;
 
-      // Listener for each user checkbox
-      checkBoxUser.addEventListener("change", (e) => {
-        if (!e.currentTarget.checked) {
-          checkAllUsers.checked = false; // Uncheck checkAllUsers if a checkbox is unchecked
-        }
-        // Update the selected checkboxes array
-        updateCheckedCasesDatasetIds(checkedCasesDatasetIds, checkUser);
+        // Listener for each user checkbox
+        checkBoxUser.addEventListener("change", (e) => {
+            if (!e.currentTarget.checked) {
+                checkAllUsers.checked = false; // Uncheck the "select all" checkbox if one is unchecked
+            }
+            updateCheckedCasesDatasetIds(checkedCasesDatasetIds, checkUser);
 
-        // Enable or disable the delete button based on user selection
-        deleteMultipleRowsBtn.disabled = !Array.from(checkUser).some(
-          (checkbox) => checkbox.checked
-        );
-      });
-
-      // Fill in user information
-      const first_name = clone.querySelector(".first-name");
-      first_name.textContent = user.first_name;
-      first_name.dataset.id = user.id;
-
-      const last_name = clone.querySelector(".last-name");
-      last_name.textContent = user.last_name;
-      last_name.dataset.id = user.id;
-
-      const email = clone.querySelector(".email");
-      email.textContent = user.email;
-      email.dataset.id = user.id;
-
-      const editButton = clone.querySelector(".edit-button");
-      const deleteButton = clone.querySelector(".delete-button");
-      [editButton, deleteButton].forEach((btn) => (btn.dataset.id = user.id));
-
-      usersContainer.appendChild(clone); // Add the clone to the container
-
-      // Listener for buttons (editing users)
-      [first_name, last_name, email, editButton].forEach((btn) => {
-        btn.addEventListener("click", async (e) => {
-          const sectionToShowClass = e.currentTarget.dataset.section;
-          const sectionToShow = document.querySelector(
-            `.${sectionToShowClass}`
-          );
-          allSections.forEach((section) => {
-            section.classList.add("d-none"); // Hide all sections
-          });
-          sectionToShow.classList.remove("d-none"); // Show the targeted section
-
-          const userId = e.currentTarget.dataset.id; // Get user ID
-          const user = await getUser(userId); // Fetch user information
-          displayUserInfos(user); // Display user information
+            // Enable or disable the delete button based on user selection
+            deleteMultipleRowsBtn.disabled = !Array.from(checkUser).some(checkbox => checkbox.checked);
         });
-      });
+
+        // Fill in user information
+        clone.querySelector(".first-name").textContent = user.first_name;
+        clone.querySelector(".first-name").dataset.id = user.id;
+
+        clone.querySelector(".last-name").textContent = user.last_name;
+        clone.querySelector(".last-name").dataset.id = user.id;
+
+        clone.querySelector(".email").textContent = user.email;
+        clone.querySelector(".email").dataset.id = user.id;
+
+        // Setup buttons for editing and deleting
+        const editButton = clone.querySelector(".edit-button");
+        const deleteButton = clone.querySelector(".delete-button");
+        [editButton, deleteButton].forEach((btn) => (btn.dataset.id = user.id));
+
+        // Delete button event listener
+        deleteButton.addEventListener("click", (e) => {
+            e.preventDefault();
+            const id = deleteButton.dataset.id;
+
+            // Show confirmation box
+            showAndHideConfirmationBox(overlayAndConfirmationBox);
+
+            // Reset previous click event listener for confirmation button
+            confirmDeleteBtn.onclick = async (e) => {
+                e.preventDefault();
+
+                // Call deletion function
+                await handleClickDeleteMultiRowsBtn(
+                    "http://localhost/Super-car/admin/api/utilisateurs", 
+                    checkAllUsers, 
+                    alertSuccess, 
+                    alertDanger, 
+                    () => paginationUsers(pagination), // Callback for pagination
+                    async () => displayUsers(await fetchUsers(), "Prenom", "asc"), // Refresh user list
+                    hideAlertBtns,
+                    [id] // ID to delete
+                );
+
+                // Optionally hide the confirmation box after deletion
+                showAndHideConfirmationBox(overlayAndConfirmationBox); 
+            };
+        });
+
+        usersContainer.appendChild(clone); // Add the clone to the container
+
+        // Listener for editing user details
+        [first_name, last_name, email, editButton].forEach((btn) => {
+            btn.addEventListener("click", async (e) => {
+                const sectionToShowClass = e.currentTarget.dataset.section;
+                const sectionToShow = document.querySelector(`.${sectionToShowClass}`);
+
+                allSections.forEach((section) => section.classList.add("d-none")); // Hide all sections
+                sectionToShow.classList.remove("d-none"); // Show the targeted section
+
+                const userId = e.currentTarget.dataset.id; // Get user ID
+                const user = await getUser(userId); // Fetch user information
+                displayUserInfos(user); // Display user information
+            });
+        });
     });
 
-    checkUser = document.querySelectorAll(".checkbox-user"); // Update references for checkboxes
-    updateCheckedCasesDatasetIds(checkedCasesDatasetIds, checkUser); // Update after display
+        checkUser = document.querySelectorAll(".checkbox-user"); // Update references for checkboxes
+        updateCheckedCasesDatasetIds(checkedCasesDatasetIds, checkUser); // Update after display
 
-    // Enable or disable the delete button based on user selection
-    deleteMultipleRowsBtn.disabled = !Array.from(checkUser).some(
-        (checkbox) => checkbox.checked
-        );
+        // Enable or disable the delete button based on user selection
+        deleteMultipleRowsBtn.disabled = !Array.from(checkUser).some(checkbox => checkbox.checked);
     }
 
     const checkUserArray = [...checkUser];
@@ -138,6 +163,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     const users = await fetchUsers();
     displayUsers(users, "Prenom", "asc");
 
+    // Cancel button hides the confirmation box
+    cancelDelete.onclick = () => showAndHideConfirmationBox(overlayAndConfirmationBox);
+
+    
     checkAllUsers.addEventListener("change", (e) => {
         const isChecked = e.currentTarget.checked;
         checkUser.forEach((checkbox) => {
@@ -153,11 +182,16 @@ document.addEventListener("DOMContentLoaded", async () => {
         const email = document.getElementById("email");
         const address = document.getElementById("adresse");
         const phone = document.getElementById("phone");
+        const isAdmin = document.getElementById('is-admin');
+        const isSuperadmin = document.getElementById('is-superadmin');
         firstName.value = user.first_name;
         lastName.value = user.last_name;
         email.value = user.email;
         address.value = user.address;
         phone.value = user.phone;
+        isAdmin.checked = user.is_admin;
+        isSuperadmin.checked = user.is_superadmin;
+        deleteUserBtn.dataset.id = user.id;
     }
 
     // Show and hide sections
@@ -278,50 +312,37 @@ document.addEventListener("DOMContentLoaded", async () => {
     const alertSuccess = document.querySelector(".alert-success");
     const alertDanger = document.querySelector(".alert-danger");
     const hideAlertBtns = document.querySelectorAll(".hide-alert-btn");
-    handleClickDeleteMultiRowsBtn(
-        deleteMultipleRowsBtn, 
-        "http://localhost/Super-car/admin/api/utilisateurs", 
-        checkAllUsers, 
-        alertSuccess, 
-        alertDanger, 
-        () => paginationUsers(pagination), // Pass function as a callback
-        async () => displayUsers(await fetchUsers(), "Prenom", "asc"),
-        hideAlertBtns
-    )
-    // handdle click of delete multiple rows
-    /*deleteMultipleRowsBtn.addEventListener("click", async (e) => {
+    // handle the click on the delete multiple rows button
+    deleteMultipleRowsBtn.addEventListener("click", async (e) => {
         e.preventDefault();
-        const checkedUsers = document.querySelectorAll(
+        
+        const checkedCheckboxes = document.querySelectorAll(
         'input[type="checkbox"]:checked'
         );
-        // create an array to put all ids of checked checkbox
-        const userIds = Array.from(checkedUsers).map((user) => user.value);
-        if (userIds.length > 0) {
-            const response = await fetchDeleteRows(
-                "http://localhost/Super-car/admin/api/utilisateurs",
-                userIds
+        // create an array to store all ids of the checked checkboxes
+        const arrayIds = Array.from(checkedCheckboxes).map((checkbox) => checkbox.value);
+
+        // Show confirmation box
+        showAndHideConfirmationBox(overlayAndConfirmationBox);
+
+        // Reset previous click event listener for confirmation button
+        confirmDeleteBtn.onclick = async (e) => {
+            e.preventDefault();
+
+            // Call deletion function
+            await handleClickDeleteMultiRowsBtn(
+                "http://localhost/Super-car/admin/api/utilisateurs", 
+                checkAllUsers, 
+                alertSuccess, 
+                alertDanger, 
+                () => paginationUsers(pagination), // Callback for pagination
+                async () => displayUsers(await fetchUsers(), "Prenom", "asc"), // Refresh user list
+                hideAlertBtns,
+                arrayIds
             );
 
-            if (response.status === "success") {
-                const users = await fetchUsers();
-                displayUsers(users, "Prenom", "asc");
-                const successMessage = response.message;
-                showAlert(alertSuccess, successMessage)
-                checkAllCheckbox.checked = false;
-                paginationUsers(pagination);
-                removeAlert(alertSuccess);
-            } else {
-                const errorMessage = response.message;
-                showAlert(alertDanger, errorMessage)
-                removeAlert(alertDanger);
-            }
-        }
+            // Optionally hide the confirmation box after deletion
+            showAndHideConfirmationBox(overlayAndConfirmationBox); 
+        };
     });
-    hideAlertBtns.forEach((btn) => {
-        btn.addEventListener("click", (e) => {
-            e.preventDefault();
-            const alert = btn.parentNode;
-            removeAlert(alert)
-        });
-    });*/
 });

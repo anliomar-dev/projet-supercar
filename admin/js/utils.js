@@ -168,48 +168,41 @@ export function showAlert(alert, message){
 }
 
 export async function handleClickDeleteMultiRowsBtn(
-  deleteMultiRowsBtn, 
   endPoint, 
   checkAllCheckbox, 
   alertSuccess, 
   alertDanger, 
   callbackPagination, 
   callbackDisplayData,
-  hideAlertBtns
+  hideAlertBtns,
+  arrayIds
 ) {
-  // handle the click on the delete multiple rows button
-  deleteMultiRowsBtn.addEventListener("click", async (e) => {
-    e.preventDefault();
-    
-    const checkedCheckboxes = document.querySelectorAll(
-      'input[type="checkbox"]:checked'
-    );
-    // create an array to store all ids of the checked checkboxes
-    const arrayIds = Array.from(checkedCheckboxes).map((checkbox) => checkbox.value);
-    
-    if (arrayIds.length > 0) {
-      const response = await fetchDeleteRows(endPoint, arrayIds);
+  if (arrayIds.length > 0) {
+    const response = await fetchDeleteRows(endPoint, arrayIds);
 
-      if (response.status === "success") {
-        await callbackDisplayData(); // execute the callback to display updated data
-        const successMessage = response.message;
-        showAlert(alertSuccess, successMessage);
-        checkAllCheckbox.checked = false;
-        callbackPagination(); // execute the callback for pagination
-        removeAlert(alertSuccess);
-      } else {
-        const errorMessage = response.message;
-        showAlert(alertDanger, errorMessage);
-        removeAlert(alertDanger);
-      }
+    if (response.status === "success") {
+      await callbackDisplayData(); // execute the callback to display updated data
+      const successMessage = response.message;
+      showAlert(alertSuccess, successMessage);
+      checkAllCheckbox.checked = false;
+      callbackPagination(); // execute the callback for pagination
+      removeAlert(alertSuccess);
+    } else {
+      const errorMessage = response.message;
+      showAlert(alertDanger, errorMessage);
+      removeAlert(alertDanger);
     }
-  });
-
+  }
   hideAlertBtns.forEach((btn) => {
     btn.addEventListener("click", (e) => {
       e.preventDefault();
-      const alert = btn.closest('.alert');
+      const alert = btn.parentElement;
       removeAlert(alert);
     });
   });
+}
+
+
+export function showAndHideConfirmationBox(elements){
+  elements.forEach((element) => element.classList.toggle('d-none'))
 }
