@@ -16,27 +16,6 @@
     <script src="js/users.js" type="module" defer></script>
     <script src="js/sidebar_navbar.js" type="module" defer></script>
     <link href="/super-car/admin/components/sidebar.css" rel="stylesheet">
-    <style>
-        @keyframes alert-animate {
-            to{
-                display: block;
-                opacity: 1;
-                
-            }
-        }
-        .alert-show{
-            animation: alert-animate 1.5s ease-out 1s forwards;
-        }
-        .alert svg{
-            width: 20px;
-            height: 20px;
-        }
-        .confirmation-box{
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -20%);
-        }
-    </style>
 </head>
 <body>
 <div class="container-fluid">
@@ -68,6 +47,7 @@
                     </div>
                 </div>
             </div>
+            <!-- alert success-->
             <div class="alert alert-success d-flex justify-content-between align-items-center d-none" role="alert">
                 <span class="message"></span>
                 <button class="btn hide-alert-btn">
@@ -76,6 +56,7 @@
                     </svg>
                 </button>
             </div>
+            <!-- alert danger-->
             <div class="alert alert-danger d-flex justify-content-between align-items-center d-none" role="alert">
                 <span></span>
                 <button class="btn hide-alert-btn">

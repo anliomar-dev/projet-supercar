@@ -4,3 +4,23 @@
   right: 20px;
   cursor: pointer;
 }
+
+@keyframes alert-animate {
+  to{
+      display: block;
+      opacity: 1;
+      
+  }
+}
+.alert-show{
+  animation: alert-animate 1.5s ease-out 1s forwards;
+}
+.alert svg{
+  width: 20px;
+  height: 20px;
+}
+.confirmation-box{
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -20%);
+}

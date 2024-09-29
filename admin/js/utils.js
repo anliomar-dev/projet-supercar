@@ -150,8 +150,8 @@ export function removeAlert(alert){
   setTimeout(() => {
     alert.classList.remove('alert-show');
     alert.classList.add('d-none');
-    alert.querySelector('.message').textContent = "";
-  }, 5000);
+    alert.querySelector('span').textContent = "";
+  }, 3000);
 }
 
 /**
@@ -196,8 +196,9 @@ export async function handleClickDeleteMultiRowsBtn(
   hideAlertBtns.forEach((btn) => {
     btn.addEventListener("click", (e) => {
       e.preventDefault();
-      const alert = btn.parentElement;
-      removeAlert(alert);
+      const alert = alertDanger || alertSuccess;
+      removeAlert(alertDanger);
+      removeAlert(alertSuccess)
     });
   });
 }
