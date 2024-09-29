@@ -47,27 +47,11 @@ body {
   cursor: pointer;
 }
 
-.finance-card {
-  background-color: white;
-  border-radius: 15px;
-  padding: 20px;
-  text-align: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-.finance-card h5 {
-  color: #805ad5;
-}
-.course-card {
-  background-color: white;
-  border-radius: 15px;
-  padding: 15px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-
+/*card table*/
 .icon svg{
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
+  fill:#28a745;
 }
 .icon{
   border: solid 0.5px rgba(0, 0, 0, 0.058);
@@ -77,15 +61,133 @@ body {
   transform: translateY(-48%);
   z-index: 1000;
   background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-hr{
+hr.stat-cards_line{
   height: 3px;
   border: none;
   background-image: linear-gradient(to right, rgba(200, 200, 200, 0.27), rgba(47, 46, 46, 0.384), rgba(201, 198, 198, 0.149));
   width: 90%;
 }
-
 .stats-card-container .stat-card{
   min-width: 270px;
   max-width: 270px;
+}
+
+
+
+/*timeline*/
+.timeline {
+    max-width: 100%;
+    position: relative;
+    padding: 10px; /* Espacement vertical pour le contenu */
+    height: 350px;
+    overflow-Y: scroll;
+    scrollbar-width: none;
+}
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 15%;
+    width: 4px; /* Épaisseur de la ligne */
+    height: 110%;
+    background-color: #e0e0e0; /* Couleur de la ligne */
+}
+.timeline-item {
+    position: relative;
+    margin-bottom: 30px; /* Espacement entre les éléments */
+    display: flex; /* Flexbox pour aligner les éléments */
+    align-items: flex-start; /* Alignement en haut */
+}
+
+.action-icon {
+  border-radius: 50%; /* Arrondi des icônes */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateX(-45%);
+    
+}
+.action-icon svg{
+  fill:#28a745;
+  width: 30px; /* Taille des icônes */
+  height: 30px;
+}
+.user-name {
+    color: #007bff; /* Couleur du nom de l'utilisateur */
+    font-weight: bold; /* Écriture en gras */
+}
+.time-text {
+    font-size: 0.9rem; /* Taille du texte de l'heure */
+    color: #6c757d; /* Couleur du texte de l'heure */
+    margin-bottom: 5px; /* Espacement sous le texte de l'heure */
+}
+.timeline-card {
+    border: 1px solid #e0e0e0; /* Bordure des cartes */
+    border-radius: 8px; /* Arrondi des coins */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombre légère */
+    width: 350px; /* Largeur de la carte avec espacement */
+    min-width: 250px;
+}
+.id-value {
+    color: #28a745; /* Couleur de l'ID */
+    font-weight: bold; /* Écriture en gras */
+}
+
+@media (min-width: 768px) {
+  .timeline {
+      max-width: 600px; /* Largeur plus grande pour les tablettes et plus */
+      height: 700px;
+  }
+}
+
+@media (max-width: 315px) {
+  .timeline{
+    padding: auto;
+  }
+  .timeline::before {
+    display: none;
+  }
+  .action-icon {
+
+    display: none;
+      
+  }
+  .action-icon svg{
+    display: none;
+  }
+}
+
+/*full calender*/
+
+/* Réduire la taille des boutons de navigation */
+.fc-button {
+  padding: 5px 8px;
+  font-size: 12px!important;
+}
+
+/* Réduire la taille de la date affichée entre les boutons */
+#fc-dom-1 {
+  font-size: 15px;
+  color: black;
+  font-weight: normal;
+}
+
+/* Enlever le soulignement et changer la couleur des numéros dans les jours */
+.fc-daygrid-day-number {
+  text-decoration: none;
+  color: black;
+  font-weight: normal;
+}
+
+/* Optionnel : personnaliser la couleur de fond au survol des jours */
+.fc-day:hover {
+  background-color: #f0f0f0; /* Couleur de fond au survol */
+}
+
+.fc-col-header-cell-cushion{
+  text-decoration: none!important;
+  color:#28a745!important;
 }
