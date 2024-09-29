@@ -27,7 +27,7 @@
         .alert-show{
             animation: alert-animate 1.5s ease-out 1s forwards;
         }
-        .hide-alert-btn svg{
+        .alert svg{
             width: 20px;
             height: 20px;
         }
@@ -54,6 +54,14 @@
                     
                 </div>
                 <div class="alert alert-success d-flex justify-content-between align-items-center d-none" role="alert">
+                    <span class="message"></span>
+                    <button class="btn hide-alert-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
+                            <path d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 0 0-1.06-1.06L10 8.94 6.28 5.22Z" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="alert alert-danger d-flex justify-content-between align-items-center d-none" role="alert">
                     <span></span>
                     <button class="btn hide-alert-btn">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
@@ -227,12 +235,12 @@
                                 <div class="mt-0">
                                     <div class="form-group d-flex">
                                         <span>est admin</span>
-                                        <input type="checkbox" class="form-check-input ms-1" value="true">
+                                        <input type="checkbox" name="is-admin" class="form-check-input ms-1" value="true">
                                         <p class="ms-2">: determine si ce compte peut se connecter à l'interface admin</p>
                                     </div>
                                     <div class="form-group d-flex">
                                         <span>est superadmin</span>
-                                        <input type="checkbox" class="form-check-input ms-1" value="true">
+                                        <input type="checkbox" name="is-superadmin" class="form-check-input ms-1" value="true">
                                         <p class="ms-2">: donner tous les droit et privilèges à l'utilisateur</p>
                                     </div>
                                 </div>
@@ -269,19 +277,19 @@
                                 <div class="mt-4">
                                     <div class="mb-3">
                                         <label for="prenom-inscription" class="form-label">Prénom</label>
-                                        <input type="text" class="form-control" id="prenom-inscription" placeholder="Entrez votre prénom" required>
+                                        <input type="text" class="form-control" name="new-first_name" id="prenom-inscription" placeholder="Entrez votre prénom" required>
                                     </div>
                                     <div class="mb-3">
                                         <label for="nom-inscription" class="form-label">Nom</label>
-                                        <input type="text" class="form-control" id="nom-inscription" placeholder="Entrez votre nom" required>
+                                        <input type="text" class="form-control" name="new-last_name" id="nom-inscription" placeholder="Entrez votre nom" required>
                                     </div>
                                     <div class="mb-3">
                                         <label for="adresse-inscription" class="form-label">Adresse</label>
-                                        <input type="text" class="form-control" id="adresse-inscription" placeholder="Entrez votre adresse" required>
+                                        <input type="text" class="form-control" name="new-adresse" id="adresse-inscription" placeholder="Entrez votre adresse" required>
                                     </div>
                                     <div class="mb-3">
                                         <label for="telephone-inscription" class="form-label">Téléphone</label>
-                                        <input type="text" class="form-control" id="telephone-inscription" placeholder="Entrez votre téléphone" required>
+                                        <input type="text" class="form-control" name="new-phone" id="telephone-inscription" placeholder="Entrez votre téléphone" required>
                                     </div>
                                 </div>
                             </div>
@@ -289,20 +297,20 @@
                             <div class="tab-pane fade border rounded-3 p-4" id="details" role="tabpanel" aria-labelledby="details-tab">
                                 <div class="mb-3">
                                     <label for="email-inscription" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="email-inscription" placeholder="Entrez votre email" autocomplete="email" required>
+                                    <input type="email" class="form-control" name="new-email" id="email-inscription" placeholder="Entrez votre email" autocomplete="email" required>
                                 </div>
                                 <div class="row mt-3">
                                     <div class="form-group col-md-6 position-relative password-container">
                                         <label for="password">Mot de passe</label>
                                         <span class="eye-icon">👁️</span>
                                         <span style="display: none;" class="hide-password">🙈</span>
-                                        <input type="password" class="form-control passwordField" name="password" id="password" placeholder="Mot de passe" autocomplete="current-password" required>
+                                        <input type="password" class="form-control passwordField" name="new-password" id="password" placeholder="Mot de passe" autocomplete="current-password" required>
                                     </div>
                                     <div class="form-group col-md-6 position-relative password-container confirm-pass-container">
                                         <span class="eye-icon">👁️</span>
                                         <span style="display: none;" class="hide-password">🙈</span>
                                         <label for="confirmPassword">confirmation</label>
-                                        <input type="password" class="form-control passwordField" name="confirmPassword" id="confirmPassword" placeholder="confirmation" autocomplete="current-password" required>
+                                        <input type="password" class="form-control passwordField" name="confirm-password" id="confirmPassword" placeholder="confirmation" autocomplete="current-password" required>
                                     </div>
                                 </div>
                                 <h5 class="col-12 mt-4">Privilèges</h5>
@@ -310,12 +318,12 @@
                                 <div class="mt-0">
                                     <div class="form-group d-flex">
                                         <span>est admin</span>
-                                        <input type="checkbox" class="form-check-input ms-1" value="true">
+                                        <input type="checkbox" name="is-admin" class="form-check-input ms-1" value="true">
                                         <p class="ms-2">: determine si ce compte peut se connecter à l'interface admin</p>
                                     </div>
                                     <div class="form-group d-flex">
                                         <span>est superadmin</span>
-                                        <input type="checkbox" class="form-check-input ms-1" value="true">
+                                        <input type="checkbox" name="is-superadmin" class="form-check-input ms-1" value="true">
                                         <p class="ms-2">: donner tous les droit et privilèges à l'utilisateur</p>
                                     </div>
                                 </div>
