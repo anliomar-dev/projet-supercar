@@ -115,13 +115,13 @@
                         <hr class="py-0 my-0 d-flex justify-content-center stat-cards_line" >
                     </div>
                     <div class="mt-3">
-                        <p><strong class="text-success">+55%</strong> que la semainde dernière</p>
+                        <p><strong class="text-success">+55%</strong> que la semaine dernière</p>
                     </div>
                 </div>
             </div>
             <div class="row px-4">
                 <div class="timeline col-md-4 mx-auto">
-                    <h5 class="text-center my-3">Actions recentes</h5>
+                    <h5 class="my-3">Actions recentes</h5>
                     <hr>
                     <div class="timeline-item h-auto">
                         <div class="action-icon">
@@ -215,9 +215,54 @@
                     </div>
                 </div>
                 <div class="calander_container col-md-8 mx-auto">
-                    <h5 class="text-center my-3">Calendrier des essais</h5>
+                    <h5 class="my-3">Calendrier des essais</h5>
                     <hr>
                     <div id="calendar"></div>
+                </div>
+            </div>
+            <div class="row mt-5 px-3">
+                <div class="col-md-6">
+                    <h4 class=""><u>Admin</u></h4>
+                    <table class="table table-bordered table-sm">
+                        <thead>
+                        <tr>
+                            <th>Prenom</th>
+                            <th>Email</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>anli</td>
+                            <td>omaranli285@gmail.com</td>
+                        </tr>
+                        <tr>
+                            <td>anfane</td>
+                            <td>mohamedanfane@gmail.com</td>
+                        </tr>
+                        <tr>
+                            <td>fayad</td>
+                            <td>mmohamedfayad@gmail.com</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="col-md-6">
+                    <h4 class=""><u>Super admin</u></h4>
+                    <table class="table table-bordered table-sm">
+                        <thead>
+                        <tr>
+                            <th>Prenom</th>
+                            <th>Email</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>omar</td>
+                            <td>mccibs23043@student.mccibs.ac.mu</td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
