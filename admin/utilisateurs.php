@@ -300,13 +300,26 @@
                                         <label for="password">Mot de passe</label>
                                         <span class="eye-icon">👁️</span>
                                         <span style="display: none;" class="hide-password">🙈</span>
-                                        <input type="password" class="form-control passwordField" name="new-password" id="password" placeholder="Mot de passe" autocomplete="current-password" required>
+                                        <input type="password" class="form-control passwordField" 
+                                            name="new-password" id="password" placeholder="Mot de passe"
+                                            autocomplete="current-password" required 
+                                            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\w\s]).{8,}$"
+                                            title="Le mot de passe doit contenir au moins 8 caractères, dont une majuscule, 
+                                            une minuscule, un chiffre, et un caractère spécial non dangereux (pas de ! @ # $ % ^ & *)" 
+                                        />
                                     </div>
                                     <div class="form-group col-md-6 position-relative password-container confirm-pass-container">
                                         <span class="eye-icon">👁️</span>
                                         <span style="display: none;" class="hide-password">🙈</span>
                                         <label for="confirmPassword">confirmation</label>
-                                        <input type="password" class="form-control passwordField" name="confirm-password" id="confirmPassword" placeholder="confirmation" autocomplete="current-password" required>
+                                        <input type="password" class="form-control passwordField" 
+                                            name="confirm-password" id="confirmPassword" placeholder="confirmation" 
+                                            autocomplete="current-password"
+                                            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\w\s]).{8,}$" 
+                                            title="Le mot de passe doit contenir au moins 8 caractères, dont une majuscule, une minuscule, 
+                                            un chiffre, et un caractère spécial non dangereux (pas de ! @ # $ % ^ & *)" 
+                                            required
+                                        />
                                     </div>
                                 </div>
                                 <h5 class="col-12 mt-4">Privilèges</h5>
@@ -328,7 +341,7 @@
                     </div>
                     <div class="col-md-4 mt-1 d-flex flex-column align-items-start">
                         <button type="submit" class="btn btn-enregistrer w-100 mb-2">Enregistrer</button>
-                        <button type="button" class="btn btn-supprimer w-100 mb-2">Annuler</button>
+                        <button type="reset" class="btn btn-supprimer w-100 mb-2 btn-secondary">Réinitialiser</button>
                         <button type="button" class="btn btn-retour w-100 mb-2 show-section" 
                             data-section="all-users-section">
                             <i class="fa-solid fa-left-long"></i>
@@ -344,10 +357,10 @@
 <script>
     // Activer les tooltips sur tout le document
     document.addEventListener('DOMContentLoaded', function () {
-    const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-    const tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-        return new bootstrap.Tooltip(tooltipTriggerEl);
-    });
+        const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+        const tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl);
+        });
     });
 </script>
 <!-- Bootstrap JS -->

@@ -119,6 +119,7 @@
                     </div>
                 </div>
             </div>
+            <hr>
             <div class="row px-4">
                 <div class="timeline col-md-4 mx-auto">
                     <h5 class="my-3">Actions recentes</h5>
@@ -220,6 +221,7 @@
                     <div id="calendar"></div>
                 </div>
             </div>
+            <hr>
             <div class="row mt-5 px-3">
                 <div class="col-md-6">
                     <h4 class=""><u>Admin</u></h4>
