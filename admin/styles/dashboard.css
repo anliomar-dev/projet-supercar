@@ -191,3 +191,9 @@ hr.stat-cards_line{
   text-decoration: none!important;
   color:#28a745!important;
 }
+
+
+.fc-event {
+  display: flex;
+  flex-direction: column; /* Affiche le titre et l'heure verticalement */
+}

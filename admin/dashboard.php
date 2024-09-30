@@ -18,6 +18,8 @@
     <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.7/main.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@6.1.7/main.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/interaction@6.1.7/main.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/list@6.1.7/main.min.js"></script>
+
     <style>
         .close-sidebar{
             display: none;
@@ -270,23 +272,6 @@
         </div>
     </div>
 </div>
-<script>
-        document.addEventListener("DOMContentLoaded", async function () {
-            const todayDate = new Date()
-            var calendarEl = document.getElementById("calendar");
-            var calendar = new FullCalendar.Calendar(calendarEl, {
-            initialView: "dayGridMonth",
-            headerToolbar: {
-                start: "dayGridMonth,timeGridWeek,timeGridDay,list today",
-                center: "title",
-                end: "prev,next",
-            },
-            
-            });
-
-            calendar.render();
-        });
-    </script>
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>

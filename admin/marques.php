@@ -221,8 +221,7 @@
                     </div>
                     <div class="col-md-4 mt-1 d-flex flex-column align-items-start">
                         <button type="submit" class="btn btn-enregistrer w-100 mb-2">Enregistrer</button>
-                        <button type="button" class="btn btn-supprimer w-100 mb-2">Supprimer</button>
-                        <button type="button" class="btn btn-historique w-100">Historique</button>
+                        <button type="button" class="btn btn-secondary w-100 mb-2">Réinitialiser</button>
                         <button type="button" class="btn btn-retour w-100 show-section new-marque-btn" data-section="all-marques-section">
                             <i class="fa-solid fa-left-long"></i>
                             Retour
