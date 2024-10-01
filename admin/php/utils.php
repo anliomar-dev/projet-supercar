@@ -1,34 +1,38 @@
 <?php
-  // Database connection
-  include_once('../../php/connexionDB.php');
-  include_once('../php/utils.php');
+// Database connection
+include_once('../../php/connexionDB.php');
+include_once('../php/utils.php');
 
-    /**
-   * Check if a row exists in the database.
-   *
-   * @param int $id The ID to check.
-   * @param string $table_name The name of the table.
-   * @param string $row_id The name of the column representing the ID.
-   * @return bool True if the row exists, false otherwise.
-   */
-  function is_row_exist($id, $table_name, $row_id) {
-    global $DB; 
+/**
+ * Check if a row exists in the database.
+ *
+ * @param int $id The ID to check.
+ * @param string $table_name The name of the table to check in.
+ * @param string $row_id The column name representing the ID in the table.
+ * @return bool True if the row exists, false otherwise.
+ */
+function is_row_exist($id, $table_name, $row_id) {
+    global $DB; // Use the database connection.
 
+    // SQL query to check if the row exists.
     $query = "SELECT 1 FROM $table_name WHERE $row_id = ? LIMIT 1";
-    $stmt = mysqli_prepare($DB, $query);
+    $stmt = mysqli_prepare($DB, $query); // Prepare the SQL statement.
 
     if ($stmt === false) {
-        die('Erreur lors de la préparation de la requête : ' . mysqli_error($DB));
+        die('Error preparing the query: ' . mysqli_error($DB)); // Handle errors in query preparation.
     }
+
+    // Bind the ID parameter.
     mysqli_stmt_bind_param($stmt, 'i', $id);
-    mysqli_stmt_execute($stmt);
-    $result = mysqli_stmt_get_result($stmt);
+    mysqli_stmt_execute($stmt); // Execute the query.
+    $result = mysqli_stmt_get_result($stmt); // Get the query result.
+
+    // Check if any row exists.
     $exists = mysqli_num_rows($result) > 0;
-    mysqli_stmt_close($stmt);
+    mysqli_stmt_close($stmt); // Close the prepared statement.
 
-    return $exists;
-  }
-
+    return $exists; // Return true if the row exists, otherwise false.
+}
 
 /**
  * Check if a user exists in the database.
@@ -37,115 +41,98 @@
  * @return bool True if the user exists, false otherwise.
  */
 function is_user_exist($user_id) {
-  global $DB; 
-  $query = "SELECT * FROM utilisateur WHERE IdUtilisateur = ?";
+    global $DB; // Use the database connection.
 
-  $stmt = mysqli_prepare($DB, $query);
+    // SQL query to check if the user exists by their ID.
+    $query = "SELECT * FROM utilisateur WHERE IdUtilisateur = ?";
 
-  mysqli_stmt_bind_param($stmt, 'i', $user_id);
+    $stmt = mysqli_prepare($DB, $query); // Prepare the SQL statement.
+    mysqli_stmt_bind_param($stmt, 'i', $user_id); // Bind the user ID parameter.
+    mysqli_stmt_execute($stmt); // Execute the query.
+    $result = mysqli_stmt_get_result($stmt); // Get the result of the query.
 
-  mysqli_stmt_execute($stmt);
-
-  $result = mysqli_stmt_get_result($stmt);
-
-  return mysqli_num_rows($result) > 0;
+    return mysqli_num_rows($result) > 0; // Return true if the user exists, otherwise false.
 }
 
 
-
-function update_user_data($user_id, $user_data){
-  global $DB;
-  
-}
-
-  /**
- * Delete a user from the database.
+/**
+ * Insert a new record into a specified table.
  *
- * @param int $user_id The ID of the user to delete.
- * @return bool True if the user was deleted successfully, false otherwise.
+ * @param string $table The name of the table to insert data into.
+ * @param array $data The associative array of column names and values to insert.
+ * @return bool True if the insertion was successful, false otherwise.
  */
-function delete_user($user_id) {
-  global $DB;
-
-  // Prepare the SQL query
-  $query = "DELETE FROM utilisateur WHERE IdUtilisateur = ?";
-  $stmt = mysqli_prepare($DB, $query);
-
-  if ($stmt === false) {
-      // Handle prepare error
-      return false;
-  }
-
-  // Bind the parameter
-  mysqli_stmt_bind_param($stmt, 'i', $user_id);
-
-  // Execute the query
-  $result = mysqli_stmt_execute($stmt);
-
-  // Close the statement
-  mysqli_stmt_close($stmt);
-
-  return $result;
-}
-
 function insertRecord($table, $data) {
-  global $DB; // Use the database connection
-  // Create the insertion query
-  $columns = implode(", ", array_keys($data)); // Column names
-  $placeholders = implode(", ", array_fill(0, count($data), '?')); // Query parameters
-  // Prepare the SQL query
-  $query = "INSERT INTO $table ($columns) VALUES ($placeholders)";
-  // Prepare the statement
-  $stmt = $DB->prepare($query);
+    global $DB; // Use the database connection.
 
-  // Check if preparation was successful
-  if (!$stmt) {
-      return false; // Preparation failed
-  }
-  // Determine data types and convert if necessary
-  $types = '';
-  $values = [];
-  foreach ($data as $key => $value) {
-      // Convert values based on their format
-      if (is_numeric($value)) {
-          if (strpos($value, '.') !== false) {
-              // It's a floating-point number
-              $types .= 'd'; // Type double
-              $values[] = (float)$value; // Convert to float
-          } else {
-              // It's an integer
-              $types .= 'i'; // Type integer
-              $values[] = (int)$value; // Convert to int
-          }
-      } elseif (is_string($value)) {
-          // It's a string
-          $types .= 's'; // Type string
-          $values[] = $value; // Keep as string
-      } elseif (is_null($value)) {
-          $types .= 's'; // Handle NULL as string
-          $values[] = null; // Pass `null` for null values
-      } else {
-          return false; // Unsupported data type
-      }
-  }
+    // Generate column names and placeholders for the query.
+    $columns = implode(", ", array_keys($data)); // Column names for the insert query.
+    $placeholders = implode(", ", array_fill(0, count($data), '?')); // Placeholders for parameterized query.
 
-  // Bind parameters
-  $stmt->bind_param($types, ...$values); // Use unpacking to pass values
+    // Prepare the SQL insert query.
+    $query = "INSERT INTO $table ($columns) VALUES ($placeholders)";
+    $stmt = $DB->prepare($query); // Prepare the statement.
 
-  // Execute the query
-  return $stmt->execute(); // Returns true or false
+    if (!$stmt) {
+        // Handle preparation errors.
+        return false;
+    }
+
+    // Determine the data types for binding parameters.
+    $types = '';
+    $values = [];
+    foreach ($data as $key => $value) {
+        if (is_numeric($value)) {
+            // Check if the value is a floating point or integer.
+            if (strpos($value, '.') !== false) {
+                $types .= 'd'; // Double type for floats.
+                $values[] = (float)$value;
+            } else {
+                $types .= 'i'; // Integer type for integers.
+                $values[] = (int)$value;
+            }
+        } elseif (is_string($value)) {
+            $types .= 's'; // String type for strings.
+            $values[] = $value;
+        } elseif (is_null($value)) {
+            $types .= 's'; // Handle null as a string.
+            $values[] = null;
+        } else {
+            return false; // Unsupported data type.
+        }
+    }
+
+    // Bind the parameters to the statement.
+    $stmt->bind_param($types, ...$values); // Use parameter unpacking.
+
+    // Execute the query and return whether it was successful.
+    return $stmt->execute();
 }
 
-function is_csrf_valid($scrf_client, $scrf_session){
-  // Check if the CSRF token is valid
-  return $scrf_client == $scrf_session;
+/**
+ * Validate the CSRF token.
+ *
+ * @param string $csrf_client The CSRF token provided by the client.
+ * @param string $csrf_session The CSRF token stored in the session.
+ * @return bool True if the CSRF tokens match, false otherwise.
+ */
+function is_csrf_valid($csrf_client, $csrf_session){
+    // Compare the client CSRF token with the session token.
+    return $csrf_client == $csrf_session;
 }
 
+/**
+ * Return a JSON response.
+ *
+ * @param string $status The status of the response (e.g., 'success', 'error').
+ * @param string $message The message to include in the response.
+ * @return array An associative array containing the status and message.
+ */
 function return_msg_json($status, $message){
-  // Return a JSON response
-  return [
-    'status' => $status,
-    'message' => $message
-  ];
+    // Create an associative array to represent the response.
+    return [
+        'status' => $status,
+        'message' => $message
+    ];
 }
 ?>
