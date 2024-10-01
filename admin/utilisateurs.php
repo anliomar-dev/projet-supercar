@@ -257,7 +257,7 @@
 
             <!--section create new user-->
             <section class="container mt-3 mb-3 new-user-section d-none">
-                <form class="row">
+                <form class="row create-user-form">
                     <div class="col-md-8 border rounded-3 shadow py-4 px-4">
                         <ul class="nav nav-tabs" id="myTab2" role="tablist">
                             <li class="nav-item" role="presentation">

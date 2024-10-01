@@ -1,3 +1,9 @@
+/**
+ * Fetches all users from the API with pagination.
+ *
+ * @param {number} [page=1] - The page number to retrieve.
+ * @returns {Promise<Object>} A promise that resolves to the JSON object containing user data.
+ */
 export async function fetchUsers(page=1){
   try{
     const response = await fetch(`http://localhost/Super-car/admin/api/utilisateurs?user=all&page=${page}`)
@@ -11,7 +17,12 @@ export async function fetchUsers(page=1){
   }
 }
 
-
+/**
+ * Fetches data from a specified endpoint.
+ *
+ * @param {string} endPoint - The API endpoint to fetch data from.
+ * @returns {Promise<Object>} A promise that resolves to the JSON object containing the fetched data.
+ */
 export async function fetchData(endPoint){
   try{
     const response = await fetch(`${endPoint}`)
@@ -24,6 +35,7 @@ export async function fetchData(endPoint){
     console.log(e)
   }
 }
+
 
 /**
  * Sorts an array of objects by a specified key in ascending or descending order.
@@ -45,6 +57,13 @@ export function sortData(data, sortBy, order) {
   });
 }
 
+
+/**
+ * Fetches the details of a specific user by user ID.
+ *
+ * @param {number} userId - The ID of the user to retrieve.
+ * @returns {Promise<Object>} A promise that resolves to the JSON object containing user details.
+ */
 export async function getUser(userId){
   try{
     const response = await fetch(`http://localhost/Super-car/admin/api/utilisateurs?user=${userId}`)
@@ -59,6 +78,12 @@ export async function getUser(userId){
 }
 
 
+/**
+ * Toggles the visibility of sorting buttons in the table header and handles sorting button events.
+ *
+ * @param {NodeList} theadColumns - A NodeList of table header columns.
+ * @param {NodeList} sortButtons - A NodeList of sorting buttons associated with the columns.
+ */
 export async function toggleAndSortDataBtns(theadColumns, sortButtons){
   theadColumns.forEach((col) => {
     col.addEventListener('click', (e) => {
@@ -98,12 +123,26 @@ export async function toggleAndSortDataBtns(theadColumns, sortButtons){
   });
 }
 
+
+/**
+ * Resets all input fields in a form to an empty state.
+ *
+ * @param {HTMLFormElement} form - The form containing input fields to reset.
+ */
 export function resetFormInputs(form){
   form.querySelectorAll('input').forEach((input) => {
     input.value = '';
     });
 }
 
+
+/**
+ * Sends a DELETE request to the specified endpoint to delete rows with given IDs.
+ *
+ * @param {string} endPoint - The API endpoint to send the DELETE request to.
+ * @param {Array} ids - An array of IDs of the records to delete.
+ * @returns {Promise<Object>} A promise that resolves to the JSON object containing the response.
+ */
 export async function fetchDeleteRows(endPoint, ids) {
   try {
     const response = await fetch(endPoint, {
@@ -129,7 +168,12 @@ export async function fetchDeleteRows(endPoint, ids) {
 }
 
 
-
+/**
+ * Updates an array of checked case dataset IDs based on checked checkboxes.
+ *
+ * @param {Array} checkedCasesDatasetIdsArray - The array to populate with checked IDs.
+ * @param {NodeList} checkRowsArray - A NodeList of checkboxes to evaluate.
+ */
 // Function to update the checkedCasesDatasetIds array based on checked checkboxes
 export function updateCheckedCasesDatasetIds(checkedCasesDatasetIdsArray, checkRowsArray) {
   // Clear the array before populating it
@@ -143,6 +187,11 @@ export function updateCheckedCasesDatasetIds(checkedCasesDatasetIdsArray, checkR
 
 
 /**
+ * Removes an alert and resets its message to an empty string after a timeout.
+ *
+ * @param {HTMLElement} alert - The alert (success, danger, or info) to hide.
+ */
+/**
  * remove the an alert and change the message to an empty string
  * @param {HTMLElement} alert the alert(success, danger or infos) we want to hide
  */
@@ -153,6 +202,7 @@ export function removeAlert(alert){
     alert.querySelector('span').textContent = "";
   }, 3000);
 }
+
 
 /**
  * display an alert(succes, danger or info)
@@ -167,6 +217,19 @@ export function showAlert(alert, message){
 
 }
 
+
+/**
+ * Handles the click event for the delete multi-rows button.
+ *
+ * @param {string} endPoint - The API endpoint to send the DELETE request to.
+ * @param {HTMLInputElement} checkAllCheckbox - The checkbox to check/uncheck all.
+ * @param {HTMLElement} alertSuccess - The alert to display on success.
+ * @param {HTMLElement} alertDanger - The alert to display on error.
+ * @param {Function} callbackPagination - A callback function to handle pagination.
+ * @param {Function} callbackDisplayData - A callback function to display updated data.
+ * @param {Array} hideAlertBtns - An array of buttons to hide alerts.
+ * @param {Array} arrayIds - An array of IDs to delete.
+ */
 export async function handleClickDeleteMultiRowsBtn(
   endPoint, 
   checkAllCheckbox, 
@@ -203,7 +266,39 @@ export async function handleClickDeleteMultiRowsBtn(
   });
 }
 
-
+/**
+ * Toggles the visibility of a confirmation box for the given elements.
+ *
+ * @param {NodeList} elements - A NodeList of elements to toggle.
+ */
 export function showAndHideConfirmationBox(elements){
   elements.forEach((element) => element.classList.toggle('d-none'))
+}
+
+
+/**
+ * Sends a POST request to insert a new record at the specified endpoint.
+ *
+ * @param {string} endPoint - The API endpoint to send the POST request to.
+ * @param {Object} data - The data to insert as a JSON object.
+ * @returns {Promise<Object>} A promise that resolves
+ */
+export async function fetchInsertRecord(endPoint, data){
+  try{
+    const response = await fetch(endPoint, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+      body: JSON.stringify(data),
+    });
+    if(!response.ok){
+      throw new Error(response.statusText);
+    }
+    const result = await response.json();
+    return result
+  }catch(e){
+    console.error(e);
+  }
+    
 }

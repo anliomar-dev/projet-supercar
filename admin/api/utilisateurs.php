@@ -50,18 +50,6 @@
     $input = file_get_contents('php://input');  
     // Convert the received JSON data into an associative array
     $data = json_decode($input, true);
-    
-    //$csrf_token = $data['csrfToken'];
-    
-    // Check if the CSRF token is valid
-    /*if($csrf_token !== $_SESSION['csrf_token']){
-        $response = [
-          'status' => 'error',
-          'message' => 'token  csrf non valid'
-        ];
-        echo json_encode($response);
-        exit;
-    }*/
 
     // Handle different HTTP methods
     switch ($method) {
@@ -73,8 +61,9 @@
           exit;
         }else{
           // Handle POST request
-          $user_data = $data['data'];
-          $insert = insertRcord("utilisateur", $user_data);
+          $user_data = $data['user_data'];
+          $user_data['MotDePasse'] = password_hash($user_data['MotDePasse'], PASSWORD_BCRYPT);
+          $insert = insertRecord("utilisateur", $user_data);
           if($insert){
             $response = return_msg_json('success', 'utilisateur ajouté avec succès');
           }else{
