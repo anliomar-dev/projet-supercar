@@ -87,4 +87,65 @@ function delete_user($user_id) {
 
   return $result;
 }
+
+function insertRecord($table, $data) {
+  global $DB; // Use the database connection
+  // Create the insertion query
+  $columns = implode(", ", array_keys($data)); // Column names
+  $placeholders = implode(", ", array_fill(0, count($data), '?')); // Query parameters
+  // Prepare the SQL query
+  $query = "INSERT INTO $table ($columns) VALUES ($placeholders)";
+  // Prepare the statement
+  $stmt = $DB->prepare($query);
+
+  // Check if preparation was successful
+  if (!$stmt) {
+      return false; // Preparation failed
+  }
+  // Determine data types and convert if necessary
+  $types = '';
+  $values = [];
+  foreach ($data as $key => $value) {
+      // Convert values based on their format
+      if (is_numeric($value)) {
+          if (strpos($value, '.') !== false) {
+              // It's a floating-point number
+              $types .= 'd'; // Type double
+              $values[] = (float)$value; // Convert to float
+          } else {
+              // It's an integer
+              $types .= 'i'; // Type integer
+              $values[] = (int)$value; // Convert to int
+          }
+      } elseif (is_string($value)) {
+          // It's a string
+          $types .= 's'; // Type string
+          $values[] = $value; // Keep as string
+      } elseif (is_null($value)) {
+          $types .= 's'; // Handle NULL as string
+          $values[] = null; // Pass `null` for null values
+      } else {
+          return false; // Unsupported data type
+      }
+  }
+
+  // Bind parameters
+  $stmt->bind_param($types, ...$values); // Use unpacking to pass values
+
+  // Execute the query
+  return $stmt->execute(); // Returns true or false
+}
+
+function is_csrf_valid($scrf_client, $scrf_session){
+  // Check if the CSRF token is valid
+  return $scrf_client == $scrf_session;
+}
+
+function return_msg_json($status, $message){
+  // Return a JSON response
+  return [
+    'status' => $status,
+    'message' => $message
+  ];
+}
 ?>

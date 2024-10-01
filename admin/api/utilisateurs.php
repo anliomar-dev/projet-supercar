@@ -66,56 +66,20 @@
     // Handle different HTTP methods
     switch ($method) {
       case 'POST':
-        $first_name = $data['first_name'] ?? '';
-        $last_name = $data['last_name'] ?? '';
-        $phone = $data['phone'] ?? '';
-        $address = $data['address'] ?? '';
-        $email = $data['email'] ?? '';
-        $is_admin = $data['is_admin'] ?? '';
-        $is_superadmin = $data['is_superadmin'] ?? '';
-        $password = $data['password'] ? $data['password'] : '';
-            // create associated array for new user: the name of each key is the same as the name of the column in the database
-        $new_user = [
-          'Prenom' => $first_name,
-          'Nom' => $last_name,
-          'Adresse' => $address,
-          'NumTel' => $phone,
-          'Email' => $email,
-          'MotDePasse' => $password,
-          'est_admin' => $is_admin,
-          'est_superadmin' => $is_superadmin
-        ];
-        // check if all fields are not empty
-        if (!empty($first_name) && !empty($last_name) && !empty($phone)
-            && !empty($address) && !empty($email) && !empty($password)) {
-        
-          // verify is the email is already taken (funciton is_email_already_exist is defined in super-car/php/utils.php)
-          $is_email_already_exist = is_email_already_exist($email);
-          if ($is_email_already_exist){
-            $response = [
-                'status' => 'error',
-                'message' => 'Un compte avec cet email existe deja.'
-                ];
-          }else{
-              //create new user(funciton create_uesr() is defined in super-car/php/utils.php)
-              $result = create_user($first_name, $last_name, $address, $phone, $email, $password);
-              if($result){
-                  $response = [
-                      'status' => 'success',
-                      'message' => 'Votre compte a été crée avec succès.',
-                  ];
-              }else{
-                  $response = [
-                      'status' => 'error',
-                      'message' => 'cannot create account: internal server error',
-                  ];
-              }
-            }
+        $csrf_token = $data['csrf_token'];
+        if(!is_csrf_valid($csrf_token, $_SESSION['csrf_token'])){
+          $response = return_msg_json("403", 'token csrf non valid');
+          echo json_encode($response);
+          exit;
         }else{
-          $response = [
-            'status' => 'error',
-            'message' => 'tous les champs doivent être remplis'
-          ];
+          // Handle POST request
+          $user_data = $data['data'];
+          $insert = insertRcord("utilisateur", $user_data);
+          if($insert){
+            $response = return_msg_json('success', 'utilisateur ajouté avec succès');
+          }else{
+            $response = return_msg_json('error', 'erreur lors de l\'ajout de l\'utilisateur');
+          }
         }
         break;
       
@@ -127,28 +91,14 @@
         $ids = $data['ids'];
         $delete_user = delete_rows("utilisateur", "IdUtilisateur", $ids);
         if($delete_user){
-          $response = [
-            'status' => 'success',
-            'message' => 'Compte(s) supprimé avec succès'
-          ];
-          echo json_encode($response);
-          exit();
+          $response = return_msg_json("success", 'Compte(s) supprimé avec succès');
         }else{
-          $response = [
-            'status' => 'error',
-            'message' => 'erreur lors de la suppression du compte',
-          ];
-          echo json_encode($response);
-          exit();
         }
         break;
       
       default:
         // HTTP method not allowed
-        $response = [
-          'status' => 'error',
-          'message' => 'HTTP method not allowed'
-        ];
+        $response = return_msg_json('error', 'HTTP method not allowed');
         break;
     }
     echo json_encode($response);
