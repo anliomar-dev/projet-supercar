@@ -64,4 +64,61 @@
     // Execute the prepared statement and return the result
     return mysqli_stmt_execute($stmt);
   }
+
+
+  /**
+ * Updates a record in the specified table.
+ *
+ * @param string $table_name The name of the table.
+ * @param int $id_row The ID of the row to update.
+ * @param array $new_data An associative array of column names and their new values.
+ *
+ * @return bool Returns `true` on success, `false` on failure.
+ */
+function update_record($table_name, $id_row, $new_data) {
+  global $DB;
+  // Extract columns and values from the $new_data array
+  $columns = [];
+  $values = [];
+  foreach ($new_data as $key => $value) {
+    $columns[] = $key;
+    $values[] = $value;
+  }
+  // Build the SQL query string
+  $sql = "UPDATE $table_name SET ";
+  $sql .= implode(', ', array_map(function($column) {
+    return "$column = ?";
+  }, $columns));
+  $sql .= " WHERE id = ?"; // Assuming `id` is the primary key
+  // Prepare the SQL statement
+  $stmt = mysqli_prepare($DB, $sql);
+
+  if ($stmt === false) {
+    // If statement preparation fails, return false
+    return false;
+  }
+
+  // Add the ID to the values array for binding
+  $values[] = $id_row;  
+  // Create a types string for binding parameters
+  $types = '';
+  foreach ($values as $value) {
+    if (is_int($value)) {
+      $types .= 'i'; // Integer
+    } elseif (is_float($value)) {
+      $types .= 'd'; // Double
+    } else {
+      $types .= 's'; // String (default)
+    }
+  }
+  // Bind the parameters (values) to the prepared statement
+  mysqli_stmt_bind_param($stmt, $types, ...array_values($values));
+  // Execute the prepared statement
+  $result = mysqli_stmt_execute($stmt);
+  // Close the prepared statement
+  mysqli_stmt_close($stmt);
+  // Return the result of the query (true or false)
+  return $result;
+}
+  
 ?>
