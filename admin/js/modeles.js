@@ -32,6 +32,7 @@ document.addEventListener('DOMContentLoaded', async ()=>{
   const theadColumns = document.querySelectorAll('.th-col')
   const checkAllModels = document.querySelector('.check-all');
   const updateAndAddForm = document.querySelector('.update-and-add-form');
+  const deleteMultipleRowsBtn = document.querySelector(".delete-rows-btn");
   const title = document.querySelector('.title')
   let checkModele = [];
 
@@ -58,6 +59,9 @@ document.addEventListener('DOMContentLoaded', async ()=>{
         if (!e.currentTarget.checked) {
           checkAllModels.checked = false;
         }
+        // Enable or disable the delete button based on user selection
+        deleteMultipleRowsBtn.disabled = !Array.from(checkModele).some(
+        (checkbox) => checkbox.checked)
       });
       
       const  year = clone.querySelector('.annee');
@@ -103,7 +107,11 @@ document.addEventListener('DOMContentLoaded', async ()=>{
       })
     });
     checkModele = document.querySelectorAll('.checkbox-modele');
+    // Enable or disable the delete button based on user selection
+    deleteMultipleRowsBtn.disabled = !Array.from(checkModele).some(
+    (checkbox) => checkbox.checked)
   }
+
   let models = await fetchData(urlEndPoint)
   displayData(models, 'NomModele', 'asc')
 
@@ -127,9 +135,10 @@ document.addEventListener('DOMContentLoaded', async ()=>{
   })
   checkAllModels.addEventListener('change', (e) => {
     const isChecked = e.currentTarget.checked;
-    checkModele.forEach(checkbox => {
-      checkbox.checked = isChecked;
-    });
+    checkModele.forEach(checkbox => checkbox.checked = isChecked);
+    // Enable or disable the delete button based on user selection
+    deleteMultipleRowsBtn.disabled = !Array.from(checkModele).some(
+    (checkbox) => checkbox.checked)
   });
 
 

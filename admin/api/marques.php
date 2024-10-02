@@ -60,7 +60,6 @@
         echo json_encode($response);
         exit;
     }
-
     // Handle different HTTP methods
     switch ($method) {
       case 'POST':
@@ -69,29 +68,18 @@
       case 'PUT':
         $marque_id = intval($data['marque_id']);
         break;
-      
       case 'DELETE':
-        $marque_id = intval($data['marque_id']);
-        $delete_marques = delete_rows($marque_id, 'marque', 'IdMarque');
+        $ids = $data['ids'];
+        $delete_marques = delete_rows('marque', 'IdMarque', $ids);
         if($delete_marques){
-          $response = [
-            'status' => 'success',
-            'message' => 'marques supprimée avec succès'
-          ];
+          $response = return_msg_json("success", 'marques supprimées avec succès');
         }else{
-          $response = [
-            'status' => 'error',
-            'message' => 'erreur lors de la suppression des marques.',
-          ];
+          $response = return_msg_json("error", 'erreur lors de la suppression des marques');
         }
         break;
-      
       default:
         // HTTP method not allowed
-        $response = [
-          'status' => 'error',
-          'message' => 'HTTP method not allowed'
-        ];
+        $response = return_msg_json("error", 'méthode non autorisée');
         break;
     }
     echo json_encode($response);

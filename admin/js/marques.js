@@ -1,4 +1,12 @@
-import { sortData, toggleAndSortDataBtns, fetchData } from "./utils";
+import { sortData,
+    toggleAndSortDataBtns, 
+    fetchData,
+    fetchDeleteRows,
+    removeAlert,
+    showAlert,
+    handleClickDeleteMultiRowsBtn,
+    showAndHideConfirmationBox,
+  } from "./utils";
 import { resetForm } from "/super-car/js/utils";
 
 function isNumeric(value) {
@@ -18,6 +26,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const template = document.getElementById("template-marque");
   const allSections = document.querySelectorAll('section');
   const showSectionClickables = document.querySelectorAll('.show-section');
+  const deleteMultipleRowsBtn = document.querySelector(".delete-rows-btn");
   const sortButtons = document.querySelectorAll('.sortBtn');
   const theadColumns = document.querySelectorAll('.th-col');
   const checkAllMarques = document.querySelector('.check-all'); 
@@ -50,6 +59,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (!checkBoxMarque.checked) {
           checkAllMarques.checked = false;
         }
+        // Enable or disable the delete button based on user selection
+        deleteMultipleRowsBtn.disabled = !Array.from(checkMarque).some(
+        (checkbox) => checkbox.checked)
       });
 
       const idMarque = clone.querySelector('.id-brand');
@@ -100,6 +112,9 @@ document.addEventListener('DOMContentLoaded', async () => {
       });
     });
     checkMarque = document.querySelectorAll('.checkbox-marque');
+    // Enable or disable the delete button based on user selection
+    deleteMultipleRowsBtn.disabled = !Array.from(checkMarque).some(
+      (checkbox) => checkbox.checked)
   }
 
   const brands = await fetchData(endPoint("all"));
@@ -125,6 +140,9 @@ document.addEventListener('DOMContentLoaded', async () => {
   checkAllMarques.addEventListener('change', (e) => {
     const isChecked = e.currentTarget.checked;
     checkMarque.forEach(checkbox => checkbox.checked = isChecked);
+    // Enable or disable the delete button based on user selection
+    deleteMultipleRowsBtn.disabled = !Array.from(checkMarque).some(
+    (checkbox) => checkbox.checked)
   });
 
   // Events to show sections on button click

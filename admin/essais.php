@@ -47,7 +47,7 @@
                                 <path stroke-linecap='round' stroke-linejoin='round' d='M19.5 10.5V6.75A2.25 2.25 0 0017.25 4.5h-10.5A2.25 2.25 0 004.5 6.75v10.5A2.25 2.25 0 006.75 19.5h10.5a2.25 2.25 0 002.25-2.25V13.5m-6 0H9m3 3H9m6-6h-6m6 0H9' />
                             </svg>
                         </button>
-                        <button class="btn btn-outline-danger ms-2 delete-all-btn"
+                        <button class="btn btn-outline-danger ms-2 delete-rows-btn"
                             data-bs-toggle="tooltip" 
                             data-bs-placement="top" 
                             data-bs-title="supprimer toutes les lignes selectionées"

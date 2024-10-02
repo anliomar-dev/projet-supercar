@@ -11,7 +11,6 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="/super-car/admin/styles/dashboard.css" rel="stylesheet">
-    <script src="js/dashboard.js" type="module" defer></script>
     <script src="js/modeles.js" type="module" defer></script>
     <link href="/super-car/admin/styles/common.css" rel="stylesheet">
     <script src="js/sidebar_navbar.js" type="module" defer></script>
@@ -55,7 +54,7 @@
                                 <path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm.75-11.25a.75.75 0 0 0-1.5 0v2.5h-2.5a.75.75 0 0 0 0 1.5h2.5v2.5a.75.75 0 0 0 1.5 0v-2.5h2.5a.75.75 0 0 0 0-1.5h-2.5v-2.5Z" clip-rule="evenodd" />
                             </svg>
                         </button>
-                        <button class="btn btn-outline-danger ms-2 delete-all-btn"
+                        <button class="btn btn-outline-danger ms-2 delete-rows-btn"
                             data-bs-toggle="tooltip" 
                             data-bs-placement="top" 
                             data-bs-title="supprimer tous les modèles selectionées"

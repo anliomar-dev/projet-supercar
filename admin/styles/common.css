@@ -19,7 +19,7 @@ thead span:hover{
   background-color: rgb(205, 216, 225);
 }
 
-.delete-all-btn svg{
+.delete-rows-btn svg{
   width: 20px;
   height: 20px;
 }
@@ -37,4 +37,10 @@ thead span:hover{
 .btn-colonne svg{
   width: 18px;
   height: 18px;
+}
+
+.confirmation-box{
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -20%);
 }

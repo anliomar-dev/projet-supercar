@@ -71,7 +71,6 @@
           }
         }
         break;
-      
       case 'PUT':
         $user_id = $data['user_id'];
         break;
@@ -82,6 +81,7 @@
         if($delete_user){
           $response = return_msg_json("success", 'Compte(s) supprimé avec succès');
         }else{
+          $response = return_msg_json("error", 'Erreur lors de la suppression');
         }
         break;
       
