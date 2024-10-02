@@ -237,7 +237,6 @@ export async function handleClickDeleteMultiRowsBtn(
   alertDanger, 
   callbackPagination, 
   callbackDisplayData,
-  hideAlertBtns,
   arrayIds
 ) {
   if (arrayIds.length > 0) {
@@ -256,14 +255,6 @@ export async function handleClickDeleteMultiRowsBtn(
       removeAlert(alertDanger);
     }
   }
-  hideAlertBtns.forEach((btn) => {
-    btn.addEventListener("click", (e) => {
-      e.preventDefault();
-      const alert = alertDanger || alertSuccess;
-      removeAlert(alertDanger);
-      removeAlert(alertSuccess)
-    });
-  });
 }
 
 /**

@@ -45,7 +45,7 @@
                             <button class="btn btn-danger px-4 cancel-delete">Annuler</button>
                             <button 
                                 class="btn btn-secondary px-4 confirm-delete show-section" 
-                                data-section="all-users-section">Confirmer</button>
+                                data-section="all-marques-section">Confirmer</button>
                         </div>
                     </div>
                 </div>
@@ -219,8 +219,7 @@
                     </div>
                     <div class="col-md-4 mt-1 d-flex flex-column align-items-start">
                         <button type="submit" class="btn btn-enregistrer w-100 mb-2">Enregistrer</button>
-                        <button type="button" class="btn btn-supprimer w-100 mb-2">Supprimer</button>
-                        <button type="button" class="btn btn-historique w-100">Historique</button>
+                        <button type="button" class="btn btn-historique w-100 mb-2">Historique</button>
                         <button type="button" class="btn btn-retour w-100 show-section" data-section="all-marques-section">
                             <i class="fa-solid fa-left-long"></i>
                             Retour

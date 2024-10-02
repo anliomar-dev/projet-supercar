@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const passwordConfirmInput = document.getElementById("confirmPassword");
     const usersContainer = document.querySelector(".users-container");
     const template = document.getElementById("template-user");
-    const allSections = document.querySelectorAll("section");
+    const allSections = document.querySelectorAll(".section");
     const showSectionClickables = document.querySelectorAll(".show-section");
     const sortButtons = document.querySelectorAll(".sortBtn");
     const theadColumns = document.querySelectorAll(".th-col");
@@ -114,7 +114,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                 alertDanger,
                 () => paginationUsers(pagination), // Callback for pagination
                 async () => displayUsers(await fetchUsers(), "Prenom", "asc"), // Refresh user list
-                hideAlertBtns,
                 [id] // ID to delete
             );
 
@@ -320,7 +319,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     paginationUsers(pagination);
     const alertSuccess = document.querySelector(".alert-success");
     const alertDanger = document.querySelector(".alert-danger");
-    const hideAlertBtns = document.querySelectorAll(".hide-alert-btn");
     // handle the click on the delete multiple rows button
     deleteMultipleRowsBtn.addEventListener("click", async (e) => {
         e.preventDefault();
@@ -348,7 +346,6 @@ document.addEventListener("DOMContentLoaded", async () => {
             alertDanger,
             () => paginationUsers(pagination), // Callback for pagination
             async () => displayUsers(await fetchUsers(), "Prenom", "asc"), // Refresh user list
-            hideAlertBtns,
             arrayIds
         );
 

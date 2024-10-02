@@ -4,7 +4,8 @@
   include_once('../php/utils.php');
   include_once('../../php/utils.php');
   include_once('../php/functions_get_data.php');
-  
+  include_once('../php/del-update_functions.php');
+  session_start();
   // Set the content type as JSON
   header('Content-Type: application/json; charset=utf-8');
 
@@ -21,7 +22,7 @@
       // If 'marque' is 'all', retrieve all marque with pagination
       if ($marque == 'all') {
         $page = isset($_GET['page']) ? intval($_GET['page']) : 1;  // Default value of 1 if 'page' is not set
-        echo get_all_rows("marque", 4, $page);
+        echo get_all_rows("marque", 30, $page);
       
       // If 'marque' is a numeric ID, handle different HTTP methods
       } elseif (is_numeric($marque)) {
@@ -37,12 +38,8 @@
         exit;
       }
     }else{
-      $response = [
-        'status' => 'error',
-        'message' => 'le paramètre marque est manquant'
-      ];
-      echo json_encode($response);
-      exit;
+      $page = isset($_GET['page']) ? intval($_GET['page']) : 1;  // Default value of 1 if 'page' is not set
+      echo get_all_rows("marque", 30, $page);
     }
   }elseif(($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'PUT' || $_SERVER['REQUEST_METHOD'] === 'DELETE')){
     $method = $_SERVER['REQUEST_METHOD'];
@@ -50,21 +47,26 @@
     $input = file_get_contents('php://input');  
     // Convert the received JSON data into an associative array
     $data = json_decode($input, true);
-    
-    // Check if the CSRF token is valid
-    if($csrf_token !== $_SESSION['csrf_token']){
-        $response = [
-          'status' => 'error',
-          'message' => 'token  csrf non valid'
-        ];
-        echo json_encode($response);
-        exit;
+    /*if(!isset($_SESSION['csrf_token'])) {
+      $response = return_msg_json("403", 'Session CSRF token manquant');
+      echo json_encode($response);
+      exit;
     }
+
+    // Retrieve the CSRF token sent by the client
+    $csrf_token = $data['csrf_token'] ?? '';
+
+    // Validate the CSRF token
+    if(!is_csrf_valid($csrf_token, $_SESSION['csrf_token'])){
+      $response = return_msg_json("403", 'token csrf non valid');
+      echo json_encode($response);
+      exit;
+    }*/
     // Handle different HTTP methods
     switch ($method) {
       case 'POST':
+        
         break;
-      
       case 'PUT':
         $marque_id = intval($data['marque_id']);
         break;
