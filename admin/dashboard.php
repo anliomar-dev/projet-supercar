@@ -128,14 +128,6 @@
                     </div>
                 </div>
             </div>
-            <?php
-                include_once('components/sidebar.php');
-                if($_SESSION['is_admin'] == "1"){
-                    echo "est admin";
-                }else{
-                    echo "n'est pas admin";
-                }
-            ?>
             <hr>
             <div class="row px-4">
                 <div class="timeline col-md-4 mx-auto">
