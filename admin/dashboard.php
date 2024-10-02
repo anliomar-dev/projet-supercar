@@ -1,3 +1,10 @@
+<?php
+    // start new session if there is not a session
+    include_once('../php/utils.php');
+    $LOGIN_URL = "/super-car/admin/login";
+    $SESSION_EXPIRED_URL = "/super-car/admin/session_expired";
+    is_user_authenticated(5, $LOGIN_URL, $SESSION_EXPIRED_URL);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -121,6 +128,14 @@
                     </div>
                 </div>
             </div>
+            <?php
+                include_once('components/sidebar.php');
+                if($_SESSION['is_admin'] == "1"){
+                    echo "est admin";
+                }else{
+                    echo "n'est pas admin";
+                }
+            ?>
             <hr>
             <div class="row px-4">
                 <div class="timeline col-md-4 mx-auto">

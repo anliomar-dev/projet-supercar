@@ -3,7 +3,6 @@ body {
 }
 .login-container {
   max-width: 320px;
-  margin-top: 75px;
   background-color: white;
   border-radius: 10px;
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
@@ -32,4 +31,19 @@ cursor: pointer;
 .user-admin-svg{
 border-radius: 50px;
 border: solid 0.5px rgba(0, 0, 0, 0.082);
+}
+
+.spinner{
+  top: 38%;
+  left: 47%;
+  z-index: 2000;
+  height: 80px; 
+  width: 
+  80px; 
+  border-width: 10px
+}
+
+.overlay{
+  background-color: rgba(39, 39, 39, 0.322); 
+  z-index: 1500;
 }

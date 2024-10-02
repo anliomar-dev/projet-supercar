@@ -7,9 +7,18 @@
       <!-- Lien vers le fichier CSS de Bootstrap -->
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
       <link href="styles/login.css" rel="stylesheet">
+      <script src="js/login.js" type="module" defer></script>
   </head>
-  <body class="px-3 px-sm-0 px-md-0 px-lg-0">
-    <div class="login-container pt-2 pb-5 px-4 container">
+  <body class="px-3 px-sm-0 px-md-0 px-lg-0 position-relative">
+    <div class="alert alert-danger text-center d-none" role="alert"></div>
+    <div class="alert alert-success d-none text-center" role="alert"></div>
+    <!--overlay for cofirmation box-->
+    <div class="position-fixed top-0 start-0 w-100 h-100 overlay d-none">
+    </div>
+    <div class="spinner-border text-primary position-absolute spinner d-none" role="status" style=";">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <div class="login-container mt-5 pt-2 pb-5 px-4 container">
       <h5 class="mt-4 mb-0 text-center">ADMIN</h5>
       <div class="text-center logo-admin-container mt-3">
         <svg class="user-admin-svg shadow-sm" width="102" height="89" viewBox="0 0 102 89" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -22,32 +31,33 @@
           </defs>
         </svg>  
       </div>
-      <form class="">
-          <div class="mb-3">
-              <label for="email" class="form-label">Email</label>
-              <input type="email" class="form-control" id="email" placeholder="Entrez votre email">
-          </div>
-          <div class="form-group py-3 position-relative password-container">
-            <label for="password">Mot de passe</label>
-            <input type="password" class="form-control py-2 passwordField" id="password" name="password" placeholder="password" autocomplete="current-password" required>
-            <span class="eye-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
-                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-              </svg>                         
-            </span>
-            <span class="hide-password" style="display: none;">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.223A10.477 10.477 0 0 0 1.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.451 10.451 0 0 1 12 4.5c4.756 0 8.773 3.162 10.065 7.498a10.522 10.522 0 0 1-4.293 5.774M6.228 6.228 3 3m3.228 3.228 3.65 3.65m7.894 7.894L21 21m-3.228-3.228-3.65-3.65m0 0a3 3 0 1 0-4.243-4.243m4.242 4.242L9.88 9.88" />
-              </svg>
-            </span>
-          </div>
-          <div class="d-grid pt-2">
-              <button type="submit" class="btn btn-login">Login</button>
-          </div>
-          <div class="text-center pt-2">
-            <a href="#" class="text-decoration-none">Mot de passe oublié ?</a>
-          </div>
+      <form class="login-form">
+        <input type="hidden" name="action" value="login">
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control login-input-email" id="email" placeholder="Entrez votre email" autocomplete="email" required>
+        </div>
+        <div class="form-group py-3 position-relative password-container">
+          <label for="password">Mot de passe</label>
+          <input type="password" class="form-control py-2 passwordField" id="password" name="password" placeholder="password" autocomplete="current-password" required>
+          <span class="eye-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+            </svg>                         
+          </span>
+          <span class="hide-password" style="display: none;">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.223A10.477 10.477 0 0 0 1.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.451 10.451 0 0 1 12 4.5c4.756 0 8.773 3.162 10.065 7.498a10.522 10.522 0 0 1-4.293 5.774M6.228 6.228 3 3m3.228 3.228 3.65 3.65m7.894 7.894L21 21m-3.228-3.228-3.65-3.65m0 0a3 3 0 1 0-4.243-4.243m4.242 4.242L9.88 9.88" />
+            </svg>
+          </span>
+        </div>
+        <div class="d-grid pt-2">
+            <button type="submit" class="btn btn-login">Login</button>
+        </div>
+        <div class="text-center pt-2">
+          <a href="#" class="text-decoration-none">Mot de passe oublié ?</a>
+        </div>
       </form>
     </div>
     <div class="text-center mt-2">
@@ -57,7 +67,6 @@
       <p class="mx-3">Copyright © 2024 Supercar ltd.</p>
       <p class="mx-3">All rights reserved</p>
     </footer>
-    <script src="js/login.js" type="module" defer></script>
     <!-- Lien vers le fichier JS de Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
   </body>
