@@ -1,4 +1,11 @@
 <?php
+    include_once('../php/utils.php');
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+      $login_url = "/super-car/admin/login";
+      if(isset($_POST['logout'])) {
+          logout($login_url);
+      }
+    }
     echo"
       <div class='sidebar .sidebarSmallScrren start-0 ms-3 rounded-3 px-3' style='z-index: 1000;'>
         <div class='d-flex justify-content-end'>
@@ -128,7 +135,11 @@
               <path fill-rule='evenodd' d='M17 4.25A2.25 2.25 0 0 0 14.75 2h-5.5A2.25 2.25 0 0 0 7 4.25v2a.75.75 0 0 0 1.5 0v-2a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v11.5a.75.75 0 0 1-.75.75h-5.5a.75.75 0 0 1-.75-.75v-2a.75.75 0 0 0-1.5 0v2A2.25 2.25 0 0 0 9.25 18h5.5A2.25 2.25 0 0 0 17 15.75V4.25Z' clip-rule='evenodd' />
               <path fill-rule='evenodd' d='M14 10a.75.75 0 0 0-.75-.75H3.704l1.048-.943a.75.75 0 1 0-1.004-1.114l-2.5 2.25a.75.75 0 0 0 0 1.114l2.5 2.25a.75.75 0 1 0 1.004-1.114l-1.048-.943h9.546A.75.75 0 0 0 14 10Z' clip-rule='evenodd' />
             </svg>
-            <span class='ms-2'>Deconnexion</span>
+            <span class='ms-2'>
+              <form action='' method='post' class='dropdown-item'>
+                <button type='submit' name='logout' class='btn text-white'>Deconnexion</button>
+              </form>
+            </span>
           </a>
         </div>
       </div>

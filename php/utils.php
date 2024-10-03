@@ -138,16 +138,15 @@ function is_user_authenticated($times, $login_url, $session_expired) {
 }
 
 
-    function logout(){
-        global $LOGIN_URL;
-        if (isset($_POST["logout"])){
-            session_unset();
-            session_destroy();
-            // redirect user to the signin page
-            header("Location: $LOGIN_URL");
-            exit();
-        }
+function logout($login_url){
+    if (isset($_POST["logout"])){
+        session_unset();
+        session_destroy();
+        // redirect user to the signin page
+        header("Location: $login_url");
+        exit();
     }
+}
 
     /**
      * insert a new line in the table essai

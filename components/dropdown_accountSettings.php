@@ -17,9 +17,9 @@
                 </li>
                 <div class="dropdown-divider"></div>
                 <li>
-                <form action="" method="post" class="dropdown-item">
-                    <button type="submit" name="logout" class="btn">Deconnexion</button>
-                </form>
+                    <form action="" method="post" class="dropdown-item">
+                        <button type="submit" name="logout" class="btn">Deconnexion</button>
+                    </form>
                 </li>
             </ul>
             </div>
