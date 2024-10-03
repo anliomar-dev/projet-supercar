@@ -359,5 +359,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     createUserForm.addEventListener('submit', async(e)=>{
         e.preventDefault();
         const formData = new FormData(createUserForm);
+        console.log(formData);
     })
 });

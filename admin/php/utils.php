@@ -136,5 +136,75 @@ function return_msg_json($status, $message){
     ];
 }
 
+/**
+ * check is a user is an admin( the account can be use in admin panel)
+ *  @param int $user_id
+ * @return  bool
+ */
+function is_user_admin($is_admin){
+    // Check if the user is an admin.
+    return $is_admin;
+}
 
+function is_user_admin_redirect($is_admin){
+    // Check if the user is an admin.
+    if(!$is_admin){
+        // If the user is not an admin, redirect them to the login page.
+        header('Location: /super-car/admin/access_denied.html');
+    }
+}
+
+function login_admin($email, $password) {
+    global $DB;
+    $response = [
+        'status' => 'error',
+        'message' => 'email et/ou mot de passe invalid'
+    ];
+    // query
+    $query = "SELECT * FROM utilisateur WHERE Email = ?";
+    // prepare query
+    $stmt = mysqli_prepare($DB, $query);
+    mysqli_stmt_bind_param($stmt, 's', $email);
+    // execute query
+    mysqli_stmt_execute($stmt);
+
+    // get the result of the query
+    $result = mysqli_stmt_get_result($stmt);
+
+    // check if there a user registered with this email
+    if ($user = mysqli_fetch_assoc($result)) {
+        // check the password
+        if (password_verify($password, $user['MotDePasse'])) {
+            // the user is authenticated
+            if($user['est_admin'] === 0){
+                return false;
+                exit();
+            }
+            session_start();
+            // session variables
+            $_SESSION['user_id'] = $user['IdUtilisateur'];
+            $_SESSION['email'] = $user['Email'];
+            $_SESSION['first_name'] = $user['Prenom'];
+            $_SESSION['last_name'] = $user['Nom'];
+            $_SESSION['is_admin'] = $user['est_admin'];
+            $_SESSION['is_superadmin'] = $user['est_superadmin'];
+
+            // generate CSRF token
+            if (empty($_SESSION['csrf_token'])) {
+                $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+            }
+            // close query
+            mysqli_stmt_close($stmt);
+            return true;
+        } else {
+            // incorrect password
+            mysqli_stmt_close($stmt);
+            return false;
+        }
+    } else {
+        // no user found with this email
+        mysqli_stmt_close($stmt);
+        return false;
+    }
+}
 ?>

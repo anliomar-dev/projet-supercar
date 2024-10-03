@@ -1,4 +1,5 @@
-import { showPassword, hidePassword, login } from "../../js/utils";
+import { showPassword, hidePassword} from "../../js/utils";
+import { login_admin } from "./utils";
 
 document.addEventListener('DOMContentLoaded', ()=>{
   const eyeIcon = document.querySelector(".eye-icon"); //show password icons
@@ -25,7 +26,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
     // Show the spinner
     showAndHideSpinnerAndOverlay();
     try {
-        const isAuthenticated = await login(email, password);
+        const isAuthenticated = await login_admin(email, password);
         const responseStatus = isAuthenticated.status;
         const messageResponse = isAuthenticated.message;
         setTimeout(() => {

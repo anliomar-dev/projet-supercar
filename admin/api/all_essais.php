@@ -1,7 +1,7 @@
 <?php
 // retrieve all essai in json without pagination to display on the calender
 include '../../php/connexionDB.php';
-include_once('../php/utils.php');
+include_once('../../php/utils.php');
 $LOGIN_URL = "/super-car/admin/login";
 $SESSION_EXPIRED_URL = "/super-car/admin/session_expired";
 is_user_authenticated(2, $LOGIN_URL, $SESSION_EXPIRED_URL);

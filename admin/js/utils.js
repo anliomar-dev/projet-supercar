@@ -290,6 +290,29 @@ export async function fetchInsertRecord(endPoint, data){
     return result
   }catch(e){
     console.error(e);
+  } 
+}
+
+export async function login_admin(email, password){
+  const credentials = {
+    email,
+    password,
   }
-    
+  try {
+    const response = await fetch('http://localhost/super-car/admin/api/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(credentials)
+    })
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+  
+    const message = await response.json();
+    return message;
+  }catch(e){
+    console.error('Internal server error: ' + e.message);
+  }
 }
