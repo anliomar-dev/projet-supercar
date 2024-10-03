@@ -420,6 +420,10 @@ document.addEventListener("DOMContentLoaded", async () => {
             .then(response => response.text())
             .then(data => console.log(data))
             .catch((error) => console.error('Error:', error));
+            // Select all input elements that are not of type hidden
+            const inputs = createUserForm.querySelectorAll('input:not([type="hidden"])');
+            // Add event listener to each input element
+            inputs.forEach(input => input.value = "")
         }
     });
     
