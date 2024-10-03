@@ -148,25 +148,43 @@ function logout($login_url){
     }
 }
 
-    /**
-     * insert a new line in the table essai
-     */
-    function new_essai($date, $heure, $idMarque, $idModele, $idUtilisateur){
-        global $DB;
+/**
+ * insert a new line in the table essai
+ */
+function new_essai($date, $heure, $idMarque, $idModele, $idUtilisateur){
+    global $DB;
 
-        $query = "INSERT INTO essais 
-            (DateEssai, Heure, IdMarque, IdModele, IdUtilisateur)
-            VALUES (?, ?, ?, ?, ?)
-        ";
-        $stmt = mysqli_prepare($DB, $query);
-        if($stmt){
-            mysqli_stmt_bind_param($stmt, "ssiii", $date, $heure, $idMarque, $idModele, $idUtilisateur);
-            $result = mysqli_stmt_execute($stmt);
-            // Close the statement
-            mysqli_stmt_close($stmt);
-        return $result;
-        }else{
-            return false;
-        }
+    $query = "INSERT INTO essais 
+        (DateEssai, Heure, IdMarque, IdModele, IdUtilisateur)
+        VALUES (?, ?, ?, ?, ?)
+    ";
+    $stmt = mysqli_prepare($DB, $query);
+    if($stmt){
+        mysqli_stmt_bind_param($stmt, "ssiii", $date, $heure, $idMarque, $idModele, $idUtilisateur);
+        $result = mysqli_stmt_execute($stmt);
+        // Close the statement
+        mysqli_stmt_close($stmt);
+    return $result;
+    }else{
+        return false;
     }
+}
+
+/**
+ * check is a user is an admin( the account can be use in admin panel)
+ *  @param int $user_id
+ * @return  bool
+ */
+function is_user_admin($is_admin){
+    // Check if the user is an admin.
+    return $is_admin;
+}
+
+function is_user_not_admin_redirect($is_admin){
+    // Check if the user is an admin.
+    if(!$is_admin){
+        // If the user is not an admin, redirect them to the login page.
+        header('Location: /super-car/admin/access_denied.html');
+    }
+}
 ?>

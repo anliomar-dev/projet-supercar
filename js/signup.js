@@ -245,7 +245,9 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
       passwordsMessageText.style.color = "black";
       passwordConfirmInput.style.outline = "none";
-      if (passwordInput.value === passwordConfirmInput.value) {
+      if (isStringLengthGreaterThan(passwordInput.value, 1) && 
+      isStringLengthGreaterThan(passwordConfirmInput.value, 1) && 
+      passwordInput.value.trim() === passwordConfirmInput.value.trim()) {
         passwordsMessageText.textContent =
           "Les deux mot de passe sont identiques";
         passwordsMessageText.style.color = "#28a745";

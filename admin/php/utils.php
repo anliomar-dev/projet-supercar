@@ -136,24 +136,6 @@ function return_msg_json($status, $message){
     ];
 }
 
-/**
- * check is a user is an admin( the account can be use in admin panel)
- *  @param int $user_id
- * @return  bool
- */
-function is_user_admin($is_admin){
-    // Check if the user is an admin.
-    return $is_admin;
-}
-
-function is_user_admin_redirect($is_admin){
-    // Check if the user is an admin.
-    if(!$is_admin){
-        // If the user is not an admin, redirect them to the login page.
-        header('Location: /super-car/admin/access_denied.html');
-    }
-}
-
 function login_admin($email, $password) {
     global $DB;
     $response = [
