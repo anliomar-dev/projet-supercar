@@ -409,6 +409,17 @@ document.addEventListener("DOMContentLoaded", async () => {
                 "user_data": userData
             };
             console.log(data);
+            // Envoi de la requête POST
+            fetch('http://localhost/super-car/admin/api/utilisateurs', {
+                method: 'POST',
+                headers: {
+                'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.text())
+            .then(data => console.log(data))
+            .catch((error) => console.error('Error:', error));
         }
     });
     
