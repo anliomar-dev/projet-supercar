@@ -53,7 +53,7 @@
           </span>
         </div>
         <div class="d-grid pt-2">
-            <button type="submit" class="btn btn-login">Login</button>
+          <button type="submit" class="btn btn-login">Login</button>
         </div>
         <div class="text-center pt-2">
           <a href="#" class="text-decoration-none">Mot de passe oublié ?</a>

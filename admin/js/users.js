@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const passwordConfirmInput = document.getElementById("confirmPassword");
     const usersContainer = document.querySelector(".users-container");
     const template = document.getElementById("template-user");
-    const allSections = document.querySelectorAll(".section");
+    const allSections = document.querySelectorAll("section");
     const showSectionClickables = document.querySelectorAll(".show-section");
     const sortButtons = document.querySelectorAll(".sortBtn");
     const theadColumns = document.querySelectorAll(".th-col");
@@ -128,6 +128,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         [first_name, last_name, email, editButton].forEach((btn) => {
             btn.addEventListener("click", async (e) => {
             const sectionToShowClass = e.currentTarget.dataset.section;
+            console.log(sectionToShow)
             const sectionToShow = document.querySelector(
                 `.${sectionToShowClass}`
             );
