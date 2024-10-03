@@ -2,8 +2,11 @@
 // Database connection
 include('../../php/connexionDB.php');
 include_once('../php/functions_get_data.php');
-header('Content-Type: application/json; charset=utf-8');
+$LOGIN_URL = "/super-car/admin/login";
+$SESSION_EXPIRED_URL = "/super-car/admin/session_expired";
+is_user_authenticated(2, $LOGIN_URL, $SESSION_EXPIRED_URL);
 
+header('Content-Type: application/json; charset=utf-8');
 if($_SERVER['REQUEST_METHOD'] == 'GET'){
     // Check if brand_id parameter is set
     if (isset($_GET['brand_id'])) {
