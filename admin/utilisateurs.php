@@ -280,13 +280,15 @@
                             <!-- create new user form -->
                             <div class="tab-pane fade show active border rounded-3 p-4" id="inscription" role="tabpanel" aria-labelledby="inscription-tab">
                                 <div class="mt-4">
+                                    <input type="hidden" name="csrf_token" id="csrf_token">
+                                    <input type="hidden" name="authenticated_userId" id="current-userId" value="<?php echo $_SESSION['user_id'];?>">
                                     <div class="mb-3">
                                         <label for="prenom-inscription" class="form-label">Prénom</label>
-                                        <input type="text" class="form-control" name="new-first_name" id="prenom-inscription" placeholder="Entrez votre prénom" required>
+                                        <input type="text" class="form-control" name="new_first-name" id="prenom-inscription" placeholder="Entrez votre prénom" required>
                                     </div>
                                     <div class="mb-3">
                                         <label for="nom-inscription" class="form-label">Nom</label>
-                                        <input type="text" class="form-control" name="new-last_name" id="nom-inscription" placeholder="Entrez votre nom" required>
+                                        <input type="text" class="form-control" name="new_last-name" id="nom-inscription" placeholder="Entrez votre nom" required>
                                     </div>
                                     <div class="mb-3">
                                         <label for="adresse-inscription" class="form-label">Adresse</label>
@@ -336,12 +338,12 @@
                                 <div class="mt-0">
                                     <div class="form-group d-flex">
                                         <span>est admin</span>
-                                        <input type="checkbox" name="is-admin" class="form-check-input ms-1" value="true">
+                                        <input type="checkbox" name="is-admin" class="form-check-input ms-1" value="1">
                                         <p class="ms-2">: determine si ce compte peut se connecter à l'interface admin</p>
                                     </div>
                                     <div class="form-group d-flex">
                                         <span>est superadmin</span>
-                                        <input type="checkbox" name="is-superadmin" class="form-check-input ms-1" value="true">
+                                        <input type="checkbox" name="is-superadmin" class="form-check-input ms-1" value="1">
                                         <p class="ms-2">: donner tous les droit et privilèges à l'utilisateur</p>
                                     </div>
                                 </div>

@@ -1,9 +1,11 @@
 <?php
+    $name = $_SESSION['last_name'];
+    $date = date('d-m-Y');
     echo "
         <div class='dashboard-header mt-2 h-auto py-2 px-3 d-flex flex-column flex-md-row flex-lg-row'>
             <div class='d-flex flex-column justify-content-center align-items-center align-items-md-start align-items-lg-start w-100 w-md-25 w-lg-25 px-2'>
-                <span style='font-size: 14px;'>15-09-2024</span>
-                <h5>Bienvenue, John!</h5>
+                <span style='font-size: 14px;'>$date</span>
+                <h5>Bienvenue, $name!</h5>
             </div>
             <div class='d-flex justify-content-center py-2 py-md-0 py-lg-0  justify-content-md-end  align-items-center w-100 w-md-75 w-lg-75 pe-3'>
                 <div class='d-flex align-items-center'>
