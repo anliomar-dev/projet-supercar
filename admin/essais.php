@@ -32,7 +32,7 @@
                 include_once('components/navbar.php');
             ?>
 
-            <!--display all user section-->
+            <!--display all essaus section-->
             <section class="container my-4 mx-auto all-essais-section">
                 <!-- section header -->
                 <div class="d-flex justify-content-between align-items-center mb-3">
@@ -58,7 +58,7 @@
                         </button>
                     </div>
                 </div>
-                <!-- users -->
+                <!-- essais -->
                 <table class="table table-hover table-bordered">
                     <thead>
                         <tr>
@@ -108,7 +108,9 @@
                                 </td>
                                 <td class="date hover" data-section="update-essai-section"></td>
                                 <td class="heure hover" data-section="update-essai-section"></td>
-                                <td class="status hover" data-section="update-essai-section"></td>
+                                <td class="status hover" data-section="update-essai-section">
+                                    <p class="rounded-3 py-1 ps-2 text-white"></p>
+                                </td>
                                 <td class="buttons">
                                     <button class="btn btn-sm btn-outline-primary edit-button show-section" data-id="" data-section="update-essai-section">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">

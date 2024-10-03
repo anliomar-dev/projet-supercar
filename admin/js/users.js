@@ -356,4 +356,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
 
     // add new user
+    createUserForm.addEventListener('submit', async(e)=>{
+        e.preventDefault();
+        const formData = new FormData(createUserForm);
+    })
 });

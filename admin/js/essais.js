@@ -56,8 +56,24 @@ document.addEventListener('DOMContentLoaded', async ()=>{
       const heure = clone.querySelector('.heure'); // Correctly target from the clone
       heure.textContent = essai.Heure;
       
-      const status = clone.querySelector('.status'); // Correctly target from the clone
+      const status = clone.querySelector('.status').querySelector('p'); // Correctly target from the clone
       status.textContent = essai.status;
+      switch(essai.status){
+        case 'confirmé':
+          status.style.backgroundColor = 'green';
+          break;
+        case 'annulé':
+          status.style.backgroundColor = 'red';
+          break;
+        case 'en cours':
+          status.style.backgroundColor = 'blue';
+          break;
+        case 'terminé':
+          status.style.backgroundColor = '#959798';
+          break;
+        default:
+          status.style.backgroundColor = 'black';
+      }
       
       [date, heure, status].forEach(el=>el.dataset.id = essai.IdEssai)
       const editButton = clone.querySelector('.edit-button'); // Correctly target from the clone
