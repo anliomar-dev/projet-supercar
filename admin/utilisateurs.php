@@ -280,23 +280,23 @@
                             <!-- create new user form -->
                             <div class="tab-pane fade show active border rounded-3 p-4" id="inscription" role="tabpanel" aria-labelledby="inscription-tab">
                                 <div class="mt-4">
-                                    <input type="hidden" name="csrf_token" id="csrf_token">
+                                    <input type="hidden" name="csrf_token" id="csrf_token" value="<?php echo $_SESSION['csrf_token'];?>">
                                     <input type="hidden" name="authenticated_userId" id="current-userId" value="<?php echo $_SESSION['user_id'];?>">
                                     <div class="mb-3">
                                         <label for="prenom-inscription" class="form-label">Prénom</label>
-                                        <input type="text" class="form-control" name="new_first-name" id="prenom-inscription" placeholder="Entrez votre prénom" required>
+                                        <input type="text" class="form-control" name="Prenom" id="prenom-inscription" placeholder="Entrez votre prénom" required>
                                     </div>
                                     <div class="mb-3">
                                         <label for="nom-inscription" class="form-label">Nom</label>
-                                        <input type="text" class="form-control" name="new_last-name" id="nom-inscription" placeholder="Entrez votre nom" required>
+                                        <input type="text" class="form-control" name="Nom" id="nom-inscription" placeholder="Entrez votre nom" required>
                                     </div>
                                     <div class="mb-3">
                                         <label for="adresse-inscription" class="form-label">Adresse</label>
-                                        <input type="text" class="form-control" name="new-adresse" id="adresse-inscription" placeholder="Entrez votre adresse" required>
+                                        <input type="text" class="form-control" name="Adresse" id="adresse-inscription" placeholder="Entrez votre adresse" required>
                                     </div>
                                     <div class="mb-3">
                                         <label for="telephone-inscription" class="form-label">Téléphone</label>
-                                        <input type="text" class="form-control" name="new-phone" id="telephone-inscription" placeholder="Entrez votre téléphone" required>
+                                        <input type="text" class="form-control" name="NumTel" id="telephone-inscription" placeholder="Entrez votre téléphone" required>
                                     </div>
                                 </div>
                             </div>
@@ -304,7 +304,7 @@
                             <div class="tab-pane fade border rounded-3 p-4" id="details" role="tabpanel" aria-labelledby="details-tab">
                                 <div class="mb-3">
                                     <label for="email-inscription" class="form-label">Email</label>
-                                    <input type="email" class="form-control" name="new-email" id="email-inscription" placeholder="Entrez votre email" autocomplete="email" required>
+                                    <input type="email" class="form-control" name="Email" id="email-inscription" placeholder="Entrez votre email" autocomplete="email" required>
                                 </div>
                                 <div class="row mt-3">
                                     <div class="form-group col-md-6 position-relative password-container">
@@ -312,7 +312,7 @@
                                         <span class="eye-icon">👁️</span>
                                         <span style="display: none;" class="hide-password">🙈</span>
                                         <input type="password" class="form-control passwordField" 
-                                            name="new-password" id="password" placeholder="Mot de passe"
+                                            name="MotDePasse" id="password" placeholder="Mot de passe"
                                             autocomplete="current-password" required 
                                             pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\w\s]).{8,}$"
                                             title="Le mot de passe doit contenir au moins 8 caractères, dont une majuscule, 
@@ -324,7 +324,7 @@
                                         <span style="display: none;" class="hide-password">🙈</span>
                                         <label for="confirmPassword">confirmation</label>
                                         <input type="password" class="form-control passwordField" 
-                                            name="confirm-password" id="confirmPassword" placeholder="confirmation" 
+                                            name="confirm_mot_de_passe" id="confirmPassword" placeholder="confirmation" 
                                             autocomplete="current-password"
                                             pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\w\s]).{8,}$" 
                                             title="Le mot de passe doit contenir au moins 8 caractères, dont une majuscule, une minuscule, 
@@ -338,12 +338,12 @@
                                 <div class="mt-0">
                                     <div class="form-group d-flex">
                                         <span>est admin</span>
-                                        <input type="checkbox" name="is-admin" class="form-check-input ms-1" value="1">
+                                        <input type="checkbox" name="est_admin" class="form-check-input ms-1" value="1">
                                         <p class="ms-2">: determine si ce compte peut se connecter à l'interface admin</p>
                                     </div>
                                     <div class="form-group d-flex">
                                         <span>est superadmin</span>
-                                        <input type="checkbox" name="is-superadmin" class="form-check-input ms-1" value="1">
+                                        <input type="checkbox" name="est_superadmin" class="form-check-input ms-1" value="1">
                                         <p class="ms-2">: donner tous les droit et privilèges à l'utilisateur</p>
                                     </div>
                                 </div>

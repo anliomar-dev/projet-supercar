@@ -355,10 +355,61 @@ document.addEventListener("DOMContentLoaded", async () => {
         };
     });
 
-    // add new user
-    createUserForm.addEventListener('submit', async(e)=>{
+    createUserForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const formData = new FormData(createUserForm);
-        console.log(formData);
-    })
+    
+        // Vérification des mots de passe
+        if (formData.get('MotDePasse') !== formData.get('confirm_mot_de_passe')) {
+            console.log("Les deux mots de passe ne sont pas identiques");
+        } else {
+            // Affichage des valeurs du formulaire
+            for (const [key, value] of formData.entries()) {
+                console.log(key, value);
+            }
+    
+            // Création de l'objet userData
+            const userData = {
+                "Nom": formData.get('Nom'),
+                "Prenom": formData.get('Prenom'),
+                "Email": formData.get('Email'),
+                "MotDePasse": formData.get('MotDePasse'),
+                "Adresse": formData.get('Adresse'),
+                "NumTel": formData.get('NumTel'),
+            };
+    
+            // Ajout des informations sur les rôles (admin, superadmin)
+            if (formData.get('est_admin')) {
+                userData['est_admin'] = formData.get('est_admin');
+            }
+            if (formData.get('est_superadmin')) {
+                userData['est_superadmin'] = formData.get('est_superadmin');
+            }
+    
+            console.log(" ");
+            console.log("csrf_token");
+    
+            // Utilisation de formData.get() pour récupérer le csrf_token et l'ID utilisateur
+            const csrf_token = formData.get('csrf_token');
+            console.log(csrf_token);
+    
+            console.log(" ");
+            console.log("user_id");
+    
+            const loggedInUserID = formData.get('authenticated_userId');
+            console.log(loggedInUserID);
+    
+            console.log(" ");
+            console.log("data");
+    
+            // Création de l'objet data avec csrf_token, l'ID de l'utilisateur et les informations de l'utilisateur
+            const data = {
+                "csrf_token": csrf_token,
+                "loggedInUserID": loggedInUserID,
+                "user_data": userData
+            };
+            console.log(data);
+        }
+    });
+    
 });

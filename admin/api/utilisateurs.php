@@ -58,16 +58,17 @@
     // Handle different HTTP methods
     switch ($method) {
       case 'POST':
-        $csrf_token = $data['csrf_token'];
         if(!is_csrf_valid($csrf_token, $_SESSION['csrf_token'])){
           $response = return_msg_json("403", 'token csrf non valid');
           echo json_encode($response);
           exit;
         }else{
           // Handle POST request
-          $user_data = $data['user_data'];
-          $user_data['MotDePasse'] = password_hash($user_data['MotDePasse'], PASSWORD_BCRYPT);
-          $insert = insertRecord("utilisateur", $user_data);
+          $csrf_token = $data['csrf_token'];
+          $authenticated_userId = $data['loggedInUserID'];
+          $new_user_data = $data['user_data'];
+          $new_user_data['MotDePasse'] = password_hash($user_data['MotDePasse'], PASSWORD_BCRYPT);
+          $insert = insertRecord("utilisateur", $new_user_data);
           if($insert){
             $response = return_msg_json('success', 'utilisateur ajouté avec succès');
           }else{

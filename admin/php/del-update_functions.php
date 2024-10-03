@@ -28,42 +28,49 @@
     return mysqli_stmt_execute($stmt);
   }
 
-  function insert_row(string $table_name, array $data): bool {
-    global $DB;
   
+  /**
+ * Inserts a new row into a database table.
+ *
+ * @param string $table_name The name of the table.
+ * @param array $data An associative array with column names and their values.
+ *
+ * @return array Returns an array containing [true, last_id] on success,
+ *               or [false] on failure.
+ */
+function insert_row(string $table_name, array $data): array {
+    global $DB;
+
     // Prepare column names and placeholders for the SQL statement
     $columns = implode(',', array_keys($data));
     $placeholders = implode(',', array_fill(0, count($data), '?'));
-  
+
     // Prepare the SQL query
     $sql = "INSERT INTO $table_name ($columns) VALUES ($placeholders)";
-  
-    // Prepare the SQL statement
     $stmt = mysqli_prepare($DB, $sql);
-    
+
     if ($stmt === false) {
-        // If statement preparation fails, return false
-        return false;
+        return [false];
     }
-  
+
     // Create a types string for binding parameters
     $types = '';
     foreach ($data as $value) {
-        if (is_int($value)) {
-            $types .= 'i'; // Integer
-        } elseif (is_float($value)) {
-            $types .= 'd'; // Double
-        } else {
-            $types .= 's'; // String (default)
-        }
+        $types .= is_int($value) ? 'i' : (is_float($value) ? 'd' : 's');
     }
-  
+
     // Bind the parameters (values) to the prepared statement
     mysqli_stmt_bind_param($stmt, $types, ...array_values($data));
-  
+
     // Execute the prepared statement and return the result
-    return mysqli_stmt_execute($stmt);
+    if (mysqli_stmt_execute($stmt)) {
+        $last_id = mysqli_insert_id($DB);
+        return [true, $last_id];
+    } else {
+        return [false];
+    }
   }
+
 
 
   /**
