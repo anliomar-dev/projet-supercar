@@ -261,8 +261,14 @@ export async function handleClickDeleteMultiRowsBtn(
  *
  * @param {NodeList} elements - A NodeList of elements to toggle.
  */
-export function showAndHideConfirmationBox(elements){
-  elements.forEach((element) => element.classList.toggle('d-none'))
+export function showAndHideConfirmationBox(elements, message=''){
+  elements.forEach((element) =>{
+    element.classList.toggle('d-none');
+    if(element.classList.contains('confirmation-box')){
+      element.querySelector('p').textContent = message;
+    }
+  });
+  
 }
 
 

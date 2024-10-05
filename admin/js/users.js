@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       first_name.textContent = user.first_name;
       first_name.dataset.id = user.id;
 
-      const last_name = clone.querySelector(".first-name");
+      const last_name = clone.querySelector(".last-name");
       last_name.textContent = user.last_name;
       last_name.dataset.id = user.id;
 
@@ -104,7 +104,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         const id = deleteButton.dataset.id;
 
         // Show confirmation box
-        showAndHideConfirmationBox(overlayAndConfirmationBox);
+        showAndHideConfirmationBox(overlayAndConfirmationBox, 'Voulez-vous vraiment supprimer ce compte?');
 
         // Reset previous click event listener for confirmation button
         confirmDeleteBtn.onclick = async (e) => {
@@ -183,7 +183,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   // Cancel button hides the confirmation box
   cancelDelete.onclick = () =>
-    showAndHideConfirmationBox(overlayAndConfirmationBox);
+    showAndHideConfirmationBox(overlayAndConfirmationBox, '');
 
   checkAllUsers.addEventListener("change", (e) => {
     const isChecked = e.currentTarget.checked;
@@ -341,7 +341,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     );
 
     // Show confirmation box
-    showAndHideConfirmationBox(overlayAndConfirmationBox);
+    showAndHideConfirmationBox(overlayAndConfirmationBox, 'Voulez-vous vraiment supprimer les comptes selectionés?');
 
     // Reset previous click event listener for confirmation button
     confirmDeleteBtn.onclick = async (e) => {

@@ -3,7 +3,7 @@
     include_once('../php/utils.php');
     $LOGIN_URL = "/super-car/admin/login";
     $SESSION_EXPIRED_URL = "/super-car/admin/session_expired";
-    is_user_authenticated(2, $LOGIN_URL, $SESSION_EXPIRED_URL);
+    is_user_authenticated(5, $LOGIN_URL, $SESSION_EXPIRED_URL);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -40,12 +40,11 @@
             <!--overlay for cofirmation box-->
             <div class="position-fixed top-0 start-0 w-100 h-100 confirmation d-none" style="background-color: rgba(0, 0, 0, 0.5); z-index: 3000;">
             </div>
-
             <!-- Boîte de confirmation -->
-            <div class="position-absolute confirmation-box shadow confirmation d-none" style="z-index: 3500;">
+            <div class="position-fixed confirmation-box shadow confirmation d-none" style="z-index: 3500;">
                 <div class="border rounded p-4 shadow-sm bg-white" style="width: 400px;">
                     <div class="text-center mb-3">
-                        <p class="mb-4">Voulez-vous vraiment supprimer ?</p>
+                        <p class="mb-4"></p>
                         <div class="d-flex justify-content-center gap-2">
                             <button class="btn btn-danger px-4 cancel-delete">Annuler</button>
                             <button 
@@ -104,7 +103,7 @@
                 <!-- users -->
                 <table class="table table-hover table-bordered">
                     <thead>
-                        <tr>
+                        <tr class="">
                             <th class="d-flex justify-content-center pt-3">
                                 <input 
                                     data-bs-toggle="tooltip" 
