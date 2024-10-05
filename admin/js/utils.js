@@ -214,7 +214,6 @@ export function showAlert(alert, message){
   alert.querySelector("span").innerHTML = message;
   alert.classList.remove("d-none");
   alert.classList.add("alert-show");
-
 }
 
 
@@ -314,5 +313,33 @@ export async function login_admin(email, password){
     return message;
   }catch(e){
     console.error('Internal server error: ' + e.message);
+  }
+}
+
+
+/**
+ * Send data to a specific endpoint using POST or PUT method
+ * @param {object} data - The data to be sent to the server
+ * @param {string} httpMethod - HTTP method (PUT or POST)
+ * @param {string} endPoint - The endpoint URL that will receive the data
+ * @returns {object|null} - The response data from the server or null in case of error
+ */
+export async function sendData(data, httpMethod, endPoint) {
+  try {
+    const response = await fetch(endPoint, {
+      method: httpMethod,
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Error: ${response.status} ${response.statusText}`);
+    }
+
+    const result = await response.json();
+    return result;
+  } catch (e) {
+    console.error('Request failed:', e);
+    return null;  // Return null to indicate failure
   }
 }

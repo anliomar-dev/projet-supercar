@@ -58,7 +58,7 @@
     // Handle different HTTP methods
     switch ($method) {
       case 'POST':
-        $csrf_token = $data['csrf_token'];
+        $csrf_token = $data['csrf_token'] ?? '';
         if(!is_csrf_valid($csrf_token, $_SESSION['csrf_token'])){
           $response = return_msg_json("403", 'token csrf non valid');
           echo json_encode($response);

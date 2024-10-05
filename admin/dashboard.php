@@ -232,51 +232,58 @@
                 </div>
             </div>
             <hr>
-            <div class="row mt-5 px-3">
-                <div class="col-md-6">
-                    <h4 class=""><u>Admin</u></h4>
-                    <table class="table table-bordered table-sm">
-                        <thead>
-                        <tr>
-                            <th>Prenom</th>
-                            <th>Email</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>anli</td>
-                            <td>omaranli285@gmail.com</td>
-                        </tr>
-                        <tr>
-                            <td>anfane</td>
-                            <td>mohamedanfane@gmail.com</td>
-                        </tr>
-                        <tr>
-                            <td>fayad</td>
-                            <td>mmohamedfayad@gmail.com</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
+            <!--admin et superadmin-->
+            <?php
+                if($_SESSION['is_superadmin'] == 1){
+                    echo "
+                    <div class='row mt-5 px-3'>
+                        <div class='col-md-6'>
+                            <h4 class=''><u>Admin</u></h4>
+                            <table class='table table-bordered table-sm'>
+                                <thead>
+                                <tr>
+                                    <th>Prenom</th>
+                                    <th>Email</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>anli</td>
+                                    <td>omaranli285@gmail.com</td>
+                                </tr>
+                                <tr>
+                                    <td>anfane</td>
+                                    <td>mohamedanfane@gmail.com</td>
+                                </tr>
+                                <tr>
+                                    <td>fayad</td>
+                                    <td>mmohamedfayad@gmail.com</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
 
-                <div class="col-md-6">
-                    <h4 class=""><u>Super admin</u></h4>
-                    <table class="table table-bordered table-sm">
-                        <thead>
-                        <tr>
-                            <th>Prenom</th>
-                            <th>Email</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>omar</td>
-                            <td>mccibs23043@student.mccibs.ac.mu</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+                        <div class='col-md-6'>
+                            <h4 class=''><u>Super admin</u></h4>
+                            <table class='table table-bordered table-sm'>
+                                <thead>
+                                <tr>
+                                    <th>Prenom</th>
+                                    <th>Email</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>omar</td>
+                                    <td>mccibs23043@student.mccibs.ac.mu</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    ";
+                }
+            ?>
         </div>
     </div>
 </div>
