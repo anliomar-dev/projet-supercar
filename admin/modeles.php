@@ -175,6 +175,8 @@
             <!--section update or create modele-->
             <section class="container my-3 update-and-create-section d-none">
                 <form class="row update-and-add-form">
+                <input type="hidden" name="csrf_token" id="csrf_token" value="<?php echo $_SESSION['csrf_token'];?>">
+                <input type="hidden" name="authenticated_userId" id="current-userId" value="<?php echo $_SESSION['user_id'];?>">
                     <div class="col-md-8 border rounded-3 shadow p-4">
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item" role="presentation">
@@ -238,8 +240,6 @@
                     </div>
                     <div class="col-md-4 mt-1 d-flex flex-column align-items-start">
                         <button type="submit" class="btn btn-enregistrer w-100 mb-2">Enregistrer</button>
-                        <button type="button" class="btn btn-supprimer w-100 mb-2">Supprimer</button>
-                        <button type="button" class="btn btn-historique w-100">Historique</button>
                         <button type="button" class="btn btn-retour w-100 show-section" data-section="all-models-section">
                             <i class="fa-solid fa-left-long"></i>
                             Retour

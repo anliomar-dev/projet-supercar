@@ -3,6 +3,7 @@
 include('../../php/connexionDB.php');
 include_once('../php/functions_get_data.php');
 include_once('../../php/utils.php');
+include_once('../php/utils.php');
 $LOGIN_URL = "/super-car/admin/login";
 $SESSION_EXPIRED_URL = "/super-car/admin/session_expired";
 is_user_authenticated(2, $LOGIN_URL, $SESSION_EXPIRED_URL);
@@ -61,6 +62,57 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
         exit;
     }
 }else if(($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'PUT' || $_SERVER['REQUEST_METHOD'] === 'DELETE')){
-    ;
+    $method = $_SERVER['REQUEST_METHOD'];
+    // Get the request body
+    $input = file_get_contents('php://input');  
+    // Convert the received JSON data into an associative array
+    $data = json_decode($input, true);
+
+    // Handle different HTTP methods
+    switch ($method) {
+        case 'POST':
+            $csrf_token = $data['csrf_token'] ?? '';
+            if(!is_csrf_valid($csrf_token, $_SESSION['csrf_token'])){
+                $response = return_msg_json("403", 'token csrf non valid');
+                echo json_encode($response);
+                exit;
+            }else{
+                // Handle POST request
+                $authenticated_userId = $data['loggedInUserID'];
+                $new_modele_data = $data['modele_data'];
+                $is_modele_already_exist = is_row_exist($new_modele_data['NomModele'], 'modele', 'NomModele');
+                if($is_modele_already_exist){
+                    $response = return_msg_json("error", 'un modèle qui a exactement le même nom existe dèja');
+                    echo json_encode($response);
+                    exit;
+                }
+                $insert = insertRecord("modele", $new_modele_data);
+                if($insert){
+                    $response = return_msg_json('success', 'le modèle a été ajouté avec succès');
+                }else{
+                    $response = return_msg_json('error', 'erreur lors de l\'ajout du modèle');
+                }
+            }
+            break;
+        case 'PUT':
+            break;
+        
+        case 'DELETE':
+            $ids = $data['ids'];
+            $delete_modeles = delete_rows("modele", "IdModele", $ids);
+            if($delete_modeles){
+            $response = return_msg_json("success", 'modele(s) supprimée(s) avec succès');
+            }else{
+            $response = return_msg_json("error", 'Erreur lors de la suppression du/des modele(s)');
+            }
+            break;
+        
+        default:
+            // HTTP method not allowed
+            $response = return_msg_json('error', 'HTTP method not allowed');
+        break;
+    }
+    echo json_encode($response);
+    exit;
 }
 ?>

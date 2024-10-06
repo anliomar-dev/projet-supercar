@@ -6,24 +6,25 @@ include_once('../php/utils.php');
 /**
  * Check if a row exists in the database.
  *
- * @param int $id The ID to check.
+ * @param string|int $value The value of the row to check for existence in the database.
  * @param string $table_name The name of the table to check in.
- * @param string $row_id The column name representing the ID in the table.
+ * @param string $row_name The column name representing the field to check.
  * @return bool True if the row exists, false otherwise.
  */
-function is_row_exist($id, $table_name, $row_id) {
+
+function is_row_exist($value, $table_name, $row_name) {
     global $DB; // Use the database connection.
 
     // SQL query to check if the row exists.
-    $query = "SELECT 1 FROM $table_name WHERE $row_id = ? LIMIT 1";
+    $query = "SELECT 1 FROM $table_name WHERE $row_name = ? LIMIT 1";
     $stmt = mysqli_prepare($DB, $query); // Prepare the SQL statement.
 
     if ($stmt === false) {
         die('Error preparing the query: ' . mysqli_error($DB)); // Handle errors in query preparation.
     }
-
+    $value_type = is_numeric($value) ? 'i': 's';
     // Bind the ID parameter.
-    mysqli_stmt_bind_param($stmt, 'i', $id);
+    mysqli_stmt_bind_param($stmt, $value_type, $value);
     mysqli_stmt_execute($stmt); // Execute the query.
     $result = mysqli_stmt_get_result($stmt); // Get the query result.
 
