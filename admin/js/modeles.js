@@ -37,7 +37,8 @@ document.addEventListener('DOMContentLoaded', async ()=>{
   let checkModele = [];
 
   btnRetour.addEventListener('click', ()=>{
-    resetFormInputs(updateAndAddForm)
+    updateAndAddForm.querySelectorAll('input:not([type="hidden"])')
+    .forEach((input) => (input.value = ""));
   })
   
   toggleAndSortDataBtns(theadColumns, sortButtons)
@@ -84,6 +85,8 @@ document.addEventListener('DOMContentLoaded', async ()=>{
         btn.addEventListener('click', async(e) => {
           const sectionToShowClass = e.currentTarget.dataset.section;
           const sectionToShow = document.querySelector(`.${sectionToShowClass}`)
+          updateAndAddForm.querySelector('#action').value = "update"
+          console.log(updateAndAddForm.querySelector('#action').value)
           allSections.forEach((section)=>{
             if(!section.classList.contains('d-none')){
               section.classList.add('d-none');
@@ -92,15 +95,16 @@ document.addEventListener('DOMContentLoaded', async ()=>{
           })
           const modeleId = parseInt(e.currentTarget.dataset.id);
           const modele = await fetchData(`http://localhost/Super-car/admin/api/modeles?modele=${modeleId}`);
-          const currentPrice = parseFloat(modele.Prix);
+          document.querySelector('#oldPrice').value = modele.Prix;
+          /*const currentPrice = parseFloat(modele.Prix);
           const priceInput = document.querySelector(`[name="Prix"]`)
           priceInput.setAttribute('min', `${currentPrice}`)
           const maxPrice = currentPrice * 1.25
-          priceInput.setAttribute('max', `${maxPrice}`)
+          priceInput.setAttribute('max', `${maxPrice}`)*/
           Object.keys(modele).forEach(key => {
             const input = document.querySelector(`[name="${key}"]`);
             if (input) {
-                input.value = modele[key];  // Assigner la valeur correspondante au champ
+              input.value = modele[key];  // Assigner la valeur correspondante au champ
             }
           });
         })
@@ -273,4 +277,84 @@ document.addEventListener('DOMContentLoaded', async ()=>{
       })
     })
   })
+
+  // event listerner to btn add new modele
+  const addNewModel = document.querySelector('.add-new-modele-btn');
+  addNewModel.addEventListener('click', async (e)=>{
+    e.preventDefault();
+    updateAndAddForm.querySelector('#action').value = 'add'
+    console.log(updateAndAddForm.querySelector('#action').value)
+  })
+
+  // submission update and delete form
+  updateAndAddForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const formData = new FormData(updateAndAddForm);
+
+
+    // Création de l'objet userData
+    const modeleData = {
+      NomModele: formData.get("NomModele"),
+      Prix: formData.get("Prix"),
+      Annee: formData.get("Annee"),
+      TypeMoteur: formData.get("TypeMoteur"),
+      BoiteVitesse: formData.get("BoiteVitesse"),
+      Carburant: formData.get("Carburant"),
+      IdMarque: formData.get("IdMarque"),
+      Description: formData.get("Description"),
+    };
+    const action = formData.get("action")
+    const idModele = action === 'update' ? formData.get('IdModele'): null;
+    const oldPrice = action === 'update' ? formData.get('oldPrice'): null
+    // CSRF token of the session
+    const csrf_token = formData.get("csrf_token");
+
+    // Logged-in user ID
+    const loggedInUserID = formData.get("authenticated_userId");
+
+    const data = {
+    csrf_token: csrf_token,
+    loggedInUserID: loggedInUserID,
+    modele_data: modeleData,
+    action: action,
+    };
+    if(action === "update"){
+      data["idModele"] = idModele;
+      data["oldPrice"] = oldPrice;
+    }
+      
+    console.log(data)
+    /*try {
+      // Await the response from sendData
+      const response = await sendData(
+          data,
+          "POST",
+          "http://localhost/super-car/admin/api/utilisateurs"
+      );
+      const responseStatus = response.status;
+      const responseMessage = response.message;
+
+      // Switch based on response status
+      switch (responseStatus) {
+          case "error":
+              showAlert(alertDanger, responseMessage);
+              removeAlert(alertDanger);
+              break;
+          case "success":
+              showAlert(alertSuccess, responseMessage);
+              removeAlert(alertSuccess);
+              const users = await fetchUsers();
+              displayUsers(users, "Prenom", "asc");
+          break;
+          case "403":
+              window.location.href =
+              "http://localhost/super-car/admin/permission_denied";
+              break;
+          default:
+          console.log(responseStatus);
+      }
+    } catch (error) {
+        console.error("Error during data submission:", error);
+    }*/
+  });
 })

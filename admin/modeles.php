@@ -40,6 +40,43 @@
             <?php
                 include_once('components/navbar.php');
             ?>
+            <!--overlay for cofirmation box-->
+            <div class="position-fixed top-0 start-0 w-100 h-100 confirmation d-none" style="background-color: rgba(0, 0, 0, 0.5); z-index: 3000;">
+            </div>
+            <!-- Boîte de confirmation -->
+            <div class="position-fixed confirmation-box shadow confirmation d-none" style="z-index: 3500;">
+                <div class="border rounded p-4 shadow-sm bg-white" style="width: 400px;">
+                    <div class="text-center mb-3">
+                        <p class="mb-4"></p>
+                        <div class="d-flex justify-content-center gap-2">
+                            <button class="btn btn-danger px-4 cancel-delete">Annuler</button>
+                            <button 
+                            class="btn btn-secondary px-4 confirm-delete show-section" 
+                            data-section="all-users-section">
+                                Confirmer
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- alert success-->
+            <div class="alert alert-success d-flex justify-content-between align-items-center d-none" role="alert">
+                <span class="message"></span>
+                <button class="btn hide-alert-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
+                        <path d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 0 0-1.06-1.06L10 8.94 6.28 5.22Z" />
+                    </svg>
+                </button>
+            </div>
+            <!-- alert danger-->
+            <div class="alert alert-danger d-flex justify-content-between align-items-center d-none" role="alert">
+                <span></span>
+                <button class="btn hide-alert-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
+                        <path d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 0 0-1.06-1.06L10 8.94 6.28 5.22Z" />
+                    </svg>
+                </button>
+            </div>
             <!--display all modele-->
             <section class="container my-4 mx-auto all-models-section">
                 <!-- section header -->
@@ -53,7 +90,7 @@
                                 option_brands()
                             ?>
                         </select>
-                        <button class="btn btn-outline-success ms-2 show-section add-btn" data-section="update-and-create-section"
+                        <button class="btn btn-outline-success ms-2 show-section add-btn add-new-modele-btn" data-section="update-and-create-section"
                             data-bs-toggle="tooltip" 
                             data-bs-placement="top" 
                             data-bs-title="ajouter un nouveau modèle"
@@ -175,8 +212,11 @@
             <!--section update or create modele-->
             <section class="container my-3 update-and-create-section d-none">
                 <form class="row update-and-add-form">
-                <input type="hidden" name="csrf_token" id="csrf_token" value="<?php echo $_SESSION['csrf_token'];?>">
-                <input type="hidden" name="authenticated_userId" id="current-userId" value="<?php echo $_SESSION['user_id'];?>">
+                    <input type="hidden" name="csrf_token" id="csrf_token" value="<?php echo $_SESSION['csrf_token'];?>">
+                    <input type="hidden" name="authenticated_userId" id="current-userId" value="<?php echo $_SESSION['user_id'];?>">
+                    <input type="hidden" name="action" id="action" value="update">
+                    <input type="hidden" name="IdModele" id="IdModele" value="">
+                    <input type="hidden" name="oldPrice" id="oldPrice" value="">
                     <div class="col-md-8 border rounded-3 shadow p-4">
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item" role="presentation">
@@ -211,7 +251,7 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="Prix" class="form-label">Prix</label>
-                                        <input type="number" name="Prix" class="form-control" id="Prix" value="">
+                                        <input type="number" name="Prix" class="form-control" id="Prix" value="" step="any">
                                     </div>                                 
                                 </div>
                             </div>
