@@ -2,6 +2,7 @@
 // Database connection
 include('../../php/connexionDB.php');
 include_once('../php/functions_get_data.php');
+include_once('../php/del-update_functions.php');
 include_once('../../php/utils.php');
 include_once('../php/utils.php');
 $LOGIN_URL = "/super-car/admin/login";
@@ -95,6 +96,35 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
             }
             break;
         case 'PUT':
+            $csrf_token = $data['csrf_token'] ?? '';
+            if(!is_csrf_valid($csrf_token, $_SESSION['csrf_token'])){
+                $response = return_msg_json("403", 'token csrf non valid');
+                echo json_encode($response);
+                exit;
+            }else{
+                // Handle POST request
+                $authenticated_userId = $data['loggedInUserID'];
+                $modele_data = $data['modele_data'];
+                $id_modele = intval($data['IdModele']);
+                $old_price = floatval($data['oldPrice']);
+                $max_price = $old_price * 1.25;
+                $new_price = floatval($modele_data['Prix']);
+                if($new_price > $max_price){
+                    $response = return_msg_json("max", "l'augmention du prix ne doit pas dépasser 25% du prix d\'origine max($max_price). voulez vous garder le prix maximum?", $max_price);
+                    echo json_encode($response);
+                    exit();
+                }elseif($new_price < $old_price){
+                    $response = return_msg_json("min", "le prix ne peut pas être inférieur au prix actuel. voulez vous grader le prix actuel?", $old_price);
+                    echo json_encode($response);
+                    exit();
+                }
+                $update_modele = update_record('modele', 'IdModele', $id_modele, $modele_data);
+                if($update_modele){
+                    $response = return_msg_json('success', 'les donées ont été mises a jour avec succès');
+                }else{
+                    $response = return_msg_json('error', 'erreur lors de la modification');
+                }
+            }
             break;
         
         case 'DELETE':
@@ -106,11 +136,9 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
             $response = return_msg_json("error", 'Erreur lors de la suppression du/des modele(s)');
             }
             break;
-        
         default:
             // HTTP method not allowed
             $response = return_msg_json('error', 'HTTP method not allowed');
-        break;
     }
     echo json_encode($response);
     exit;

@@ -1,4 +1,14 @@
-import { sortData, toggleAndSortDataBtns, fetchData, resetFormInputs } from "./utils";
+import { 
+  sortData, 
+  toggleAndSortDataBtns, 
+  fetchData, 
+  resetFormInputs, 
+  sendData,
+  displayModal,
+  hideModal,
+  showAlert,
+  removeAlert
+} from "./utils";
 
 // current page
 localStorage.setItem("modelsCurrentPage", 1);
@@ -33,6 +43,9 @@ document.addEventListener('DOMContentLoaded', async ()=>{
   const checkAllModels = document.querySelector('.check-all');
   const updateAndAddForm = document.querySelector('.update-and-add-form');
   const deleteMultipleRowsBtn = document.querySelector(".delete-rows-btn");
+  const alertSuccess = document.querySelector(".alert-success");
+  const alertDanger = document.querySelector(".alert-danger");
+  const btnConfirmPrice = document.querySelector('.btn-confirm-price');
   const title = document.querySelector('.title')
   let checkModele = [];
 
@@ -96,11 +109,6 @@ document.addEventListener('DOMContentLoaded', async ()=>{
           const modeleId = parseInt(e.currentTarget.dataset.id);
           const modele = await fetchData(`http://localhost/Super-car/admin/api/modeles?modele=${modeleId}`);
           document.querySelector('#oldPrice').value = modele.Prix;
-          /*const currentPrice = parseFloat(modele.Prix);
-          const priceInput = document.querySelector(`[name="Prix"]`)
-          priceInput.setAttribute('min', `${currentPrice}`)
-          const maxPrice = currentPrice * 1.25
-          priceInput.setAttribute('max', `${maxPrice}`)*/
           Object.keys(modele).forEach(key => {
             const input = document.querySelector(`[name="${key}"]`);
             if (input) {
@@ -286,14 +294,76 @@ document.addEventListener('DOMContentLoaded', async ()=>{
     console.log(updateAndAddForm.querySelector('#action').value)
   })
 
-  // submission update and delete form
-  updateAndAddForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const formData = new FormData(updateAndAddForm);
+/**
+ * Function to create or update a model in the API.
+ * @param {string} httpMethod - The HTTP method for the request ('POST' or 'PUT').
+ * @param {Object} data - The data object containing the model information and action.
+ * @returns {Promise<void>} - A promise that resolves when the operation is complete.
+ */
+async function createAndUpdateModele(httpMethod, data) {
+  try {
+    // Await the response from the sendData function
+    const response = await sendData(
+        data,
+        httpMethod,
+        "http://localhost/super-car/admin/api/modeles"
+    );
+    const responseStatus = response.status;
+    const responseMessage = response.message;
+    // Switch based on the response status
+    switch (responseStatus) {
+      case "error":
+        // Show an alert for an error response
+        showAlert(alertDanger, responseMessage);
+        removeAlert(alertDanger);
+        break;
+      case "success":
+        // Show a success alert and fetch the updated models
+        showAlert(alertSuccess, responseMessage);
+        removeAlert(alertSuccess);
+        let models = await fetchData(urlEndPoint);
+        displayData(models, 'NomModele', 'asc');
+        break;
+      case "403":
+        // Redirect to the permission denied page
+        window.location.href = "http://localhost/super-car/admin/permission_denied";
+        break;
+      case "min":
+      case "max":
+        // Display the modal for confirming the price update
+        displayModal('staticBackdrop', responseMessage, response.value);
 
+        // Wait for confirmation before performing the update
+        btnConfirmPrice.addEventListener('click', async () => {
+            // Update the price data from the modal
+            data.modele_data['Prix'] = document.querySelector('.modal-body').dataset.price;
+            // Call the function to update the model with the new price
+            await createAndUpdateModele('PUT', data);
+            // Close the modal after the update
+            hideModal('staticBackdrop');
+            // Update the price input value with the new price
+            document.getElementById('Prix').value = data.modele_data['Prix'];
+        }, { once: true }); // Ensure the listener executes only once
+        break;
+        default:
+          // Log unexpected response statuses
+          console.log(response);
+          break;
+    }
+  } catch (error) {
+      // Log any errors during data submission
+      console.error("Error during data submission:", error);
+  }
+}
 
-    // Création de l'objet userData
-    const modeleData = {
+// Event listener for the form submission to update or add a model
+updateAndAddForm.addEventListener("submit", async (e) => {
+  e.preventDefault(); // Prevent the default form submission
+
+  const formData = new FormData(updateAndAddForm);
+
+  // Create the modeleData object with form information
+  const modeleData = {
       NomModele: formData.get("NomModele"),
       Prix: formData.get("Prix"),
       Annee: formData.get("Annee"),
@@ -302,59 +372,33 @@ document.addEventListener('DOMContentLoaded', async ()=>{
       Carburant: formData.get("Carburant"),
       IdMarque: formData.get("IdMarque"),
       Description: formData.get("Description"),
-    };
-    const action = formData.get("action")
-    const idModele = action === 'update' ? formData.get('IdModele'): null;
-    const oldPrice = action === 'update' ? formData.get('oldPrice'): null
-    // CSRF token of the session
-    const csrf_token = formData.get("csrf_token");
+  };
 
-    // Logged-in user ID
-    const loggedInUserID = formData.get("authenticated_userId");
+  const action = formData.get("action"); // Get the action (update or add)
+  const idModele = action === 'update' ? formData.get('IdModele') : null; // Get model ID if updating
+  const oldPrice = action === 'update' ? formData.get('oldPrice') : null; // Get old price if updating
+  const csrf_token = formData.get("csrf_token"); // Get CSRF token for security
+  const loggedInUserID = formData.get("authenticated_userId"); // Get logged-in user ID
 
-    const data = {
-    csrf_token: csrf_token,
-    loggedInUserID: loggedInUserID,
-    modele_data: modeleData,
-    action: action,
-    };
-    if(action === "update"){
-      data["idModele"] = idModele;
-      data["oldPrice"] = oldPrice;
-    }
-      
-    console.log(data)
-    /*try {
-      // Await the response from sendData
-      const response = await sendData(
-          data,
-          "POST",
-          "http://localhost/super-car/admin/api/utilisateurs"
-      );
-      const responseStatus = response.status;
-      const responseMessage = response.message;
+  // Create the data object for the API request
+  const data = {
+      csrf_token: csrf_token,
+      loggedInUserID: loggedInUserID,
+      modele_data: modeleData,
+      action: action,
+  };
 
-      // Switch based on response status
-      switch (responseStatus) {
-          case "error":
-              showAlert(alertDanger, responseMessage);
-              removeAlert(alertDanger);
-              break;
-          case "success":
-              showAlert(alertSuccess, responseMessage);
-              removeAlert(alertSuccess);
-              const users = await fetchUsers();
-              displayUsers(users, "Prenom", "asc");
-          break;
-          case "403":
-              window.location.href =
-              "http://localhost/super-car/admin/permission_denied";
-              break;
-          default:
-          console.log(responseStatus);
-      }
-    } catch (error) {
-        console.error("Error during data submission:", error);
-    }*/
-  });
+  // Determine whether to update or add a model based on the action
+  if (action === "update") {
+      data["IdModele"] = idModele; // Add the model ID for updating
+      data["oldPrice"] = oldPrice; // Add the old price for reference
+
+      // Perform the initial update
+      await createAndUpdateModele('PUT', data); // Await the initial update
+  } else if (action === "add") {
+      // Call the function to add a new model
+      await createAndUpdateModele('POST', data); 
+  }
+});
+
 })

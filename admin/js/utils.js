@@ -349,3 +349,34 @@ export async function sendData(data, httpMethod, endPoint) {
     return null;  // Return null to indicate failure
   }
 }
+
+// Function to show the modal with a specific message and number
+export function displayModal(id, message, price) {
+  // Select the modal element by its ID
+  const modalElement = document.getElementById(id);
+  // Create an instance of the Bootstrap modal
+  const modal = new bootstrap.Modal(modalElement);
+  // Insert the message and number into the modal's body
+  const modalBody = modalElement.querySelector('.modal-body');
+  modalBody.dataset.price = price;
+  modalBody.textContent = message;
+  // Show the modal
+  modal.show();
+}
+
+// Function to hide the modal
+export function hideModal(id) {
+  // Select the modal element by its ID
+  const modalElement = document.getElementById(id);
+  
+  // Create an instance of the Bootstrap modal
+  const modal = new bootstrap.Modal(modalElement);
+  const modalBody = modalElement.querySelector('.modal-body');
+  modalBody.dataset.price = "";
+  modalBody.textContent = "";
+
+  // Hide the modal
+  if (modal) {
+    modal.hide();
+  }
+}

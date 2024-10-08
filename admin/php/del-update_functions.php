@@ -82,7 +82,7 @@ function insert_row(string $table_name, array $data): array {
  *
  * @return bool Returns `true` on success, `false` on failure.
  */
-function update_record($table_name, $id_row, $new_data) {
+function update_record($table_name, $id_row, $id_value, $new_data) {
   global $DB;
   // Extract columns and values from the $new_data array
   $columns = [];
@@ -96,7 +96,7 @@ function update_record($table_name, $id_row, $new_data) {
   $sql .= implode(', ', array_map(function($column) {
     return "$column = ?";
   }, $columns));
-  $sql .= " WHERE id = ?"; // Assuming `id` is the primary key
+  $sql .= " WHERE $id_row = ?"; // Assuming `id` is the primary key
   // Prepare the SQL statement
   $stmt = mysqli_prepare($DB, $sql);
 
@@ -106,7 +106,7 @@ function update_record($table_name, $id_row, $new_data) {
   }
 
   // Add the ID to the values array for binding
-  $values[] = $id_row;  
+  $values[] = $id_value;  
   // Create a types string for binding parameters
   $types = '';
   foreach ($values as $value) {

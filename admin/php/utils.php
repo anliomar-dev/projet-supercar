@@ -107,7 +107,12 @@ function insertRecord($table, $data) {
     $stmt->bind_param($types, ...$values); // Use parameter unpacking.
 
     // Execute the query and return whether it was successful.
-    return $stmt->execute();
+    if (mysqli_stmt_execute($stmt)) {
+        $last_id = mysqli_insert_id($DB);
+        return [true, $last_id];
+    } else {
+        return [false];
+    }
 }
 
 /**
@@ -129,11 +134,12 @@ function is_csrf_valid($csrf_client, $csrf_session){
  * @param string $message The message to include in the response.
  * @return array An associative array containing the status and message.
  */
-function return_msg_json($status, $message){
+function return_msg_json($status, $message, $value=''){
     // Create an associative array to represent the response.
     return [
         'status' => $status,
-        'message' => $message
+        'message' => $message,
+        'value' => $value
     ];
 }
 
