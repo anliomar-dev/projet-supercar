@@ -203,6 +203,9 @@
             <!--update user infos section -->
             <section class="container mt-3 update-user-section d-none">
                 <form class="row">
+                    <input type="hidden" name="csrf_token" id="csrf-token" value="<?php echo $_SESSION['csrf_token'];?>">
+                    <input type="hidden" name="authenticated_userId" id="currentUserId" value="<?php echo $_SESSION['user_id'];?>">
+                    <input type="hidden" name="action" value="update">
                     <div class="col-md-8 border rounded-3 shadow py-4 px-4">
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item" role="presentation">
@@ -215,42 +218,38 @@
                         <div class="tab-content">
                             <div class="tab-pane fade show active" id="compte" role="tabpanel" aria-labelledby="compte-tab">
                                 <div class="mt-4 update-user-form">
-                                <input type="hidden" name="csrf_token" id="csrf-token" value="<?php echo $_SESSION['csrf_token'];?>">
-                                <?php echo $_SESSION['csrf_token'];?>
-                                <?php echo $_SESSION['user_id'];?>
-                                <input type="hidden" name="authenticated-userId" id="currentUserId" value="<?php echo $_SESSION['user_id'];?>">
-                                    <div class="mb-3">
+                                        <div class="mb-3">
                                         <label for="fitst_name" class="form-label">Prénom</label>
-                                        <input type="text" name="first_name" class="form-control" id="first_name" value="" required>
+                                        <input type="text" name="Prenom" class="form-control" id="first_name" value="" required>
                                     </div>
                                     <div class="mb-3">
                                         <label for="last_name" class="form-label">Nom</label>
-                                        <input type="text" name="last_name" class="form-control" id="last_name" value="" required>
+                                        <input type="text" name="Nom" class="form-control" id="last_name" value="" required>
                                     </div>
                                     <div class="mb-3">
                                         <label for="adresse" class="form-label">Adresse</label>
-                                        <input type="text" name="adresse" class="form-control" id="adresse" value="" required>
+                                        <input type="text" name="Adresse" class="form-control" id="adresse" value="" required>
                                     </div>
                                     <div class="mb-3">
                                         <label for="phone" class="form-label">Téléphone</label>
-                                        <input type="" name="phone" class="form-control" id="phone" value="" required>
+                                        <input type="" name="NumTel" class="form-control" id="phone" value="" required>
                                     </div>
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="groupe" role="tabpanel" aria-labelledby="groupe-tab">
                                 <div class="mb-3">
                                     <label for="email" class="form-label">Email</label>
-                                    <input type="email" name="email" class="form-control" id="email" value="" required>
+                                    <input type="email" name="Email" class="form-control" id="email" value="" required>
                                 </div>
                                 <div class="mt-0">
                                     <div class="form-group d-flex">
                                         <span>est admin</span>
-                                        <input type="checkbox" name="is-admin" id="is-admin" class="form-check-input ms-1" value="true">
+                                        <input type="checkbox" name="est_admin" id="is-admin" class="form-check-input ms-1" value="true">
                                         <p class="ms-2">: determine si ce compte peut se connecter à l'interface admin</p>
                                     </div>
                                     <div class="form-group d-flex">
                                         <span>est superadmin</span>
-                                        <input type="checkbox" name="is-superadmin" id="is-superadmin" class="form-check-input ms-1" value="true">
+                                        <input type="checkbox" name="est_superadmin" id="is-superadmin" class="form-check-input ms-1" value="true">
                                         <p class="ms-2">: donner tous les droit et privilèges à l'utilisateur</p>
                                     </div>
                                 </div>
@@ -270,6 +269,9 @@
             <!--section create new user-->
             <section class="container mt-3 mb-3 new-user-section d-none">
                 <form class="row create-user-form">
+                    <input type="hidden" name="csrf_token" id="csrf_token" value="<?php echo $_SESSION['csrf_token'];?>">
+                    <input type="hidden" name="authenticated_userId" id="current-userId" value="<?php echo $_SESSION['user_id'];?>">
+                    <input type="hidden" name="action" value="add">
                     <div class="col-md-8 border rounded-3 shadow py-4 px-4">
                         <ul class="nav nav-tabs" id="myTab2" role="tablist">
                             <li class="nav-item" role="presentation">
@@ -283,8 +285,6 @@
                             <!-- create new user form -->
                             <div class="tab-pane fade show active border rounded-3 p-4" id="inscription" role="tabpanel" aria-labelledby="inscription-tab">
                                 <div class="mt-4">
-                                    <input type="hidden" name="csrf_token" id="csrf_token" value="<?php echo $_SESSION['csrf_token'];?>">
-                                    <input type="hidden" name="authenticated_userId" id="current-userId" value="<?php echo $_SESSION['user_id'];?>">
                                     <div class="mb-3">
                                         <label for="prenom-inscription" class="form-label">Prénom</label>
                                         <input type="text" class="form-control" name="Prenom" id="prenom-inscription" placeholder="Entrez votre prénom" required>

@@ -304,9 +304,9 @@ async function createAndUpdateModele(httpMethod, data) {
   try {
     // Await the response from the sendData function
     const response = await sendData(
-        data,
-        httpMethod,
-        "http://localhost/super-car/admin/api/modeles"
+      data,
+      httpMethod,
+      "http://localhost/super-car/admin/api/modeles"
     );
     const responseStatus = response.status;
     const responseMessage = response.message;

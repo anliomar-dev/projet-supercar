@@ -363,10 +363,108 @@ document.addEventListener("DOMContentLoaded", async () => {
     };
 });
 
-createUserForm.addEventListener("submit", async (e) => {
+/**
+ * Function to create or update a user in the API.
+ * @param {string} httpMethod - The HTTP method for the request ('POST' or 'PUT').
+ * @param {Object} data - The data object containing the user information and action.
+ * @returns {Promise<void>} - A promise that resolves when the operation is complete.
+ */
+async function addOrUpdateUser(formData){
+  // Création de l'objet userData
+  const httpMethod = formData.get("action");
+  const userData = {
+    Nom: formData.get("Nom"),
+    Prenom: formData.get("Prenom"),
+    Email: formData.get("Email"),
+    Adresse: formData.get("Adresse"),
+    NumTel: formData.get("NumTel"),
+  };
+  // The value of 'est_admin' is 1 if the checkbox is checked, else 0
+  userData["est_admin"] = formData.get("est_admin") ? 1 : 0;
+  // The value of 'est_superadmin' is 1 if the checkbox is checked, else 0
+  userData["est_superadmin"] = formData.get("est_superadmin") ? 1 : 0;
+  // CSRF token of the session
+  const csrf_token = formData.get("csrf_token");
+  // Logged-in user ID
+  const loggedInUserID = formData.get("authenticated_userId");
+  if(httpMethod === "POST"){
+    userData['MotDePasse'] = formData.get("MotDePasse");
+    const data = {
+      csrf_token: csrf_token,
+      loggedInUserID: loggedInUserID,
+      user_data: userData,
+      };
+    console.log(data)
+
+  }else if(httpMethod === "PUT"){
+    const data = {
+      csrf_token: csrf_token,
+      loggedInUserID: loggedInUserID,
+      user_data: userData,
+      };
+    console.log(data)
+  }
+  /*try {
+    // Await the response from sendData
+    const response = await sendData(
+      data,
+      httpMethod,
+      "http://localhost/super-car/admin/api/utilisateurs"
+    );
+    const responseStatus = response.status;
+    const responseMessage = response.message;
+
+    // Switch based on response status
+    switch (responseStatus) {
+      case "error":
+        showAlert(alertDanger, responseMessage);
+        removeAlert(alertDanger);
+        break;
+      case "success":
+        showAlert(alertSuccess, responseMessage);
+        removeAlert(alertSuccess);
+        const users = await fetchUsers();
+        displayUsers(users, "Prenom", "asc");
+      break;
+      case "403":
+        window.location.href =
+        "http://localhost/super-car/admin/permission_denied";
+        break;
+      default:
+      console.log(responseStatus);
+    }
+  } catch (error) {
+    console.error("Error during data submission:", error);
+  }*/
+}
+const updateAndAddForms = document.querySelectorAll('form');
+updateAndAddForms.forEach(form => {
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const contents = new formData(form)
+    addOrUpdateUser(contents)
+    /*const formData = new FormData(form);
+    const action = formData.get('action');
+    console.log(action)
+    if(action === "update"){
+      const data = {
+        csrf_token: csrf_token,
+        loggedInUserID: loggedInUserID,
+        user_data: userData,
+        };
+        console.log(data)
+    }else if(action === "add"){
+      const data = {
+        csrf_token: csrf_token,
+        loggedInUserID: loggedInUserID,
+        user_data: userData,
+        };
+      console.log(data)
+    }*/
+  })})
+/*createUserForm.addEventListener("submit", async (e) => {
   e.preventDefault();
   const formData = new FormData(createUserForm);
-
   // Check if both passwords are identical
   if (formData.get("MotDePasse") !== formData.get("confirm_mot_de_passe")) {
     const message = "Les deux mots de passe ne sont pas identiques";
@@ -402,43 +500,10 @@ createUserForm.addEventListener("submit", async (e) => {
     user_data: userData,
     };
 
-    try {
-      // Await the response from sendData
-      const response = await sendData(
-        data,
-        "POST",
-        "http://localhost/super-car/admin/api/utilisateurs"
-      );
-      const responseStatus = response.status;
-      const responseMessage = response.message;
-
-      // Switch based on response status
-      switch (responseStatus) {
-        case "error":
-          showAlert(alertDanger, responseMessage);
-          removeAlert(alertDanger);
-          break;
-        case "success":
-          showAlert(alertSuccess, responseMessage);
-          removeAlert(alertSuccess);
-          const users = await fetchUsers();
-          displayUsers(users, "Prenom", "asc");
-        break;
-        case "403":
-          window.location.href =
-          "http://localhost/super-car/admin/permission_denied";
-          break;
-        default:
-        console.log(responseStatus);
-      }
-
-      // Reset the form inputs after submission
-      createUserForm
-        .querySelectorAll('input:not([type="hidden"])')
-        .forEach((input) => (input.value = ""));
-      } catch (error) {
-        console.error("Error during data submission:", error);
-    }
+    addOrUpdateUser("POST", data)
+    createUserForm
+    .querySelectorAll('input:not([type="hidden"])')
+    .forEach((input) => (input.value = ""));
   }
-  });
+  });*/
 });
