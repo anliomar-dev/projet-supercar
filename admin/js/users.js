@@ -239,10 +239,10 @@ document.addEventListener("DOMContentLoaded", async () => {
       const prevBtn = document.createElement("li");
       prevBtn.classList.add("page-item");
       prevBtn.innerHTML = `
-                    <a class="page-link" href="#" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                    </a>
-                `;
+        <a class="page-link" href="#" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a> 
+      `;
       // append button to the ul tag for pagination
       pagination.appendChild(prevBtn);
 
@@ -299,10 +299,10 @@ document.addEventListener("DOMContentLoaded", async () => {
       const nextBtn = document.createElement("li");
       nextBtn.classList.add("page-item");
       nextBtn.innerHTML = `
-                    <a class="page-link" href="#" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                    </a>
-                `;
+        <a class="page-link" href="#" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      `;
       pagination.appendChild(nextBtn);
 
       nextBtn.addEventListener("click", async (e) => {
@@ -364,15 +364,15 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 
 createUserForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const formData = new FormData(createUserForm);
+  e.preventDefault();
+  const formData = new FormData(createUserForm);
 
-    // Check if both passwords are identical
-    if (formData.get("MotDePasse") !== formData.get("confirm_mot_de_passe")) {
-        const message = "Les deux mots de passe ne sont pas identiques";
-        showAlert(alertDanger, message);
-        removeAlert(alertDanger);
-    } else {
+  // Check if both passwords are identical
+  if (formData.get("MotDePasse") !== formData.get("confirm_mot_de_passe")) {
+    const message = "Les deux mots de passe ne sont pas identiques";
+    showAlert(alertDanger, message);
+    removeAlert(alertDanger);
+  } else {
 
     // Création de l'objet userData
     const userData = {
@@ -403,42 +403,42 @@ createUserForm.addEventListener("submit", async (e) => {
     };
 
     try {
-    // Await the response from sendData
-    const response = await sendData(
+      // Await the response from sendData
+      const response = await sendData(
         data,
         "POST",
         "http://localhost/super-car/admin/api/utilisateurs"
-    );
-    const responseStatus = response.status;
-    const responseMessage = response.message;
+      );
+      const responseStatus = response.status;
+      const responseMessage = response.message;
 
-    // Switch based on response status
-    switch (responseStatus) {
+      // Switch based on response status
+      switch (responseStatus) {
         case "error":
             showAlert(alertDanger, responseMessage);
             removeAlert(alertDanger);
             break;
         case "success":
-            showAlert(alertSuccess, responseMessage);
-            removeAlert(alertSuccess);
-            const users = await fetchUsers();
-            displayUsers(users, "Prenom", "asc");
+          showAlert(alertSuccess, responseMessage);
+          removeAlert(alertSuccess);
+          const users = await fetchUsers();
+          displayUsers(users, "Prenom", "asc");
         break;
         case "403":
-            window.location.href =
-            "http://localhost/super-car/admin/permission_denied";
-            break;
+          window.location.href =
+          "http://localhost/super-car/admin/permission_denied";
+          break;
         default:
         console.log(responseStatus);
-    }
+      }
 
-    // Reset the form inputs after submission
-    createUserForm
+      // Reset the form inputs after submission
+      createUserForm
         .querySelectorAll('input:not([type="hidden"])')
         .forEach((input) => (input.value = ""));
-    } catch (error) {
+      } catch (error) {
         console.error("Error during data submission:", error);
     }
-    }
-    });
+  }
+  });
 });
