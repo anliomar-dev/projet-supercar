@@ -376,12 +376,12 @@ createUserForm.addEventListener("submit", async (e) => {
 
     // Création de l'objet userData
     const userData = {
-        Nom: formData.get("Nom"),
-        Prenom: formData.get("Prenom"),
-        Email: formData.get("Email"),
-        MotDePasse: formData.get("MotDePasse"),
-        Adresse: formData.get("Adresse"),
-        NumTel: formData.get("NumTel"),
+      Nom: formData.get("Nom"),
+      Prenom: formData.get("Prenom"),
+      Email: formData.get("Email"),
+      MotDePasse: formData.get("MotDePasse"),
+      Adresse: formData.get("Adresse"),
+      NumTel: formData.get("NumTel"),
     };
 
     // The value of 'est_admin' is 1 if the checkbox is checked, else 0
@@ -415,9 +415,9 @@ createUserForm.addEventListener("submit", async (e) => {
       // Switch based on response status
       switch (responseStatus) {
         case "error":
-            showAlert(alertDanger, responseMessage);
-            removeAlert(alertDanger);
-            break;
+          showAlert(alertDanger, responseMessage);
+          removeAlert(alertDanger);
+          break;
         case "success":
           showAlert(alertSuccess, responseMessage);
           removeAlert(alertSuccess);

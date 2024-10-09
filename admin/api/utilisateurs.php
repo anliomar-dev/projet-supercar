@@ -9,7 +9,7 @@
   // start new session if there is not a session
   $LOGIN_URL = "/super-car/admin/login";
   $SESSION_EXPIRED_URL = "/super-car/admin/session_expired";
-  is_user_authenticated(2, $LOGIN_URL, $SESSION_EXPIRED_URL);
+  //is_user_authenticated(2, $LOGIN_URL, $SESSION_EXPIRED_URL);
   // Set the content type as JSON
   header('Content-Type: application/json; charset=utf-8');
 
@@ -41,12 +41,8 @@
         exit;
       }
     }else{
-      $response = [
-        'status' => 'error',
-        'message' => 'le paramètre user est manquant'
-      ];
-      echo json_encode($response);
-      exit;
+      $page = isset($_GET['page']) ? intval($_GET['page']) : 1;  // Default value of 1 if 'page' is not set
+      echo get_all_users($page);
     }
   }elseif(($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'PUT' || $_SERVER['REQUEST_METHOD'] === 'DELETE')){
     $method = $_SERVER['REQUEST_METHOD'];
@@ -83,9 +79,24 @@
         }
         break;
       case 'PUT':
-        $user_id = $data['user_id'];
+        $csrf_token = $data['csrf_token'] ?? '';
+        if(!is_csrf_valid($csrf_token, $_SESSION['csrf_token'])){
+          $response = return_msg_json("403", 'token csrf non valid');
+          echo json_encode($response);
+          exit;
+        }else{
+          // Handle PUT request
+          $user_id = $data['user_id'];
+          $authenticated_userId = $data['loggedInUserID'];
+          $user_data = $data['user_data'];
+          $update_modele = update_record('utilisateur', 'IdUtilisateur', $user_id, $user_data);
+          if($update_modele){
+            $response = return_msg_json('success', 'les donées ont été mises a jour avec succès');
+          }else{
+            $response = return_msg_json('error', 'erreur lors de la modification');
+          }
+        }
         break;
-      
       case 'DELETE':
         $ids = $data['ids'];
         $delete_user = delete_rows("utilisateur", "IdUtilisateur", $ids);

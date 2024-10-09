@@ -215,6 +215,10 @@
                         <div class="tab-content">
                             <div class="tab-pane fade show active" id="compte" role="tabpanel" aria-labelledby="compte-tab">
                                 <div class="mt-4 update-user-form">
+                                <input type="hidden" name="csrf_token" id="csrf-token" value="<?php echo $_SESSION['csrf_token'];?>">
+                                <?php echo $_SESSION['csrf_token'];?>
+                                <?php echo $_SESSION['user_id'];?>
+                                <input type="hidden" name="authenticated-userId" id="currentUserId" value="<?php echo $_SESSION['user_id'];?>">
                                     <div class="mb-3">
                                         <label for="fitst_name" class="form-label">Prénom</label>
                                         <input type="text" name="first_name" class="form-control" id="first_name" value="" required>
