@@ -170,7 +170,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   // Display models on initial load
-  const initialData = await filterModels();
+  const initialData = await filterModels(parseInt(localStorage.getItem('currentPage')));
   displayModelsByBrand(initialData);
 
   // Add event listeners for filter buttons
@@ -230,11 +230,12 @@ document.addEventListener("DOMContentLoaded", async () => {
       prevBtn.classList.add("page-item");
       prevBtn.innerHTML = `
         <a class="page-link" href="#" aria-label="Previous">
-            <span aria-hidden="true">&laquo;</span>
+          <span aria-hidden="true">&laquo;</span>
         </a>
       `;
       // append button to the ul tag for pagination
       pagination.appendChild(prevBtn);
+
 
       // create pagination buttons
       for (let i = 1; i <= totalPages; i++) {
@@ -243,16 +244,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         pageItem.innerHTML = `<a class="page-link num-page" href="#" >${i}</a>`;
         pagination.appendChild(pageItem);
       }
-      // create next button
-      const nextBtn = document.createElement("li");
-      nextBtn.classList.add("page-item");
-      nextBtn.innerHTML = `
-        <a class="page-link" href="#" aria-label="Next">
-          <span aria-hidden="true">&raquo;</span>
-        </a>
-      `;
-      // append nextbutton to the ul for pagination
-      pagination.appendChild(nextBtn);
       const numPages = document.querySelectorAll(".num-page");
       numPages.forEach((numPage) => {
         numPage.addEventListener("click", async (e) => {
@@ -261,7 +252,6 @@ document.addEventListener("DOMContentLoaded", async () => {
           const currentPage = parseInt(localStorage.getItem("currentPage"));
           const dataNewPage = await filterModels(currentPage);
           displayModelsByBrand(dataNewPage);
-
           // store car infos to localstorage when the essayer button is clicked and redirect to essai.php 
           const essaiBtns = document.querySelectorAll('.essaiBtn');
           essaiBtns.forEach((essaiBtn) => {
@@ -279,6 +269,52 @@ document.addEventListener("DOMContentLoaded", async () => {
             })
           })
         });
+      });
+
+      prevBtn.addEventListener("click", async (e) => {
+        e.preventDefault();
+        const currentPage = parseInt(localStorage.getItem("currentPage"));
+        if (currentPage > 1) {
+          const prevPage = currentPage - 1;
+          localStorage.setItem("currentPage", prevPage);
+          const dataPrevPage = await filterModels(prevPage);
+          displayModelsByBrand(dataPrevPage);
+          /*numPages.forEach((num) => {
+            num.style.backgroundColor = "transparent";
+            num.style.color = "black";
+          });*/
+          /*const numPage = document.getElementById(`${nextPage}`);
+          numPage.style.backgroundColor = "#28a745";
+          numPage.style.color = "#fff";*/
+        }
+      });
+
+      // create next button
+      const nextBtn = document.createElement("li");
+      nextBtn.classList.add("page-item");
+      nextBtn.innerHTML = `
+        <a class="page-link" href="#" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      `;
+      // append nextbutton to the ul for pagination
+      pagination.appendChild(nextBtn);
+      nextBtn.addEventListener("click", async (e) => {
+        e.preventDefault();
+        const currentPage = parseInt(localStorage.getItem("currentPage"));
+        if (currentPage < totalPages) {
+          const nextPage = currentPage + 1;
+          localStorage.setItem("currentPage", nextPage);
+          const dataNewPage = await filterModels(nextPage);
+          displayModelsByBrand(dataNewPage);
+          /*numPages.forEach((num) => {
+            num.style.backgroundColor = "transparent";
+            num.style.color = "black";
+          });*/
+          /*const numPage = document.getElementById(`${nextPage}`);
+          numPage.style.backgroundColor = "#28a745";
+          numPage.style.color = "#fff";*/
+        }
       });
     }
   }
