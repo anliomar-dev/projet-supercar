@@ -294,7 +294,7 @@ document.addEventListener('DOMContentLoaded', async ()=>{
     console.log(updateAndAddForm.querySelector('#action').value)
   })
 
-/**
+  /**
  * Function to create or update a model in the API.
  * @param {string} httpMethod - The HTTP method for the request ('POST' or 'PUT').
  * @param {Object} data - The data object containing the model information and action.
@@ -308,8 +308,10 @@ async function createAndUpdateModele(httpMethod, data) {
       httpMethod,
       "http://localhost/super-car/admin/api/modeles"
     );
+    
     const responseStatus = response.status;
     const responseMessage = response.message;
+
     // Switch based on the response status
     switch (responseStatus) {
       case "error":
@@ -336,19 +338,23 @@ async function createAndUpdateModele(httpMethod, data) {
         // Wait for confirmation before performing the update
         btnConfirmPrice.addEventListener('click', async () => {
             // Update the price data from the modal
-            data.modele_data['Prix'] = document.querySelector('.modal-body').dataset.price;
+            const newPrice = response.value; // Récupérer le prix max calculé
+            data.modele_data['Prix'] = newPrice; // Mettre à jour le prix dans l'objet de données
+            document.getElementById('oldPrice').value = newPrice
+            
             // Call the function to update the model with the new price
             await createAndUpdateModele('PUT', data);
+            
             // Close the modal after the update
             hideModal('staticBackdrop');
             // Update the price input value with the new price
-            document.getElementById('Prix').value = data.modele_data['Prix'];
+            document.getElementById('Prix').value = newPrice; // Mettre à jour l'affichage du prix
         }, { once: true }); // Ensure the listener executes only once
         break;
-        default:
-          // Log unexpected response statuses
-          console.log(response);
-          break;
+      default:
+        // Log unexpected response statuses
+        console.log(response);
+        break;
     }
   } catch (error) {
       // Log any errors during data submission
@@ -382,10 +388,10 @@ updateAndAddForm.addEventListener("submit", async (e) => {
 
   // Create the data object for the API request
   const data = {
-      csrf_token: csrf_token,
-      loggedInUserID: loggedInUserID,
-      modele_data: modeleData,
-      action: action,
+    csrf_token: csrf_token,
+    loggedInUserID: loggedInUserID,
+    modele_data: modeleData,
+    action: action,
   };
 
   // Determine whether to update or add a model based on the action
@@ -400,5 +406,6 @@ updateAndAddForm.addEventListener("submit", async (e) => {
       await createAndUpdateModele('POST', data); 
   }
 });
+
 
 })
