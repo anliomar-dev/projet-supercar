@@ -205,6 +205,7 @@
                 <form class="row">
                     <input type="hidden" name="csrf_token" id="csrf-token" value="<?php echo $_SESSION['csrf_token'];?>">
                     <input type="hidden" name="authenticated_userId" id="currentUserId" value="<?php echo $_SESSION['user_id'];?>">
+                    <input type="hidden" id="user_id" name="user_id">
                     <input type="hidden" name="action" value="PUT">
                     <div class="col-md-8 border rounded-3 shadow py-4 px-4">
                         <ul class="nav nav-tabs" id="myTab" role="tablist">

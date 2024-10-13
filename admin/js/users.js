@@ -112,13 +112,13 @@ document.addEventListener("DOMContentLoaded", async () => {
 
           // Call deletion function
         await handleClickDeleteMultiRowsBtn(
-            "http://localhost/Super-car/admin/api/utilisateurs",
-            checkAllUsers,
-            alertSuccess,
-            alertDanger,
-            () => paginationUsers(pagination), // Callback for pagination
-            async () => displayUsers(await fetchUsers(), "Prenom", "asc"), // Refresh user list
-            [id] // ID to delete
+          "http://localhost/Super-car/admin/api/utilisateurs",
+          checkAllUsers,
+          alertSuccess,
+          alertDanger,
+          () => paginationUsers(pagination), // Callback for pagination
+          async () => displayUsers(await fetchUsers(), "Prenom", "asc"), // Refresh user list
+          [id] // ID to delete
         );
 
         // Optionally hide the confirmation box after deletion
@@ -202,6 +202,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const phone = document.getElementById("phone");
     const isAdmin = document.getElementById("is-admin");
     const isSuperadmin = document.getElementById("is-superadmin");
+    const user_id = document.getElementById("user_id")
     firstName.value = user.first_name;
     lastName.value = user.last_name;
     email.value = user.email;
@@ -209,6 +210,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     phone.value = user.phone;
     isAdmin.checked = user.is_admin;
     isSuperadmin.checked = user.is_superadmin;
+    user_id.value = user.user_id
   }
 
   // Show and hide sections
@@ -369,8 +371,8 @@ document.addEventListener("DOMContentLoaded", async () => {
  * @param {Object} data - The data object containing the user information and action.
  * @returns {Promise<void>} - A promise that resolves when the operation is complete.
  */
-async function addOrUpdateUser(httpMethod){
-  /*try {
+async function addOrUpdateUser(httpMethod, data){
+  try {
     // Await the response from sendData
     const response = await sendData(
       data,
@@ -389,6 +391,13 @@ async function addOrUpdateUser(httpMethod){
       case "success":
         showAlert(alertSuccess, responseMessage);
         removeAlert(alertSuccess);
+        if(httpMethod === "POST"){
+          // hide form section and display user list
+          document.querySelectorAll("section").forEach((section)=>{
+            section.classList.add('d-none')
+          })
+          document.querySelector('.all-users-section').classList.remove('d-none')
+        }
         const users = await fetchUsers();
         displayUsers(users, "Prenom", "asc");
       break;
@@ -401,7 +410,7 @@ async function addOrUpdateUser(httpMethod){
     }
   } catch (error) {
     console.error("Error during data submission:", error);
-  }*/
+  }
 }
 const updateAndAddForms = document.querySelectorAll('form');
 updateAndAddForms.forEach(form => {
@@ -439,11 +448,12 @@ updateAndAddForms.forEach(form => {
       if(password !== confirmPassword){
         alert("Les dex mots de passe ne sont pas identiques");
         return;
-        }else{
-          userData['MotDePasse'] = password;
-        }
+      }else{
+        userData['MotDePasse'] = password;
+      }
+    }else if(httpMethod === "PUT"){
+      data['user_id'] = formData.get('user_id')
     }
-    console.log(httpMethod)
-    console.log(data)
+    addOrUpdateUser(httpMethod, data);
   })})
 });
