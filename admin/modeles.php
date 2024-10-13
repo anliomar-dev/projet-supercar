@@ -52,7 +52,7 @@
                             <button class="btn btn-danger px-4 cancel-delete">Annuler</button>
                             <button 
                             class="btn btn-secondary px-4 confirm-delete show-section" 
-                            data-section="all-users-section">
+                            data-section="all-models-section">
                                 Confirmer
                             </button>
                         </div>

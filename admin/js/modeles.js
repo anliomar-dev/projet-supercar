@@ -7,7 +7,9 @@ import {
   displayModal,
   hideModal,
   showAlert,
-  removeAlert
+  removeAlert,
+  handleClickDeleteMultiRowsBtn,
+  showAndHideConfirmationBox,
 } from "./utils";
 
 // current page
@@ -46,6 +48,10 @@ document.addEventListener('DOMContentLoaded', async ()=>{
   const alertSuccess = document.querySelector(".alert-success");
   const alertDanger = document.querySelector(".alert-danger");
   const btnConfirmPrice = document.querySelector('.btn-confirm-price');
+  const pagination = document.querySelector(".pagination");
+  const confirmDeleteBtn = document.querySelector(".confirm-delete");
+  const cancelDelete = document.querySelector(".cancel-delete");
+  const overlayAndConfirmationBox = document.querySelectorAll(".confirmation");
   const title = document.querySelector('.title')
   let checkModele = [];
 
@@ -117,6 +123,40 @@ document.addEventListener('DOMContentLoaded', async ()=>{
           });
         })
       })
+
+      // handle click delete button for each row
+      // Delete button event listener
+      deleteButton.addEventListener("click", (e) => {
+        e.preventDefault();
+        const id = deleteButton.dataset.id;
+
+        // Show confirmation box
+        showAndHideConfirmationBox(overlayAndConfirmationBox, 'Voulez-vous vraiment supprimer ce compte?');
+
+        // Reset previous click event listener for confirmation button
+        confirmDeleteBtn.onclick = async (e) => {
+        e.preventDefault();
+
+        // Call deletion function
+        await handleClickDeleteMultiRowsBtn(
+          "http://localhost/Super-car/admin/api/modeles",
+          checkAllModels,
+          alertSuccess,
+          alertDanger,
+          async () => {
+            // Récupérer à nouveau les données pour mettre à jour la pagination
+            const updatedModels = await fetchData(endPoint("all"));
+            displayData(updatedModels, "NomModele", "asc");
+            paginationData(pagination, updatedModels.total_pages); // Mettre à jour la pagination
+          },
+          async () => displayData(await fetchData(urlEndPoint), "NomModele", "asc"),
+          [id] // ID to delete
+        );
+
+        // Optionally hide the confirmation box after deletion
+        showAndHideConfirmationBox(overlayAndConfirmationBox);
+        };
+        });
     });
     checkModele = document.querySelectorAll('.checkbox-modele');
     // Enable or disable the delete button based on user selection
@@ -126,6 +166,9 @@ document.addEventListener('DOMContentLoaded', async ()=>{
 
   let models = await fetchData(urlEndPoint)
   displayData(models, 'NomModele', 'asc')
+  // Cancel button hides the confirmation box
+  cancelDelete.onclick = () =>
+    showAndHideConfirmationBox(overlayAndConfirmationBox, '');
 
   const marqueOption = document.getElementById('marqueOption');
   marqueOption.addEventListener('change', async(e)=>{
@@ -155,7 +198,7 @@ document.addEventListener('DOMContentLoaded', async ()=>{
 
 
   // dynamic pagination
-  const pagination = document.querySelector(".pagination");
+  
   async function paginationData(pagination, totalPages) {
     
     pagination.innerHTML = "";
