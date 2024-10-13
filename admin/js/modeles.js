@@ -366,6 +366,17 @@ async function createAndUpdateModele(httpMethod, data) {
         // Show a success alert and fetch the updated models
         showAlert(alertSuccess, responseMessage);
         removeAlert(alertSuccess);
+        if(httpMethod === "POST"){
+          // hide form section and display user list
+          document.querySelectorAll("section").forEach((section)=>{
+            section.classList.add('d-none')
+          })
+          document.querySelector('.all-models-section').classList.remove('d-none')
+          // Récupérer à nouveau les données pour mettre à jour la pagination
+          const updatedModels = await fetchData(endPoint("all"));
+          displayData(updatedModels, "NomModele", "asc");
+          paginationData(pagination, updatedModels.total_pages); // Mettre à jour la pagination
+        }
         let models = await fetchData(urlEndPoint);
         displayData(models, 'NomModele', 'asc');
         break;
