@@ -369,41 +369,7 @@ document.addEventListener("DOMContentLoaded", async () => {
  * @param {Object} data - The data object containing the user information and action.
  * @returns {Promise<void>} - A promise that resolves when the operation is complete.
  */
-async function addOrUpdateUser(formData){
-  // Création de l'objet userData
-  const httpMethod = formData.get("action");
-  const userData = {
-    Nom: formData.get("Nom"),
-    Prenom: formData.get("Prenom"),
-    Email: formData.get("Email"),
-    Adresse: formData.get("Adresse"),
-    NumTel: formData.get("NumTel"),
-  };
-  // The value of 'est_admin' is 1 if the checkbox is checked, else 0
-  userData["est_admin"] = formData.get("est_admin") ? 1 : 0;
-  // The value of 'est_superadmin' is 1 if the checkbox is checked, else 0
-  userData["est_superadmin"] = formData.get("est_superadmin") ? 1 : 0;
-  // CSRF token of the session
-  const csrf_token = formData.get("csrf_token");
-  // Logged-in user ID
-  const loggedInUserID = formData.get("authenticated_userId");
-  if(httpMethod === "POST"){
-    userData['MotDePasse'] = formData.get("MotDePasse");
-    const data = {
-      csrf_token: csrf_token,
-      loggedInUserID: loggedInUserID,
-      user_data: userData,
-      };
-    console.log(data)
-
-  }else if(httpMethod === "PUT"){
-    const data = {
-      csrf_token: csrf_token,
-      loggedInUserID: loggedInUserID,
-      user_data: userData,
-      };
-    console.log(data)
-  }
+async function addOrUpdateUser(httpMethod){
   /*try {
     // Await the response from sendData
     const response = await sendData(
@@ -441,69 +407,43 @@ const updateAndAddForms = document.querySelectorAll('form');
 updateAndAddForms.forEach(form => {
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const contents = new formData(form)
-    addOrUpdateUser(contents)
-    /*const formData = new FormData(form);
-    const action = formData.get('action');
-    console.log(action)
-    if(action === "update"){
-      const data = {
-        csrf_token: csrf_token,
-        loggedInUserID: loggedInUserID,
-        user_data: userData,
-        };
-        console.log(data)
-    }else if(action === "add"){
-      const data = {
-        csrf_token: csrf_token,
-        loggedInUserID: loggedInUserID,
-        user_data: userData,
-        };
-      console.log(data)
-    }*/
-  })})
-/*createUserForm.addEventListener("submit", async (e) => {
-  e.preventDefault();
-  const formData = new FormData(createUserForm);
-  // Check if both passwords are identical
-  if (formData.get("MotDePasse") !== formData.get("confirm_mot_de_passe")) {
-    const message = "Les deux mots de passe ne sont pas identiques";
-    showAlert(alertDanger, message);
-    removeAlert(alertDanger);
-  } else {
-
+    const formData = new FormData(form);
+    const httpMethod = formData.get("action");
     // Création de l'objet userData
     const userData = {
       Nom: formData.get("Nom"),
       Prenom: formData.get("Prenom"),
       Email: formData.get("Email"),
-      MotDePasse: formData.get("MotDePasse"),
       Adresse: formData.get("Adresse"),
       NumTel: formData.get("NumTel"),
     };
-
     // The value of 'est_admin' is 1 if the checkbox is checked, else 0
     userData["est_admin"] = formData.get("est_admin") ? 1 : 0;
-
     // The value of 'est_superadmin' is 1 if the checkbox is checked, else 0
     userData["est_superadmin"] = formData.get("est_superadmin") ? 1 : 0;
-
     // CSRF token of the session
     const csrf_token = formData.get("csrf_token");
-
     // Logged-in user ID
     const loggedInUserID = formData.get("authenticated_userId");
 
+    //initial data
     const data = {
-    csrf_token: csrf_token,
-    loggedInUserID: loggedInUserID,
-    user_data: userData,
+      csrf_token: csrf_token,
+      loggedInUserID: loggedInUserID,
+      user_data: userData
     };
-
-    addOrUpdateUser("POST", data)
-    createUserForm
-    .querySelectorAll('input:not([type="hidden"])')
-    .forEach((input) => (input.value = ""));
-  }
-  });*/
+    if(httpMethod === "POST"){
+      //add password to userData in the request method is post
+      const password = formData.get('MotDePasse');
+      const confirmPassword = formData.get('confirm_mot_de_passe');
+      if(password !== confirmPassword){
+        alert("Les dex mots de passe ne sont pas identiques");
+        return;
+        }else{
+          userData['MotDePasse'] = password;
+        }
+    }
+    console.log(httpMethod)
+    console.log(data)
+  })})
 });
