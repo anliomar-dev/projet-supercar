@@ -111,13 +111,13 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       if (model.images.length > 0) {
         modelContainer.innerHTML = `
-              <img src="../medias/images/${model.NomMarque}/${model.images[0].Nom}" alt="" style="width: 80px; height: 60px;">
-              <h6 class="mx-3 model-name" data-id="${model.IdModele}">${model.NomModele}</h6>
-              `;
+          <img src="../medias/images/${model.NomMarque}/${model.images[0].Nom}" alt="" style="width: 80px; height: 60px;">
+          <h6 class="mx-3 model-name" data-id="${model.IdModele}">${model.NomModele}</h6>
+          `;
       } else {
         modelContainer.innerHTML = `
-              <h6 class="mx-3 model-name" data-id="${model.IdModele}">${model.NomModele}</h6>
-              `;
+          <h6 class="mx-3 model-name" data-id="${model.IdModele}">${model.NomModele}</h6>
+          `;
       }
       modelsModal.appendChild(modelContainer);
     });
