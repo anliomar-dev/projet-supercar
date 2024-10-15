@@ -256,17 +256,11 @@ document.addEventListener("DOMContentLoaded", async () => {
       const formData = new FormData(form);
       const httpMethod = formData.get("action");
       // Création de l'objet userData
-      const userData = {
-        Nom: formData.get("Nom"),
-        Prenom: formData.get("Prenom"),
-        Email: formData.get("Email"),
-        Adresse: formData.get("Adresse"),
-        NumTel: formData.get("NumTel"),
+      const brandData = {
+        NomMarque: formData.get("NomMarque"),
+        logo: formData.get("logo"),
       };
-      // The value of 'est_admin' is 1 if the checkbox is checked, else 0
-      userData["est_admin"] = formData.get("est_admin") ? 1 : 0;
-      // The value of 'est_superadmin' is 1 if the checkbox is checked, else 0
-      userData["est_superadmin"] = formData.get("est_superadmin") ? 1 : 0;
+
       // CSRF token of the session
       const csrf_token = formData.get("csrf_token");
       // Logged-in user ID
@@ -276,21 +270,12 @@ document.addEventListener("DOMContentLoaded", async () => {
       const data = {
         csrf_token: csrf_token,
         loggedInUserID: loggedInUserID,
-        user_data: userData
+        brand_data: brandData
       };
-      if(httpMethod === "POST"){
-        //add password to userData in the request method is post
-        const password = formData.get('MotDePasse');
-        const confirmPassword = formData.get('confirm_mot_de_passe');
-        if(password !== confirmPassword){
-          alert("Les dex mots de passe ne sont pas identiques");
-          return;
-        }else{
-          userData['MotDePasse'] = password;
-        }
-      }else if(httpMethod === "PUT"){
-        data['user_id'] = formData.get('user_id')
+      if(httpMethod === "PUT"){
+        data['IdMarque'] = formData.get('IdMarque')
       }
-      addOrUpdateUser(httpMethod, data);
+      console.log(httpMethod)
+      console.log(data)
     })})
 });

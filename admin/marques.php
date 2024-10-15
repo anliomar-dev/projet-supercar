@@ -255,11 +255,11 @@
                                 <div class="mt-4 update-user-form border rounded-3 p-4">
                                     <div class="mb-3">
                                         <label for="name-new-brand" class="form-label">Nom Marque</label>
-                                        <input type="text" name="name-new-brand" class="form-control" id="name-new-brand" value="" required>
+                                        <input type="text" name="NomMarque" class="form-control" id="name-new-brand" value="" required>
                                     </div>
                                     <div class="mb-3">
                                         <label for="logo-new-brand" class="form-label">Logo</label>
-                                        <input type="file" accept=" .webp " name="logo-new-brand" class="form-control" id="logo-new-brand" value="" required>
+                                        <input type="file" accept=" .webp " name="logo" class="form-control" id="logo-new-brand" value="" required>
                                     </div>                                 
                                 </div>
                             </div>

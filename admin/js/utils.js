@@ -391,7 +391,7 @@ export function hideModal(id) {
  * @param {string} classSection the class of the section we want to display
  * @returns {Promise<void>} - A promise that resolves when the operation is complete.
  */
-async function createOrUpdate(httpMethod, data, endPoint, displayDataCallback, classSection){
+export async function createOrUpdate(httpMethod, data, endPoint, displayDataCallback, classSection){
   try {
     // Await the response from sendData
     const response = await sendData(
