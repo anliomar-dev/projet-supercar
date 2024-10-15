@@ -277,5 +277,11 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
       console.log(httpMethod)
       console.log(data)
+      fetch('http://localhost/super-car/admin/api/marques', {
+        method: httpMethod,
+        body: JSON.stringify(data),
+      })
+      .then(response => response.text())
+      .then(data => console.log(data))
     })})
 });

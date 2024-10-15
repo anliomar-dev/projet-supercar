@@ -61,7 +61,7 @@ function is_user_exist($user_id) {
  *
  * @param string $table The name of the table to insert data into.
  * @param array $data The associative array of column names and values to insert.
- * @return bool True if the insertion was successful, false otherwise.
+ * @return array An associative array with success status and either the last inserted ID or an error message.
  */
 function insertRecord($table, $data) {
     global $DB; // Use the database connection.
@@ -76,7 +76,7 @@ function insertRecord($table, $data) {
 
     if (!$stmt) {
         // Handle preparation errors.
-        return false;
+        return ['success' => false, 'error' => 'Erreur de préparation: ' . $DB->error];
     }
 
     // Determine the data types for binding parameters.
@@ -99,7 +99,7 @@ function insertRecord($table, $data) {
             $types .= 's'; // Handle null as a string.
             $values[] = null;
         } else {
-            return false; // Unsupported data type.
+            return ['success' => false, 'error' => 'Type de données non pris en charge.'];
         }
     }
 
@@ -107,13 +107,14 @@ function insertRecord($table, $data) {
     $stmt->bind_param($types, ...$values); // Use parameter unpacking.
 
     // Execute the query and return whether it was successful.
-    if (mysqli_stmt_execute($stmt)) {
-        $last_id = mysqli_insert_id($DB);
-        return [true, $last_id];
+    if ($stmt->execute()) {
+        $last_id = $DB->insert_id; // Use the object property instead of the function.
+        return ['success' => true, 'last_id' => $last_id]; // Return success status and last inserted ID.
     } else {
-        return [false];
+        return ['success' => false, 'error' => 'Erreur d\'exécution: ' . $stmt->error];
     }
 }
+
 
 /**
  * Validate the CSRF token.
