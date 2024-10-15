@@ -2,6 +2,7 @@ import {
   sortData,
   toggleAndSortDataBtns,
   fetchData,
+  createOrUpdate,
   fetchDeleteRows,
   removeAlert,
   showAlert,
@@ -23,6 +24,11 @@ function endPoint(marque) {
   }
 }
 
+/**
+ * return null: this function is used when we delate a brand, the function for delete rows is define in utils.js and required two callback
+ * both are required: one for pagination and this page doesn't have pagination and we return null instead of pagination function
+ * @returns {null}
+ */
 function returnNone() {
   return;
 }
@@ -101,15 +107,15 @@ document.addEventListener("DOMContentLoaded", async () => {
           e.preventDefault();
           await handleClickDeleteMultiRowsBtn(
             "http://localhost/super-car/admin/api/marques",
-            checkAllMarques, // Vérifiez cette variable
+            checkAllMarques,
             alertSuccess,
             alertDanger,
-            () => returnNone(), // Callback pour la pagination
+            () => returnNone(), // return none for the pagination callback(page marques doesn't have paginationi)
             async () =>
-              displayData(await fetchData(endPoint("all")), "NomMarque", "asc"), // Mise à jour de la liste des marques
+              displayData(await fetchData(endPoint("all")), "NomMarque", "asc"), // update barnd list 
             [id] // L'ID à supprimer
           );
-          showAndHideConfirmationBox(overlayAndConfirmationBox); // Cacher la boîte de confirmation après suppression
+          showAndHideConfirmationBox(overlayAndConfirmationBox); 
         };
       });
 
@@ -241,4 +247,50 @@ document.addEventListener("DOMContentLoaded", async () => {
         showAndHideConfirmationBox(overlayAndConfirmationBox); // Hide the confirmation box after deletion
     };
   });
+
+  // forms(udpate form and create form)
+  const forms = document.querySelectorAll('form')
+  forms.forEach(form => {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(form);
+      const httpMethod = formData.get("action");
+      // Création de l'objet userData
+      const userData = {
+        Nom: formData.get("Nom"),
+        Prenom: formData.get("Prenom"),
+        Email: formData.get("Email"),
+        Adresse: formData.get("Adresse"),
+        NumTel: formData.get("NumTel"),
+      };
+      // The value of 'est_admin' is 1 if the checkbox is checked, else 0
+      userData["est_admin"] = formData.get("est_admin") ? 1 : 0;
+      // The value of 'est_superadmin' is 1 if the checkbox is checked, else 0
+      userData["est_superadmin"] = formData.get("est_superadmin") ? 1 : 0;
+      // CSRF token of the session
+      const csrf_token = formData.get("csrf_token");
+      // Logged-in user ID
+      const loggedInUserID = formData.get("authenticated_userId");
+  
+      //initial data
+      const data = {
+        csrf_token: csrf_token,
+        loggedInUserID: loggedInUserID,
+        user_data: userData
+      };
+      if(httpMethod === "POST"){
+        //add password to userData in the request method is post
+        const password = formData.get('MotDePasse');
+        const confirmPassword = formData.get('confirm_mot_de_passe');
+        if(password !== confirmPassword){
+          alert("Les dex mots de passe ne sont pas identiques");
+          return;
+        }else{
+          userData['MotDePasse'] = password;
+        }
+      }else if(httpMethod === "PUT"){
+        data['user_id'] = formData.get('user_id')
+      }
+      addOrUpdateUser(httpMethod, data);
+    })})
 });

@@ -205,7 +205,7 @@
                 <form class="row">
                     <input type="hidden" name="csrf_token" id="csrf_token" value="<?php echo $_SESSION['csrf_token'];?>">
                     <input type="hidden" name="authenticated_userId" id="current-userId" value="<?php echo $_SESSION['user_id'];?>">
-                    <input type="hidden" name="action" id="action" value="update">
+                    <input type="hidden" name="action" id="action" value="PUT">
                     <input type="hidden" name="IdMarque" id="IdMarque" value="">
                     <div class="col-md-8 border rounded-3 shadow p-4">
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -243,7 +243,7 @@
                 <form class="row">
                     <input type="hidden" name="csrf_token" id="csrf_token" value="<?php echo $_SESSION['csrf_token'];?>">
                     <input type="hidden" name="authenticated_userId" id="current-userId" value="<?php echo $_SESSION['user_id'];?>">
-                    <input type="hidden" name="action" id="action" value="post">
+                    <input type="hidden" name="action" id="action" value="POST">
                     <div class="col-md-8 border rounded-3 shadow p-4">
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item" role="presentation">

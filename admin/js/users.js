@@ -455,5 +455,6 @@ updateAndAddForms.forEach(form => {
       data['user_id'] = formData.get('user_id')
     }
     addOrUpdateUser(httpMethod, data);
-  })})
+  })
+})
 });

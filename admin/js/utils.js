@@ -380,3 +380,54 @@ export function hideModal(id) {
     modal.hide();
   }
 }
+
+
+/**
+ * Function to POST or PUT data according to the presized endpoint.
+ * @param {string} httpMethod - The HTTP method for the request ('POST' or 'PUT').
+ * @param {Object} data - The data object containing the user information and action.
+ * @param {string} endPoint the end point we want to send data
+ * @param {Function} callback function to redisplay data data ofter insert
+ * @param {string} classSection the class of the section we want to display
+ * @returns {Promise<void>} - A promise that resolves when the operation is complete.
+ */
+async function createOrUpdate(httpMethod, data, endPoint, displayDataCallback, classSection){
+  try {
+    // Await the response from sendData
+    const response = await sendData(
+      data,
+      httpMethod,
+      endPoint
+    );
+    const responseStatus = response.status;
+    const responseMessage = response.message;
+
+    // Switch based on response status
+    switch (responseStatus) {
+      case "error":
+        showAlert(alertDanger, responseMessage);
+        removeAlert(alertDanger);
+        break;
+      case "success":
+        showAlert(alertSuccess, responseMessage);
+        removeAlert(alertSuccess);
+        if(httpMethod === "POST"){
+          // hide form section and display user list
+          document.querySelectorAll("section").forEach((section)=>{
+            section.classList.add('d-none')
+          })
+          document.querySelector(`.${classSection}`).classList.remove('d-none')
+        }
+        displayDataCallback()
+      break;
+      case "403":
+        window.location.href =
+        "http://localhost/super-car/admin/permission_denied";
+        break;
+      default:
+      console.log(responseStatus);
+    }
+  } catch (error) {
+    console.error("Error during data submission:", error);
+  }
+}
