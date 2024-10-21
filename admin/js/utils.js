@@ -391,7 +391,13 @@ export function hideModal(id) {
  * @param {string} classSection the class of the section we want to display
  * @returns {Promise<void>} - A promise that resolves when the operation is complete.
  */
-export async function createOrUpdate(httpMethod, data, endPoint, displayDataCallback, classSection){
+export async function createOrUpdate(
+  httpMethod, data, endPoint, 
+  displayDataCallback, 
+  alertSuccess, 
+  alertDanger, 
+  classSection=''
+) {
   try {
     // Await the response from sendData
     const response = await sendData(
@@ -417,8 +423,8 @@ export async function createOrUpdate(httpMethod, data, endPoint, displayDataCall
             section.classList.add('d-none')
           })
           document.querySelector(`.${classSection}`).classList.remove('d-none')
+          displayDataCallback()
         }
-        displayDataCallback()
       break;
       case "403":
         window.location.href =

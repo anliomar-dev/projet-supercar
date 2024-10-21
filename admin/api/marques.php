@@ -69,11 +69,12 @@
           echo json_encode($response);
           exit;
         }
-        $insert = insertRecord("marque", ["NomMarque" => "omar", "logo"=> "omar.webp"]);
+        $brand_logo = $brand_data['logo'];
+        $insert = insertRecord("marque", ["NomMarque" => $brand_name, "logo"=> $brand_logo]);
         if($insert['success']){
           $response = return_msg_json('success', 'la marque a été ajouté avec succès');
         }else{
-          $response = return_msg_json('error', 'erreur lors de l\'ajout de la marque'.$insert['error']);
+          $response = return_msg_json('error', 'erreur lors de l\'ajout de la marque');
         }
         break;
       case 'PUT':
@@ -90,7 +91,6 @@
 
         $response = $update ? return_msg_json('success', 'les donées ont été mises a jour avec succès') :
         $response = return_msg_json('error', 'erreur lors de la modification');
-        
         break;
       case 'DELETE':
         $ids = $data['ids'];

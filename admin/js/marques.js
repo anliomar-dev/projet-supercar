@@ -258,7 +258,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       // Création de l'objet userData
       const brandData = {
         NomMarque: formData.get("NomMarque"),
-        logo: formData.get("logo"),
+        logo: formData.get("logo").name,
       };
 
       // CSRF token of the session
@@ -275,13 +275,14 @@ document.addEventListener("DOMContentLoaded", async () => {
       if(httpMethod === "PUT"){
         data['IdMarque'] = formData.get('IdMarque')
       }
-      console.log(httpMethod)
-      console.log(data)
-      fetch('http://localhost/super-car/admin/api/marques', {
-        method: httpMethod,
-        body: JSON.stringify(data),
-      })
-      .then(response => response.text())
-      .then(data => console.log(data))
+      const postAndUpdatEndpoint = 'http://localhost/super-car/admin/api/marques'
+      createOrUpdate(
+        httpMethod, data, 
+        postAndUpdatEndpoint, 
+        async () => displayData(await fetchData(endPoint("all")), "NomMarque", "asc"),
+        alertSuccess, 
+        alertDanger,
+        'all-marques-section'
+      )
     })})
 });

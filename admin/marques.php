@@ -240,7 +240,6 @@
             </section>
             <!--section add marque-->
             <section class="container my-3 create-section d-none">
-                <?php echo $_SESSION['csrf_token'];?>
                 <form class="row">
                     <input type="hidden" name="csrf_token" id="csrf_token" value="<?php echo $_SESSION['csrf_token'];?>">
                     <input type="hidden" name="authenticated_userId" id="current-userId" value="<?php echo $_SESSION['user_id'];?>">
@@ -260,7 +259,7 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="logo-new-brand" class="form-label">Logo</label>
-                                        <input type="file" accept=" .webp " name="logo" class="form-control" id="logo-new-brand" value="" required>
+                                        <input type="file" accept=" .webp" name="logo" class="form-control" id="logo-new-brand" value="" required>
                                     </div>                                 
                                 </div>
                             </div>
