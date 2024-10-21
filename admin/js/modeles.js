@@ -316,6 +316,50 @@ document.addEventListener('DOMContentLoaded', async ()=>{
   // dispal paginations buttons
   const initialData = await fetchData(endPoint("all"))
   paginationData(pagination, initialData.total_pages);
+  // Handle the click on the delete multiple rows button
+  deleteMultipleRowsBtn.addEventListener("click", async (e) => {
+    e.preventDefault();
+
+    // Get all checked checkboxes for brands
+    const checkedCheckboxes = document.querySelectorAll('.checkbox-modele:checked');
+
+    // Create an array to store all the IDs of checked checkboxes
+    const arrayIds = Array.from(checkedCheckboxes).map(
+      (checkbox) => checkbox.dataset.id
+      );
+
+    if (arrayIds.length === 0) {
+        showAlert(alertDanger, "No brand selected.");
+        return;
+    }
+
+    // Show confirmation box
+    showAndHideConfirmationBox(overlayAndConfirmationBox);
+
+    // Make sure the confirm button deletes all the checked items
+    confirmDeleteBtn.onclick = async (e) => {
+        e.preventDefault();
+
+        // Call the deletion function with the IDs of selected brands
+        await handleClickDeleteMultiRowsBtn(
+            "http://localhost/super-car/admin/api/modeles",
+            checkAllModels, // Check if this variable is properly handled
+            alertSuccess,
+            alertDanger,
+            async () => {
+              // Récupérer à nouveau les données pour mettre à jour la pagination
+              const updatedModels = await fetchData(endPoint("all"));
+              displayData(updatedModels, "NomModele", "asc");
+              paginationData(pagination, updatedModels.total_pages); // Mettre à jour la pagination
+            },
+            async () => displayData(await fetchData(urlEndPoint), "NomModele", "asc"),
+            arrayIds // Pass the selected IDs directly
+        );
+
+        showAndHideConfirmationBox(overlayAndConfirmationBox); // Hide the confirmation box after deletion
+    };
+  });
+
   showSectionClickables.forEach((clickable)=>{
     clickable.addEventListener('click', (e)=>{
       const sectionToShowClass = e.currentTarget.dataset.section;
