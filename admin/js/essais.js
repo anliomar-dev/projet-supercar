@@ -36,6 +36,7 @@ document.addEventListener('DOMContentLoaded', async ()=>{
   const overlayAndConfirmationBox = document.querySelectorAll(".confirmation");
   const confirmDeleteBtn = document.querySelector(".confirm-delete");
   const cancelDelete = document.querySelector(".cancel-delete");
+  const deleteMultipleRowsBtn = document.querySelector(".delete-rows-btn");
   const alertSuccess = document.querySelector(".alert-success");
   const alertDanger = document.querySelector(".alert-danger");
   const paginationContainer = document.querySelector(".pagination");
@@ -64,6 +65,10 @@ document.addEventListener('DOMContentLoaded', async ()=>{
         if (!e.currentTarget.checked) {
           checkAllEssais.checked = false; // uncheck checkAllUser if one checkbox is unchecked
         }
+        // Enable or disable the delete button based on user selection
+        deleteMultipleRowsBtn.disabled = !Array.from(checkEssai).some(
+          (checkbox) => checkbox.checked
+        );
       });
       
       const date = clone.querySelector('.date'); // Correctly target from the clone
@@ -135,6 +140,9 @@ document.addEventListener('DOMContentLoaded', async ()=>{
       })
     });
     checkEssai = document.querySelectorAll('.checkbox-essai');
+    // Enable or disable the delete button based on essais selection
+    deleteMultipleRowsBtn.disabled = !Array.from(checkEssai).some(
+      (checkbox) => checkbox.checked)
   }
   // display initial data: (essais)
   const essais = await fetchData(endPoint("all"))
@@ -142,8 +150,9 @@ document.addEventListener('DOMContentLoaded', async ()=>{
 
   checkAllEssais.addEventListener('change', (e) => {
     const isChecked = e.currentTarget.checked;
-    checkEvent.forEach(checkbox => {
+    checkEssai.forEach(checkbox => {
       checkbox.checked = isChecked;
+      deleteMultipleRowsBtn.disabled = !isChecked;
     });
   });
 
@@ -152,9 +161,9 @@ document.addEventListener('DOMContentLoaded', async ()=>{
   
   async function paginationData(pagination) {
     const data = await fetchData(endPoint("all"));
-    const events = data.data;
+    const essais = data.data;
     const totalPages = data.total_pages;
-    
+
     // clear old content of pagination to display a new one according to the new data
     pagination.innerHTML = "";
 
