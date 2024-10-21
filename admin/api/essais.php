@@ -79,8 +79,8 @@
       
       case 'DELETE':
         $ids = $data['ids'];
-        $delete_marques = delete_rows('essais', 'IdEssai', $ids);
-        if($delete_marques){
+        $delete_essais = delete_rows('essais', 'IdEssai', $ids);
+        if($delete_essais){
           $response = return_msg_json("success", 'Essai(s) supprimées avec succès');
         }else{
           $response = return_msg_json("error", 'erreur lors de la suppression des essais');

@@ -147,6 +147,9 @@ document.addEventListener('DOMContentLoaded', async ()=>{
   // display initial data: (essais)
   const essais = await fetchData(endPoint("all"))
   displayEssais(essais, 'Date', 'asc')
+  // Cancel button hides the confirmation box
+  cancelDelete.onclick = () =>
+    showAndHideConfirmationBox(overlayAndConfirmationBox, '');
 
   checkAllEssais.addEventListener('change', (e) => {
     const isChecked = e.currentTarget.checked;
@@ -272,6 +275,40 @@ document.addEventListener('DOMContentLoaded', async ()=>{
   })
   // display paginations buttons
   paginationData(paginationContainer);
+
+  // handle the click on the delete multiple rows button
+  deleteMultipleRowsBtn.addEventListener("click", async (e) => {
+    e.preventDefault();
+    // Get all checked checkboxes for brands
+    const checkedCheckboxes = document.querySelectorAll('.checkbox-marque:checked');
+
+    // Create an array to store all the IDs of checked checkboxes
+    const arrayIds = Array.from(checkedCheckboxes).map(
+      (checkbox) => checkbox.dataset.id
+      );
+
+    // Show confirmation box
+    showAndHideConfirmationBox(overlayAndConfirmationBox, 'Voulez-vous vraiment supprimer les essais selectionés?');
+
+    // Reset previous click event listener for confirmation button
+    confirmDeleteBtn.onclick = async (e) => {
+      e.preventDefault();
+
+      // Call deletion function
+      await handleClickDeleteMultiRowsBtn(
+        "http://localhost/Super-car/admin/api/essais",
+        checkAllEssais,
+        alertSuccess,
+        alertDanger,
+        () => paginationData(paginationContainer), // Callback for pagination
+        async () => displayEssais(await fetchData(endPoint("all")), 'Date', 'asc'), // Refresh user list
+        arrayIds
+    );
+
+      // Optionally hide the confirmation box after deletion
+    showAndHideConfirmationBox(overlayAndConfirmationBox);
+    };
+  });
   showSectionClickables.forEach((clickable)=>{
     clickable.addEventListener('click', (e)=>{
       const sectionToShowClass = e.currentTarget.dataset.section;
