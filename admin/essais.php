@@ -38,7 +38,41 @@
             <?php
                 include_once('components/navbar.php');
             ?>
-
+            <!--overlay for cofirmation box-->
+            <div class="position-fixed top-0 start-0 w-100 h-100 confirmation d-none" style="background-color: rgba(0, 0, 0, 0.5); z-index: 3000;">
+            </div>
+            <!-- Boîte de confirmation -->
+            <div class="position-absolute confirmation-box shadow confirmation d-none" style="z-index: 3500;">
+                <div class="border rounded p-4 shadow-sm bg-white" style="width: 400px;">
+                    <div class="text-center mb-3">
+                        <p class="mb-4">Voulez-vous vraiment supprimer ?</p>
+                        <div class="d-flex justify-content-center gap-2">
+                            <button class="btn btn-danger px-4 cancel-delete">Annuler</button>
+                            <button 
+                                class="btn btn-secondary px-4 confirm-delete show-section" 
+                                data-section="all-essais-section">Confirmer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- alert success-->
+            <div class="alert alert-success d-flex justify-content-between align-items-center d-none" role="alert">
+                <span class="message"></span>
+                <button class="btn hide-alert-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
+                        <path d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 0 0-1.06-1.06L10 8.94 6.28 5.22Z" />
+                    </svg>
+                </button>
+            </div>
+            <!-- alert danger-->
+            <div class="alert alert-danger d-flex justify-content-between align-items-center d-none" role="alert">
+                <span></span>
+                <button class="btn hide-alert-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
+                        <path d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 0 0-1.06-1.06L10 8.94 6.28 5.22Z" />
+                    </svg>
+                </button>
+            </div>
             <!--display all essaus section-->
             <section class="container my-4 mx-auto all-essais-section">
                 <!-- section header -->

@@ -1,4 +1,14 @@
-import { sortData, toggleAndSortDataBtns, fetchData } from "./utils";
+import { 
+  sortData, 
+  toggleAndSortDataBtns, 
+  fetchData,
+  createOrUpdate,
+  fetchDeleteRows,
+  removeAlert,
+  showAlert,
+  handleClickDeleteMultiRowsBtn,
+  showAndHideConfirmationBox,
+} from "./utils";
 import { resetForm } from "/super-car/js/utils";
 
 // current page
@@ -23,6 +33,12 @@ document.addEventListener('DOMContentLoaded', async ()=>{
   const sortButtons = document.querySelectorAll('.sortBtn');
   const theadColumns = document.querySelectorAll('.th-col')
   const checkAllEssais = document.querySelector('.check-all');
+  const overlayAndConfirmationBox = document.querySelectorAll(".confirmation");
+  const confirmDeleteBtn = document.querySelector(".confirm-delete");
+  const cancelDelete = document.querySelector(".cancel-delete");
+  const alertSuccess = document.querySelector(".alert-success");
+  const alertDanger = document.querySelector(".alert-danger");
+  const paginationContainer = document.querySelector(".pagination");
   let checkEssai = [];
   
   toggleAndSortDataBtns(theadColumns, sortButtons)
@@ -79,7 +95,29 @@ document.addEventListener('DOMContentLoaded', async ()=>{
       const editButton = clone.querySelector('.edit-button'); // Correctly target from the clone
       const deleteButton = clone.querySelector('.delete-button'); // Correctly target from the clone
       [editButton, deleteButton].forEach(btn => btn.dataset.id = essai.IdEssai);
-  
+      
+      // Delete button event listener
+      deleteButton.addEventListener("click", (e) => {
+        e.preventDefault();
+        const id = deleteButton.dataset.id;
+
+        // Show confirmation box
+        showAndHideConfirmationBox(overlayAndConfirmationBox);
+
+        confirmDeleteBtn.onclick = async (e) => {
+          e.preventDefault();
+          await handleClickDeleteMultiRowsBtn(
+            "http://localhost/super-car/admin/api/essais",
+            checkAllEssais,
+            alertSuccess,
+            alertDanger,
+            () => paginationData(paginationContainer), // return none for the pagination callback(page marques doesn't have paginationi)
+            async () => displayEssais(await fetchData(endPoint("all")), 'Date', 'asc'), // update essais list
+            [id] // the list ids of rows to delete
+          );
+          showAndHideConfirmationBox(overlayAndConfirmationBox); 
+        };
+      });
       essaisContainer.appendChild(clone);
 
       [date, heure, status, editButton].forEach((btn)=>{
@@ -98,6 +136,7 @@ document.addEventListener('DOMContentLoaded', async ()=>{
     });
     checkEssai = document.querySelectorAll('.checkbox-essai');
   }
+  // display initial data: (essais)
   const essais = await fetchData(endPoint("all"))
   displayEssais(essais, 'Date', 'asc')
 
@@ -110,11 +149,14 @@ document.addEventListener('DOMContentLoaded', async ()=>{
 
 
   // dynamic pagination
-  const paginationContainer = document.querySelector(".pagination");
-  async function pagination(pagination) {
+  
+  async function paginationData(pagination) {
     const data = await fetchData(endPoint("all"));
     const events = data.data;
     const totalPages = data.total_pages;
+    
+    // clear old content of pagination to display a new one according to the new data
+    pagination.innerHTML = "";
 
     // if we have more than one page
     if (totalPages > 1) {
@@ -220,7 +262,7 @@ document.addEventListener('DOMContentLoaded', async ()=>{
     }
   })
   // display paginations buttons
-  pagination(paginationContainer);
+  paginationData(paginationContainer);
   showSectionClickables.forEach((clickable)=>{
     clickable.addEventListener('click', (e)=>{
       const sectionToShowClass = e.currentTarget.dataset.section;

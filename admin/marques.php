@@ -40,7 +40,8 @@
         <div class="position-absolute end-0 dashboard" style="z-index: 10;">
             <?php
                 include_once('components/navbar.php');
-            ?><!--overlay for cofirmation box-->
+            ?>
+            <!--overlay for cofirmation box-->
             <div class="position-fixed top-0 start-0 w-100 h-100 confirmation d-none" style="background-color: rgba(0, 0, 0, 0.5); z-index: 3000;">
             </div>
             <!-- Boîte de confirmation -->

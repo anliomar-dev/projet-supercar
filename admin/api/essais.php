@@ -4,6 +4,7 @@
   include_once('../php/utils.php');
   include_once('../../php/utils.php');
   include_once('../php/functions_get_data.php');
+  include_once('../php/del-update_functions.php');
   $LOGIN_URL = "/super-car/admin/login";
   $SESSION_EXPIRED_URL = "/super-car/admin/session_expired";
   is_user_authenticated(2, $LOGIN_URL, $SESSION_EXPIRED_URL);
@@ -52,39 +53,37 @@
     $input = file_get_contents('php://input');  
     // Convert the received JSON data into an associative array
     $data = json_decode($input, true);
+    // Retrieve the CSRF token sent by the client
+    $csrf_token = $data['csrf_token'] ?? '';
     
-    // Check if the CSRF token is valid
-    if($csrf_token !== $_SESSION['csrf_token']){
-        $response = [
-          'status' => 'error',
-          'message' => 'token  csrf non valid'
-        ];
-        echo json_encode($response);
-        exit;
-    }
-
     // Handle different HTTP methods
     switch ($method) {
       case 'POST':
+        // Validate the CSRF token
+        if(!is_csrf_valid($csrf_token, $_SESSION['csrf_token'])){
+          $response = return_msg_json("403", 'token csrf non valid');
+          echo json_encode($response);
+          exit;
+        }
         break;
       
       case 'PUT':
+        // Validate the CSRF token
+        if(!is_csrf_valid($csrf_token, $_SESSION['csrf_token'])){
+          $response = return_msg_json("403", 'token csrf non valid');
+          echo json_encode($response);
+          exit;
+        }
         $essai_id = intval($data['essai_id']);
         break;
       
       case 'DELETE':
-        $essai_id = intval($data['essai_id']);
-        $delete_essais = delete_rows($essai_id, 'essais', 'IdEssai');
-        if($delete_essais){
-          $response = [
-            'status' => 'success',
-            'message' => 'demande d\'éssai supprimé avec succès'
-          ];
+        $ids = $data['ids'];
+        $delete_marques = delete_rows('essais', 'IdEssai', $ids);
+        if($delete_marques){
+          $response = return_msg_json("success", 'Essai(s) supprimées avec succès');
         }else{
-          $response = [
-            'status' => 'error',
-            'message' => 'erreur lors de la suppression de la demande.',
-          ];
+          $response = return_msg_json("error", 'erreur lors de la suppression des essais');
         }
         break;
       
