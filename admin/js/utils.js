@@ -261,7 +261,7 @@ export async function handleClickDeleteMultiRowsBtn(
  *
  * @param {NodeList} elements - A NodeList of elements to toggle.
  */
-export function showAndHideConfirmationBox(elements, message=''){
+export function showAndHideConfirmationBox(elements, message= ''){
   elements.forEach((element) =>{
     element.classList.toggle('d-none');
     if(element.classList.contains('confirmation-box')){
@@ -387,7 +387,9 @@ export function hideModal(id) {
  * @param {string} httpMethod - The HTTP method for the request ('POST' or 'PUT').
  * @param {Object} data - The data object containing the user information and action.
  * @param {string} endPoint the end point we want to send data
- * @param {Function} callback function to redisplay data data ofter insert
+ * @param displayDataCallback
+ * @param alertSuccess
+ * @param alertDanger
  * @param {string} classSection the class of the section we want to display
  * @returns {Promise<void>} - A promise that resolves when the operation is complete.
  */
