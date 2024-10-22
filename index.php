@@ -26,6 +26,16 @@ switch ($url) {
     case 'contact':
         require 'supercar/contact.php';
         break;
+    case 'modele':
+        if (isset($_GET['modele']) && is_numeric($_GET['modele'])) {
+            $modele_id = (int)$_GET['modele']; // Conversion en entier pour sécurité
+            // Tu peux utiliser $modele_id ici si nécessaire.
+            require 'supercar/modele.php';
+        } else {
+            // Si le paramètre 'modele' est manquant ou non valide
+            echo "Modèle invalide ou non spécifié.";
+        }
+        break;
     default:
         // Page 404 si l'URL n'existe pas
         echo "404 - Page non trouvée pour l'URL : " . htmlspecialchars($url);

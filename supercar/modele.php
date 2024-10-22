@@ -1,7 +1,14 @@
 <?php
-// start new session if there is not a session
+// Démarrer une session si elle n'est pas déjà active
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
+}
+// Vérification de l'ID modèle et gestion de la redirection 404
+if (isset($_GET['modele']) && is_numeric($_GET['modele'])) {
+    $modele_id = (int)$_GET['modele']; // Conversion sécurisée en entier
+} else {
+    header("Location: /super-car/404.php"); // Redirection vers la page 404
+    exit();
 }
 ?>
 <!DOCTYPE html>
