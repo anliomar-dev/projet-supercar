@@ -13,13 +13,7 @@
   <link href="../stylesheets/navbar.css" rel="stylesheet">
   <link href="../stylesheets/modeles.css" rel="stylesheet">
   <title>Modèles</title>
-  <style>
-      .userDropdown{
-          width: 25px;
-          height: 25px;
-          fill: white;
-      }
-  </style>
+ 
 </head>
 <body class="position-relative">
   <?php
@@ -27,14 +21,14 @@
     include_once("../php/all_marques.php");
   ?>
   <div class="toggle-side-bar position-absolute z-5 toggle-container" style="max-width: 235px;">
-    <svg class="" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
       <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12H12m-8.25 5.25h16.5" />
     </svg>
     <!--<span class="position-absolute bottom-0 border bg-white py-2 px-3 z-5 shadow mt-2 ms-2 rounded-3 pop-over">click to open options</span>-->
   </div>
   <div class="sidbar ms-2 pt-2 pb-5 px-3 rounded-2 position-fixed" style="background-color: #000D50; width: auto; z-index: 1000; top: 120px;">
     <div class="close-side-bar d-flex justify-content-between pb-3 pt-2">
-      <svg class="close-sidebar" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 close-sidebar">
         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
       </svg>
     </div>
@@ -68,7 +62,7 @@
           <div class="d-flex">
             <input type="number" name="min-price" id="min" class="form-control filter-price-field" placeholder="prix minimum" min="0">
             <button type="button" class="primary-custom-btn searchButton" data-compare="min">
-              <svg class="serachIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5 serachIcon">
                 <path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11ZM2 9a7 7 0 1 1 12.452 4.391l3.328 3.329a.75.75 0 1 1-1.06 1.06l-3.329-3.328A7 7 0 0 1 2 9Z" clip-rule="evenodd" />
               </svg>
             </button>
@@ -79,7 +73,7 @@
           <div class="d-flex">
             <input type="number" name="max-price" id="max" class="form-control filter-price-field" placeholder="Prix maximum" min="0">
             <button type="button" class="primary-custom-btn searchButton" data-compare="max">
-              <svg class="serachIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5 serachIcon">
                 <path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11ZM2 9a7 7 0 1 1 12.452 4.391l3.328 3.329a.75.75 0 1 1-1.06 1.06l-3.329-3.328A7 7 0 0 1 2 9Z" clip-rule="evenodd" />
               </svg>
             </button>

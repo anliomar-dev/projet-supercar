@@ -1,7 +1,3 @@
-<?php
-include_once('../php/utils.php');
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
