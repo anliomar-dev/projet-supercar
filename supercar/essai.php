@@ -28,13 +28,13 @@
   ?>
   <span class="alert alert-success position-absolute z-5 mt-3 d-flex" role="alert" style="display: none;">
       <p class="m-0 success-message">jhjhjjhkjhkjjkhjk</p>
-      <svg class="close-alert-success" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5 close-alert-success">
           <path d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 0 0-1.06-1.06L10 8.94 6.28 5.22Z" />
       </svg>
   </span>
   <span class="alert alert-danger position-absolute z-5 mt-3 d-flex" role="alert" style="display: none;">
       <p class="m-0 error-message"></p>
-      <svg class="close-alert-danger" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5 close-alert-danger">
           <path d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 0 0-1.06-1.06L10 8.94 6.28 5.22Z" />
       </svg>
   </span>
@@ -68,14 +68,14 @@
                         <label for="heure">Heure</label>
                         <div class="d-flex">
                           <button type="button" class="btn-clock rounded-start-2 primary-custom-btn border-0 px-2 d-flex justify-content-center align-items-center" style="height: 38px">
-                            <svg class="clock-svg" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 clock-svg">
                               <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                             </svg>
                           </button>
                           <input type="text" class="form-control" name="heure" id="Heure" placeholder="Heure (cliquez l'horloge)" required>
                         </div>
                         <div class="available-hours-modale position-absolute overflow-y-scroll bg-white px-3 pb-3 ms-3 w-75 start-0 top-2 shadow rounded-3 border" style="height: 190px; display: none;">
-                          <svg class="close-horaires my-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5 close-horaires my-2">
                             <path d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 0 0-1.06-1.06L10 8.94 6.28 5.22Z" />
                           </svg>
                           <p class="">

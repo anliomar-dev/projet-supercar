@@ -152,6 +152,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       clone.querySelector(".brand-logo").src = `../medias/images/logos/${
         model.logo || "default-logo.png"
       }`;
+      clone.querySelector('.more-details').href += model.IdModele;
+      console.log(clone.querySelector('.more-details').href)
       const essaiBtn = clone.querySelector('.essaiBtn');
       essaiBtn.dataset.nomModele = model.NomModele;
       essaiBtn.dataset.idModele = model.IdModele;

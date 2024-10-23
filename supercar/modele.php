@@ -1,15 +1,38 @@
 <?php
-// Démarrer une session si elle n'est pas déjà active
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
-// Vérification de l'ID modèle et gestion de la redirection 404
-if (isset($_GET['modele']) && is_numeric($_GET['modele'])) {
-    $modele_id = (int)$_GET['modele']; // Conversion sécurisée en entier
-} else {
-    header("Location: /super-car/404.php"); // Redirection vers la page 404
-    exit();
-}
+    include '../php/connexionDB.php';
+    global $DB;
+    // Démarrer une session si elle n'est pas déjà active
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+    // Vérification de l'ID modèle et gestion de la redirection 404
+    if (isset($_GET['modele']) && is_numeric($_GET['modele'])) {
+        $modele_id = (int)$_GET['modele']; // Conversion sécurisée en entier
+        $query = "SELECT modele.*, marque.NomMarque 
+            FROM modele
+            JOIN marque ON modele.IdMarque = marque.IdMarque
+            WHERE modele.IdModele = ?;
+          ";
+        $stmt = mysqli_prepare($DB, $query);
+        mysqli_stmt_bind_param($stmt, 'i', $modele_id);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        if($result){
+            $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+            $modele = $row["NomModele"];
+            $marque = $row["NomMarque"];
+            $id = $row["IdModele"];
+            $prix = $row["Prix"];
+            $annee = $row["Annee"];
+            $type = $row["TypeMoteur"];
+            $carburant = $row["Carburant"];
+            $description = $row["Description"];
+            $transmission = $row["BoiteVitesse"];
+        }
+    } else {
+        header("Location: /super-car/404.php"); // Redirection vers la page 404
+        exit();
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,8 +64,8 @@ include_once("../components/navbar.php");
 
         <!-- Informations sur la voiture -->
         <div class="col-md-6">
-            <h1 class="mb-3">Mercedes Benz</h1>
-            <h4 class="text-muted">Modèle : <span class="fw-bold">EQB 300</span></h4>
+            <h1 class="mb-3"><?php echo $marque;?></h1>
+            <h4 class="text-muted">Modèle : <span class="fw-bold"><?php echo $modele;?></span></h4>
 
             <div class="my-3">
                 <button class="btn btn-custom">Images Intérieur</button>
@@ -57,22 +80,20 @@ include_once("../components/navbar.php");
             <div class="details-card mt-4">
                 <div class="row">
                     <div class="col-md-6">
-                        <p><strong>Modèle :</strong> EQB 300</p>
-                        <p><strong>Année :</strong> 2021</p>
-                        <p><strong>Prix :</strong> 200000 e</p>
+                        <p><strong>Modèle :</strong> <?php echo $modele;?></p>
+                        <p><strong>Année :</strong> <?php echo $annee; ?></p>
+                        <p><strong>Prix :</strong> <?php echo $prix; ?>€</p>
                     </div>
                     <div class="col-md-6">
-                        <p><strong>Transmission :</strong> Automatique</p>
-                        <p><strong>Type :</strong> SUV électrique</p>
-                        <p><strong>carburant :</strong> essence</p>
+                        <p><strong>Transmission :</strong> <?php echo $transmission ;?></p>
+                        <p><strong>Type :</strong> <?php echo $type; ?></p>
+                        <p><strong>carburant :</strong> <?php echo $carburant; ?></p>
                     </div>
                 </div>
                 <hr>
                 <h5>Description</h5>
                 <p class="overflow-y-scroll">
-                    Le Mercedes EQB 300 est un SUV compact entièrement électrique offrant une autonomie impressionnante,
-                    un intérieur raffiné, et des technologies de pointe. Parfait pour les amateurs d’innovation et de
-                    performances écologiques.
+                    <?php echo $description; ?>
                 </p>
             </div>
         </div>
