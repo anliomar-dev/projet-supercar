@@ -20,7 +20,6 @@ if ($id_model) {
     if ($stm) {
         mysqli_stmt_bind_param($stm, 'i', $id_model);
         mysqli_stmt_execute($stm);
-
         $result = mysqli_stmt_get_result($stm);
         if ($result && mysqli_num_rows($result) > 0) {
             $images = [];

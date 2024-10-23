@@ -8,10 +8,22 @@
     // Vérification de l'ID modèle et gestion de la redirection 404
     if (isset($_GET['modele']) && is_numeric($_GET['modele'])) {
         $modele_id = (int)$_GET['modele']; // Conversion sécurisée en entier
-        $query = "SELECT modele.*, marque.NomMarque 
-            FROM modele
-            JOIN marque ON modele.IdMarque = marque.IdMarque
-            WHERE modele.IdModele = ?;
+        $query = "SELECT 
+            modele.*, 
+            marque.NomMarque, 
+            GROUP_CONCAT(DISTINCT images.color) AS colors
+            FROM 
+                modele
+            JOIN 
+                marque ON modele.IdMarque = marque.IdMarque
+            LEFT JOIN 
+                images ON images.IdModele = modele.IdModele
+            WHERE 
+                modele.IdModele = ?
+            AND 
+                images.color IS NOT NULL
+            GROUP BY 
+                modele.IdModele;
           ";
         $stmt = mysqli_prepare($DB, $query);
         mysqli_stmt_bind_param($stmt, 'i', $modele_id);
@@ -28,6 +40,7 @@
             $carburant = $row["Carburant"];
             $description = $row["Description"];
             $transmission = $row["BoiteVitesse"];
+            $colors = explode(',', $row["colors"]);
         }
     } else {
         header("Location: /super-car/404.php"); // Redirection vers la page 404
@@ -72,9 +85,11 @@ include_once("../components/navbar.php");
             </div>
 
             <div class="d-flex align-items-center my-3">
-                <div class="color-circle" style="background-color: black;"></div>
-                <div class="color-circle" style="background-color: green;"></div>
-                <div class="color-circle" style="background-color: blue;"></div>
+                <?php
+                    foreach ($colors as $color) {
+                        echo "<div class='color-circle' data-color='$color' style='background-color: $color;'></div>";
+                    }
+                ?>
             </div>
 
             <div class="details-card mt-4">
