@@ -1,6 +1,7 @@
 <?php
   // Database connection
-  include('../php/connexionDB.php');
+global $DB;
+include('../php/connexionDB.php');
   header('Content-Type: application/json; charset=utf-8');
   // get request body
   $input = file_get_contents('php://input');

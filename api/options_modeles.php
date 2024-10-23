@@ -1,5 +1,6 @@
 <?php
 // Database connection
+global $DB;
 include('../php/connexionDB.php');
 header('Content-Type: application/json; charset=utf-8');
 
