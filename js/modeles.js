@@ -20,6 +20,7 @@ if (!localStorage.hasOwnProperty("currentPage")) {
  * @param {number} currentPage - The current page number to display.
  * @param {string} [filterBy='NomModele'] - The attribute to filter by. Defaults to 'NomModele'.
  * @param {string} [filter=''] - The filter value to match against the specified attribute.
+ * @param compare
  * @returns {Promise<Object>} - An object containing the filtered models, current page, total pages, and optionally an error message.
  *
  * @returns {Promise<Object>} - The returned object includes:
@@ -115,7 +116,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   /**
-   * Displays the models by brand in the models container.
+   * Displays the models by brand in the models' container.
    *
    * @param {Object} data - The data object containing model information
    * @returns {void}
@@ -322,7 +323,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   // dispal paginations buttons
-  paginationModels(pagination);
+  await paginationModels(pagination);
 
   //show all models button
   showAllModelsBtn.addEventListener("click", async() => {
