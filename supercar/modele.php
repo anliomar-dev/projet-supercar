@@ -55,9 +55,10 @@
     <link href="../bootstrap-5.3.3-dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="../stylesheets/navbar.css" rel="stylesheet">
     <link href="../stylesheets/model_details.css" rel="stylesheet">
+    <script src="../js/model-details.js" type="module" defer></script>
     <title>details modele</title>
 </head>
-<body class="position-relative">
+<body class="position-relative bg-dark-subtle">
 <?php
 include_once("../components/navbar.php");
 ?>
@@ -66,12 +67,12 @@ include_once("../components/navbar.php");
     <div class="row">
         <!-- Image principale -->
         <div class="col-md-6">
-            <img src="https://via.placeholder.com/600x400" alt="Mercedes EQB 300" class="car-image img-fluid mb-3">
+            <img src="" alt="Mercedes EQB 300" class="car-image img-fluid mb-3">
             <div class="d-flex justify-content-center">
-                <img src="https://via.placeholder.com/100x100" class="thumbnail mx-1" alt="Miniature 1">
-                <img src="https://via.placeholder.com/100x100" class="thumbnail mx-1" alt="Miniature 2">
-                <img src="https://via.placeholder.com/100x100" class="thumbnail mx-1" alt="Miniature 3">
-                <img src="https://via.placeholder.com/100x100" class="thumbnail mx-1" alt="Miniature 4">
+                <img src="" class="thumbnail mx-1" alt="Miniature 1">
+                <img src="" class="thumbnail mx-1" alt="Miniature 2">
+                <img src="" class="thumbnail mx-1" alt="Miniature 3">
+                <img src="" class="thumbnail mx-1" alt="Miniature 4">
             </div>
         </div>
 
@@ -80,14 +81,18 @@ include_once("../components/navbar.php");
             <h1 class="mb-3"><?php echo $marque;?></h1>
             <h4 class="text-muted">Modèle : <span class="fw-bold"><?php echo $modele;?></span></h4>
 
-            <div class="my-3">
-                <button class="btn btn-custom">Images Intérieur</button>
+            <div>
+                <p class="mb-0 mt-2">Images</p>
+                <select class="form-select mt-0" aria-label="Default select example">
+                    <option value="outside" selected>extérieur</option>
+                    <option value="inside">intérieur</option>
+                </select>
             </div>
 
             <div class="d-flex align-items-center my-3">
                 <?php
                     foreach ($colors as $color) {
-                        echo "<div class='color-circle' data-color='$color' style='background-color: $color;'></div>";
+                        echo "<div class='color-circle border-1' data-color='$color' style='background-color: $color;'></div>";
                     }
                 ?>
             </div>
@@ -102,14 +107,22 @@ include_once("../components/navbar.php");
                     <div class="col-md-6">
                         <p><strong>Transmission :</strong> <?php echo $transmission ;?></p>
                         <p><strong>Type :</strong> <?php echo $type; ?></p>
-                        <p><strong>carburant :</strong> <?php echo $carburant; ?></p>
+                        <?php 
+                            if($carburant){
+                                echo "<p><strong>carburant :</strong>$carburant;</p>";
+                            }
+                        ?>
                     </div>
                 </div>
+                <button class="btn text-success more-details-btn">plus de details ...</button>
+                <!-- /.tertiary -->
                 <hr>
-                <h5>Description</h5>
-                <p class="overflow-y-scroll">
-                    <?php echo $description; ?>
-                </p>
+                <div class="d-none description-container">
+                    <h5>Description</h5>
+                    <p class="overflow-y-scroll description" style="max-height: 250px">
+                        <?php echo $description; ?>
+                    </p>
+                </div>
             </div>
         </div>
     </div>
