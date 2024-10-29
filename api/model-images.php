@@ -12,7 +12,7 @@ $response = [
     "message" => "Erreur lors de la requête",
 ];
 
-$id_model = isset($_GET['id_modele']) ? intval($_GET['id_modele']) : null;
+$id_model = isset($_GET['modele']) ? intval($_GET['modele']) : null;
 
 if ($id_model) {
     $query = "SELECT Nom, type, color FROM images WHERE IdModele = ?";
