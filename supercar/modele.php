@@ -5,6 +5,7 @@
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
     }
+    $modele_found = false;
     // Vérification de l'ID modèle et gestion de la redirection 404
     if (isset($_GET['modele']) && is_numeric($_GET['modele'])) {
         $modele_id = (int)$_GET['modele']; // Conversion sécurisée en entier
@@ -20,8 +21,6 @@
                 images ON images.IdModele = modele.IdModele
             WHERE 
                 modele.IdModele = ?
-            AND 
-                images.color IS NOT NULL
             GROUP BY 
                 modele.IdModele;
           ";
@@ -29,7 +28,8 @@
         mysqli_stmt_bind_param($stmt, 'i', $modele_id);
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
-        if($result){
+        if($result && mysqli_num_rows($result) > 0){
+            $modele_found = true;
             $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
             $modele = $row["NomModele"];
             $marque = $row["NomMarque"];
@@ -40,7 +40,12 @@
             $carburant = $row["Carburant"];
             $description = $row["Description"];
             $transmission = $row["BoiteVitesse"];
-            $colors = explode(',', $row["colors"]);
+           if($row["colors"]){
+               $colors = explode(',', $row["colors"]);
+           }
+        }else{
+            header("Location: /super-car/404.php"); // Redirection vers la page 404
+            exit();
         }
     } else {
         header("Location: /super-car/404.php"); // Redirection vers la page 404
@@ -91,8 +96,10 @@ include_once("../components/navbar.php");
 
             <div class="d-flex align-items-center my-3">
                 <?php
-                    foreach ($colors as $color) {
-                        echo "<div class='color-circle border-1' data-color='$color' style='background-color: $color;'></div>";
+                    if($row["colors"]){
+                        foreach ($colors as $color) {
+                            echo "<div class='color-circle border-1' data-color='$color' style='background-color: $color;'></div>";
+                        }
                     }
                 ?>
             </div>
@@ -100,12 +107,12 @@ include_once("../components/navbar.php");
             <div class="details-card mt-4">
                 <div class="row">
                     <div class="col-md-6">
-                        <p><strong>Modèle :</strong> <?php echo $modele;?></p>
-                        <p><strong>Année :</strong> <?php echo $annee; ?></p>
-                        <p><strong>Prix :</strong> <?php echo $prix; ?>€</p>
+                        <p><strong>Modèle :</strong> <?php if($modele_found){echo $modele;}?></p>
+                        <p><strong>Année :</strong> <?php if($modele_found){ echo $annee;} ?></p>
+                        <p><strong>Prix :</strong> <?php if($modele_found){echo $prix;} ?>€</p>
                     </div>
                     <div class="col-md-6">
-                        <p><strong>Transmission :</strong> <?php echo $transmission ;?></p>
+                        <p><strong>Transmission :</strong> <?php if($modele_found){echo $transmission ;}?></p>
                         <p><strong>Type :</strong> <?php echo $type; ?></p>
                         <?php 
                             if($carburant){
@@ -120,7 +127,7 @@ include_once("../components/navbar.php");
                 <div class="d-none description-container">
                     <h5>Description</h5>
                     <p class="overflow-y-scroll description" style="max-height: 250px">
-                        <?php echo $description; ?>
+                        <?php if($modele_found){echo $description;} ?>
                     </p>
                 </div>
             </div>
