@@ -61,7 +61,16 @@
     <link href="../stylesheets/navbar.css" rel="stylesheet">
     <link href="../stylesheets/model_details.css" rel="stylesheet">
     <script src="../js/model-details.js" type="module" defer></script>
-    <title>details modele</title>
+    <title><?php echo $modele;?></title>
+    <style>
+        .img-carousel{
+            max-height: 390px;
+        }
+        .thumbnail{
+            max-height: 100px;
+            max-width: 100px;
+        }
+    </style>
 </head>
 <body class="position-relative bg-dark-subtle">
 <?php
@@ -71,30 +80,47 @@ include_once("../components/navbar.php");
 <div class="container my-5">
     <div class="row">
         <!-- Image principale -->
-        <div class="col-md-6">
-            <img src="" alt="Mercedes EQB 300" class="car-image img-fluid mb-3">
-            <div class="d-flex justify-content-center">
-                <img src="" class="thumbnail mx-1" alt="Miniature 1">
-                <img src="" class="thumbnail mx-1" alt="Miniature 2">
-                <img src="" class="thumbnail mx-1" alt="Miniature 3">
-                <img src="" class="thumbnail mx-1" alt="Miniature 4">
+        <div class="col-md-6 images-container">
+            <div id='carouselExampleIndicators' class='carousel slide'>
+                <div class='carousel-indicators'>
+
+                </div>
+                <div class='carousel-inner'>
+
+                </div>
+                <button class='carousel-control-prev' type='button' data-bs-target='#carouselExampleIndicators' data-bs-slide='prev'>
+                    <span class='carousel-control-prev-icon' aria-hidden='true'></span>
+                    <span class='visually-hidden'>Previous</span>
+                </button>
+                <button class='carousel-control-next ' type='button' data-bs-target='#carouselExampleIndicators' data-bs-slide='next'>
+                    <span class='carousel-control-next-icon' aria-hidden='true'></span>
+                    <span class='visually-hidden'>Next</span>
+                </button>
+            </div>
+            <div class="d-flex justify-content-center thumbnail-container my-3">
+
             </div>
         </div>
-
         <!-- Informations sur la voiture -->
         <div class="col-md-6">
-            <h1 class="mb-3"><?php echo $marque;?></h1>
+            <h1 class="mb-3 brand-name"><?php echo $marque;?></h1>
             <h4 class="text-muted">Modèle : <span class="fw-bold"><?php echo $modele;?></span></h4>
 
             <div>
-                <p class="mb-0 mt-2">Images</p>
-                <select class="form-select mt-0" aria-label="Default select example">
-                    <option value="outside" selected>extérieur</option>
-                    <option value="inside">intérieur</option>
-                </select>
+                <?php
+                    if($row["colors"]){
+                        echo "
+                        <p class='mb-0 mt-2'>Images</p>
+                        <select class='form-select mt-2 type-images-options' aria-label='Default select example'>
+                            <option value='outside' selected>extérieur</option>
+                            <option value='inside''>intérieur</option>
+                        </select>
+                        ";
+                    }
+                ?>
             </div>
 
-            <div class="d-flex align-items-center my-3">
+            <div class="d-flex align-items-center my-3 colors-options">
                 <?php
                     if($row["colors"]){
                         foreach ($colors as $color) {

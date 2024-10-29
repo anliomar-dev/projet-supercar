@@ -28,7 +28,7 @@ if ($id_model) {
             }
             $response = [
                 "status" => "success",
-                "data" => $images,
+                "images" => $images,
             ];
         } else {
             $response["message"] = "Aucune image trouvée pour ce modèle.";

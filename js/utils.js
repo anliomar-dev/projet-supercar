@@ -108,7 +108,7 @@ export async function login(email, password, action='login'){
     action
   }
   try {
-    const response = await fetch('http://localhost/super-car/api/user', {
+    const response = await fetch('/super-car/api/user', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -163,3 +163,36 @@ export async function requestTest(...data){
   }
 }
 
+/**
+ * Retrieves the model ID from the current URL query parameters.
+ * @returns {string|null} The model ID if found, otherwise null.
+ */
+export function getModelIdFromUrl() {
+  // Get the current URL parameters
+  const urlParams = new URLSearchParams(window.location.search);
+
+  // Check if the 'modele' parameter exists in the URL
+  if (urlParams.has('modele')) {
+    // Retrieve the value of the 'modele' parameter
+    return urlParams.get('modele'); // Return the model ID
+  } else {
+    // If the 'modele' parameter is not in the URL
+    console.log("No model selected.");
+    return null; // Return null if not found
+  }
+}
+
+
+/**
+ * Returns an array of filtered data based on the specified filter.
+ * @param {string} filter - The value to filter by.
+ * @param {Object} data - The array of data to filter.
+ * @param {string} filterBy - The key in the data items to filter by.
+ * @returns {Array} - An array of filtered items that match the filter.
+ */
+export function filterData(filter, data, filterBy) {
+  return data.filter(item => {
+    // Use bracket notation to access the property dynamically
+    return item[filterBy] === filter;
+  });
+}
