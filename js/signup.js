@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   // disabled the signup button while at least on of the fields is not field or is not valid
   submitSignupFormButton.disabled = !allFiledsValid();
-  // check if all field are filled ans are valid
+  // check if all field are filled and are valid
   allInputs.forEach((input) => {
     input.addEventListener("input", (e) => {
       submitSignupFormButton.disabled = !allFiledsValid();
@@ -185,7 +185,7 @@ document.addEventListener("DOMContentLoaded", () => {
           message,
           "black"
         );
-        //password contains al least 8 characters and a maximum of 12 characters with a least 1 capital letter, 1 on lowercase letter, a number and special char
+        //password contains al least 8 characters and a maximum of 12 characters with the least 1 capital letter, 1 on lowercase letter, a number and special char
         if (
           passwordInput.value.trim().length > 0 &&
           isStringMatchRegEx(regexPasswordMedium, passwordInput.value)
@@ -200,7 +200,7 @@ document.addEventListener("DOMContentLoaded", () => {
             "solid 3px #0d6efd"
           );
         } else if (
-          //password contains al least 13 with a least 1 capital letter, 1 on lowercase letter, a number and special char
+          //password contains al least 13 with the least 1 capital letter, 1 on lowercase letter, a number and special char
           passwordInput.value.trim().length > 0 &&
           isStringMatchRegEx(regexStrongPassword, passwordInput.value)
         ) {
@@ -214,7 +214,7 @@ document.addEventListener("DOMContentLoaded", () => {
             "solid 3px #28a745"
           );
         } else if (
-          //password length is is greather or equal to 8 characters but dont contains capital and lowercase letter(s), on number, and one special char
+          //password length is greather or equal to 8 characters but doesn't contain capital and lowercase letter(s), on number, and one special char
           passwordInput.value.trim().length > 0 &&
           passwordInput.value.trim().length >= 8
         ) {
