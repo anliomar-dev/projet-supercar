@@ -9,4 +9,4 @@ favicon.ico
 testmysql.php
 test_sockets.php
 
-/vendor/
+vendor/
