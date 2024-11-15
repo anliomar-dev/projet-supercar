@@ -1,9 +1,11 @@
+import { hostAdmin } from "./utils";
+
 // Function to fetch all "essai" data without pagination from the server
 async function FetchAllEssaiWithoutPagination() {
   try {
     // Send a request to the API endpoint
     const response = await fetch(
-      "http://localhost/super-car/admin/api/all_essais"
+      `${hostAdmin}/super-car/admin/api/all_essais`
     );
     // Check if the response is okay (status code 200-299)
     if (!response.ok) {

@@ -10,6 +10,7 @@ import {
   updateCheckedCasesDatasetIds,
   handleClickDeleteMultiRowsBtn,
   showAndHideConfirmationBox,
+  hostAdmin
 } from "./utils";
 import {
   showPassword,
@@ -112,7 +113,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
           // Call deletion function
         await handleClickDeleteMultiRowsBtn(
-          "http://localhost/Super-car/admin/api/utilisateurs",
+          `${hostAdmin}/Super-car/admin/api/utilisateurs`,
           checkAllUsers,
           alertSuccess,
           alertDanger,
@@ -351,7 +352,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       // Call deletion function
       await handleClickDeleteMultiRowsBtn(
-        "http://localhost/Super-car/admin/api/utilisateurs",
+        `${hostAdmin}/Super-car/admin/api/utilisateurs`,
         checkAllUsers,
         alertSuccess,
         alertDanger,
@@ -377,7 +378,7 @@ async function addOrUpdateUser(httpMethod, data){
     const response = await sendData(
       data,
       httpMethod,
-      "http://localhost/super-car/admin/api/utilisateurs"
+      `${hostAdmin}/super-car/admin/api/utilisateurs`
     );
     const responseStatus = response.status;
     const responseMessage = response.message;
@@ -403,7 +404,7 @@ async function addOrUpdateUser(httpMethod, data){
       break;
       case "403":
         window.location.href =
-        "http://localhost/super-car/admin/permission_denied";
+        `${hostAdmin}/super-car/admin/permission_denied`;
         break;
       default:
       console.log(responseStatus);

@@ -1,4 +1,4 @@
-import { sortData, toggleAndSortDataBtns, fetchData } from "./utils";
+import { sortData, toggleAndSortDataBtns, fetchData, hostAdmin } from "./utils";
 import { resetForm } from "/super-car/js/utils";
 
 // current page
@@ -8,9 +8,9 @@ function isNumeric(value) {
 }
 function endPoint(contact, page = 1) {
   if (isNumeric(contact)) {
-    return `http://localhost/Super-car/admin/api/contacts?contact=${contact}`;
+    return `${hostAdmin}/super-car/admin/api/contacts?contact=${contact}`;
   } else if (contact === "all") {
-    return `http://localhost/Super-car/admin/api/contacts?contact=all&page=${page}`;
+    return `${hostAdmin}/super-car/admin/api/contacts?contact=all&page=${page}`;
   } else {
     throw new Error('Invalid value provided');
   }

@@ -8,6 +8,7 @@ import {
   showAlert,
   handleClickDeleteMultiRowsBtn,
   showAndHideConfirmationBox,
+  hostAdmin
 } from "./utils";
 import { resetForm } from "/super-car/js/utils";
 
@@ -16,9 +17,9 @@ function isNumeric(value) {
 }
 function endPoint(marque) {
   if (isNumeric(marque)) {
-    return `http://localhost/Super-car/admin/api/marques?marque=${marque}`;
+    return `${hostAdmin}/super-car/admin/api/marques?marque=${marque}`;
   } else if (marque === "all") {
-    return `http://localhost/Super-car/admin/api/marques?marque=all`;
+    return `${hostAdmin}/super-car/admin/api/marques?marque=all`;
   } else {
     throw new Error("Invalid value provided");
   }
@@ -106,7 +107,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         confirmDeleteBtn.onclick = async (e) => {
           e.preventDefault();
           await handleClickDeleteMultiRowsBtn(
-            "http://localhost/super-car/admin/api/marques",
+            `${hostAdmin}/super-car/admin/api/marques`,
             checkAllMarques,
             alertSuccess,
             alertDanger,
@@ -235,7 +236,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         // Call the deletion function with the IDs of selected brands
         await handleClickDeleteMultiRowsBtn(
-            "http://localhost/super-car/admin/api/marques",
+            `${hostAdmin}/super-car/admin/api/marques`,
             checkAllMarques, // Check if this variable is properly handled
             alertSuccess,
             alertDanger,
@@ -275,7 +276,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       if(httpMethod === "PUT"){
         data['IdMarque'] = formData.get('IdMarque')
       }
-      const postAndUpdatEndpoint = 'http://localhost/super-car/admin/api/marques'
+      const postAndUpdatEndpoint = `${hostAdmin}/super-car/admin/api/marques`
       createOrUpdate(
         httpMethod, data, 
         postAndUpdatEndpoint, 

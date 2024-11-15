@@ -8,6 +8,7 @@ import {
   showAlert,
   handleClickDeleteMultiRowsBtn,
   showAndHideConfirmationBox,
+  hostAdmin
 } from "./utils";
 import { resetForm } from "/super-car/js/utils";
 
@@ -18,9 +19,9 @@ function isNumeric(value) {
 }
 function endPoint(essai, page = 1) {
   if (isNumeric(essai)) {
-    return `http://localhost/Super-car/admin/api/essais?essai=${essai}`;
+    return `${hostAdmin}/super-car/admin/api/essais?essai=${essai}`;
   } else if (essai === "all") {
-    return `http://localhost/Super-car/admin/api/essais?essai=all&page=${page}`;
+    return `${hostAdmin}/super-car/admin/api/essais?essai=all&page=${page}`;
   } else {
     throw new Error('Invalid value provided');
   }
@@ -112,7 +113,7 @@ document.addEventListener('DOMContentLoaded', async ()=>{
         confirmDeleteBtn.onclick = async (e) => {
           e.preventDefault();
           await handleClickDeleteMultiRowsBtn(
-            "http://localhost/super-car/admin/api/essais",
+            `${hostAdmin}/super-car/admin/api/essais`,
             checkAllEssais,
             alertSuccess,
             alertDanger,
@@ -296,7 +297,7 @@ document.addEventListener('DOMContentLoaded', async ()=>{
 
       // Call deletion function
       await handleClickDeleteMultiRowsBtn(
-        "http://localhost/Super-car/admin/api/essais",
+        `${hostAdmin}/super-car/admin/api/essais`,
         checkAllEssais,
         alertSuccess,
         alertDanger,

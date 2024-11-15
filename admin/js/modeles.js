@@ -10,6 +10,7 @@ import {
   removeAlert,
   handleClickDeleteMultiRowsBtn,
   showAndHideConfirmationBox,
+  hostAdmin
 } from "./utils";
 
 // current page
@@ -20,12 +21,12 @@ function isNumeric(value) {
 let byBrand = false;
 function endPoint(value, page = 1, ifByBrand = byBrand) {
   if (ifByBrand) {
-    return `http://localhost/Super-car/admin/api/modeles?brand_id=${value}&page=${page}`;
+    return `${hostAdmin}/super-car/admin/api/modeles?brand_id=${value}&page=${page}`;
   } else {
     if (isNumeric(value)) {
-      return `http://localhost/Super-car/admin/api/modeles?modele=${value}`;
+      return `${hostAdmin}/super-car/admin/api/modeles?modele=${value}`;
     } else if (value === "all") {
-      return `http://localhost/Super-car/admin/api/modeles?modele=all&page=${page}`;
+      return `${hostAdmin}/super-car/admin/api/modeles?modele=all&page=${page}`;
     } else {
       throw new Error('Invalid value provided');
     }
@@ -113,7 +114,7 @@ document.addEventListener('DOMContentLoaded', async ()=>{
             sectionToShow.classList.remove('d-none');
           })
           const modeleId = parseInt(e.currentTarget.dataset.id);
-          const modele = await fetchData(`http://localhost/Super-car/admin/api/modeles?modele=${modeleId}`);
+          const modele = await fetchData(`${hostAdmin}/super-car/admin/api/modeles?modele=${modeleId}`);
           document.querySelector('#oldPrice').value = modele.Prix;
           Object.keys(modele).forEach(key => {
             const input = document.querySelector(`[name="${key}"]`);
@@ -139,7 +140,7 @@ document.addEventListener('DOMContentLoaded', async ()=>{
 
         // Call deletion function
         await handleClickDeleteMultiRowsBtn(
-          "http://localhost/Super-car/admin/api/modeles",
+          `${hostAdmin}/super-car/admin/api/modeles`,
           checkAllModels,
           alertSuccess,
           alertDanger,
@@ -342,7 +343,7 @@ document.addEventListener('DOMContentLoaded', async ()=>{
 
         // Call the deletion function with the IDs of selected brands
         await handleClickDeleteMultiRowsBtn(
-            "http://localhost/super-car/admin/api/modeles",
+            `${hostAdmin}/super-car/admin/api/modeles`,
             checkAllModels, // Check if this variable is properly handled
             alertSuccess,
             alertDanger,
@@ -393,7 +394,7 @@ async function createAndUpdateModele(httpMethod, data) {
     const response = await sendData(
       data,
       httpMethod,
-      "http://localhost/super-car/admin/api/modeles"
+      `${hostAdmin}/super-car/admin/api/modeles`
     );
     
     const responseStatus = response.status;
@@ -426,7 +427,7 @@ async function createAndUpdateModele(httpMethod, data) {
         break;
       case "403":
         // Redirect to the permission denied page
-        window.location.href = "http://localhost/super-car/admin/permission_denied";
+        window.location.href = `${hostAdmin}/super-car/admin/permission_denied`;
         break;
       case "min":
       case "max":

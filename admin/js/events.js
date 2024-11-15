@@ -1,4 +1,4 @@
-import { sortData, toggleAndSortDataBtns, fetchData } from "./utils";
+import { sortData, toggleAndSortDataBtns, fetchData, hostAdmin } from "./utils";
 import { resetForm } from "/super-car/js/utils";
 
 // current page
@@ -8,9 +8,9 @@ function isNumeric(value) {
 }
 function endPoint(event, page = 1) {
   if (isNumeric(event)) {
-    return `http://localhost/Super-car/admin/api/evennements?event=${event}`;
+    return `${hostAdmin}/super-car/admin/api/evennements?event=${event}`;
   } else if (event === "all") {
-    return `http://localhost/Super-car/admin/api/evennements?event=all&page=${page}`;
+    return `${hostAdmin}/super-car/admin/api/evennements?event=all&page=${page}`;
   } else {
     throw new Error('Invalid value provided');
   }

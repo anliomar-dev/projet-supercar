@@ -1,5 +1,5 @@
 import { showPassword, hidePassword} from "../../js/utils";
-import { login_admin } from "./utils";
+import { login_admin, hostAdmin } from "./utils";
 
 document.addEventListener('DOMContentLoaded', ()=>{
   const eyeIcon = document.querySelector(".eye-icon"); //show password icons
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
                 alertSuccess.classList.remove('d-none'); // Show the success alert
                 setTimeout(() => {
                     alertSuccess.classList.add('d-none'); // Hide the success alert
-                    window.location.href = `http://localhost/super-car/admin`;
+                    window.location.href = `${hostAdmin}/super-car/admin`;
                 }, 2000);
             }
         }, 3000);
