@@ -1,4 +1,4 @@
-import { showPassword, hidePassword, login } from "./utils";
+import { showPassword, hidePassword, login, HOST } from "./utils";
 import { isStringMatchRegEx } from "./forms-validation";
 
 const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
         alertDanger.querySelector('p').textContent = messageResponse;
         alertDanger.classList.add('alert-show');
       }else{
-        window.location.href = `http://localhost/super-car/supercar/essai`;
+        window.location.href = `${HOST}/super-car/supercar/essai`;
       }
     }catch(e){
       console.error(e);

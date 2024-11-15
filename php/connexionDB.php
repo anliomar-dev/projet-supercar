@@ -1,20 +1,33 @@
 <?php
-    // Informations de connexion
-    $HOST = "localhost";
-    $LOGIN = "root";
-    $PASS = "Omaranli56Multisys";
-    $DBNAME = "supercarDB";
+    // Define an absolute path to the project root
+    $rootPath = realpath(__DIR__ . '/../'); // 'realpath' is used to resolve the absolute path
 
-    // Établir la connexion
-    $DB = mysqli_connect($HOST, $LOGIN, $PASS, $DBNAME);
+    // Include the Composer autoloader
+    require_once $rootPath . '/vendor/autoload.php';
 
-    // Vérifier la connexion
-    if (!$DB) {
-        die("La connexion à la base de données a échoué: " . mysqli_connect_error());
+    // Load the .env file located at the root of the project
+    $dotenv = Dotenv\Dotenv::createImmutable($rootPath);
+    $dotenv->load();
+
+    // Check if the required environment variables are set
+    if (!isset($_ENV['HOST_DB'], $_ENV['DATABASENAME'], $_ENV['USER_DB'], $_ENV['PASSWORD_DB'])) {
+        die("The necessary environment variables are not set.");
     }
 
-    // Définir le jeu de caractères
-    mysqli_set_charset($DB, "utf8");
+    // Retrieve the environment variables
+    $HOST = $_ENV['HOST_DB'];
+    $DBNAME = $_ENV['DATABASENAME'];
+    $USER = $_ENV['USER_DB'];
+    $PASSWORD = $_ENV['PASSWORD_DB'];
 
-    // Connexion réussie (aucun message affiché)
+    // Connect to the database
+    $DB = mysqli_connect($HOST, $USER, $PASSWORD, $DBNAME);
+
+    // Check the connection
+    if (!$DB) {
+        die("Database connection failed: " . mysqli_connect_error());
+    }
+
+    // Set the character set for the connection
+    mysqli_set_charset($DB, "utf8");
 ?>

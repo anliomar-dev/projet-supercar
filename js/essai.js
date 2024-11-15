@@ -1,4 +1,4 @@
-import { fetchModelsByBrand, requestTest, resetForm } from "./utils";
+import { fetchModelsByBrand, requestTest, resetForm, HOST } from "./utils";
 
 /**
  * Filters models by a specified attribute (NomModele, TypeMoteur, or Prix) and supports pagination.
@@ -50,7 +50,7 @@ async function filterModels(
 async function fetchAvailableHoures(date) {
   try {
     const response = await fetch(
-      `http://localhost/super-car/api/horaires.php`,
+      `${HOST}/super-car/api/horaires.php`,
       {
         method: "POST",
         headers: {
@@ -244,6 +244,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   });
 
+  const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
   // form submission
   essaiForm.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -261,7 +262,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       userId,
       csrfToken,
     ]
-    const responseEssai = await requestTest(...essaiData)
+    const responseEssai = await requestTest(csrfToken, ...essaiData)
     const status = responseEssai.status;
     const messageResponse = responseEssai.message;
     if (status === 'success'){

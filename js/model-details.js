@@ -1,4 +1,4 @@
-import {filterData, getModelIdFromUrl} from "./utils";
+import {filterData, getModelIdFromUrl, HOST} from "./utils";
 import {fetchData} from "../admin/js/utils";
 
 document.addEventListener('DOMContentLoaded', async()=>{
