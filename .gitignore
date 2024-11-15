@@ -1,12 +1,2 @@
 .env
-# Répertoires et fichiers spécifiques à WAMP
-wamplangues/
-wampthemes/
-
-# Fichiers de test et autres fichiers temporaires
-add_vhost.php
-favicon.ico
-testmysql.php
-test_sockets.php
-
-vendor/
+/vendor/
