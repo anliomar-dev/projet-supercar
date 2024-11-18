@@ -16,7 +16,7 @@
 
         // get the result of the query
         $result = mysqli_stmt_get_result($stmt);
-
+    
         // check if there a user registered with this email
         if ($user = mysqli_fetch_assoc($result)) {
             // check the password
@@ -30,7 +30,6 @@
                 $_SESSION['last_name'] = $user['Nom'];
                 $_SESSION['is_admin'] = $user['est_admin'];
                 $_SESSION['is_superadmin'] = $user['est_superadmin'];
-    
                 // generate CSRF token
                 if (empty($_SESSION['csrf_token'])) {
                     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
@@ -62,17 +61,24 @@ function create_user(
         global $DB;
         
         // Hash the password
-        $hashed_password = password_hash($password, PASSWORD_BCRYPT);
+        $hashed_password = 
+        password_hash
+        ($password, PASSWORD_BCRYPT);
 
         // Prepare the SQL query
-        $query = 'INSERT INTO utilisateur (Nom, Prenom, Adresse, NumTel, Email, MotDePasse)
-                VALUES (?, ?, ?, ?, ?, ?)';
+        $query = 'INSERT INTO utilisateur 
+            (Nom, Prenom, Adresse, NumTel, Email, MotDePasse)
+            VALUES (?, ?, ?, ?, ?, ?)';
         
         // Prepare the statement
         if ($stmt = mysqli_prepare($DB, $query)) {
             // Bind the parameters
-            mysqli_stmt_bind_param($stmt, 'ssssss', $firstname, $lastname, $address, $phone, $email, $hashed_password);
-            
+            mysqli_stmt_bind_param(
+                $stmt, 'ssssss', $firstname, 
+                $lastname, $address, 
+                $phone, $email, 
+                $hashed_password
+            );
             // Execute the statement
             $result = mysqli_stmt_execute($stmt);
             // Close the statement

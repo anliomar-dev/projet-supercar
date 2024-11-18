@@ -244,7 +244,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   });
 
-  const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+  const csrfToken = document.querySelector('meta[name="csrf-token"]')
+  .getAttribute('content');
+  
   // form submission
   essaiForm.addEventListener("submit", async (e) => {
     e.preventDefault();
