@@ -48,10 +48,10 @@
                     <nav class="header_menu">
                         <ul>
                             <li><a href="/" class="header_link">Acceuil</a></li>
-                            <li><a href="/supercar/marques" class="header_link">Marques</a></li>
-                            <li><a href="/supercar/essai" class="header_link">Essai</a></li>
-                            <li><a href="/supercar/evennements" class="header_link">Evénnements</a></li>
-                            <li><a href="/supercar/contact" class="header_link">contact</a></li>
+                            <li><a href="/supercar/marques.php" class="header_link">Marques</a></li>
+                            <li><a href="/supercar/essai.php" class="header_link">Essai</a></li>
+                            <li><a href="/supercar/evennements.php" class="header_link">Evénnements</a></li>
+                            <li><a href="/supercar/contact.php" class="header_link">contact</a></li>
                         </ul>
                     </nav>
                     <!--end navbar-->
@@ -61,8 +61,8 @@
                                 include_once('components/dropdown_accountSettings.php');
                             }else{
                                 echo"
-                                    <a href='/supercar/signin' class='btn btn-secondary header_secondary'>Login</a>
-                                    <a href='/supercar/signup' class='btn btn-primary ms-3'>Sign up</a>
+                                    <a href='/supercar/signin.php' class='btn btn-secondary header_secondary'>Login</a>
+                                    <a href='/supercar/signup.php' class='btn btn-primary ms-3'>Sign up</a>
                                 ";
                             }
                         ?>
@@ -78,8 +78,8 @@
                     <h2 class="animation2">find your dream car with us</h2>
                     <p class="text-white animation3">depuis 2009 nous vous accompagnons pour vous aider a trouvez votre voiture de reve</p>
                     <div class="buttons text-center col-12">
-                        <a href="/supercar/contact" class="btn btn-primary animation4">contactez nous</a>
-                        <a href="/supercar/signup" class="btn btn-secondary animation5">inscrivez vous</a>
+                        <a href="/supercar/contact.php" class="btn btn-primary animation4">contactez nous</a>
+                        <a href="/supercar/signup.php" class="btn btn-secondary animation5">inscrivez vous</a>
                     </div>
                 </div>
                 <div class="image">
