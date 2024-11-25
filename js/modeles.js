@@ -268,7 +268,7 @@ document.addEventListener("DOMContentLoaded", async () => {
               localStorage.setItem('NomModele', modelName)
               localStorage.setItem('IdModele', idModel)
               localStorage.setItem('IdMarque', idBrand)
-              window.location.href = `${HOST}/super-car/supercar/essai`
+              window.location.href = `${HOST}/supercar/essai`
             })
           })
         });
@@ -345,7 +345,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         localStorage.setItem('NomModele', modelName)
         localStorage.setItem('IdModele', idModel)
         localStorage.setItem('IdMarque', idBrand)
-        window.location.href = `${HOST}/super-car/supercar/essai`
+        window.location.href = `${HOST}/supercar/essai`
       })
     })
   }

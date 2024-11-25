@@ -1,5 +1,5 @@
 import { sortData, toggleAndSortDataBtns, fetchData, hostAdmin } from "./utils";
-import { resetForm } from "/super-car/js/utils";
+import { resetForm } from "/js/utils";
 
 // current page
 localStorage.setItem("eventsCurrentPage", 1);
@@ -8,9 +8,9 @@ function isNumeric(value) {
 }
 function endPoint(event, page = 1) {
   if (isNumeric(event)) {
-    return `${hostAdmin}/super-car/admin/api/evennements?event=${event}`;
+    return `${hostAdmin}/admin/api/evennements?event=${event}`;
   } else if (event === "all") {
-    return `${hostAdmin}/super-car/admin/api/evennements?event=all&page=${page}`;
+    return `${hostAdmin}/admin/api/evennements?event=all&page=${page}`;
   } else {
     throw new Error('Invalid value provided');
   }

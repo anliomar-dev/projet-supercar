@@ -17,7 +17,7 @@ import {
   hidePassword,
   createUser,
   resetForm,
-} from "/super-car/js/utils";
+} from "/js/utils";
 
 // current page
 localStorage.setItem("usersCurrentPage", 1);
@@ -113,7 +113,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
           // Call deletion function
         await handleClickDeleteMultiRowsBtn(
-          `${hostAdmin}/Super-car/admin/api/utilisateurs`,
+          `${hostAdmin}/admin/api/utilisateurs`,
           checkAllUsers,
           alertSuccess,
           alertDanger,
@@ -352,7 +352,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       // Call deletion function
       await handleClickDeleteMultiRowsBtn(
-        `${hostAdmin}/Super-car/admin/api/utilisateurs`,
+        `${hostAdmin}/admin/api/utilisateurs`,
         checkAllUsers,
         alertSuccess,
         alertDanger,
@@ -378,7 +378,7 @@ async function addOrUpdateUser(httpMethod, data){
     const response = await sendData(
       data,
       httpMethod,
-      `${hostAdmin}/super-car/admin/api/utilisateurs`
+      `${hostAdmin}/admin/api/utilisateurs`
     );
     const responseStatus = response.status;
     const responseMessage = response.message;
@@ -404,7 +404,7 @@ async function addOrUpdateUser(httpMethod, data){
       break;
       case "403":
         window.location.href =
-        `${hostAdmin}/super-car/admin/permission_denied`;
+        `${hostAdmin}/admin/permission_denied`;
         break;
       default:
       console.log(responseStatus);

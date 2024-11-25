@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
                 alertSuccess.classList.remove('d-none'); // Show the success alert
                 setTimeout(() => {
                     alertSuccess.classList.add('d-none'); // Hide the success alert
-                    window.location.href = `${hostAdmin}/super-car/admin`;
+                    window.location.href = `${hostAdmin}/admin`;
                 }, 2000);
             }
         }, 3000);
