@@ -1,4 +1,4 @@
-import { showPassword, hidePassword, login, HOST } from "./utils";
+import { showPassword, hidePassword, login, HOST } from "./utils.js";
 
 
 const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
