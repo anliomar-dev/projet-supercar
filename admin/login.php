@@ -61,7 +61,7 @@
       </form>
     </div>
     <div class="text-center mt-2">
-      <p>Retour vers le <a href="http://localhost/super-car/">site</a></p>
+      <p>Retour vers le <a href="/">site</a></p>
     </div>
     <footer class="position-fixed bottom-0 col-12 d-flex flex-wrap justify-content-center align-items-center text-white pt-3" style="background-color: #263238;">
       <p class="mx-3">Copyright © 2024 Supercar ltd.</p>

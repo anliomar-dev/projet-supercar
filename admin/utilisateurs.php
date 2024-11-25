@@ -1,8 +1,8 @@
 <?php
     // start new session if there is not a session
     include_once('../php/utils.php');
-    $LOGIN_URL = "/super-car/admin/login";
-    $SESSION_EXPIRED_URL = "/super-car/admin/session_expired";
+    $LOGIN_URL = "/admin/login.php.php";
+    $SESSION_EXPIRED_URL = "/admin/session_expired.html.html";
     is_user_authenticated(5, $LOGIN_URL, $SESSION_EXPIRED_URL);
 ?>
 <!DOCTYPE html>
@@ -17,12 +17,12 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/super-car/admin/styles/dashboard.css" rel="stylesheet">
-    <link href="/super-car/admin/styles/users.css" rel="stylesheet">
-    <link href="/super-car/admin/styles/common.css" rel="stylesheet">
+    <link href="/admin/styles/dashboard.css" rel="stylesheet">
+    <link href="/admin/styles/users.css" rel="stylesheet">
+    <link href="/admin/styles/common.css" rel="stylesheet">
     <script src="js/users.js" type="module" defer></script>
     <script src="js/sidebar_navbar.js" type="module" defer></script>
-    <link href="/super-car/admin/components/sidebar.css" rel="stylesheet">
+    <link href="/admin/components/sidebar.css" rel="stylesheet">
 </head>
 <body>
 <div class="container-fluid">

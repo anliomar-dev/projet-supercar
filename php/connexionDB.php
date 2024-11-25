@@ -1,9 +1,7 @@
 <?php
-    // Define an absolute path to the project root
-    $rootPath = realpath(__DIR__ . '/../'); // 'realpath' is used to resolve the absolute path
 
     // Include the Composer autoloader
-    require_once $rootPath . '/vendor/autoload.php';
+    require_once __DIR__ . '/vendor/autoload.php';
 
     // Load the .env file located at the root of the project
     $dotenv = Dotenv\Dotenv::createImmutable($rootPath);

@@ -12,7 +12,7 @@
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
                 <li class="d-flex justify-content-center">
                     <button type="btn" class="btn text-center py-0" style="background-color: #28a745;">
-                        <a class="dropdown-item text-white" style="background-color: #28a745; font-size: 14px;" href="/super-car/supercar/dashboard">dashboard</a>
+                        <a class="dropdown-item text-white" style="background-color: #28a745; font-size: 14px;" href="/supercar/dashboard">dashboard</a>
                     </button>
                 </li>
                 <div class="dropdown-divider"></div>
