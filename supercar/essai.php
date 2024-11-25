@@ -1,7 +1,7 @@
 <?php
   // start new session if there is not a session
-  $LOGIN_URL = "/supercar/signin";
-  $SESSION_EXPIRED_URL = "/supercar/session_expired";
+  $LOGIN_URL = "/supercar/signin.php";
+  $SESSION_EXPIRED_URL = "/supercar/session_expired.html";
   include_once('../php/utils.php');
   is_user_authenticated(10, $LOGIN_URL, $SESSION_EXPIRED_URL);
 ?>
