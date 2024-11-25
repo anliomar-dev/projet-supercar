@@ -1,7 +1,7 @@
 <?php
     include_once('../php/utils.php');
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $login_url = "/supercar/signin";
+        $login_url = "/supercar/signin.php";
         if(isset($_POST['logout'])) {
             logout($login_url);
         }
@@ -22,16 +22,16 @@
                     <a class="nav-link" href="/">Accueil</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/supercar/marques">Marques</a>
+                    <a class="nav-link" href="/supercar/marques.php">Marques</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/supercar/essai">Essai</a>
+                    <a class="nav-link" href="/supercar/essai.php">Essai</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/supercar/evennements">Événements</a>
+                    <a class="nav-link" href="/supercar/evennements.php">Événements</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/supercar/contact">Contact</a>
+                    <a class="nav-link" href="/supercar/contact.php">Contact</a>
                 </li>
             </ul>
             <div class="d-flex">
@@ -40,8 +40,8 @@
                         include_once('dropdown_accountSettings.php');
                     }else{
                         echo"
-                            <a class='btn btn-login me-2' href='/supercar/signin'>Login</a>
-                            <a class='btn btn-signup' href='/supercar/signup'>Sign up</a>
+                            <a class='btn btn-login me-2' href='/supercar/signin.php'>Login</a>
+                            <a class='btn btn-signup' href='/supercar/signup.php'>Sign up</a>
                         ";
                     }
                 ?>
