@@ -44,7 +44,7 @@ export function hidePassword(icon) {
  */
 export async function fetchModelsByBrand(brandId, page=1){
   try{
-    const response = await fetch(`${HOST}/api/modeles?brand_id=${brandId}&page=${page}`)
+    const response = await fetch(`${HOST}/api/modeles.php?brand_id=${brandId}&page=${page}`)
     if(!response.ok){
       const data = response.json()
       return data
@@ -110,7 +110,7 @@ export async function login(email, password, action='login'){
     action
   }
   try {
-    const response = await fetch(`${HOST}/api/user`, {
+    const response = await fetch(`${HOST}/api/user.php`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -148,7 +148,7 @@ export async function requestTest(csrf_token, ...data){
   const [date, heure, idMarque, idModele, user_id, csrfToken] = data
   const essaiData = {date, heure, idMarque, idModele, user_id, csrfToken}
   try {
-    const response = await fetch(`${HOST}/api/essai/request`, {
+    const response = await fetch(`${HOST}/api/essai/request.php`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

@@ -1,4 +1,4 @@
-import { fetchModelsByBrand, HOST } from "./utils";
+import { fetchModelsByBrand, HOST } from "./utils.js";
 
 // Get the query string (everything after the '?')
 const queryString = window.location.search;
@@ -268,7 +268,7 @@ document.addEventListener("DOMContentLoaded", async () => {
               localStorage.setItem('NomModele', modelName)
               localStorage.setItem('IdModele', idModel)
               localStorage.setItem('IdMarque', idBrand)
-              window.location.href = `${HOST}/supercar/essai`
+              window.location.href = `${HOST}/supercar/essai.php`
             })
           })
         });
@@ -345,7 +345,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         localStorage.setItem('NomModele', modelName)
         localStorage.setItem('IdModele', idModel)
         localStorage.setItem('IdMarque', idBrand)
-        window.location.href = `${HOST}/supercar/essai`
+        window.location.href = `${HOST}/supercar/essai.php`
       })
     })
   }

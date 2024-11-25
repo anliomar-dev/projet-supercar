@@ -1,5 +1,5 @@
-import { showPassword, hidePassword} from "../../js/utils";
-import { login_admin, hostAdmin } from "./utils";
+import { showPassword, hidePassword} from "../../js/utils.js";
+import { login_admin, hostAdmin } from "./utils.js";
 
 document.addEventListener('DOMContentLoaded', ()=>{
   const eyeIcon = document.querySelector(".eye-icon"); //show password icons

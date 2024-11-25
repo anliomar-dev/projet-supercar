@@ -11,13 +11,13 @@ import {
   handleClickDeleteMultiRowsBtn,
   showAndHideConfirmationBox,
   hostAdmin
-} from "./utils";
+} from "./utils.js";
 import {
   showPassword,
   hidePassword,
   createUser,
   resetForm,
-} from "/js/utils";
+} from "/js/utils.js";
 
 // current page
 localStorage.setItem("usersCurrentPage", 1);
@@ -113,7 +113,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
           // Call deletion function
         await handleClickDeleteMultiRowsBtn(
-          `${hostAdmin}/admin/api/utilisateurs`,
+          `${hostAdmin}/admin/api/utilisateurs.php`,
           checkAllUsers,
           alertSuccess,
           alertDanger,
@@ -352,7 +352,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       // Call deletion function
       await handleClickDeleteMultiRowsBtn(
-        `${hostAdmin}/admin/api/utilisateurs`,
+        `${hostAdmin}/admin/api/utilisateurs.php`,
         checkAllUsers,
         alertSuccess,
         alertDanger,
@@ -378,7 +378,7 @@ async function addOrUpdateUser(httpMethod, data){
     const response = await sendData(
       data,
       httpMethod,
-      `${hostAdmin}/admin/api/utilisateurs`
+      `${hostAdmin}/admin/api/utilisateurs.php`
     );
     const responseStatus = response.status;
     const responseMessage = response.message;
@@ -404,7 +404,7 @@ async function addOrUpdateUser(httpMethod, data){
       break;
       case "403":
         window.location.href =
-        `${hostAdmin}/admin/permission_denied`;
+        `${hostAdmin}/admin/permission_denied.html`;
         break;
       default:
       console.log(responseStatus);

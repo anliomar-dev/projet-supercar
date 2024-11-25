@@ -1,4 +1,4 @@
-import { fetchModelsByBrand, requestTest, resetForm, HOST } from "./utils";
+import { fetchModelsByBrand, requestTest, resetForm, HOST } from "./utils.js";
 
 /**
  * Filters models by a specified attribute (NomModele, TypeMoteur, or Prix) and supports pagination.

@@ -1,5 +1,5 @@
-import { sortData, toggleAndSortDataBtns, fetchData, hostAdmin } from "./utils";
-import { resetForm } from "/js/utils";
+import { sortData, toggleAndSortDataBtns, fetchData, hostAdmin } from "./utils.js";
+import { resetForm } from "/js/utils.js";
 
 // current page
 localStorage.setItem("eventsCurrentPage", 1);
@@ -8,9 +8,9 @@ function isNumeric(value) {
 }
 function endPoint(event, page = 1) {
   if (isNumeric(event)) {
-    return `${hostAdmin}/admin/api/evennements?event=${event}`;
+    return `${hostAdmin}/admin/api/evennements.php?event=${event}`;
   } else if (event === "all") {
-    return `${hostAdmin}/admin/api/evennements?event=all&page=${page}`;
+    return `${hostAdmin}/admin/api/evennements.php?event=all&page=${page}`;
   } else {
     throw new Error('Invalid value provided');
   }

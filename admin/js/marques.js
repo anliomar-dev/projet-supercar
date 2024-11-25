@@ -9,17 +9,17 @@ import {
   handleClickDeleteMultiRowsBtn,
   showAndHideConfirmationBox,
   hostAdmin
-} from "./utils";
-import { resetForm } from "/js/utils";
+} from "./utils.js";
+import { resetForm } from "/js/utils.js";
 
 function isNumeric(value) {
   return !isNaN(value) && !isNaN(parseFloat(value));
 }
 function endPoint(marque) {
   if (isNumeric(marque)) {
-    return `${hostAdmin}/admin/api/marques?marque=${marque}`;
+    return `${hostAdmin}/admin/api/marques.php?marque=${marque}`;
   } else if (marque === "all") {
-    return `${hostAdmin}/admin/api/marques?marque=all`;
+    return `${hostAdmin}/admin/api/marques.php?marque=all`;
   } else {
     throw new Error("Invalid value provided");
   }
@@ -236,7 +236,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         // Call the deletion function with the IDs of selected brands
         await handleClickDeleteMultiRowsBtn(
-            `${hostAdmin}/admin/api/marques`,
+            `${hostAdmin}/admin/api/marques.php`,
             checkAllMarques, // Check if this variable is properly handled
             alertSuccess,
             alertDanger,
@@ -276,7 +276,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       if(httpMethod === "PUT"){
         data['IdMarque'] = formData.get('IdMarque')
       }
-      const postAndUpdatEndpoint = `${hostAdmin}/admin/api/marques`
+      const postAndUpdatEndpoint = `${hostAdmin}/admin/api/marques.php`
       createOrUpdate(
         httpMethod, data, 
         postAndUpdatEndpoint, 

@@ -1,4 +1,4 @@
-import { showPassword, hidePassword, createUser, resetForm, HOST } from "./utils";
+import { showPassword, hidePassword, createUser, resetForm, HOST } from "./utils.js";
 
 import {
   isStringLengthGreaterThan,

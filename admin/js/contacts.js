@@ -1,5 +1,5 @@
-import { sortData, toggleAndSortDataBtns, fetchData, hostAdmin } from "./utils";
-import { resetForm } from "/js/utils";
+import { sortData, toggleAndSortDataBtns, fetchData, hostAdmin } from "./utils.js";
+import { resetForm } from "/js/utils.js";
 
 // current page
 localStorage.setItem("contactsCurrentPage", 1);
@@ -8,9 +8,9 @@ function isNumeric(value) {
 }
 function endPoint(contact, page = 1) {
   if (isNumeric(contact)) {
-    return `${hostAdmin}/admin/api/contacts?contact=${contact}`;
+    return `${hostAdmin}/admin/api/contacts.php?contact=${contact}`;
   } else if (contact === "all") {
-    return `${hostAdmin}/admin/api/contacts?contact=all&page=${page}`;
+    return `${hostAdmin}/admin/api/contacts.php?contact=all&page=${page}`;
   } else {
     throw new Error('Invalid value provided');
   }

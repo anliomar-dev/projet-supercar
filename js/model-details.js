@@ -1,5 +1,5 @@
-import {filterData, getModelIdFromUrl, HOST} from "./utils";
-import {fetchData} from "../admin/js/utils";
+import {filterData, getModelIdFromUrl, HOST} from "./utils.js";
+import {fetchData} from "../admin/js/utils.js";
 
 document.addEventListener('DOMContentLoaded', async()=>{
     const moreDetailsBtn = document.querySelector('.more-details-btn');
@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', async()=>{
         }
     })
     const idModel = getModelIdFromUrl()
-    const data = await  fetchData(`/api/model-images?modele=${idModel}`)
+    const data = await  fetchData(`/api/model-images.php?modele=${idModel}`)
     const images = data.images;
     const imagesBaseUrl = `/medias/images/${brandName}/`;
 

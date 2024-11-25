@@ -11,7 +11,7 @@ import {
   handleClickDeleteMultiRowsBtn,
   showAndHideConfirmationBox,
   hostAdmin
-} from "./utils";
+} from "./utils.js";
 
 // current page
 localStorage.setItem("modelsCurrentPage", 1);
@@ -21,12 +21,12 @@ function isNumeric(value) {
 let byBrand = false;
 function endPoint(value, page = 1, ifByBrand = byBrand) {
   if (ifByBrand) {
-    return `${hostAdmin}/admin/api/modeles?brand_id=${value}&page=${page}`;
+    return `${hostAdmin}/admin/api/modeles.php?brand_id=${value}&page=${page}`;
   } else {
     if (isNumeric(value)) {
-      return `${hostAdmin}/admin/api/modeles?modele=${value}`;
+      return `${hostAdmin}/admin/api/modeles.php?modele=${value}`;
     } else if (value === "all") {
-      return `${hostAdmin}/admin/api/modeles?modele=all&page=${page}`;
+      return `${hostAdmin}/admin/api/modeles.php?modele=all&page=${page}`;
     } else {
       throw new Error('Invalid value provided');
     }
@@ -343,7 +343,7 @@ document.addEventListener('DOMContentLoaded', async ()=>{
 
         // Call the deletion function with the IDs of selected brands
         await handleClickDeleteMultiRowsBtn(
-            `${hostAdmin}/admin/api/modeles`,
+            `${hostAdmin}/admin/api/modeles.php`,
             checkAllModels, // Check if this variable is properly handled
             alertSuccess,
             alertDanger,
@@ -427,7 +427,7 @@ async function createAndUpdateModele(httpMethod, data) {
         break;
       case "403":
         // Redirect to the permission denied page
-        window.location.href = `${hostAdmin}/admin/permission_denied`;
+        window.location.href = `${hostAdmin}/admin/permission_denied.html`;
         break;
       case "min":
       case "max":

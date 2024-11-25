@@ -7,7 +7,7 @@ export const hostAdmin = "https://anliomar.alwaysdata.net"
  */
 export async function fetchUsers(page=1){
   try{
-    const response = await fetch(`${hostAdmin}/admin/api/utilisateurs?user=all&page=${page}`)
+    const response = await fetch(`${hostAdmin}/admin/api/utilisateurs.php?user=all&page=${page}`)
     if(!response.ok){
       throw new Error(response.statusText)
     }
@@ -67,7 +67,7 @@ export function sortData(data, sortBy, order) {
  */
 export async function getUser(userId){
   try{
-    const response = await fetch(`${hostAdmin}/admin/api/utilisateurs?user=${userId}`)
+    const response = await fetch(`${hostAdmin}/admin/api/utilisateurs.php?user=${userId}`)
     if(!response.ok){
       throw new Error(response.statusText)
     }
@@ -305,7 +305,7 @@ export async function login_admin(email, password){
     password,
   }
   try {
-    const response = await fetch(`${hostAdmin}/admin/api/login`, {
+    const response = await fetch(`${hostAdmin}/admin/api/login.php`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -431,7 +431,7 @@ export async function createOrUpdate(
       break;
       case "403":
         window.location.href =
-        `${hostAdmin}/admin/permission_denied`;
+        `${hostAdmin}/admin/permission_denied.html`;
         break;
       default:
       console.log(responseStatus);
