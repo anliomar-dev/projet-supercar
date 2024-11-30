@@ -244,10 +244,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   });
 
-  const csrfToken = document.querySelector('meta[name="csrf-token"]')
-  .getAttribute('content');
-  console.log(csrfToken)
-  // form submission
   essaiForm.addEventListener("submit", async (e) => {
     e.preventDefault();
     const date = dateInput.value;
@@ -255,7 +251,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const idMarque = optionBrands.value;
     const idModele = modelInput.dataset.id;
     const userId = document.getElementById('user_id').value;
-    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+    const csrfToken = document.getElementById('csrf_token').value;
     const essaiData = [
       date,
       heure,

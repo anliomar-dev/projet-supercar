@@ -10,8 +10,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="csrf-token" content="<?php echo htmlspecialchars($_SESSION['csrf_token'], ENT_QUOTES, 'UTF-8'); ?>">
- 
   <link href="../bootstrap-5.3.3-dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="../stylesheets/navbar.css" rel="stylesheet">
   <link href="../stylesheets/essai.css" rel="stylesheet">
@@ -41,7 +39,6 @@
       </svg>
   </span>
   <main class="">
-    <?php echo $_SESSION['csrf_token']; ?>
     <!-- signup form -->
     <div class="form_container d-flex justify-content-center flex-wrap pt-3 mt-5">
         <div class="d-flex flex-column mx-3 bg-white px-5 py-3 rounded-3 shadow authData my-2">
