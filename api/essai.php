@@ -37,7 +37,7 @@
       if (trim($csrf_token) !== trim($_SESSION['csrf_token'])) {
         $response = [
           'status' => 'error',
-          'message' => 'Token CSRF non valide',
+          'message' => 'Token CSRF non valide' . ' ' . 'client token: '. $csrf_token . ' ; '. 'session token: ' . $_SESSION['csrf_token'],
         ];
         echo json_encode($response);
       }else{
