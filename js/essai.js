@@ -246,7 +246,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const csrfToken = document.querySelector('meta[name="csrf-token"]')
   .getAttribute('content');
-  
+  console.log(csrfToken)
   // form submission
   essaiForm.addEventListener("submit", async (e) => {
     e.preventDefault();
