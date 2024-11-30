@@ -161,6 +161,7 @@ export async function requestTest(...data){
     }
     const data = await response.text()
     console.log(data)
+    return data
   }catch(e){
     console.error('Internal server error: ' + e.message);
   }
