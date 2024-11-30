@@ -152,7 +152,8 @@ export async function requestTest(...data){
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'X-CSRF-TOKEN': csrfToken
+      'X-CSRF-TOKEN': csrfToken,
+      'CSRF-TOKEN': csrfToken
       },
       body: JSON.stringify(essaiData)
     })
