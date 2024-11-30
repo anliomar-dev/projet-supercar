@@ -19,9 +19,6 @@
   } else {
     // get data
     $input = file_get_contents('php://input');
-    $headers = getallheaders(); // get headers
-    //$csrf_token = $headers['X-Csrf-Token'];
-    $csrf_token = $headers['CSRF-TOKEN'];
     // Convert the received JSON data into an associative array
     $data = json_decode($input, true);
 
@@ -33,6 +30,7 @@
       $id_marque = intval($data['idMarque']);
       $id_modele = intval($data['idModele']);
       $user_id = intval($_SESSION['user_id']);
+      $csrf_token = $data['csrfToken'] ? $data['csrfToken'] : "";
       
       // Validate CSRF token
       if (trim($csrf_token) !== trim($_SESSION['csrf_token'])) {
