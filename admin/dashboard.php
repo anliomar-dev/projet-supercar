@@ -144,7 +144,7 @@
                             <div class="card-body">
                                 <div class="d-flex justify-content-between">
                                     <span class="user-name">omar</span>
-                                    <span class="time-text"><i class="fas fa-clock"></i> il y'a 2 jours</span>
+                                    <span class="time-text"><i class="fas fa-clock"></i> il y'a 1 heure</span>
                                 </div>
                                 <hr class="my-2">
                                 <p class="mb-1">Table : <strong>utilisateur</strong></p>
@@ -162,7 +162,7 @@
                             <div class="card-body">
                                 <div class="d-flex justify-content-between">
                                     <span class="user-name">julien</span>
-                                    <span class="time-text"><i class="fas fa-clock"></i> il y'a 5 min</span>
+                                    <span class="time-text"><i class="fas fa-clock"></i> il y'a 2 jours</span>
                                 </div>
                                 <hr class="my-2">
                                 <p class="mb-1">Table : <strong>modele</strong></p>
