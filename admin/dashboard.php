@@ -79,14 +79,14 @@
                         </div>
                         <div class="numbers d-flex flex-column align-items-end pb-2">
                             <p class="mb-0" style="font-size: 18px;">Modèles voitures</p>
-                            <h4 class="mt-0 ms-1">100</h4>
+                            <h4 class="mt-0 ms-1">50</h4>
                         </div>
                     </div>
                     <div class="col-12 d-flex justify-content-center">
                         <hr class="py-0 my-0 d-flex justify-content-center stat-cards_line" >
                     </div>
                     <div class="mt-3">
-                        <p><strong class="text-success">+24</strong> Modèles</p>
+                        <p><strong class="text-success">50</strong> Modèles</p>
                     </div>
                 </div>
                 <div class=" d-flex flex-column border rounded-4 px-3 py-2 shadow mx-3 mb-5 stat-card">
@@ -97,15 +97,15 @@
                             </svg>          
                         </div>
                         <div class="numbers d-flex flex-column align-items-end pb-2">
-                            <p class="mb-0" style="font-size: 18px;">Modèles voitures</p>
-                            <h4 class="mt-0 ms-1">100</h4>
+                            <p class="mb-0" style="font-size: 18px;">Marques</p>
+                            <h4 class="mt-0 ms-1">4</h4>
                         </div>
                     </div>
                     <div class="col-12 d-flex justify-content-center">
                         <hr class="py-0 my-0 d-flex justify-content-center stat-cards_line" >
                     </div>
                     <div class="mt-3">
-                        <p><strong class="text-success">+24</strong> Modèles</p>
+                        <p><strong class="text-success">4</strong> Marques</p>
                     </div>
                 </div>
                 <div class=" d-flex flex-column border rounded-4 px-3 py-2 shadow mx-3 mb-5 stat-card">
