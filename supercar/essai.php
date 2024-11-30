@@ -10,7 +10,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="csrf-token" content="<?php echo $_SESSION['csrf_token']; ?>">
+  <meta name="csrf-token" content="<?php echo htmlspecialchars($_SESSION['csrf_token'], ENT_QUOTES, 'UTF-8'); ?>">
   <link href="../bootstrap-5.3.3-dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="../stylesheets/navbar.css" rel="stylesheet">
   <link href="../stylesheets/essai.css" rel="stylesheet">

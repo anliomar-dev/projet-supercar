@@ -34,7 +34,7 @@
       $user_id = intval($_SESSION['user_id']);
       
       // Validate CSRF token
-      if ($csrf_token !== $_SESSION['csrf_token']) {
+      if (trim($csrf_token) !== trim($_SESSION['csrf_token'])) {
         $response = [
           'status' => 'error',
           'message' => 'Token CSRF non valide' . json_encode($headers),
