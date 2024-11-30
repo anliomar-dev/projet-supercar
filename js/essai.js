@@ -262,7 +262,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       idMarque,
       idModele,
       userId,
-      csrfToken,
+      document.querySelector('meta[name="csrf-token"]').getAttribute('content')
     ]
     const responseEssai = await requestTest(...essaiData)
     console.log(responseEssai)
