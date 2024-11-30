@@ -153,7 +153,6 @@ export async function requestTest(...data){
     headers: {
       'Content-Type': 'application/json',
       'X-CSRF-TOKEN': csrfToken,
-      'CSRF-TOKEN': csrfToken
       },
       body: JSON.stringify(essaiData)
     })
@@ -162,6 +161,7 @@ export async function requestTest(...data){
     }
     const data = await response.text()
     console.log(data)
+    console.log(csrfToken)
     return data
   }catch(e){
     console.error('Internal server error: ' + e.message);
