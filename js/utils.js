@@ -144,7 +144,7 @@ export function resetForm(...fields) {
   }
 }
 
-export async function requestTest(csrfToken, ...data){
+export async function requestTest(...data){
   const [date, heure, idMarque, idModele, user_id, csrfToken] = data
   const essaiData = {date, heure, idMarque, idModele, user_id, csrfToken}
   try {

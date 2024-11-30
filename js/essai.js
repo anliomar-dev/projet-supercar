@@ -264,7 +264,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       userId,
       csrfToken,
     ]
-    const responseEssai = await requestTest(csrfToken, ...essaiData)
+    const responseEssai = await requestTest(...essaiData)
     const status = responseEssai.status;
     const messageResponse = responseEssai.message;
     if (status === 'success'){
