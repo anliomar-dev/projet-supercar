@@ -20,7 +20,7 @@
     // get data
     $input = file_get_contents('php://input');
     $headers = getallheaders(); // get headers
-    $csrf_token = $headers['X-CSRF-TOKEN'];
+    $csrf_token = $headers['X-Csrf-Token'];
     // Convert the received JSON data into an associative array
     $data = json_decode($input, true);
 
