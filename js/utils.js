@@ -144,11 +144,11 @@ export function resetForm(...fields) {
   }
 }
 
-export async function requestTest(csrf_token, ...data){
+export async function requestTest(csrfToken, ...data){
   const [date, heure, idMarque, idModele, user_id, csrfToken] = data
   const essaiData = {date, heure, idMarque, idModele, user_id, csrfToken}
   try {
-    const response = await fetch(`${HOST}/api/essai/request.php`, {
+    const response = await fetch(`${HOST}/api/essai.php`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
